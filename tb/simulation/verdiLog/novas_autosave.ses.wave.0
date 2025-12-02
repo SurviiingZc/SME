@@ -1,0 +1,115 @@
+Magic 271485
+Revision Verdi_R-2020.12-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 1920 868 278 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/simulation/SME/simulation/PE.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 0.000000 818100.000000
+cursor 0.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 25
+; marker line index
+markerPos 60
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "" "/simulation/SME/simulation/PE.fsdb"
+addSignal -h 15 /tb_PE/u_PE/P4_Fuse_MultiAdd_Result[31:0]
+addSignal -h 15 -holdScope P4_Operand_C[31:0]
+addSignal -h 15 -holdScope P4_Normal_Mantissa[47:0]
+addSignal -h 15 /tb_PE/u_PE/Add_ZA[0]/u_C5_FPADDComb/i_Temp_Mant2[47:0]
+addSignal -h 15 -holdScope i_Temp_Mant1[47:0]
+addGroup "G2"
+addSubGroup "u_C5_FPAddition"
+addSignal -h 15 /tb_PE/u_PE/Add_ZA[0]/u_C5_FPADDComb/u_C5_FPAddition/i_Sign1
+addSignal -h 15 -holdScope i_Expo1[7:0]
+addSignal -h 15 -holdScope i_Mant1[23:0]
+addSignal -h 15 -holdScope i_Sign2
+addSignal -h 15 -holdScope i_Expo2[7:0]
+addSignal -h 15 -holdScope i_Mant2[23:0]
+addSignal -h 15 -holdScope i_FuseAdd_SelfAdd
+addSignal -h 15 -holdScope i_Temp_Sign1
+addSignal -h 15 -holdScope i_Temp_Sign2
+addSignal -h 15 -holdScope i_Temp_Expo1[9:0]
+addSignal -h 15 -holdScope i_Temp_Expo2[9:0]
+addSignal -h 15 -holdScope i_Temp_Mant1[47:0]
+addSignal -h 15 -holdScope i_Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Temp_Sign
+addSignal -h 15 -holdScope o_Temp_Expo[9:0]
+addSignal -h 15 -holdScope o_Temp_Mant[72:0]
+addSignal -h 15 -holdScope o_Sum_Mant[48:0]
+addSignal -h 15 -holdScope o_Sum_Expo[7:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+endSubGroup "u_C5_FPAddition"
+addGroup "G3"
+addSignal -h 15 /tb_PE/u_PE/Add_ZA[0]/u_C5_FPADDComb/i_Compute_Precision[2:0]
+addSignal -h 15 -holdScope i_Precision_Addend[2:0]
+addSignal -h 15 -holdScope i_Exception_Handling[19:0]
+addSignal -h 15 -holdScope i_Value1[31:0]
+addSignal -h 15 -holdScope i_Value2[31:0]
+addSignal -h 15 -holdScope T_Type1[2:0]
+addSignal -h 15 -holdScope T_Sign1
+addSignal -h 15 -holdScope T_Expo1[7:0]
+addSignal -h 15 -holdScope T_Mant1[23:0]
+addSignal -h 15 -holdScope T_Type2[2:0]
+addSignal -h 15 -holdScope T_Sign2
+addSignal -h 15 -holdScope T_Expo2[7:0]
+addSignal -h 15 -holdScope T_Mant2[23:0]
+addSignal -h 15 -holdScope o_IsBfloat16
+addSignal -h 15 -holdScope o_N
+addGroup "u_FPUnpackAll"
+addSignal -h 15 /tb_PE/u_PE/Add_ZA[0]/u_C5_FPADDComb/u_FPUnpackAll/i_Compute_Precision[2:0]
+addSignal -h 15 -holdScope i_Precision_Addend[2:0]
+addSignal -h 15 -holdScope i_Exception_Handling[19:0]
+addSignal -h 15 -holdScope i_Value1[31:0]
+addSignal -h 15 -holdScope i_Value2[31:0]
+addSignal -h 15 -holdScope o_Type1[2:0]
+addSignal -h 15 -holdScope o_Sign1
+addSignal -h 15 -holdScope o_Expo1[7:0]
+addSignal -h 15 -holdScope o_Mant1[23:0]
+addSignal -h 15 -holdScope o_Value1[31:0]
+addSignal -h 15 -holdScope o_Type2[2:0]
+addSignal -h 15 -holdScope o_Sign2
+addSignal -h 15 -holdScope o_Expo2[7:0]
+addSignal -h 15 -holdScope o_Mant2[23:0]
+addSignal -h 15 -holdScope o_Value2[31:0]
+addSignal -h 15 -holdScope o_IsBfloat16
+addSignal -h 15 -holdScope o_N
+addGroup "G5"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

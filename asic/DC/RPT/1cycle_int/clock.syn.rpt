@@ -1,0 +1,95 @@
+Information: Changed wire load model for 'IntSubtraction' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntAddition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'Int16Addition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'Int16Addition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'Int16Addition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntAddition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntAddition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntAddition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntAddition' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntAdditionAarry' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMultiplier_IN_WIDTH16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMultiplier_IN_WIDTH16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'Int16Mult_IN_WIDTH16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMultiplier_IN_WIDTH8' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMultiplier_IN_WIDTH8' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMultiplier_IN_WIDTH8' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMultiplier_IN_WIDTH8' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMult_IN_WIDTH8' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'IntMult_TOP' from '(none)' to 'ZeroWireload'. (OPT-170)
+  Allocating blocks in 'DW02_mult_A_width9_B_width9'
+  Allocating blocks in 'DW02_mult_A_width17_B_width17'
+Information: Updating graph... (UID-83)
+Warning: Design 'IntMultAdd_1cycle_pipelined' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : clocks
+Design : IntMultAdd_1cycle_pipelined
+Version: R-2020.09-SP5
+Date   : Mon Oct 27 16:12:22 2025
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+    g - lib_generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+clk              0.83   {0 0.41}                      {clk}
+--------------------------------------------------------------------------------
+1
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width33' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_33_33_33' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_sub_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*SUB_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_TC_OP_32_32_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult_A_width17_B_width17' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*MULT_TC_OP_17_17_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult_A_width17_B_width17' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*MULT_TC_OP_17_17_32' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult_A_width9_B_width9' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*MULT_TC_OP_9_9_16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult_A_width9_B_width9' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*MULT_TC_OP_9_9_16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult_A_width9_B_width9' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*MULT_TC_OP_9_9_16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW02_mult_A_width9_B_width9' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*MULT_TC_OP_9_9_16' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Updating design information... (UID-85)
+Warning: Design 'IntMultAdd_1cycle_pipelined' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : clock_skew
+Design : IntMultAdd_1cycle_pipelined
+Version: R-2020.09-SP5
+Date   : Mon Oct 27 16:12:22 2025
+****************************************
+
+                 Rise      Fall  Min Rise  Min fall        Uncertainty
+Object          Delay     Delay     Delay     Delay     Plus      Minus
+--------------------------------------------------------------------------------
+1

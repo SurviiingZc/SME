@@ -1,0 +1,115 @@
+Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 16 cores. (OPT-1500)
+Warning: Ignoring compile_fix_multiple_port_nets = TRUE. (UIO-60)
+
+Information: There are 142 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:04    9210.6      0.00       0.0       0.0                           236606.9375
+    0:00:04    9210.6      0.00       0.0       0.0                           236606.9375
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:05    9210.6      0.00       0.0       0.0                           236606.9375
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:05    9210.6      0.00       0.0       0.0                           236606.9375
+    0:00:06    9206.4      0.06       2.3      16.0                           236415.9219
+    0:00:07    9154.8      0.06       3.1      16.0                           234210.8281
+    0:00:08    9154.8      0.06       3.1      16.0                           234210.8281
+    0:00:09    9301.7      0.00       0.0      16.0                           240784.6094
+    0:00:09    9301.7      0.00       0.0      16.0                           240784.6094
+    0:00:09    9301.6      0.00       0.0      16.0                           240786.5625
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:09    9301.6      0.00       0.0      16.0                           240786.5625
+    0:00:09    9301.6      0.00       0.0      16.0                           240786.5625
+    0:00:09    9301.6      0.00       0.0      16.0                           240786.5625
+    0:00:09    9301.6      0.00       0.0      16.0                           240786.5625
+    0:00:09    9301.6      0.00       0.0      16.0                           240786.5625
+    0:00:09    9300.8      0.00       0.0      16.0                           240703.8281
+
+
+  Beginning Design Rule Fixing  (max_fanout)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:09    9300.8      0.00       0.0      16.0                           240703.8281
+    0:00:10    9307.7      0.00       0.0       0.0                           240959.8125
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:12    9220.4      0.00       0.0       0.0                           237113.3906
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9210.5      0.00       0.0       0.0                           236675.5625
+    0:00:14    9208.0      0.00       0.0       0.0                           236675.4844
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:14    9208.0      0.00       0.0       0.0                           236675.4844
+    0:00:16    9205.7      0.00       0.0       0.0                           236526.0156
+    0:00:18    9188.0      0.00       0.0       0.0                           235682.3906
+    0:00:21    9077.6      0.00       0.0       0.0                           230529.7969
+    0:00:21    9077.6      0.00       0.0       0.0                           230529.7969
+    0:00:21    9077.6      0.00       0.0       0.0                           230529.7969
+    0:00:21    9077.6      0.00       0.0       0.0                           230529.7969
+    0:00:22    9043.3      0.00       0.0       0.0                           229112.5156
+Loading db file '/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'PE' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'clk': 1149 load(s), 1 driver(s)
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1

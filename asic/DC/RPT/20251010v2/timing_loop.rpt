@@ -1,0 +1,17 @@
+ 
+****************************************
+Report : timing
+        -loops
+        -max_paths 1
+Design : PE
+Version: R-2020.09-SP5
+Date   : Fri Oct 10 13:13:57 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: ssg0p81v125c   Library: tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Wire Load Model Mode: segmented
+No loops.
+
+1

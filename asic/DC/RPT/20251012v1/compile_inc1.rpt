@@ -1,0 +1,706 @@
+Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 16 cores. (OPT-1500)
+Warning: Ignoring compile_fix_multiple_port_nets = TRUE. (UIO-60)
+
+Information: There are 56 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: Timing loop detected. (OPT-150)
+	U2013/A2 U2013/Z U7783/A1 U7783/ZN U19599/B1 U19599/ZN U19622/I1 U19622/ZN U19133/I U19133/ZN 
+Information: Timing loop detected. (OPT-150)
+	U19291/I U19291/ZN U2019/A2 U2019/Z U19111/A1 U19111/ZN U2402/A1 U2402/ZN U19600/A1 U19600/ZN U19615/I1 U19615/ZN 
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2013'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2019'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19450'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19449'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2189'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2353'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2191'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2190'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2190'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2190'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2020'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2351'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2184'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2183'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2183'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2183'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2177'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'Z' on cell 'U14593'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2349'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2179'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2178'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2178'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2178'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19292'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19293'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2172'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2347'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2174'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2173'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2173'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2173'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2167'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19452'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19451'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2345'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2169'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2168'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2168'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2168'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2007'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19288'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19289'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2162'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2343'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2164'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2163'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2163'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2163'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2157'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19454'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19453'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2341'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2159'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2158'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2158'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2158'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2001'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19285'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19286'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2152'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2339'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2154'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2153'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2153'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2153'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2147'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19456'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19455'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2337'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2149'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2148'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2148'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2148'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2142'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19277'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19278'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2335'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2144'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2143'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2143'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2143'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1995'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2137'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19458'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19457'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2333'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2139'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2138'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2138'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2138'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2132'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19273'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19274'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2331'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2134'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2133'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2133'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2133'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1989'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2127'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19460'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19459'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2329'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2129'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2128'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2128'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2128'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1983'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19255'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19256'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2122'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2327'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2124'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2123'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2123'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2123'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2117'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19462'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19461'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2325'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2119'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2118'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2118'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2118'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2112'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19216'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19217'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2323'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2114'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2113'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2113'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2113'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1977'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2107'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19464'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19463'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2321'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2109'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2108'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2108'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2108'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2102'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19213'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19215'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2319'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2104'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2103'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2103'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2103'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1971'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2097'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19466'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19465'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2317'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2099'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2098'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2098'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2098'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2092'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19230'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19232'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2315'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2094'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2093'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2093'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2093'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1965'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2087'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19468'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19467'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2313'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2089'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2088'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2088'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2088'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2082'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19244'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19243'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2311'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2084'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2083'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2083'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2083'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1959'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2077'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19470'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19469'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2309'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2079'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2078'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2078'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2078'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2072'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19269'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19271'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2307'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2074'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2073'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2073'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2073'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1953'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2067'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19472'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19471'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2305'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2069'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2068'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2068'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2068'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2062'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19312'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19314'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2303'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2064'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2063'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2063'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2063'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1947'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2057'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19474'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19473'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2301'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2059'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2058'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2058'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2058'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2052'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19332'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19333'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2299'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2054'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2053'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2053'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2053'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1941'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2047'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19476'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19475'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2297'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2049'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2048'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2048'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2048'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2042'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19330'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'B1' and 'ZN' on cell 'U19329'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2295'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2044'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2043'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2043'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2043'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1935'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I1' and 'ZN' on cell 'U19301'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I1' and 'ZN' on cell 'U19301'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U19478'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2293'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2039'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2038'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2038'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2038'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I0' and 'ZN' on cell 'U19337'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'I0' and 'ZN' on cell 'U19337'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2034'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2033'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2033'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2033'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2194'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2194'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2194'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'U2185'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U2182'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'ZN' on cell 'U19335'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2010'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2004'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1998'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1992'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1986'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1980'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1974'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1968'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1962'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1956'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1950'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1944'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U1938'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A2' and 'Z' on cell 'U2016'
+         to break a timing loop. (OPT-314)
+Information: The library cell 'TIELBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:04    9713.9     10.34     621.7       4.3                           299235.9062
+    0:00:05    9713.9     10.34     621.7       4.3                           299235.9062
+    0:00:06    9705.8     10.34     621.6       4.3                           298991.4062
+    0:00:07    9700.9     10.34     621.6       4.3                           298789.7812
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:10    9699.2     10.34     621.6       4.3                           298714.1250
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:10    9699.2     10.34     621.6       4.3                           298714.1250
+    0:00:10    9699.2     10.34     621.6       4.3                           298714.1250
+    0:00:11    9699.2     10.34     621.6       4.3                           298714.1875
+    0:00:11    9699.2     10.34     621.6       4.3                           298714.1875
+    0:00:21   10361.3     10.31     620.5       4.3                           327465.2812
+    0:00:21   10361.3     10.31     620.5       4.3                           327465.2812
+    0:01:33   11615.6     10.25     617.3      14.3                           386635.0000
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:01:33   11615.6     10.25     617.3      14.3                           386635.0000
+    0:02:53   12671.1     10.22     612.6      15.3                           433796.1875
+    0:02:53   12671.1     10.22     612.6      15.3                           433796.1875
+    0:03:48   13281.0     10.16     609.5      39.3                           460411.1250
+    0:03:49   13281.0     10.16     609.5      39.3                           460411.1250
+    0:03:49   13281.0     10.16     609.5      39.3                           460411.1250
+
+
+  Beginning Design Rule Fixing  (min_capacitance)  (max_fanout)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:03:49   13281.0     10.16     609.5      39.3                           460411.1250
+    0:03:50   13284.0     10.16     609.5       4.3 o_Result[127]             460549.8438
+    0:03:51   13284.0     10.16     609.5       4.3 o_Result[127]             460542.7500
+    0:03:54   13281.8     10.16     609.4       4.3 o_Result[127]             460448.6250
+    0:03:56   13281.7     10.16     609.4       4.3 o_Result[127]             460444.3750
+    0:03:58   13281.6     10.16     609.4       4.3                           460440.2500
+    0:03:58   13281.6     10.16     609.4       4.3                           460440.2500
+    0:03:59   13281.6     10.16     609.4       4.3                           460440.2500
+    0:04:06   13504.4     10.16     609.9       4.3                           469983.4062
+    0:04:06   13504.4     10.16     609.9       4.3                           469983.4062
+    0:05:02   14072.1     10.17     609.1       4.3                           495415.2500
+    0:05:02   14072.1     10.17     609.1       4.3                           495415.2500
+    0:05:57   14408.5     10.20     609.8       4.3                           510718.1562
+    0:05:58   14408.5     10.20     609.8       4.3                           510718.1562
+    0:06:44   14746.1     10.13     606.8       5.3                           525069.1250
+    0:06:47   14727.5     10.12     605.8       5.3                           524145.5938
+    0:06:53   14707.3     10.12     605.4       5.3                           523347.9375
+    0:06:53   14702.5     10.11     605.3       5.3                           523158.3438
+    0:06:54   14702.5     10.11     605.3       5.3                           523158.3438
+    0:06:54   14702.5     10.11     605.3       5.3                           523158.3438
+    0:07:01   14805.7     10.12     606.0       5.3                           528232.8750
+    0:07:01   14805.7     10.12     606.0       5.3                           528232.8750
+    0:07:35   15115.4     10.11     605.4       5.3                           541889.5625
+    0:07:35   15115.4     10.11     605.4       5.3                           541889.5625
+    0:07:54   15417.8     10.13     605.6       5.3                           555588.7500
+    0:07:55   15417.8     10.13     605.6       5.3                           555588.7500
+    0:08:27   15615.3     10.10     605.4       5.3                           564425.8125
+    0:08:27   15615.3     10.10     605.4       5.3                           564425.8125
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:08:28   15615.3     10.10     605.4       5.3                           564425.8125
+    0:08:28   15615.3     10.10     605.4       5.3                           564425.8125
+    0:08:32   15263.4     10.10     605.2       4.3                           548223.0625
+    0:08:35   15085.2     10.10     605.2       4.3                           539881.0000
+    0:09:23    9647.5     10.24     618.7       4.3                           293979.5938
+    0:09:31    9648.2     10.22     616.9       4.3 o_Result[127]             294246.8125
+    0:09:38    9644.6     10.22     616.7       4.3 o_Result[127]             294148.6250
+    0:09:44    9643.0     10.22     616.8       4.3                           294077.2812
+    0:09:46    9639.4     10.22     616.8       4.3                           293976.0938
+    0:09:47    9633.8     10.22     616.7       4.3                           293766.6875
+    0:09:47    9630.4     10.22     616.7       4.3                           293602.4688
+    0:09:47    9630.4     10.22     616.7       4.3                           293602.4688
+    0:09:50    9629.2     10.21     616.6       4.3                           293568.0000
+    0:09:50    9627.6     10.21     616.6       4.3                           293526.5938
+    0:09:51    9627.6     10.21     616.6       4.3                           293526.5938
+    0:10:04   10758.4     10.18     613.2       4.3                           344674.4062
+    0:10:21   10221.1     10.18     613.1       4.3                           321303.7188
+Loading db file '/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1

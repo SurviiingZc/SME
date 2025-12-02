@@ -1,0 +1,141 @@
+Information: Failed to find dw_foundation.sldb in the user defined search_path, load it from 'Synopsys Root'. (UISN-70)
+Warning: DesignWare synthetic library dw_foundation.sldb is added to the synthetic_library in the current command. (UISN-40)
+Information: Performing power optimization. (PWR-850)
+Alib files are up-to-date.
+Information: Running optimization using a maximum of 16 cores. (OPT-1500)
+Warning: Ignoring compile_fix_multiple_port_nets = TRUE. (UIO-60)
+
+Information: There are 14883 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Information: State dependent leakage is now switched from on to off.
+
+  Beginning Pass 1 Mapping  (Incremental)
+  ------------------------
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+Information: The library cell 'TIELBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
+Information: The library cell 'TIEHBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
+Information: The target library(s) contains cell(s), other than black boxes, that are not characterized for internal power. (PWR-24)
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:06    8477.5      0.03       3.4      14.0                           255327.3594
+    0:00:07    8477.5      0.03       3.4      14.0                           255327.3594
+Information: Complementing port 'i_is_int_op' in design 'Pipline_2'.
+	 The new name of the port is 'i_is_int_op_BAR'. (OPT-319)
+    0:00:09    8478.9      0.03       3.5      16.0                           255347.1406
+Information: Complementing port 'b' in design 'INV_Unit_Origin_166'.
+	 The new name of the port is 'b_BAR'. (OPT-319)
+Information: Complementing port 'o_or' in design 'INV_Unit_Origin_167'.
+	 The new name of the port is 'o_or_BAR'. (OPT-319)
+Information: Complementing port 'b' in design 'INV_Unit_Origin_153'.
+	 The new name of the port is 'b_BAR'. (OPT-319)
+Information: Complementing port 'o_or' in design 'INV_Unit_Origin_154'.
+	 The new name of the port is 'o_or_BAR'. (OPT-319)
+
+  Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
+  -------------------------------
+
+  Beginning Incremental Implementation Selection
+  ----------------------------------------------
+    0:00:09    8479.0      0.03       3.5      16.0                           255343.7500
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:09    8479.0      0.03       3.5      16.0                           255343.7500
+    0:00:11    9407.2      0.03       3.5      16.0                           255374.2344
+    0:00:13    9389.8      0.03       3.4      16.0                           254354.4219
+    0:00:13    9389.8      0.03       3.4      16.0                           254354.4219
+    0:00:13    9417.1      0.03       3.5      16.0                           255498.7188
+    0:00:13    9417.1      0.03       3.5      16.0                           255498.7188
+    0:00:16    9489.1      0.04       3.5      16.0                           258329.4375
+
+  Beginning Delay Optimization
+  ----------------------------
+    0:00:16    9489.1      0.04       3.5      16.0                           258329.4375
+    0:00:17    9493.1      0.04       3.5      16.0                           258510.2656
+    0:00:17    9493.1      0.04       3.5      16.0                           258510.2656
+    0:00:17    9493.1      0.04       3.5      16.0                           258510.2656
+    0:00:17    9493.1      0.04       3.5      16.0                           258510.2656
+    0:00:17    9493.8      0.04       3.5      16.0                           258579.8906
+
+
+  Beginning Design Rule Fixing  (max_fanout)
+  ----------------------------
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:17    9493.8      0.04       3.5      16.0                           258579.8906
+    0:00:21    9514.5      0.03       3.2       0.0 u_Pipline_6/o_Result_reg_12_/D 259435.0312
+    0:00:21    9514.5      0.03       3.2       0.0                           259435.0312
+    0:00:22    9493.0      0.03       3.2       0.0                           258180.9375
+    0:00:23    9493.0      0.03       3.2       0.0                           258180.9375
+    0:00:23    9495.1      0.03       3.2       0.0                           258256.6719
+    0:00:23    9495.1      0.03       3.2       0.0                           258256.6719
+    0:00:23    9540.9      0.03       3.2       0.0                           260359.2656
+    0:00:24    9540.9      0.03       3.2       0.0                           260359.2656
+    0:00:24    9540.9      0.03       3.2       0.0                           260359.2656
+    0:00:24    9540.9      0.03       3.2       0.0                           260359.2656
+    0:00:24    9540.9      0.03       3.2       0.0                           260359.2656
+    0:00:26    9540.4      0.03       2.9       0.0                           260278.5625
+    0:00:27    9546.0      0.03       2.8       0.0                           260557.6406
+    0:00:29    9559.2      0.03       2.6       0.0                           261246.3594
+    0:00:30    9585.7      0.02       2.2       0.0                           262399.8750
+    0:00:31    9585.8      0.02       2.2       0.0                           262342.3438
+    0:00:32    9553.9      0.02       2.3       0.0                           260670.6094
+    0:00:33    9553.9      0.02       2.3       0.0                           260670.6094
+    0:00:33    9557.0      0.03       2.3       0.0                           260818.2188
+    0:00:33    9557.0      0.03       2.3       0.0                           260818.2188
+    0:00:35    9621.7      0.03       2.4       0.0                           263587.9062
+    0:00:35    9621.7      0.03       2.4       0.0                           263587.9062
+    0:00:35    9621.7      0.03       2.4       0.0                           263587.9062
+    0:00:35    9621.7      0.03       2.4       0.0                           263587.9062
+    0:00:36    9621.7      0.03       2.4       0.0                           263587.9062
+    0:00:37    8719.5      0.04       2.7       0.0                           264236.2812
+
+                                  TOTAL                                                
+   ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
+  --------- --------- --------- --------- --------- ------------------------- ---------
+    0:00:37    8719.5      0.04       2.7       0.0                           264236.2812
+    0:00:38    8628.5      0.04       3.3       0.0                           260261.3906
+    0:00:40    8599.3      0.04       3.4       0.0                           258949.7344
+    0:00:41    8589.7      0.04       3.3       0.0                           258535.4844
+    0:00:44    8346.0      0.05       4.5       0.0                           247747.2031
+    0:00:48    8403.8      0.03       3.2       0.0 u_Pipline_1/o_Mant_reg_38_/D 250890.4375
+    0:00:50    8437.1      0.03       2.9       0.0                           252289.7500
+    0:00:50    8435.0      0.03       2.9       0.0                           252204.4844
+    0:00:50    8435.0      0.03       2.9       0.0                           252204.4844
+    0:00:50    8443.0      0.03       2.6       0.0                           252619.7500
+    0:00:50    8443.0      0.03       2.6       0.0                           252619.7500
+    0:00:50    8444.8      0.03       2.6       0.0                           252698.9688
+    0:00:50    8444.8      0.03       2.6       0.0                           252698.9688
+    0:00:51    8450.1      0.03       2.6       0.0                           252900.3594
+    0:00:51    8450.1      0.03       2.6       0.0                           252900.3594
+    0:00:52    8447.3      0.03       2.4       0.0                           252839.5938
+    0:00:53    8443.3      0.03       2.1       0.0                           252677.4688
+    0:00:54    8446.0      0.03       2.1       0.0                           252860.6250
+    0:00:54    8458.9      0.03       2.1       0.0                           253394.6406
+    0:00:58    8329.9      0.02       2.1       0.0                           246889.7188
+Loading db file '/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Information: State dependent leakage is now switched from off to on.
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+1

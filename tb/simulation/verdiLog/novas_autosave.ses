@@ -1,0 +1,100 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = TRUE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 
+VerdiVersion = Verdi_R-2020.12-SP2
+[KeyNote]
+Line1 = Automatic Backup 0
+Line2 = Save Open Database Information: Yes
+Line3 = Path Option: Absolute Paths
+Line4 = Windows Option: All Windows
+[OneSearch]
+isExisted = TRUE
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+Console = FALSE
+powerDumped = 0
+[fusa]
+fdb_server = 
+fdb_proj = 
+fdb_campaign = 
+fdb_tool = 
+[hb]
+postSimFile = /simulation/SME/simulation/PE.fsdb
+syncTime = 0
+viewport = 0 31 1920 971 0 0 230 898
+activeNode = "tb_PE.u_PE.Add_ZA[0].u_C5_FPADDComb.u_FPUnpackAll"
+activeScope = "tb_PE.u_PE.Add_ZA[0].u_C5_FPADDComb.u_FPUnpackAll"
+activeFile = "/simulation/SME/SRC/C5_FPUnpackAll.v"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 99
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+safetyAwareAnnot = True
+amsAnnot = True
+DnDtraceCrossHierOnly = True
+leadingZero = False
+signalPane = False
+SourceVerticalScrollLines = 5
+Scope1 = "tb_PE.u_PE.Add_ZA[0].u_C5_FPADDComb.u_FPUnpackAll"
+Scope2 = "tb_PE.u_PE.Add_ZA[0].u_C5_FPADDComb.u_C5_FPAddition"
+Scope3 = "tb_PE.u_PE.Add_ZA[0].u_C5_FPADDComb"
+Scope4 = "tb_PE.u_PE.Add_ZA[0]"
+Scope5 = "tb_PE.u_PE"
+Scope6 = "tb_PE.u_All_Instruction"
+Scope7 = "tb_PE"
+Scope8 = "tb_PE.u_All_Instruction.u_Instruction_FMOPA_None_Widening_FP16"
+Scope9 = "C3_CLA_48"
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "-sv" "-f" "filelist.f" 
+invokeDir = /simulation/SME/simulation
+[hb.sourceTab.1]
+scope = tb_PE.u_PE.Add_ZA[0].u_C5_FPADDComb.u_FPUnpackAll
+File = /simulation/SME/SRC/C5_FPUnpackAll.v
+Line = 100
+[nMemoryManager]
+WaveformFile = /simulation/SME/simulation/PE.fsdb
+UserActionNum = 0
+nMemWindowNum = 0
+[wave.0]
+viewPort = 0 25 1920 868 278 65
+primaryWindow = TRUE
+SessionFile = /simulation/SME/simulation/verdiLog/novas_autosave.ses.wave.0
+displayGrid = FALSE
+hierarchicalName = FALSE
+snap = TRUE
+displayLeadingZeros = TRUE
+fixDelta = FALSE
+displayCursorMarker = FALSE
+autoUpdate = FALSE
+highlightGlitchs = FALSE
+waveformSyncCursorMarker = FALSE
+waveformSyncHorizontalRange = FALSE
+waveformSyncVerticalscroll = FALSE
+displayErrors = TRUE
+displayMsgSymbols = TRUE
+showMsgDescriptions = TRUE
+autoFit = FALSE
+displayDeltaY = FALSE
+centerCursor = FALSE
+fsaRegMask = TRUE
+fsaCoreMask = TRUE
+fsaSfsmMask = TRUE
+fsaEcrMask = TRUE

@@ -1,0 +1,513 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version R-2020.09-SP5 for linux64 - Apr 23, 2021 
+
+                    Copyright (c) 1988 - 2021 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+set SCRIPT_FILE     script
+script
+source ./$SCRIPT_FILE/set_env_int.tcl
+source -echo ./$SCRIPT_FILE/file_create.tcl
+if {[file exist $RPT_DIR]} {
+    echo "File $RPT_DIR already exist"
+} else {
+    exec mkdir $RPT_DIR
+    echo "Creating $RPT_DIR !!!"
+}
+File RPT already exist
+if {[file exist $RPT_DIR/$file_version]} {
+    echo "File $file_version already exist"
+    exec rm $RPT_DIR/$file_version -r
+    exec mkdir $RPT_DIR/$file_version
+    echo "Re-create $file_version files"
+} else {
+    exec mkdir $RPT_DIR/$file_version
+    echo "Creating $file_version in $RPT_DIR !!!"
+}
+File 1cycle_int already exist
+Re-create 1cycle_int files
+if {[file exist $OUT_DIR]} {
+    echo "File $OUT_DIR already exist"
+} else {
+    exec mkdir $OUT_DIR
+    echo "Creating $OUT_DIR !!!"
+}
+File OUT already exist
+if {[file exist $OUT_DIR/$file_version]} {
+    echo "File $file_version already exist"
+    exec rm $OUT_DIR/$file_version -r
+    exec mkdir $OUT_DIR/$file_version
+    echo "Re-create $file_version files"
+} else {
+    exec mkdir $OUT_DIR/$file_version
+    echo "Creating $file_version in $OUT_DIR !!!"
+}
+File 1cycle_int already exist
+Re-create 1cycle_int files
+# create work
+if {[file exist WORK]} {
+    echo "File WORK already exist"
+} else {
+    exec mkdir WORK
+    echo "Creating WORK!!!"
+}
+File WORK already exist
+if {[file exist WORK/$file_version]} {
+    echo "File WORK/$file_version already exist"
+} else {
+    exec mkdir WORK/$file_version
+    echo "Creating WORK/$file_version in WORK !!!"
+}
+File WORK/1cycle_int already exist
+set cache_write  WORK/$file_version
+Information: The use of Synopsys disk cache is disabled by default. Synopsys disk cache will be made obsolete in future. (SYNOPT-32)
+WORK/1cycle_int
+set cache_read   WORK/$file_version
+Information: The use of Synopsys disk cache is disabled by default. Synopsys disk cache will be made obsolete in future. (SYNOPT-32)
+WORK/1cycle_int
+set_host_options -max_cores 16
+1
+set search_path [list                 /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/                /simulation/PDK/T28_logic_hpc_plus/IO/tphn28hpcpgv18_170d/nldm/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tphn28hpcpgv18_170a/]
+/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/ /simulation/PDK/T28_logic_hpc_plus/IO/tphn28hpcpgv18_170d/nldm/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tphn28hpcpgv18_170a/
+set target_library   [list ${lib_slow}.db ]
+tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+#set link_library     [list "*" ${lib_slow}.db tphn28hpcpgv18ssg0p81v1p62v125c.db]
+set link_library     [list "*" ${lib_slow}.db]
+* tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+#set link_library     [list "*" ${lib_slow}.db SP018R_V1p1_min.db]
+set synthetic_library [list ${lib_slow}.db]
+tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+#set symbol_library [list ${lib_symbol}.sdb]
+define_design_lib WORK -path ./WORK/$file_version
+1
+##################################################################
+## Read in Verilog Files    ##
+##################################################################
+# current_design $working_design
+# link
+set script_dir [file dirname [info script]]
+/simulation/SME/DC/script
+set lst_file_path [file join $script_dir filelist_Int.lst]
+/simulation/SME/DC/script/filelist_Int.lst
+set source_file [sh cat $lst_file_path]
+/simulation/SME/DC/SRC_Int/Macro_Definition.v
+/simulation/SME/DC/SRC_Int/Int16Addition.v
+/simulation/SME/DC/SRC_Int/Int16Mult.v
+/simulation/SME/DC/SRC_Int/IntAddAarry.v
+/simulation/SME/DC/SRC_Int/IntAddition.v
+/simulation/SME/DC/SRC_Int/IntMult_TOP.v
+/simulation/SME/DC/SRC_Int/IntMult.v
+/simulation/SME/DC/SRC_Int/IntMultAdd_1cycle_pipelined.v
+/simulation/SME/DC/SRC_Int/IntMultAdd_1cycle.v
+/simulation/SME/DC/SRC_Int/IntMultiplier.v
+/simulation/SME/DC/SRC_Int/IntSubtraction.v
+suppress_message VER-318
+suppress_message ELAB-311
+suppress_message UCN-1
+analyze -format sverilog -lib work ${source_file}
+Running PRESTO HDLC
+Compiling source file /simulation/SME/DC/SRC_Int/Macro_Definition.v
+Compiling source file /simulation/SME/DC/SRC_Int/Int16Addition.v
+Compiling source file /simulation/SME/DC/SRC_Int/Int16Mult.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntAddAarry.v
+Opening include file /simulation/SME/DC/SRC_Int/Macro_Definition.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntAddition.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntMult_TOP.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntMult.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntMultAdd_1cycle_pipelined.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntMultAdd_1cycle.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntMultiplier.v
+Opening include file /simulation/SME/DC/SRC_Int/Macro_Definition.v
+Compiling source file /simulation/SME/DC/SRC_Int/IntSubtraction.v
+Presto compilation completed successfully.
+Loading db file '/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db'
+Information: Using CCS timing libraries. (TIM-024)
+1
+elaborate $working_design
+Loading db file '/apps/synopsys/syn_vR-2020.09-SP5/libraries/syn/gtech.db'
+Loading db file '/apps/synopsys/syn_vR-2020.09-SP5/libraries/syn/standard.sldb'
+  Loading link library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Inferred memory devices in process
+	in routine IntMultAdd_1cycle_pipelined line 33 in file
+		'/simulation/SME/DC/SRC_Int/IntMultAdd_1cycle_pipelined.v'.
+=======================================================================================
+|        Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=======================================================================================
+|       r_Operator_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|       r_operand1_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       r_operand2_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        r_Addend_reg         | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|      r_ZmIsSigned_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      r_ZnIsSigned_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   r_Active_Element_A_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   r_Active_Element_B_reg    | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   r_Calculation_mode_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| r_Calculation_pricision_reg | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  r_Num_of_Vector_Group_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+=======================================================================================
+
+Inferred memory devices in process
+	in routine IntMultAdd_1cycle_pipelined line 61 in file
+		'/simulation/SME/DC/SRC_Int/IntMultAdd_1cycle_pipelined.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     Output_reg      | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (IntMultAdd_1cycle_pipelined)
+Elaborated 1 design.
+Current design is now 'IntMultAdd_1cycle_pipelined'.
+Information: Building the design 'IntMult_TOP'. (HDL-193)
+Presto compilation completed successfully. (IntMult_TOP)
+Information: Building the design 'IntAdditionAarry'. (HDL-193)
+Presto compilation completed successfully. (IntAdditionAarry)
+Information: Building the design 'IntMult' instantiated from design 'IntMult_TOP' with
+	the parameters "IN_WIDTH=8". (HDL-193)
+Presto compilation completed successfully. (IntMult_IN_WIDTH8)
+Information: Building the design 'Int16Mult' instantiated from design 'IntMult_TOP' with
+	the parameters "IN_WIDTH=16". (HDL-193)
+Presto compilation completed successfully. (Int16Mult_IN_WIDTH16)
+Information: Building the design 'IntAddition'. (HDL-193)
+Presto compilation completed successfully. (IntAddition)
+Information: Building the design 'Int16Addition'. (HDL-193)
+Presto compilation completed successfully. (Int16Addition)
+Information: Building the design 'IntSubtraction'. (HDL-193)
+Presto compilation completed successfully. (IntSubtraction)
+Information: Building the design 'IntMultiplier' instantiated from design 'IntMult_IN_WIDTH8' with
+	the parameters "IN_WIDTH=8". (HDL-193)
+Presto compilation completed successfully. (IntMultiplier_IN_WIDTH8)
+Information: Building the design 'IntMultiplier' instantiated from design 'Int16Mult_IN_WIDTH16' with
+	the parameters "IN_WIDTH=16". (HDL-193)
+Presto compilation completed successfully. (IntMultiplier_IN_WIDTH16)
+1
+report_attributes -design
+ 
+****************************************
+Report : Attribute
+Design : IntMultAdd_1cycle_pipelined
+Version: R-2020.09-SP5
+Date   : Mon Oct 27 16:12:20 2025
+****************************************
+
+Design          Object             Type      Attribute Name            Value
+--------------------------------------------------------------------------------
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    temperature_from_min_lib  125.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    temperature_from_max_lib  125.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    design_voltage_unit       1000.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    design_current_unit       1.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    design_resistance_unit    1.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    design_cap_unit           1.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    design_time_unit          1.000000
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    scan_state_route_serial   false
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    scan_state_route_clocks   false
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    scan_state_route_enables  false
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    scan_state_type           1
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    min_wire_load_selection_type
+                                                                       0
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    wire_load_selection_type  2
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    hdl_library               WORK
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    dollar_unit_text          module IntMultAdd_1cycle_pipelined_svsim(
+    input clk,
+    input rstn,
+    input [31:0]        i_operand1,
+    input [31:0]        i_operand2,
+    input [127:0]       i_Addend,
+    input               i_ZmIsSigned,           input               i_ZnIsSigned,           input [3:0]         i_Active_Element_A,
+    input [3:0]         i_Active_Element_B,
+    input               i_Calculation_mode,     input [2:0]         i_Calculation_pricision,
+    input               i_Num_of_Vector_Group,     input               i_Operator,            output reg [127:0]  Output
+);
+
+
+
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    hdl_template              IntMultAdd_1cycle_pipelined
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    hdl_canonical_default_params
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    hdl_default_parameters    
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    hdl_canonical_params      
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    hdl_parameters            
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    link_design_libraries     WORK, DEFAULT
+IntMultAdd_1cycle_pipelined
+                IntMultAdd_1cycle_pipelined
+                                   design    presto_gtech_count        338
+
+1
+current_design $working_design
+Current design is 'IntMultAdd_1cycle_pipelined'.
+{IntMultAdd_1cycle_pipelined}
+link
+
+  Linking design 'IntMultAdd_1cycle_pipelined'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (10 designs)              /simulation/SME/DC/IntMultAdd_1cycle_pipelined.db, etc
+  tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (library)
+                              /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+
+1
+source -echo ./$SCRIPT_FILE/set_parameter.tcl
+##################################################################
+## Compile variable##
+##################################################################
+set write_name_nets_same_as_ports true
+set compile_assume_fully_decoded_three_state_buses true
+set verilogout_no_tri true
+set compile_no_new_cells_at_top_level false
+set compile_preserve_sync_resets true
+## Remove assign statements when generating gate level netlist 
+set compile_fix_multiple_port_nets true
+# for async reset timing check
+set enable_recovery_removal_arcs true
+set_fix_multiple_port_nets -all -buffer_constants
+#set_fix_multiple_port_nets -all
+#/******************************************************************
+#****                         HDL RULES                          ***
+#*******************************************************************/
+set hdlin_check_no_latch                        true
+set hdlin_suppress_warnings                     false
+set hdlin_ff_always_sync_set_reset              true
+set hdlin_infer_mux                             default
+set hdlin_keep_signal_name                      all_driving
+set hdlin_on_sequential_mapping                 false
+set compile_delete_unloaded_sequential_cells    true
+set hdlin_preserve_sequential                   none
+#/******************************************************************
+#****         VERILOG RULES: VERILOG OUT                        **** 
+#*******************************************************************/
+set verilogout_show_unconnected_pins            true
+set verilogout_no_tri                           true
+set verilogout_single_bit                       false
+set verilogout_equation                         false
+#/******
+#/******************************************************************
+#****                    Scan Options                           ***
+#*******************************************************************/
+set insert_test_design_naming_style             "%s_%d"
+#set test_scan_in_port_naming_style              "SI%s%s"
+#set test_scan_enable_port_naming_style          "SCN%s"
+#set test_scan_out_port_naming_style             "SO%s%s"
+source -echo ./$SCRIPT_FILE/constraint_sdc.tcl  ;# 屏蔽时钟约束
+set compile_enable_constant_propagation_with_no_boundary_opt false
+set timing_enable_multiple_clocks_per_reg true
+set enable_recovery_removal_arcs true
+set sdc_version 2.1
+Information: Setting sdc_version outside of an SDC file has no effect (SDC-1)
+# set_unit -time ns -resistance kohm -capacitance pf -voltage V -current uA
+# 单位设置（建议全部小写）
+set_units -time ns -capacitance pf -resistance kohm -voltage v -current ma
+# Set clock constraints
+create_clock -name clk -period 0.83 -waveform [list 0 0.41]    [get_ports clk]
+#create_clock -name Pad_SCLK -period 50   [get_ports Pad_SCLK]
+#create_clock -name osc_clk  -period 10   [get_pins  u_Oscillator/clk]
+set_input_delay  0.2 -max  -clock [get_clocks clk] [all_inputs] 
+set_input_delay  0.1 -min  -clock [get_clocks clk] [all_inputs] 
+set_output_delay  0.2 -max  -clock [get_clocks clk]  [all_outputs] 
+set_output_delay  0.1 -min  -clock [get_clocks clk]  [all_outputs] 
+# sign off   20%
+#set_clock_uncertainty -setup 0.2  [get_clocks clk]
+#set_clock_uncertainty -hold  0.2  [get_clocks clk]
+#set_clock_uncertainty -hold 2  [get_clocks osc_clk]
+#set_clock_uncertainty -setup 10 [get_clocks Pad_SCLK]
+#set_clock_uncertainty -hold  10 [get_clocks Pad_SCLK]
+#set_clock_latency       -source 0.5 [get_clocks clk_dpie]   input  max 50%   min 20%
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_read_en]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[0]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[1]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[2]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[3]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[4]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[5]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[6]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_image[7]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[0]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[1]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[2]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[3]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[4]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[5]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[6]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_weights[7]]
+#set_input_delay		-max 0.41	  	-clock clk		[get_ports Pad_valid_4_a_CIRCLE]
+#set_output_delay	-max 0.41	  	-clock clk		[get_ports Pad_valid_lut_out]
+#set_output_delay	-max 0.41	    -clock clk		[get_ports Pad_dout_valid]
+#
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_read_en ]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[0]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[1]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[2]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[3]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[4]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[5]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[6]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_image[7]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[0]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[1]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[2]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[3]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[4]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[5]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[6]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_weights[7]]
+#set_input_delay		-min 0.08	  	-clock clk		[get_ports Pad_valid_4_a_CIRCLE]
+#set_output_delay	-min 0.08	  	-clock clk		[get_ports Pad_valid_lut_out]
+#set_output_delay	-min 0.08	    -clock clk		[get_ports Pad_dout_valid]
+#set_input_delay		-max 5   	  	-clock Pad_clk		[get_ports Pad_rst]
+#set_input_delay		-max 6.5	  	-clock Pad_clk		[get_ports Pad_sel]
+#set_output_delay	-max 6.5	    -clock Pad_clk		[get_ports Pad_int_clk]
+#set_input_delay		-min 1.5	  	-clock Pad_clk		[get_ports Pad_rst]
+#set_input_delay		-min 1.5	  	-clock Pad_clk		[get_ports Pad_sel]
+#set_output_delay	-min 1.5	    -clock Pad_clk		[get_ports Pad_int_clk]
+#set_clock_groups  -logically_exclusive   -group {Pad_SCLK } 
+#set_clock_groups -logically_exclusive -group {Pad_clk }  -group {osc_clk } 
+# Set design rule constraints
+# set_max_fanout 32 [current_design]
+# set_max_transition	0.5		[all_inputs]
+set_max_fanout 8 [current_design]
+Current design is 'IntMultAdd_1cycle_pipelined'.
+set_max_transition	0.18		[all_inputs]
+1
+#source -echo ./$SCRIPT_FILE/dont_touch.tcl
+#change naming rule
+report_clock > $RPT_OUT/clock.syn.rpt
+report_clock -skew >> $RPT_OUT/clock.syn.rpt
+current_design $working_design
+Current design is 'IntMultAdd_1cycle_pipelined'.
+{IntMultAdd_1cycle_pipelined}
+# uniquify -force
+##################################################################
+## Optimization
+##################################################################
+# set_optimize_registers true
+change_names -rules verilog -hierarchy
+Warning: The specified replacement character (_) is conflicting with the specified allowed or restricted character.   (UCN-4)
+1
+compile_ultra -no_autoungroup -timing_high_effort_script > $RPT_OUT/compile.rpt
+compile_ultra -inc > $RPT_OUT/compile_inc.rpt
+# compile_ultra -no_autoungroup -timing_high_effort_script > $RPT_OUT/compile.rpt
+# compile_ultra -no_autoungroup -inc > $RPT_OUT/compile_inc.rpt
+# compile_ultra -no_autoungroup -inc > $RPT_OUT/compile_inc1.rpt
+# compile_ultra -timing_high_effort_script > $RPT_OUT/compile.rpt
+# compile_ultra -inc > $RPT_OUT/compile_inc.rpt
+# compile_ultra -inc > $RPT_OUT/compile_inc1.rpt
+#
+change_names -rules verilog -hierarchy
+1
+current_design $working_design
+Current design is 'IntMultAdd_1cycle_pipelined'.
+{IntMultAdd_1cycle_pipelined}
+##########################################
+check_design  > $RPT_OUT/check_design.rpt
+check_timing  > $RPT_OUT/check_timing.rpt
+report_qor > $RPT_OUT/qor.rpt
+report_area > $RPT_OUT/area.rpt
+report_area -hierarchy > $RPT_OUT/area_hier.rpt
+report_timing   -loops > $RPT_OUT/timing_loop.rpt
+report_timing -path full -net -cap -input -tran -delay min -max_paths 200 -nworst 200 > $RPT_OUT/timing.min.rpt
+report_timing -path full -net -cap -input -tran -delay max -max_paths 200 -nworst 200 > $RPT_OUT/timing.max.rpt
+# ========= Path buckets: in→reg / reg→reg / reg→out / in→out =========
+# in → reg
+report_timing -path full -net -cap -input -tran -delay max   -from [all_inputs] -to [all_registers -data_pins]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2reg.max.rpt
+report_timing -path full -net -cap -input -tran -delay min   -from [all_inputs] -to [all_registers -data_pins]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2reg.min.rpt
+# reg → reg
+report_timing -path full -net -cap -input -tran -delay max   -from [all_registers -clock_pins] -to [all_registers -data_pins]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
+report_timing -path full -net -cap -input -tran -delay min   -from [all_registers -clock_pins] -to [all_registers -data_pins]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt
+# reg → out
+report_timing -path full -net -cap -input -tran -delay max   -from [all_registers -clock_pins] -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.max.rpt
+report_timing -path full -net -cap -input -tran -delay min   -from [all_registers -clock_pins] -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.min.rpt
+# in → out
+report_timing -path full -net -cap -input -tran -delay max   -from [all_inputs] -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2out.max.rpt
+report_timing -path full -net -cap -input -tran -delay min   -from [all_inputs] -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2out.min.rpt
+# report_constraints -all_violators -verbose > $RPT_OUT/constraints.rpt
+report_power > $RPT_OUT/power.rpt
+###################################################################
+## Saving Hierarchy
+###################################################################
+set bus_naming_style {%s[%d]} 
+%s[%d]
+write_file -f verilog -hierarchy -output $DATA_OUT/$working_design.v
+Writing verilog file '/simulation/SME/DC/OUT/1cycle_int/IntMultAdd_1cycle_pipelined.v'.
+1
+write_sdf -version 2.1 $DATA_OUT/$working_design.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/simulation/SME/DC/OUT/1cycle_int/IntMultAdd_1cycle_pipelined.sdf'. (WT-3)
+1
+write_file -f ddc -hierarchy -output $DATA_OUT/$working_design.ddc
+Writing ddc file 'OUT/1cycle_int/IntMultAdd_1cycle_pipelined.ddc'.
+1
+write_sdc $DATA_OUT/$working_design.sdc
+1
+set_svf $DATA_OUT/$working_design.svf
+1
+file delete ./command.log
+#file delete ./default.svf
+file delete ./filenames.log
+#exitdc_shell> 

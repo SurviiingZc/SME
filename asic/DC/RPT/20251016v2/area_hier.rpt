@@ -1,0 +1,112 @@
+ 
+****************************************
+Report : area
+Design : PE
+Version: R-2020.09-SP5
+Date   : Thu Oct 16 21:33:37 2025
+****************************************
+
+Library(s) Used:
+
+    tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (File: /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db)
+
+Number of ports:                        13201
+Number of nets:                         19040
+Number of cells:                        14084
+Number of combinational cells:           9318
+Number of sequential cells:               973
+Number of macros/black boxes:               0
+Number of buf/inv:                       1759
+Number of references:                      52
+
+Combinational area:               5227.810003
+Buf/Inv area:                      477.553994
+Noncombinational area:            1843.967990
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  7071.777993
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ----------------------------------------------------
+PE                                7071.7780    100.0   211.4840     3.7240  0.0000  PE
+Add_ZA_0__u_C5_FPADDComb           892.8780     12.6     0.0000     0.0000  0.0000  C5_FPADDComb_3
+Add_ZA_0__u_C5_FPADDComb/u_C5_FPAddition
+                                   892.0940     12.6   892.0940     0.0000  0.0000  C5_FPAddition_3
+Add_ZA_0__u_C5_FPADDComb/u_FPUnpackAll
+                                     0.7840      0.0     0.7840     0.0000  0.0000  C5_FPUnpackAll_3
+Add_ZA_2__u_C5_FPADDComb             0.1960      0.0     0.0000     0.0000  0.0000  C5_FPADDComb_1
+Add_ZA_2__u_C5_FPADDComb/u_FPUnpackAll
+                                     0.1960      0.0     0.1960     0.0000  0.0000  C5_FPUnpackAll_1
+Comb2_0__u_C2_Round                542.2340      7.7     0.7840     0.0000  0.0000  C2_Round_IN_WIDTH48_EXP_WIDTH9_3
+Comb2_0__u_C2_Round/u_NormalizeReal
+                                   541.4500      7.7   485.9820     0.0000  0.0000  C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_3
+Comb2_0__u_C2_Round/u_NormalizeReal/lzc_inst
+                                    55.4680      0.8    55.4680     0.0000  0.0000  C2_LZC_round_WIDTH48_3
+u_C1_FPMultiplyComb               1663.7460     23.5     0.7840     0.0000  0.0000  C1_FPMultiplyComb
+u_C1_FPMultiplyComb/u_FPMutiArray 1608.8660     22.8   416.2060     0.0000  0.0000  C1_FPMutiArray
+u_C1_FPMultiplyComb/u_FPMutiArray/u_FPMultiplier00
+                                  1192.6600     16.9  1192.6600     0.0000  0.0000  C1_FPMultiplier
+u_C1_FPMultiplyComb/u_FPUnpackAll   54.0960      0.8    29.2040     0.0000  0.0000  C1_FPUnpackAll
+u_C1_FPMultiplyComb/u_FPUnpackAll/FPUnpackBase_Operand1_0__u_FPUnpackBase_Operand1
+                                    12.3480      0.2    12.3480     0.0000  0.0000  C1_FPUnpackBase_3
+u_C1_FPMultiplyComb/u_FPUnpackAll/FPUnpackBase_Operand2_0__u_FPUnpackBase_Operand2
+                                    12.5440      0.2    12.5440     0.0000  0.0000  C1_FPUnpackBase_1
+u_C6_Round_FP32                   1673.3500     23.7    59.7800     0.0000  0.0000  C6_Round_IN_WIDTH48_EXP_WIDTH10
+u_C6_Round_FP32/u_C6_BFRound        43.0220      0.6    41.2580     0.0000  0.0000  C6_BFRound_IN_WIDTH48_EXP_WIDTH10
+u_C6_Round_FP32/u_C6_BFRound/u_FPInfinity_BFRound
+                                     0.9800      0.0     0.9800     0.0000  0.0000  C6_FPInfinity_1
+u_C6_Round_FP32/u_C6_BFRound/u_FPZero_BFRound
+                                     0.7840      0.0     0.7840     0.0000  0.0000  C6_FPZero_1
+u_C6_Round_FP32/u_C6_FPRoundBase   582.7080      8.2   384.0620     0.0000  0.0000  C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10
+u_C6_Round_FP32/u_C6_FPRoundBase/FPNaN
+                                     0.7840      0.0     0.7840     0.0000  0.0000  C6_FPNaN_0
+u_C6_Round_FP32/u_C6_FPRoundBase/bf16_detector_main
+                                    13.2300      0.2    13.2300     0.0000  0.0000  C6_CarryDetector_7_80_0
+u_C6_Round_FP32/u_C6_FPRoundBase/bf16_detector_uncon
+                                     9.9960      0.1     9.9960     0.0000  0.0000  C6_CarryDetector_7_80_1
+u_C6_Round_FP32/u_C6_FPRoundBase/fp16_detector_main
+                                    18.1300      0.3    18.1300     0.0000  0.0000  C6_CarryDetector_10_400_0
+u_C6_Round_FP32/u_C6_FPRoundBase/fp16_detector_uncon
+                                    14.2100      0.2    14.2100     0.0000  0.0000  C6_CarryDetector_10_400_1
+u_C6_Round_FP32/u_C6_FPRoundBase/fp32_detector_main
+                                    57.5260      0.8    57.5260     0.0000  0.0000  C6_CarryDetector_23_800000_0
+u_C6_Round_FP32/u_C6_FPRoundBase/fp32_detector_uncon
+                                    46.4520      0.7    46.4520     0.0000  0.0000  C6_CarryDetector_23_800000_1
+u_C6_Round_FP32/u_C6_FPRoundBase/u_FPInfinity1
+                                     0.9800      0.0     0.9800     0.0000  0.0000  C6_FPInfinity_0
+u_C6_Round_FP32/u_C6_FPRoundBase/u_FPMaxNormal
+                                     0.7840      0.0     0.7840     0.0000  0.0000  C6_FPMaxNormal_0
+u_C6_Round_FP32/u_C6_FPRoundBase/u_FPZero1
+                                     0.7840      0.0     0.7840     0.0000  0.0000  C6_FPZero_0
+u_C6_Round_FP32/u_C6_FPRoundBase/u_Normal_Result
+                                    35.7700      0.5    35.7700     0.0000  0.0000  C6_Normal_Result_IN_WIDTH48_EXP_WIDTH10
+u_C6_Round_FP32/u_C6_NormalizeReal
+                                   987.8400     14.0   849.1700     0.0000  0.0000  C6_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10
+u_C6_Round_FP32/u_C6_NormalizeReal/lzc_inst
+                                   138.6700      2.0   138.6700     0.0000  0.0000  C6_LZC_round_WIDTH48
+u_IntAdditionAarry                 190.0220      2.7   123.2840     0.0000  0.0000  IntAdditionAarry
+u_IntAdditionAarry/gen_IntAddition_2__u_IntAddition
+                                     9.4080      0.1     9.4080     0.0000  0.0000  IntAddition_2
+u_IntAdditionAarry/gen_IntAddition_3__u_IntAddition
+                                     9.4080      0.1     9.4080     0.0000  0.0000  IntAddition_1
+u_IntAdditionAarry/u_IntSubtraction_outer
+                                    47.9220      0.7    47.9220     0.0000  0.0000  IntSubtraction
+u_Pipline_0                        456.1900      6.5     3.4300   452.7600  0.0000  Pipline_0
+u_Pipline_1                        440.3140      6.2     2.6460   437.6680  0.0000  Pipline_1
+u_Pipline_2                        230.3980      3.3    42.3360   188.0620  0.0000  Pipline_2
+u_Pipline_3                        189.5320      2.7     1.4700   188.0620  0.0000  Pipline_3
+u_Pipline_4                        194.1380      2.7     1.4700   192.6680  0.0000  Pipline_4
+u_Pipline_5                        143.1780      2.0     0.7840   142.3940  0.0000  Pipline_5
+u_Pipline_6                        240.3940      3.4     1.7640   238.6300  0.0000  Pipline_6
+--------------------------------  ---------  -------  ---------  ---------  ------  ----------------------------------------------------
+Total                                                 5227.8100  1843.9680  0.0000
+
+1

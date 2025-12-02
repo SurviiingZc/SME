@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : PE
+Version: R-2020.09-SP5
+Date   : Mon Oct 13 17:05:44 2025
+****************************************
+
+Library(s) Used:
+
+    tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (File: /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db)
+
+Number of ports:                        18028
+Number of nets:                         28681
+Number of cells:                        20987
+Number of combinational cells:          15233
+Number of sequential cells:              1149
+Number of macros/black boxes:               0
+Number of buf/inv:                       2861
+Number of references:                      55
+
+Combinational area:               8501.598011
+Buf/Inv area:                      834.273992
+Noncombinational area:            2242.239986
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 10743.837997
+Total area:                 undefined
+1

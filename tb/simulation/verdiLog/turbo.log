@@ -1,0 +1,3 @@
+Command Line: /apps/synopsys/verdi_vR-2020.12-SP2/platform/LINUXAMD64/bin/Novas -sv -f filelist.f -ssf PE.fsdb -nologo
+uname(Linux server01 3.10.0-1160.90.1.el7.x86_64 #1 SMP Thu May 4 15:21:22 UTC 2023 x86_64)
+au time 3019897.348508 18991.597552 27997.754037 delta 456540160 456540160 total 944316416 944316416

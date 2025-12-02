@@ -1,0 +1,15 @@
+ 
+****************************************
+Report : timing
+        -loops
+        -max_paths 1
+Design : C6_LZC_dc
+Version: R-2020.09-SP5
+Date   : Mon Oct 27 00:35:17 2025
+****************************************
+
+Operating Conditions: ssg0p81v125c   Library: tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Wire Load Model Mode: segmented
+No loops.
+
+1

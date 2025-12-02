@@ -1,0 +1,21 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -nworst 200
+        -input_pins
+        -nets
+        -max_paths 200
+        -transition_time
+        -capacitance
+Design : C6_LZC_dc
+Version: R-2020.09-SP5
+Date   : Sun Oct 26 23:21:36 2025
+****************************************
+
+Operating Conditions: ssg0p81v125c   Library: tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Wire Load Model Mode: segmented
+No paths.
+
+1

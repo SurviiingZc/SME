@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : IntMultAdd_1cycle_pipelined
+Version: R-2020.09-SP5
+Date   : Mon Oct 27 16:16:58 2025
+****************************************
+
+Library(s) Used:
+
+    tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (File: /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db)
+
+Number of ports:                         2202
+Number of nets:                         11020
+Number of cells:                         8970
+Number of combinational cells:           8527
+Number of sequential cells:               336
+Number of macros/black boxes:               0
+Number of buf/inv:                       2035
+Number of references:                      11
+
+Combinational area:               6743.968063
+Buf/Inv area:                      746.661997
+Noncombinational area:             644.349999
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  7388.318063
+Total area:                 undefined
+1

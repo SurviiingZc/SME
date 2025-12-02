@@ -1,0 +1,82 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : IntMultAdd_1cycle_pipelined
+Version: R-2020.09-SP5
+Date   : Mon Oct 27 16:17:00 2025
+****************************************
+
+
+Library(s) Used:
+
+    tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (File: /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db)
+
+
+Operating Conditions: ssg0p81v125c   Library: tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+IntMultAdd_1cycle_pipelined
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMult_TOP            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAdditionAarry       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMult_IN_WIDTH8      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Int16Mult_IN_WIDTH16   ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_4          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_3          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_2          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_1          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Int16Addition_2        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Int16Addition_1        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Int16Addition_0        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_0          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntSubtraction         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMultiplier_IN_WIDTH8_3
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMultiplier_IN_WIDTH8_2
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMultiplier_IN_WIDTH8_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMultiplier_IN_WIDTH8_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMultiplier_IN_WIDTH16_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntMultiplier_IN_WIDTH16_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+
+
+Global Operating Voltage = 0.81 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =   2.2192 mW   (77%)
+  Net Switching Power  = 673.6796 uW   (23%)
+                         ---------
+Total Dynamic Power    =   2.8929 mW  (100%)
+
+Cell Leakage Power     = 281.1922 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           1.2666        1.5380e-02        1.4933e+04            1.2969  (  40.86%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      0.9526            0.6583        2.6626e+05            1.8772  (  59.14%)
+--------------------------------------------------------------------------------------------------
+Total              2.2192 mW         0.6737 mW     2.8119e+05 nW         3.1740 mW
+1

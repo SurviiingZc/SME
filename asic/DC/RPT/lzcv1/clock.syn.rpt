@@ -1,0 +1,92 @@
+Information: Updating graph... (UID-83)
+ 
+****************************************
+Report : clocks
+Design : C6_LZC_dc
+Version: R-2020.09-SP5
+Date   : Sun Oct 26 23:20:54 2025
+****************************************
+
+Attributes:
+    d - dont_touch_network
+    f - fix_hold
+    p - propagated_clock
+    G - generated_clock
+    g - lib_generated_clock
+
+Clock          Period   Waveform            Attrs     Sources
+--------------------------------------------------------------------------------
+clk              0.83   {0 0.41}                      {clk}
+--------------------------------------------------------------------------------
+1
+Information: Changed wire load model for 'DW01_add_width6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_6_4_6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_6_4_6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_5_4_6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_5_4_6' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width5' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_4_4_5' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_1_4_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_1_4_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_1_4_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_1_4_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_1_4_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_inc_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_1_4_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_3_3_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_3_3_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_3_3_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_3_3_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_3_3_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_3_3_4' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for 'DW01_add_width3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Changed wire load model for '*ADD_UNS_OP_2_2_3' from '(none)' to 'ZeroWireload'. (OPT-170)
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : clock_skew
+Design : C6_LZC_dc
+Version: R-2020.09-SP5
+Date   : Sun Oct 26 23:20:54 2025
+****************************************
+
+                 Rise      Fall  Min Rise  Min fall        Uncertainty
+Object          Delay     Delay     Delay     Delay     Plus      Minus
+--------------------------------------------------------------------------------
+1

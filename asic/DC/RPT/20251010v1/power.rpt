@@ -1,0 +1,197 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : PE
+Version: R-2020.09-SP5
+Date   : Fri Oct 10 11:19:12 2025
+****************************************
+
+
+Library(s) Used:
+
+    tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (File: /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db)
+
+
+Operating Conditions: ssg0p81v125c   Library: tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+PE                     ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_0              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPMultiplyComb      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_1              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAdditionAarry       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_Round_IN_WIDTH48_EXP_WIDTH9_3
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_Round_IN_WIDTH48_EXP_WIDTH9_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_2              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_FPADDComb           ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_3              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_Round_IN_WIDTH49_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_Gen_OuterSign       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_4              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPADDComb_3         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPADDComb_1         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_5              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_Round_IN_WIDTH48_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Pipline_6              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPUnpackAll         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPMutiArray         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_2          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntAddition_1          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+IntSubtraction         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_3
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_FPInfinity_3        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_FPZero_3            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_FPUnpackAll         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_FPAddition          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_BFRound_IN_WIDTH49_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPRoundBase_IN_WIDTH49_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_NormalizeReal_IN_WIDTH49_OUT_WIDTH49_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPUnpackAll_3       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPAddition_3        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPUnpackAll_1       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_BFRound_IN_WIDTH48_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPUnpackBase_3      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPUnpackBase_2      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPUnpackBase_1      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPUnpackBase_0      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C1_FPMultiplier        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_LZC_round_WIDTH48_3 ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_LZC_round_WIDTH48_0 ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_FPUnpackBase_1      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_BFUnpack_1          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_72              ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPInfinity_1        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPZero_1            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPInfinity_0        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPMaxNormal         ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_Normal_Result_IN_WIDTH49_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPNaN               ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_CarryDetector_7_80_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_CarryDetector_10_400_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_CarryDetector_23_800000_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_CarryDetector_7_80_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_CarryDetector_10_400_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_CarryDetector_23_800000_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_LZC_round_WIDTH49   ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPUnpackBase_7      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_FPUnpackBase_6      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_BFUnpack_7          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_72_3            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPInfinity_1        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPZero_1            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPInfinity_0        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPMaxNormal_0       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_Normal_Result_IN_WIDTH48_EXP_WIDTH10
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPNaN_0             ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_CarryDetector_7_80_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_CarryDetector_10_400_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_CarryDetector_23_800000_1
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_CarryDetector_7_80_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_CarryDetector_10_400_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_CarryDetector_23_800000_0
+                       ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_LZC_round_WIDTH48   ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_17            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_16            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_15            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_14            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_13            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_12            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_11            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_10            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_9             ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_8             ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_7             ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_6             ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_CLA_4_5             ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_71            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_70            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_69            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_68            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_67            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_66            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_65            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_64            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_63            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_62            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_61            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_60            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_59            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_58            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_57            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_56            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_55            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_CLA_4_54            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C5_BFUnpack_6          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_FPUnpackBase_0      ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_FPZero_0            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C4_FPZero_0            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C3_BFUnpack_0          ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C2_FPInfinity_0        ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+C6_FPZero_0            ZeroWireload      tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+
+
+Global Operating Voltage = 0.81 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =   5.4674 mW   (84%)
+  Net Switching Power  =   1.0579 mW   (16%)
+                         ---------
+Total Dynamic Power    =   6.5253 mW  (100%)
+
+Cell Leakage Power     = 302.6154 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           4.2398        5.1939e-02        5.0684e+04            4.3424  (  63.60%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      1.2276            1.0059        2.5193e+05            2.4855  (  36.40%)
+--------------------------------------------------------------------------------------------------
+Total              5.4674 mW         1.0579 mW     3.0262e+05 nW         6.8279 mW
+1
