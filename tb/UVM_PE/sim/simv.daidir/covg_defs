@@ -1,0 +1,57 @@
+global coverage_group 0 PE_env_pkg::PE_cov_collector::cov_summary __coverage_PE_cov_collector.cov_summary unused_PE_cov_collector_cov_summary_loop_label PE_env_pkg 0 1 0 0 0  ( 0 
+)
+ 1 1
+ 67 /simulation/SME/SME/tb/UVM_PE/sim/../uvm_tb/env/PE_cov_collector.sv
+ 11 0 0 0 1 0 0 0 0  1
+0
+0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+0
+0
+0
+64
+0
+ 0
+
+1
+0
+0
+0
+ 14 cp_total_trans 12 0 0 0 0 0 60 PE_cov_collector::PE_env_pkg_PE_cov_collector_cov_summary_fn 60 PE_cov_collector::PE_env_pkg_PE_cov_collector_cov_summary_fn 0 0 0 0 0 0 0 0 0 0 0 -1 0 0 -1 0 0 0 -1 1 32 0 0 1 0 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 1 1 1 1 0 1 1 11 total_trans 13 0 0 1 0 0 0 0 0 0 0 0 0 0 62 PE_cov_collector::PE_env_pkg_PE_cov_collector_cov_summary_fn_0 0 -1 0 0 -1 0 0 1 1 1 60 PE_cov_collector::PE_env_pkg_PE_cov_collector_cov_summary_fn 0 0 0 0 0 0 0
+ 0
+
+end_coverage_group
