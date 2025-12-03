@@ -12,7 +12,8 @@ int Compute_func_sel(
     int       i_Compute_Mode          ,       
     int       i_Compute_Precision     ,  
     int       i_Is_Widening           ,
-    int       i_Add_or_Subtract       
+    int       i_Add_or_Subtract       ,
+    int       i_Vector_Group_Num      
 );
 
 void PE_C_top(

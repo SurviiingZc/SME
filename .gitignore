@@ -1,3 +1,8 @@
+/tb/UVM_PE/sim/
+!/tb/UVM_PE/sim/*.log
+!/tb/UVM_PE/sim/Makefile
+!/tb/UVM_PE/sim/*.rc
+
 # Build and Release Folders
 bin-debug/
 bin-release/

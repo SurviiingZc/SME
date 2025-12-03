@@ -4,7 +4,8 @@ int Compute_func_sel(
     int       i_Compute_Mode          ,       
     int       i_Compute_Precision     ,  
     int       i_Is_Widening           ,
-    int       i_Add_or_Subtract       
+    int       i_Add_or_Subtract       ,
+    int       i_Vector_Group_Num             
 ){
     //进行C计算模型的选择
     int compute_func;
@@ -53,7 +54,17 @@ int Compute_func_sel(
 
             case FP32:
             case FP16: {
-		        
+		        if(i_Is_Widening == Operands_Is_Not_Widening){
+                    compute_func = FMLA;
+                }
+                else{
+                    if(i_Vector_Group_Num == Single_Vector_Group){
+                        compute_func = FDOT;
+                    }
+                    else{
+                        compute_func = FMLAL;
+                    }
+                }
                 break;	 
             }
 
@@ -92,7 +103,7 @@ void PE_C_top(
 ){
     int compute_func = 0;
 
-    compute_func = Compute_func_sel(i_Compute_Mode, i_Compute_Precision, i_Is_Widening, i_Add_or_Subtract);
+    compute_func = Compute_func_sel(i_Compute_Mode, i_Compute_Precision, i_Is_Widening, i_Add_or_Subtract, i_Vector_Group_Num);
 
     switch(compute_func){
         case INT_CALC: {
@@ -113,10 +124,13 @@ void PE_C_top(
         }
 
         case FMOPA:{
-            
+            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling,1);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
         }
         case FMOPS:{
-            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling,1);
+            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling,0);
             o_Result[1] = o_Result[0];
             o_Result[2] = o_Result[0];
             o_Result[3] = o_Result[0];
