@@ -1,6 +1,6 @@
 psSimBaseName                      	simv
 psLogFileName                      	run.log
-pDaiDir                            	/simulation/SME/simulation/simv.daidir
+pDaiDir                            	/simulation/wangjialong/SME_TPU_PE/Public_SME/SME/tb/simulation/simv.daidir
 destPath                           	csrc/
 fSharedMaster                      	0
 fHsimPCSharedLibSpecified          	0
