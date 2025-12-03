@@ -18,7 +18,7 @@ int Compute_func_sel(
                 compute_func = INT_CALC;
                 break;
             }
-
+// 
             case FP32:
             case FP16: {
 		        if(!i_Is_Widening){
