@@ -1,6 +1,11 @@
 // Synopsys, Inc.
+<<<<<<< HEAD
 // User: zhaoyingjie
 // Date: Wed Dec  3 16:45:07 2025
+=======
+// User: zhangcheng
+// Date: Wed Dec  3 16:42:11 2025
+>>>>>>> b03d24fa19b003d411969a3ab23d4aabc2d9246c
 
 // ==================================================================================================
 // This config file prototype is produced from the last run using the complete list of extracted fsms.
