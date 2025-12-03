@@ -16,3 +16,8 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+tb/UVM _PE/sim/build_dir/
+tb/UVM _PE/sim/covdir.vdb/
+tb/UVM _PE/sim/csrc*/
+tb/UVM _PE/sim/simv.daidir/
+tb/UVM _PE/sim/*.o *.vdb *simv* *.key *.fsdb
