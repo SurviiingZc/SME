@@ -741,6 +741,7 @@ generate
             .i_Temp_Expo2          ( {2'd0,P4_ExpoA[i*8+:8]}            ),
             .i_Temp_Mant1          ( P4_Normal_Mantissa[47:0]           ),
             .i_Temp_Mant2          ( {P4_MantA[i*24+:24],24'd0}         ),
+            .i_sticky_bit          ( C2_sticky_flag[i]                  ),
             .o_Temp_Sign           ( P4_Temp_Sign[i]                    ),
             .o_Temp_Expo           ( P4_Temp_Expo[i]                    ),
             .o_Temp_Mant           ( P4_Temp_Mant[i]                    ),

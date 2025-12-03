@@ -44,23 +44,22 @@ run.log
 simv
 /apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/linux64/novas.tab
 filelist.f
-107
+108
 cds_root=/apps/cadence/ic618.260
-_LMFILES_001=odulefiles/synopsys/starrc/2020.09-SP5:/apps/env/modulefiles/synopsys/syn/2020.09-SP5:/apps/env/modulefiles/synopsys/synplity/2020.09-SP1:/apps/env/modulefiles/synopsys/txs/2020.09-SP4:/apps/env/modulefiles/synopsys/vclp/2020.03:/apps/env/modulefiles/synopsys/vcs/2020.12-SP2:/apps/env/modulefiles/synopsys/verdi/2020.12-SP2:/apps/env/modulefiles/synopsys/wv/2020.03:/apps/env/modulefiles/mentor/calibre/2020.4:/apps/env/modulefiles/mentor/tessent/2020.4
-_LMFILES_000=/apps/env/modulefiles/cadence/ads/2021u2:/apps/env/modulefiles/cadence/emx/5.6:/apps/env/modulefiles/cadence/peakview/5.1:/apps/env/modulefiles/cadence/skillpro/4.2F:/apps/env/modulefiles/cadence/incisive/15.2:/apps/env/modulefiles/cadence/virtuoso/618:/apps/env/modulefiles/cadence/qrc/19.1:/apps/env/modulefiles/cadence/pvs/19.1:/apps/env/modulefiles/cadence/innovus/20.16:/apps/env/modulefiles/cadence/spectre/21.1:/apps/env/modulefiles/cadence/lec/20.22:/apps/env/modulefiles/cadence/genus/20.1:/apps/env/modulefiles/cadence/liberate/20.1:/apps/env/modulefiles/cadence/xcelium/2203:/apps/env/modulefiles/synopsys/finesim/2019.06-SP2:/apps/env/modulefiles/synopsys/fm/2020.09-SP5:/apps/env/modulefiles/synopsys/hspice/2019.06-SP2:/apps/env/modulefiles/synopsys/lc/2020.09-SP5:/apps/env/modulefiles/synopsys/primetime/2023.12:/apps/env/modulefiles/synopsys/sentaurus/2019.03-SP1:/apps/env/modulefiles/synopsys/siliconsmart/2020.12-SP2:/apps/env/modulefiles/synopsys/spyglass/2020.12-SP2:/apps/env/m
+_LMFILES_001=/apps/env/modulefiles/synopsys/syn/2020.09-SP5:/apps/env/modulefiles/synopsys/synplity/2020.09-SP1:/apps/env/modulefiles/synopsys/txs/2020.09-SP4:/apps/env/modulefiles/synopsys/vclp/2020.03:/apps/env/modulefiles/synopsys/vcs/2020.12-SP2:/apps/env/modulefiles/synopsys/verdi/2020.12-SP2:/apps/env/modulefiles/synopsys/wv/2020.03:/apps/env/modulefiles/mentor/calibre/2020.4:/apps/env/modulefiles/mentor/tessent/2020.4
+_LMFILES_000=/apps/env/modulefiles/cadence/ads/2021u2:/apps/env/modulefiles/cadence/emx/5.6:/apps/env/modulefiles/cadence/peakview/5.1:/apps/env/modulefiles/cadence/skillpro/4.2F:/apps/env/modulefiles/cadence/incisive/15.2:/apps/env/modulefiles/cadence/virtuoso/618:/apps/env/modulefiles/cadence/qrc/19.1:/apps/env/modulefiles/cadence/pvs/19.1:/apps/env/modulefiles/cadence/innovus/20.16:/apps/env/modulefiles/cadence/spectre/23.1:/apps/env/modulefiles/cadence/lec/20.22:/apps/env/modulefiles/cadence/genus/20.1:/apps/env/modulefiles/cadence/liberate/20.1:/apps/env/modulefiles/synopsys/finesim/2019.06-SP2:/apps/env/modulefiles/synopsys/fm/2020.09-SP5:/apps/env/modulefiles/synopsys/hspice/2019.06-SP2:/apps/env/modulefiles/synopsys/lc/2020.09-SP5:/apps/env/modulefiles/synopsys/primetime/2023.12-SP5:/apps/env/modulefiles/synopsys/sentaurus/2019.03-SP1:/apps/env/modulefiles/synopsys/siliconsmart/2020.12-SP2:/apps/env/modulefiles/synopsys/spyglass/2020.12-SP2:/apps/env/modulefiles/synopsys/starrc/2020.09-SP5:
+XMODIFIERS=@im=ibus
 XLIB_NO_SHM=1
 XDG_SESSION_TYPE=x11
-XDG_SESSION_ID=161830
+XDG_SESSION_ID=394
 XDG_SESSION_CLASS=user
-XDG_RUNTIME_DIR=/run/user/1084
-XDG_MENU_PREFIX=xfce-
-XDG_DATA_DIRS=/usr/local/share:/usr/share
-XDG_CURRENT_DESKTOP=XFCE
-XDG_CONFIG_DIRS=/etc/xdg
-XCELIUMHOME=/apps/cadence/xcelium2203
-XAUTHORITY=/home/users/SME/.Xauthority
+XDG_RUNTIME_DIR=/run/user/1017
+XDG_MENU_PREFIX=gnome-
+XDG_CURRENT_DESKTOP=GNOME
+XAUTHORITY=/home/users/wangjialong/.Xauthority
 W3264_NO_HOST_CHECK=1
 VTE_VERSION=5204
+VNC_SYSTEMXORG=1
 VNCDESKTOP=x11
 VMR_MODE_FLAG=64
 VERDI_HOME=/apps/synopsys/verdi_vR-2020.12-SP2
@@ -81,27 +80,26 @@ VCS_ARCH=linux64
 VCLP_HOME=/apps/synopsys/vc_static-2020.03
 UNAME=/bin/uname
 TOOL_HOME=/apps/synopsys/vcs-all_vR-2020.12-SP2/linux64
-SYNOPSYS_LC_ROOT=/apps/synopsys/lc_vR-2020.09-SP5/bin
 SYNOPSYS_APPS=/apps/synopsys
 SX_HOME=/apps/synopsys/wv-2020.03
-STDB=/home/users/SME/STDB
-SSH_AUTH_SOCK=/tmp/ssh-yvqaWkHJUIHC/agent.41553
-SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
-SSH_AGENT_PID=41554
-SPECTRE=/apps/cadence/spectre211.303
+STDB=/home/users/wangjialong/STDB
+SSH_AUTH_SOCK=/run/user/1017/keyring/ssh
+SPECTRE=/apps/cadence/spectre231.327
 SKILLPRO_PATH=/apps/cadence/skillpro_v4.2F
 SHLIB_PATH=/apps/ansys/redhawk-2020R2.6/lib
-SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/41534,unix/unix:/tmp/.ICE-unix/41534
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/36965,unix/unix:/tmp/.ICE-unix/36965
 SCRNAME=vcs
 SCRIPT_NAME=vcs
 RFDE_SKILL_DIR=/apps/keysight/ads2021u2/idf/skill/6.1.8
+QT_PLUGIN_PATH=/usr/lib64/kde4/plugins:/usr/lib/kde4/plugins
+QT_IM_MODULE=ibus
 QT_GRAPHICSSYSTEM_CHECKED=1
-QTLIB=/usr/lib/qt-3.3/lib
-QTINC=/usr/lib/qt-3.3/include
-QTDIR=/usr/lib/qt-3.3
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
 QRC_HOME=/apps/cadence/quantus19.13
 PVSHOME=/apps/cadence/pvs19.15
-PULSE_SERVER=/run/user/1084/session-07cddf836b884651/pulse/native
+PULSE_SERVER=/run/user/1017/session-ba7526e0bc6840c2/pulse/native
 PEAKHOME=/apps/cadence/peakview-5.1.5
 OVA_UUM=0
 OSTYPE=linux
@@ -114,11 +112,12 @@ MFLAGS=
 MAKELEVEL=1
 MAKEFLAGS=
 LORENTZ_LICENSE_FILE=5260@server01
-LOGIN=SME
-LOADEDMODULES=ads/2021u2:emx/5.6:peakview/5.1:skillpro/4.2F:incisive/15.2:virtuoso/618:qrc/19.1:pvs/19.1:innovus/20.16:spectre/21.1:lec/20.22:genus/20.1:liberate/20.1:xcelium/2203:finesim/2019.06-SP2:fm/2020.09-SP5:hspice/2019.06-SP2:lc/2020.09-SP5:primetime/2023.12:sentaurus/2019.03-SP1:siliconsmart/2020.12-SP2:spyglass/2020.12-SP2:starrc/2020.09-SP5:syn/2020.09-SP5:synplity/2020.09-SP1:txs/2020.09-SP4:vclp/2020.03:vcs/2020.12-SP2:verdi/2020.12-SP2:wv/2020.03:calibre/2020.4:tessent/2020.4
+LOGIN=wangjialong
+LOADEDMODULES=ads/2021u2:emx/5.6:peakview/5.1:skillpro/4.2F:incisive/15.2:virtuoso/618:qrc/19.1:pvs/19.1:innovus/20.16:spectre/23.1:lec/20.22:genus/20.1:liberate/20.1:finesim/2019.06-SP2:fm/2020.09-SP5:hspice/2019.06-SP2:lc/2020.09-SP5:primetime/2023.12-SP5:sentaurus/2019.03-SP1:siliconsmart/2020.12-SP2:spyglass/2020.12-SP2:starrc/2020.09-SP5:syn/2020.09-SP5:synplity/2020.09-SP1:txs/2020.09-SP4:vclp/2020.03:vcs/2020.12-SP2:verdi/2020.12-SP2:wv/2020.03:calibre/2020.4:tessent/2020.4
 LESSOPEN=||/usr/bin/lesspipe.sh %s
 LECHOME=/apps/cadence/confrml20.22
 LC_ALL=C
+KDEDIRS=/usr
 K2_VIEWER_HOME=/apps/cadence/pvs19.15/tools/K2/Viewer
 K2_MASKCOMPOSE_HOME=/apps/cadence/pvs19.15/tools/K2/MaskCompose
 K2_HOME=/apps/cadence/pvs19.15/tools/K2
@@ -129,16 +128,18 @@ ICWBEV_USER=SENTAURUS
 HSPICE_DIR=/apps/synopsys/hspice-2019.06-SP2
 HPEESOF_DIR=/apps/keysight/ads2021u2
 HOSTTYPE=x86_64-linux
-GROUP=SME
-GPG_AGENT_INFO=/home/users/SME/.gnupg/S.gpg-agent:41560:1
-GLADE_PIXMAP_PATH=:
-GLADE_MODULE_PATH=:
-GLADE_CATALOG_PATH=:
-GENUSHOME=/apps/cadence/genus-21.10.000
+GROUP=wangjialong
+GNOME_TERMINAL_SERVICE=:1.113
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/b433a25b_ef32_40b6_a4b0_7a5854ec1b9f
+GNOME_SHELL_SESSION_MODE=classic
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GENUSHOME=/apps/cadence/genus201
 EMXHOME=/apps/cadence/emx
-DESKTOP_SESSION=xfce
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1084/session-07cddf836b884651/bus
-CVS_RSH=ssh
+DISPLAYNUM=3
+DESKTOP_SESSION=gnome-classic
+DBUS_STARTER_BUS_TYPE=session
+DBUS_STARTER_ADDRESS=unix:path=/run/user/1017/session-ba7526e0bc6840c2/bus,guid=2e16e50652a2a2c6beab4d6e6927fb5a
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1017/session-ba7526e0bc6840c2/bus,guid=2e16e50652a2a2c6beab4d6e6927fb5a
 COLORTERM=truecolor
 CDS_LOAD_ENV=CSF
 CDS_LIC_FILE=5280@server01
@@ -148,8 +149,8 @@ CDSROOT=/apps/cadence/ic618.260
 CALIBRE_HOME=/apps/mentor/aoi_cal_2020.4_23.14
 ASSURAHOME=/apps/cadence/assura416-618
 APACHEROOT=/apps/ansys/redhawk-2020R2.6
-APACHEDA_LICENSE_FILE=1881@peng
-AMSHOME=/apps/cadence/xcelium2203
+APACHEDA_LICENSE_FILE=1881@server01
+AMSHOME=/apps/cadence/incisive152.086
 ALTOSHOME=/apps/cadence/liberate201
 ADS_LICENSE_FILE=1708@server01
 0
@@ -169,7 +170,7 @@ ADS_LICENSE_FILE=1708@server01
 1760078956 /simulation/SME/SRC/Pipline_2.v
 1759147221 /simulation/SME/SRC/Pipline_1.v
 1759147049 /simulation/SME/SRC/Pipline_0.v
-1760015929 /simulation/SME/SRC/PE.v
+1763347652 /simulation/SME/SRC/PE.v
 1759147264 /simulation/SME/SRC/IntSubtraction.v
 1759201529 /simulation/SME/SRC/IntMultiplier.v
 1759147263 /simulation/SME/SRC/IntMult.v
@@ -178,12 +179,12 @@ ADS_LICENSE_FILE=1708@server01
 1759200464 /simulation/SME/SRC/IntAddAarry.v
 1759147261 /simulation/SME/SRC/Int16Mult.v
 1759147261 /simulation/SME/SRC/Int16Addition.v
-1760002092 /simulation/SME/SRC/C6_Round.v
-1760072596 /simulation/SME/SRC/C6_NormalizeReal.v
+1762061224 /simulation/SME/SRC/C6_Round.v
+1763108830 /simulation/SME/SRC/C6_NormalizeReal.v
 1759147046 /simulation/SME/SRC/C6_Normal_Result.v
 1760072585 /simulation/SME/SRC/C6_LZC.v
 1759147080 /simulation/SME/SRC/C6_FPZero.v
-1760002021 /simulation/SME/SRC/C6_FPRoundBase.v
+1763348090 /simulation/SME/SRC/C6_FPRoundBase.v
 1759147079 /simulation/SME/SRC/C6_FPNaN.v
 1759147079 /simulation/SME/SRC/C6_FPMaxNormal.v
 1759147078 /simulation/SME/SRC/C6_FPInfinity.v
@@ -194,15 +195,15 @@ ADS_LICENSE_FILE=1708@server01
 1759995144 /simulation/SME/SRC/C5_FPUnpackAll.v
 1759147076 /simulation/SME/SRC/C5_FPInfinity.v
 1759995127 /simulation/SME/SRC/C5_FPDefaultNaN.v
-1759995122 /simulation/SME/SRC/C5_FPAddition.v
+1763143318 /simulation/SME/SRC/C5_FPAddition.v
 1759147074 /simulation/SME/SRC/C5_FPADDComb.v
 1759995369 /simulation/SME/SRC/C5_ExceptionHandling.v
 1759147073 /simulation/SME/SRC/C5_CLA_72.v
 1759147073 /simulation/SME/SRC/C5_CLA_48.v
 1759147072 /simulation/SME/SRC/C5_CLA_4.v
 1759994910 /simulation/SME/SRC/C5_BFUnpack.v
-1760001836 /simulation/SME/SRC/C4_Round.v
-1760072573 /simulation/SME/SRC/C4_NormalizeReal.v
+1762073295 /simulation/SME/SRC/C4_Round.v
+1762082782 /simulation/SME/SRC/C4_NormalizeReal.v
 1759147071 /simulation/SME/SRC/C4_Normal_Result.v
 1760072559 /simulation/SME/SRC/C4_LZC.v
 1759147069 /simulation/SME/SRC/C4_Gen_OuterSign.v
@@ -218,7 +219,7 @@ ADS_LICENSE_FILE=1708@server01
 1759995061 /simulation/SME/SRC/C3_FPUnpackAll.v
 1759147064 /simulation/SME/SRC/C3_FPInfinity.v
 1759995086 /simulation/SME/SRC/C3_FPDefaultNaN.v
-1759995035 /simulation/SME/SRC/C3_FPAddition.v
+1760604963 /simulation/SME/SRC/C3_FPAddition.v
 1759147063 /simulation/SME/SRC/C3_FPADDComb.v
 1759995309 /simulation/SME/SRC/C3_ExceptionHandling.v
 1759147062 /simulation/SME/SRC/C3_CLA_72.v
@@ -226,7 +227,7 @@ ADS_LICENSE_FILE=1708@server01
 1759147061 /simulation/SME/SRC/C3_CLA_4.v
 1759147061 /simulation/SME/SRC/C3_BFUnpack.v
 1760001623 /simulation/SME/SRC/C2_Round.v
-1760072545 /simulation/SME/SRC/C2_NormalizeReal.v
+1763109226 /simulation/SME/SRC/C2_NormalizeReal.v
 1760072535 /simulation/SME/SRC/C2_LZC.v
 1759147059 /simulation/SME/SRC/C2_Gen_FuseAdd.v
 1759147058 /simulation/SME/SRC/C2_FPZero.v
@@ -244,8 +245,8 @@ ADS_LICENSE_FILE=1708@server01
 1759147053 /simulation/SME/SRC/C1_FPConvertNaN.v
 1759995272 /simulation/SME/SRC/C1_ExceptionHandling.v
 1759994843 /simulation/SME/SRC/C1_BFUnpack.v
-1760078828 /simulation/SME/SRC/Macro_Definition.v
-1760173567 filelist.f
+1762429466 /simulation/SME/SRC/Macro_Definition.v
+1764762149 filelist.f
 1621785728 /apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/linux64/novas.tab
 1622257851 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/vcsdp.tab
 5
@@ -254,5 +255,5 @@ ADS_LICENSE_FILE=1708@server01
 1622258323 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libsnpsmalloc.so
 1622258557 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libvfs.so
 1621767492 /apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/linux64/pli.a
-1760326637 simv.daidir
+1764762544 simv.daidir
 -1 partitionlib

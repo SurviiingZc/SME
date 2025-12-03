@@ -31,7 +31,7 @@ module C5_FPAddition(
 
 
 
-wire [22:0]     Sticky_Temp  ;
+wire [23:0]     Sticky_Temp  ;
 wire signed [  9:0]  Temp_Expo1 ;
 wire signed [  9:0]  Temp_Expo2 ;
 wire [ 7:0] 	Exp_Diff	 ;
@@ -84,7 +84,7 @@ wire            T_Temp_Sign1        ;
 genvar i;
 
 generate
-    for(i = 0 ; i < 23 ; i = i + 1) begin
+    for(i = 0 ; i < 24 ; i = i + 1) begin
         assign Sticky_Temp[i] = |Mant_Min[i:0];
     end
 endgenerate
@@ -113,10 +113,11 @@ assign is_Comp		 = i_Sign1 ^ i_Sign2										;
 
 assign Exp_Diff      = Expo_Max - Expo_Min 										;
 assign Max_Mant      = {Mant_Max,24'd0}											;
-assign Mant_Min_Or   = |Mant_Min                                                ;
+
 assign Check_Diff    = (Exp_Diff > 8'd24 && Exp_Diff < 8'd48) ? (Exp_Diff - 8'd24) : 5'd0 ;
-assign Sticky_Bit    = ((Exp_Diff >= 8'd48) & Mant_Min_Or) | ((Exp_Diff > 8'd24 && Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]);
-assign o_Sticky_Bit  = (i_sticky_bit[0]) | Sticky_Bit                           ;
+assign Sticky_Bit    = ((Exp_Diff >= 8'd48) & Mant_Min_Or) | ((Exp_Diff > 8'd24 && Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | (i_sticky_bit[0]) ;
+// assign o_Sticky_Bit  = ((Exp_Diff >= 8'd48) & Mant_Min_Or) | ((Exp_Diff > 8'd24 && Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff])                           ;
+assign o_Sticky_Bit  = Sticky_Bit                                               ;
 assign Min_Mant      = {Mant_Min,24'd0} >> Exp_Diff  						    ;
 assign Neg_Min_Mant  = ~Min_Mant + 1 						    				;
 assign Neg_Min	     = Max_Mant - Min_Mant										;
@@ -127,7 +128,7 @@ assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Ma
 assign o_Sum_Expo	 = Expo_Max													;
 assign o_Sum_Sign	 = Sign_Max													;
     
-
+assign Mant_Min_Or   = |Fuse_Mant_Min                                                ;
 assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
 assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Temp_Mant2) ? 1'd1 : 1'd0      ;
 assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max) ? 1'd1 : 1'd0 				        ;
@@ -151,7 +152,7 @@ assign Fuse_Neg_Min_Mant     = Fuse_is_Comp ? ~Fuse_Min_Mant : Fuse_Min_Mant	   
 // assign Fuse_C_Reslt_Copy     = Fuse_C_Reslt   ;
 // assign Fuse_Fin_Result       = {Fuse_C_Reslt_Copy,Fuse_Sum_Reslt_Copy}                                     ;
 
-wire sub_carry_in = Fuse_is_Comp && !Sticky_Bit                                                             ; 
+wire sub_carry_in = Fuse_is_Comp && !Sticky_Bit                                         ; 
 assign T_Temp_Mant = {1'b0, Fuse_Max_Mant} + {1'b0, Fuse_Neg_Min_Mant} + sub_carry_in                       ;
 //assign T_Temp_Mant 	         = {1'b0,Fuse_Max_Mant} + {1'b0,Fuse_Neg_Min_Mant} + Fuse_is_Comp               ; //改
 assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_Mant                        ;
