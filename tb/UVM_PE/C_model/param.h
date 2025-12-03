@@ -300,6 +300,9 @@
 #define FMOPA_W                         3
 #define FMOPS_W                         4  
 #define BFMOPA                          5
-#define BFMOPS                          6                       
+#define BFMOPS                          6
+#define FDOT                            7
+#define FMLA                            8
+#define FMLAL                           9                       
 
 #endif
