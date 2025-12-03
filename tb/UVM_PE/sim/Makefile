@@ -14,8 +14,8 @@ CM_DIR = -cm_dir ./covdir.vdb
 all: comp sim
 
 # 添加 MPFR 库路径配置
-MPFR_INCLUDE = $(HOME)/local/include
-MPFR_LIB = $(HOME)/local/lib
+MPFR_INCLUDE = /user/local/include
+MPFR_LIB = /user/local/lib
 #C_include
 C_INC_DIR = ../C_model/include
 # 编译C模型成共享库

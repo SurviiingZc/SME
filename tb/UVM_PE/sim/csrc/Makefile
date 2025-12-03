@@ -40,7 +40,7 @@ STDLIB =
 STRIPFLAGS= 
 
 PRE_LDFLAGS= # Loader Flags
-LDFLAGS= -L/home/users/SME/local/lib -rdynamic  -Wl,-rpath='$$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib -L/apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib 
+LDFLAGS= -L/user/local/lib -rdynamic  -Wl,-rpath='$$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib -L/apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib 
 # Picarchive Flags
 PICLDFLAGS= -Wl,-rpath-link=./ 
 
@@ -65,7 +65,7 @@ TMPSPECENV=$(VCSTMPSPECENV)
 CC=$(TMPSPECENV) $(VCS_CC) $(TMPSPECARG)
 
 # C flags for compilation
-CFLAGS=$(STDLIB)-w  -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -std=c99 -I../C_model/include -I/home/users/SME/local/include -O -I/apps/synopsys/vcs-all_vR-2020.12-SP2/include   
+CFLAGS=$(STDLIB)-w  -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -std=c99 -I../C_model/include -I/user/local/include -O -I/apps/synopsys/vcs-all_vR-2020.12-SP2/include   
 
 CFLAGS_O0=-w  -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -I/apps/synopsys/vcs-all_vR-2020.12-SP2/include -O0  -fno-strict-aliasing -fno-optimize-sibling-calls   
 

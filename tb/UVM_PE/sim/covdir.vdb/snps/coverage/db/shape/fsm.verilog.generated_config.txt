@@ -1,6 +1,6 @@
 // Synopsys, Inc.
-// User: SME
-// Date: Wed Dec  3 12:48:12 2025
+// User: zhaoyingjie
+// Date: Wed Dec  3 16:45:07 2025
 
 // ==================================================================================================
 // This config file prototype is produced from the last run using the complete list of extracted fsms.
