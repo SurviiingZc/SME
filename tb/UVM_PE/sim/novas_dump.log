@@ -154,7 +154,7 @@ Limit information:
 cputime		unlimited
 filesize		unlimited
 datasize		unlimited
-stacksize		8305 kbytes
+stacksize		unlimited
 coredumpsize		0 kbytes
 memoryuse		unlimited
 vmemoryuse		unlimited
@@ -243,11 +243,11 @@ MACHTYPE=x86_64
 QTLIB=/usr/lib64/qt-3.3/lib
 MGLS_LICENSE_FILE=1717@server01
 VCLP_HOME=/apps/synopsys/vc_static-2020.03
-VSCODE_GIT_IPC_HANDLE=/run/user/1057/vscode-git-a97b885525.sock
+VSCODE_GIT_IPC_HANDLE=/run/user/1057/vscode-git-b094a9b46b.sock
 SSH_CONNECTION=10.1.33.209 49425 10.2.255.14 22
 CDS_LIC_FILE=5280@server01
 MODULESHOME=/usr/share/Modules
-VSCODE_IPC_HOOK_CLI=/run/user/1057/vscode-ipc-98c63861-18a8-4f6c-809e-bdef8d0382ae.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1057/vscode-ipc-ff340303-45dd-47ba-ad3e-49d413b1bfa2.sock
 EMXHOME=/apps/cadence/emx
 LESSOPEN=||/usr/bin/lesspipe.sh %s
 BROWSER=/home/users/SME/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh
@@ -285,8 +285,8 @@ argv[11]=simv
 argv[12]=-cm_dir
 argv[13]=./covdir.vdb
 286 profile - 100
-          CPU/Mem usage: 0.100 sys,  0.420 user,  436.65M mem
-287 Elapsed time:    0:00:01    Wed Dec  3 12:55:34 2025
+          CPU/Mem usage: 0.110 sys,  0.420 user,  440.80M mem
+287 Elapsed time:    0:00:01    Wed Dec  3 17:54:39 2025
 288 pliAppInit
 289 [SC]Init: MemoryConsumed=0.00MB ElapsedTime=0hour 0min. 0sec.
 290 FSDB_GATE is set.
@@ -316,79 +316,79 @@ argv[13]=./covdir.vdb
 314 *Verdi* : Enable +mda dumping.
 315 *Verdi* : End of traversing.
 316 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.120 sys,  0.460 user,  537.55M mem
-                   incr: 0.010 sys,  0.030 user,  8.51M mem
-                   accu: 0.010 sys,  0.030 user,  8.51M mem
-              accu incr: 0.010 sys,  0.030 user,  8.51M mem
+          CPU/Mem usage: 0.130 sys,  0.470 user,  541.70M mem
+                   incr: 0.010 sys,  0.040 user,  8.52M mem
+                   accu: 0.010 sys,  0.040 user,  8.52M mem
+              accu incr: 0.010 sys,  0.040 user,  8.52M mem
 
           Count usage: 6220 var,  4507 idcode,  812 callback
                  incr: 6220 var,  4507 idcode,  812 callback
                  accu: 6220 var,  4507 idcode,  812 callback
             accu incr: 6220 var,  4507 idcode,  812 callback
-317 Elapsed time:    0:00:01    Wed Dec  3 12:55:34 2025
+317 Elapsed time:    0:00:01    Wed Dec  3 17:54:39 2025
 318 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.120 sys,  0.460 user,  538.74M mem
+          CPU/Mem usage: 0.130 sys,  0.470 user,  542.89M mem
                    incr: 0.000 sys,  0.000 user,  1.19M mem
-                   accu: 0.010 sys,  0.030 user,  9.70M mem
+                   accu: 0.010 sys,  0.040 user,  9.70M mem
               accu incr: 0.000 sys,  0.000 user,  1.19M mem
 
           Count usage: 6220 var,  4507 idcode,  812 callback
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 6220 var,  4507 idcode,  812 callback
             accu incr: 0 var,  0 idcode,  0 callback
-319 Elapsed time:    0:00:01    Wed Dec  3 12:55:34 2025
+319 Elapsed time:    0:00:01    Wed Dec  3 17:54:39 2025
 320 sps_tcl_fsdbDumpvars_vd_main
 321 argv[0]: +fsdbfile+autoflush
 322 *Verdi* : Create FSDB file 'autoflush.fsdb'
 323 *Verdi* : Begin traversing the scopes, layer (0).
 324 *Verdi* : End of traversing.
 325 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.120 sys,  0.510 user,  555.97M mem
-                   incr: 0.000 sys,  0.050 user,  7.79M mem
-                   accu: 0.000 sys,  0.050 user,  7.79M mem
-              accu incr: 0.000 sys,  0.050 user,  7.79M mem
+          CPU/Mem usage: 0.150 sys,  0.520 user,  560.13M mem
+                   incr: 0.010 sys,  0.040 user,  7.79M mem
+                   accu: 0.010 sys,  0.040 user,  7.79M mem
+              accu incr: 0.010 sys,  0.040 user,  7.79M mem
 
           Count usage: 13265 var,  5340 idcode,  908 callback
                  incr: 7045 var,  5340 idcode,  96 callback
                  accu: 7045 var,  5340 idcode,  96 callback
             accu incr: 7045 var,  5340 idcode,  96 callback
-326 Elapsed time:    0:00:01    Wed Dec  3 12:55:34 2025
+326 Elapsed time:    0:00:01    Wed Dec  3 17:54:39 2025
 327 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.120 sys,  0.510 user,  557.02M mem
+          CPU/Mem usage: 0.150 sys,  0.520 user,  561.18M mem
                    incr: 0.000 sys,  0.000 user,  1.05M mem
-                   accu: 0.000 sys,  0.050 user,  8.84M mem
+                   accu: 0.010 sys,  0.040 user,  8.85M mem
               accu incr: 0.000 sys,  0.000 user,  1.05M mem
 
           Count usage: 13265 var,  5340 idcode,  908 callback
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 7045 var,  5340 idcode,  96 callback
             accu incr: 0 var,  0 idcode,  0 callback
-328 Elapsed time:    0:00:01    Wed Dec  3 12:55:34 2025
+328 Elapsed time:    0:00:01    Wed Dec  3 17:54:39 2025
 329 sps_tcl_fsdbDumpon_vd_main at 0 : N/A(0)
 330 *Verdi* : fsdbDumpon - All FSDB files at 0 ps.
 331 End of simulation at 81975000
-332 Memory usage: 670.708 M
-333 Elapsed time:    0:00:05    Wed Dec  3 12:55:38 2025
+332 Memory usage: 675.914 M
+333 Elapsed time:    0:00:05    Wed Dec  3 17:54:43 2025
 334 Begin FSDB profile info:
-335 FSDB Writer : bc1(108032) bcn(1376859) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.247109) io wait(0.000000) theadpool wait(0.000000)
+335 FSDB Writer : bc1(130708) bcn(1353923) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.273649) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 336 End FSDB profile info
-337 FSDB closed. Name: mult.fsdb Size: 2265922
+337 FSDB closed. Name: mult.fsdb Size: 2573355
 338 Begin FSDB profile info:
-339 FSDB Writer : bc1(57030) bcn(752528) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.124524) io wait(0.000000) theadpool wait(0.000000)
+339 FSDB Writer : bc1(70220) bcn(751098) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.147417) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 340 End FSDB profile info
-341 FSDB closed. Name: autoflush.fsdb Size: 1148762
+341 FSDB closed. Name: autoflush.fsdb Size: 1246451
 342 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
-343                      - BlockUsed:16 Acquire:1523923 BufferUsed:29811406
-344                      - Flush:5 Expand:0 ProducerWait:0 ConsumerWait:14
-345                      - MainProducerTime:4.452209819 TotalConsumerTime:0.405067606
-346                      - ElapsedTime:4.130057000
-347 Producer   0 profile - BlockUsed:16 Acquire:1523923 BufferUsed:29811406
-348 Consumer   0 profile - Affinity:-1 CPUTime:0.405067606 LifeTime:3.336554162 (0.12%)
-349                      - BlockUsed:16 Acquire:1523923 BufferUsed:29811406
+343                      - BlockUsed:17 Acquire:1523663 BufferUsed:30538156
+344                      - Flush:5 Expand:0 ProducerWait:0 ConsumerWait:15
+345                      - MainProducerTime:4.690437768 TotalConsumerTime:0.415220653
+346                      - ElapsedTime:4.216998000
+347 Producer   0 profile - BlockUsed:17 Acquire:1523663 BufferUsed:30538156
+348 Consumer   0 profile - Affinity:-1 CPUTime:0.415220653 LifeTime:3.339887941 (0.12%)
+349                      - BlockUsed:17 Acquire:1523663 BufferUsed:30538156
 350 SimExit
-351 Elapsed time:    0:00:05    Wed Dec  3 12:55:38 2025
+351 Elapsed time:    0:00:05    Wed Dec  3 17:54:43 2025
 352 Sim process exit

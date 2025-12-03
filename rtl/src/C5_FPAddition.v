@@ -146,7 +146,7 @@ assign Fuse_Max_Mant         = {Fuse_Mant_Max,24'd0}											            ;
 assign Fuse_Min_Mant         = {Fuse_Mant_Min,24'd0} >> Fuse_Exp_Diff  						                ;
 assign Fuse_Neg_Min_Mant     = Fuse_is_Comp ? ~Fuse_Min_Mant : Fuse_Min_Mant	    				        ; //改
 // assign o_Temp_Mant 	        = {Fuse_C_Reslt,Fuse_Sum_Reslt}		                                          ;
-// assign o_Temp_Mant[72]       = Fuse_C_Reslt		                                                          ;
+// assign o_Temp_Mant[72]      = Fuse_C_Reslt		                                                          ;
 
 // assign Fuse_Sum_Reslt_Copy   = Fuse_Sum_Reslt ;
 // assign Fuse_C_Reslt_Copy     = Fuse_C_Reslt   ;
