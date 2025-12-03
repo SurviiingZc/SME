@@ -612,13 +612,13 @@
 -Mamsrun=
 -Masflags=
 -Mcc=gcc
--Mcfl= -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -std=c99 -I../C_model/include -I/home/users/SME/local/include -O -I/apps/synopsys/vcs-all_vR-2020.12-SP2/include
+-Mcfl= -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -std=c99 -I../C_model/include -I/usr/local/include -O -I/apps/synopsys/vcs-all_vR-2020.12-SP2/include
 -Mcplusplus=g++
 -Mcrt0=
 -Mcrtn=
 -Mcsrc=/apps/synopsys/vcs-all_vR-2020.12-SP2/etc/uvm-1.1/dpi/uvm_dpi.cc
 -Mexternalobj=build_dir/C_ref_fmop.o build_dir/C_ref_fmop_w.o build_dir/C_ref_fmlal.o build_dir/C_ref_bfmop.o build_dir/C_ref_int.o build_dir/C_ref_top.o
--Mldflags= -L/home/users/SME/local/lib -rdynamic
+-Mldflags= -L/usr/local/lib -rdynamic
 -Mobjects=build_dir/C_ref_fmop.o build_dir/C_ref_fmop_w.o build_dir/C_ref_fmlal.o build_dir/C_ref_bfmop.o build_dir/C_ref_int.o build_dir/C_ref_top.o /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libvirsim.so /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/liberrorinf.so /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libsnpsmalloc.so /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libvfs.so -lmpfr -lgmp -lm
 -Mout=simv
 -Msaverestoreobj=/apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/vcs_save_restore_new.o
@@ -657,8 +657,8 @@ XLIB_NO_SHM=1
 XDG_SESSION_ID=2048
 XDG_RUNTIME_DIR=/run/user/1057
 W3264_NO_HOST_CHECK=1
-VSCODE_IPC_HOOK_CLI=/run/user/1057/vscode-ipc-ff340303-45dd-47ba-ad3e-49d413b1bfa2.sock
-VSCODE_GIT_IPC_HANDLE=/run/user/1057/vscode-git-b094a9b46b.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1057/vscode-ipc-88ab0886-72e1-42bd-ba08-9e0acbb4b182.sock
+VSCODE_GIT_IPC_HANDLE=/run/user/1057/vscode-git-7783bf9f14.sock
 VSCODE_GIT_ASKPASS_NODE=/home/users/SME/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node
 VSCODE_GIT_ASKPASS_MAIN=/home/users/SME/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js
 VSCODE_GIT_ASKPASS_EXTRA_ARGS=
@@ -768,7 +768,7 @@ ADS_LICENSE_FILE=1708@server01
 1764696240 ../uvm_tb/sequence/PE_sequence_umops.sv
 1764696240 ../uvm_tb/sequence/PE_sequence_sumops.sv
 1764696240 ../uvm_tb/sequence/PE_sequence_smlall.sv
-1764755441 ../uvm_tb/sequence/PE_sequence_fmopa.sv
+1764759072 ../uvm_tb/sequence/PE_sequence_fmopa.sv
 1764696240 ../uvm_tb/sequence/PE_sequence_bfmopa.sv
 1764696240 ../uvm_tb/sequence/PE_sequence_umopa.sv
 1764696240 ../uvm_tb/sequence/PE_sequence_sumopa.sv
@@ -924,89 +924,89 @@ ADS_LICENSE_FILE=1708@server01
 1622262350 /apps/synopsys/vcs-all_vR-2020.12-SP2/etc/uvm-1.1/macros/uvm_version_defines.svh
 1622262351 /apps/synopsys/vcs-all_vR-2020.12-SP2/etc/uvm-1.1/uvm_macros.svh
 1764696240 ../rtl/macro_definition.svh
-1764694858 ../../../rtl/src/Pipline_6.v
-1764694858 ../../../rtl/src/Pipline_5.v
-1764694858 ../../../rtl/src/Pipline_4.v
-1764694858 ../../../rtl/src/Pipline_3.v
-1764694858 ../../../rtl/src/Pipline_2.v
-1764694858 ../../../rtl/src/Pipline_1.v
-1764694858 ../../../rtl/src/Pipline_0.v
-1764694858 ../../../rtl/src/PE.v
-1764694858 ../../../rtl/src/IntSubtraction.v
-1764694858 ../../../rtl/src/IntMultiplier.v
-1764694858 ../../../rtl/src/IntMult.v
-1764694858 ../../../rtl/src/IntMult_TOP.v
-1764694858 ../../../rtl/src/IntAddition.v
-1764694858 ../../../rtl/src/IntAddAarry.v
-1764694858 ../../../rtl/src/Int16Mult.v
-1764694858 ../../../rtl/src/Int16Addition.v
-1764694858 ../../../rtl/src/C6_Round.v
-1764694858 ../../../rtl/src/C6_NormalizeReal.v
-1764694858 ../../../rtl/src/C6_Normal_Result.v
-1764694858 ../../../rtl/src/C6_LZC.v
-1764694858 ../../../rtl/src/C6_FPZero.v
-1764694858 ../../../rtl/src/C6_FPRoundBase.v
-1764694858 ../../../rtl/src/C6_FPNaN.v
-1764694858 ../../../rtl/src/C6_FPMaxNormal.v
-1764694858 ../../../rtl/src/C6_FPInfinity.v
-1764694858 ../../../rtl/src/C6_CarryDetector.v
-1764694858 ../../../rtl/src/C6_BFRound.v
-1764694858 ../../../rtl/src/C5_FPZero.v
-1764694858 ../../../rtl/src/C5_FPUnpackBase.v
-1764694858 ../../../rtl/src/C5_FPUnpackAll.v
-1764694858 ../../../rtl/src/C5_FPInfinity.v
-1764694858 ../../../rtl/src/C5_FPDefaultNaN.v
-1764747816 ../../../rtl/src/C5_FPAddition.v
-1764694858 ../../../rtl/src/C5_FPADDComb.v
-1764694858 ../../../rtl/src/C5_ExceptionHandling.v
-1764694858 ../../../rtl/src/C5_CLA_72.v
-1764694858 ../../../rtl/src/C5_CLA_48.v
-1764694858 ../../../rtl/src/C5_CLA_4.v
-1764694858 ../../../rtl/src/C5_BFUnpack.v
-1764694858 ../../../rtl/src/C4_Round.v
-1764694858 ../../../rtl/src/C4_NormalizeReal.v
-1764694858 ../../../rtl/src/C4_Normal_Result.v
-1764694858 ../../../rtl/src/C4_LZC.v
-1764694858 ../../../rtl/src/C4_Gen_OuterSign.v
-1764694858 ../../../rtl/src/C4_FPZero.v
-1764694858 ../../../rtl/src/C4_FPRoundBase.v
-1764694858 ../../../rtl/src/C4_FPNaN.v
-1764694858 ../../../rtl/src/C4_FPMaxNormal.v
-1764694858 ../../../rtl/src/C4_FPInfinity.v
-1764694858 ../../../rtl/src/C4_CarryDetector.v
-1764694858 ../../../rtl/src/C4_BFRound.v
-1764694858 ../../../rtl/src/C3_FPZero.v
-1764694858 ../../../rtl/src/C3_FPUnpackBase.v
-1764694858 ../../../rtl/src/C3_FPUnpackAll.v
-1764694858 ../../../rtl/src/C3_FPInfinity.v
-1764694858 ../../../rtl/src/C3_FPDefaultNaN.v
-1764694858 ../../../rtl/src/C3_FPAddition.v
-1764694858 ../../../rtl/src/C3_FPADDComb.v
-1764694858 ../../../rtl/src/C3_ExceptionHandling.v
-1764694858 ../../../rtl/src/C3_CLA_72.v
-1764694858 ../../../rtl/src/C3_CLA_48.v
-1764694858 ../../../rtl/src/C3_CLA_4.v
-1764694858 ../../../rtl/src/C3_BFUnpack.v
-1764694858 ../../../rtl/src/C2_Round.v
-1764694858 ../../../rtl/src/C2_NormalizeReal.v
-1764694858 ../../../rtl/src/C2_LZC.v
-1764694858 ../../../rtl/src/C2_Gen_FuseAdd.v
-1764694858 ../../../rtl/src/C2_FPZero.v
-1764694858 ../../../rtl/src/C2_FPInfinity.v
-1764694858 ../../../rtl/src/C1_FPZero.v
-1764694858 ../../../rtl/src/C1_FPUnpackBase.v
-1764694858 ../../../rtl/src/C1_FPUnpackAll.v
-1764694858 ../../../rtl/src/C1_FPProcessNaNs.v
-1764694858 ../../../rtl/src/C1_FPProcessNaN.v
-1764694858 ../../../rtl/src/C1_FPMutiArray.v
-1764694858 ../../../rtl/src/C1_FPMultiplyComb.v
-1764694858 ../../../rtl/src/C1_FPMultiplier.v
-1764694858 ../../../rtl/src/C1_FPInfinity.v
-1764694858 ../../../rtl/src/C1_FPDefaultNaN.v
-1764694858 ../../../rtl/src/C1_FPConvertNaN.v
-1764694858 ../../../rtl/src/C1_ExceptionHandling.v
-1764694858 ../../../rtl/src/C1_BFUnpack.v
-1764694858 ../../../rtl/src/Macro_Definition.v
+1764759538 ../../../rtl/src/Pipline_6.v
+1764759538 ../../../rtl/src/Pipline_5.v
+1764759538 ../../../rtl/src/Pipline_4.v
+1764759538 ../../../rtl/src/Pipline_3.v
+1764759538 ../../../rtl/src/Pipline_2.v
+1764759538 ../../../rtl/src/Pipline_1.v
+1764759538 ../../../rtl/src/Pipline_0.v
+1764759538 ../../../rtl/src/PE.v
+1764759538 ../../../rtl/src/IntSubtraction.v
+1764759538 ../../../rtl/src/IntMultiplier.v
+1764759538 ../../../rtl/src/IntMult.v
+1764759538 ../../../rtl/src/IntMult_TOP.v
+1764759538 ../../../rtl/src/IntAddition.v
+1764759538 ../../../rtl/src/IntAddAarry.v
+1764759538 ../../../rtl/src/Int16Mult.v
+1764759538 ../../../rtl/src/Int16Addition.v
+1764759538 ../../../rtl/src/C6_Round.v
+1764759538 ../../../rtl/src/C6_NormalizeReal.v
+1764759538 ../../../rtl/src/C6_Normal_Result.v
+1764759538 ../../../rtl/src/C6_LZC.v
+1764759538 ../../../rtl/src/C6_FPZero.v
+1764759538 ../../../rtl/src/C6_FPRoundBase.v
+1764759538 ../../../rtl/src/C6_FPNaN.v
+1764759538 ../../../rtl/src/C6_FPMaxNormal.v
+1764759538 ../../../rtl/src/C6_FPInfinity.v
+1764759538 ../../../rtl/src/C6_CarryDetector.v
+1764759538 ../../../rtl/src/C6_BFRound.v
+1764759538 ../../../rtl/src/C5_FPZero.v
+1764759538 ../../../rtl/src/C5_FPUnpackBase.v
+1764759538 ../../../rtl/src/C5_FPUnpackAll.v
+1764759538 ../../../rtl/src/C5_FPInfinity.v
+1764759538 ../../../rtl/src/C5_FPDefaultNaN.v
+1764759538 ../../../rtl/src/C5_FPAddition.v
+1764759538 ../../../rtl/src/C5_FPADDComb.v
+1764759538 ../../../rtl/src/C5_ExceptionHandling.v
+1764759538 ../../../rtl/src/C5_CLA_72.v
+1764759538 ../../../rtl/src/C5_CLA_48.v
+1764759538 ../../../rtl/src/C5_CLA_4.v
+1764759538 ../../../rtl/src/C5_BFUnpack.v
+1764759538 ../../../rtl/src/C4_Round.v
+1764759538 ../../../rtl/src/C4_NormalizeReal.v
+1764759538 ../../../rtl/src/C4_Normal_Result.v
+1764759538 ../../../rtl/src/C4_LZC.v
+1764759538 ../../../rtl/src/C4_Gen_OuterSign.v
+1764759538 ../../../rtl/src/C4_FPZero.v
+1764759538 ../../../rtl/src/C4_FPRoundBase.v
+1764759538 ../../../rtl/src/C4_FPNaN.v
+1764759538 ../../../rtl/src/C4_FPMaxNormal.v
+1764759538 ../../../rtl/src/C4_FPInfinity.v
+1764759538 ../../../rtl/src/C4_CarryDetector.v
+1764759538 ../../../rtl/src/C4_BFRound.v
+1764759538 ../../../rtl/src/C3_FPZero.v
+1764759538 ../../../rtl/src/C3_FPUnpackBase.v
+1764759538 ../../../rtl/src/C3_FPUnpackAll.v
+1764759538 ../../../rtl/src/C3_FPInfinity.v
+1764759538 ../../../rtl/src/C3_FPDefaultNaN.v
+1764759538 ../../../rtl/src/C3_FPAddition.v
+1764759538 ../../../rtl/src/C3_FPADDComb.v
+1764759538 ../../../rtl/src/C3_ExceptionHandling.v
+1764759538 ../../../rtl/src/C3_CLA_72.v
+1764759538 ../../../rtl/src/C3_CLA_48.v
+1764759538 ../../../rtl/src/C3_CLA_4.v
+1764759538 ../../../rtl/src/C3_BFUnpack.v
+1764759538 ../../../rtl/src/C2_Round.v
+1764759538 ../../../rtl/src/C2_NormalizeReal.v
+1764759538 ../../../rtl/src/C2_LZC.v
+1764759538 ../../../rtl/src/C2_Gen_FuseAdd.v
+1764759538 ../../../rtl/src/C2_FPZero.v
+1764759538 ../../../rtl/src/C2_FPInfinity.v
+1764759538 ../../../rtl/src/C1_FPZero.v
+1764759538 ../../../rtl/src/C1_FPUnpackBase.v
+1764759538 ../../../rtl/src/C1_FPUnpackAll.v
+1764759538 ../../../rtl/src/C1_FPProcessNaNs.v
+1764759538 ../../../rtl/src/C1_FPProcessNaN.v
+1764759538 ../../../rtl/src/C1_FPMutiArray.v
+1764759538 ../../../rtl/src/C1_FPMultiplyComb.v
+1764759538 ../../../rtl/src/C1_FPMultiplier.v
+1764759538 ../../../rtl/src/C1_FPInfinity.v
+1764759538 ../../../rtl/src/C1_FPDefaultNaN.v
+1764759538 ../../../rtl/src/C1_FPConvertNaN.v
+1764759538 ../../../rtl/src/C1_ExceptionHandling.v
+1764759538 ../../../rtl/src/C1_BFUnpack.v
+1764759538 ../../../rtl/src/Macro_Definition.v
 1764696240 ../uvm_tb/tb/PE_tb.sv
 1764696240 ../uvm_tb/test/PE_test_pkg.sv
 1764696240 ../uvm_tb/env/PE_env_pkg.sv
@@ -1021,15 +1021,15 @@ ADS_LICENSE_FILE=1708@server01
 1622257851 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/vcsdp.tab
 11
 1622262350 /apps/synopsys/vcs-all_vR-2020.12-SP2/etc/uvm-1.1/dpi/uvm_dpi.cc
-1764734696 build_dir/C_ref_fmop.o
-1764734697 build_dir/C_ref_fmop_w.o
-1764734697 build_dir/C_ref_fmlal.o
-1764734697 build_dir/C_ref_bfmop.o
-1764734697 build_dir/C_ref_int.o
-1764737287 build_dir/C_ref_top.o
+1764759008 build_dir/C_ref_fmop.o
+1764759008 build_dir/C_ref_fmop_w.o
+1764759008 build_dir/C_ref_fmlal.o
+1764759008 build_dir/C_ref_bfmop.o
+1764759008 build_dir/C_ref_int.o
+1764759008 build_dir/C_ref_top.o
 1622259091 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libvirsim.so
 1622258561 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/liberrorinf.so
 1622258323 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libsnpsmalloc.so
 1622258557 /apps/synopsys/vcs-all_vR-2020.12-SP2/linux64/lib/libvfs.so
-1764755678 simv.daidir
+1764759592 simv.daidir
 -1 partitionlib

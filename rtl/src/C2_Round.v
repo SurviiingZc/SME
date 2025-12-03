@@ -20,6 +20,8 @@ module C2_Round #(
     output                       o_sign                ,
     output reg  [31:0]           o_round_result        ,
     output      [IN_WIDTH-1:0]   o_normal_mantissa     ,
+    
+    output reg                   sticky_flag           ,
     output      [EXP_WIDTH :0]   o_normal_exp          
 );
 
@@ -78,6 +80,7 @@ module C2_Round #(
         //.biased_exp_unconstrained  ( biased_exp_unconstrained  ),
         //.i_exp_true                ( i_exp_true                ),
         .exponent                  ( exponent                  ),
+        .sticky_flag               (sticky_flag                ),
         .adjusted_mantissa         ( adjusted_mantissa         )
         //.mantissa                  ( mantissa                  )
     );

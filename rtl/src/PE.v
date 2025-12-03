@@ -380,6 +380,8 @@ wire is_int_op  = ((P1_Compute_Precision == `INT32) || (P1_Compute_Precision == 
 wire is_forward = (reset_counter == 3) && (P0_ZA_Base_Address == P1_ZA_Base_Address) ? 1'b1 : 1'b0   ;
 wire [127:0] Forward_Added = is_forward ? o_Result : P1_Operand_C                                 ;
 
+wire    [3:0]   C2_sticky_flag;
+
 // to judge whether the int pipeline is full
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -416,6 +418,7 @@ generate
             .o_sign                ( P1_Normal_sign[i]          ),
             .o_round_result        ( P1_Round_result[i*32+:32]  ),
             .o_normal_mantissa     ( P1_Normal_mantissa[i]      ),
+            .sticky_flag           (C2_sticky_flag[i]           ),
             .o_normal_exp          ( P1_Normal_exp[i]           )
         );
 
