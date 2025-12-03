@@ -154,7 +154,7 @@ Limit information:
 cputime		unlimited
 filesize		unlimited
 datasize		unlimited
-stacksize		8305 kbytes
+stacksize		unlimited
 coredumpsize		0 kbytes
 memoryuse		unlimited
 vmemoryuse		unlimited
@@ -165,23 +165,23 @@ maxproc		4096
 (Special)Runtime environment variables:
 
 Runtime environment variables:
-LD_LIBRARY_PATH=/usr/local/lib:/apps/ansys/redhawk-2020R2.6/lib::/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX:/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX64
+LD_LIBRARY_PATH=/usr/local/lib:/apps/ansys/redhawk-2020R2.6/lib:/apps/ansys/redhawk-2020R2.6/lib:/apps/ansys/redhawk-2020R2.6/lib::/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX:/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX64:/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX:/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX64:/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX:/apps/synopsys/verdi_vR-2020.12-SP2/share/PLI/VCS/LINUX64
 PVSHOME=/apps/cadence/pvs19.15
 SX_HOME=/apps/synopsys/wv-2020.03
-XDG_SESSION_ID=2066
+XDG_SESSION_ID=2243
 QRC_HOME=/apps/cadence/quantus19.13
 TERM_PROGRAM=vscode
 CDSROOT=/apps/cadence/ic618.260
 NOVAS_HOME=/apps/synopsys/verdi_vR-2020.12-SP2
 HOST=server01
+TERM=xterm-256color
 _LMFILES_000=/apps/env/modulefiles/cadence/ads/2021u2:/apps/env/modulefiles/cadence/emx/5.6:/apps/env/modulefiles/cadence/peakview/5.1:/apps/env/modulefiles/cadence/skillpro/4.2F:/apps/env/modulefiles/cadence/incisive/15.2:/apps/env/modulefiles/cadence/virtuoso/618:/apps/env/modulefiles/cadence/qrc/19.1:/apps/env/modulefiles/cadence/pvs/19.1:/apps/env/modulefiles/cadence/innovus/20.16:/apps/env/modulefiles/cadence/spectre/23.1:/apps/env/modulefiles/cadence/lec/20.22:/apps/env/modulefiles/cadence/genus/20.1:/apps/env/modulefiles/cadence/liberate/20.1:/apps/env/modulefiles/synopsys/finesim/2019.06-SP2:/apps/env/modulefiles/synopsys/fm/2020.09-SP5:/apps/env/modulefiles/synopsys/hspice/2019.06-SP2:/apps/env/modulefiles/synopsys/lc/2020.09-SP5:/apps/env/modulefiles/synopsys/primetime/2023.12-SP5:/apps/env/modulefiles/synopsys/sentaurus/2019.03-SP1:/apps/env/modulefiles/synopsys/siliconsmart/2020.12-SP2:/apps/env/modulefiles/synopsys/spyglass/2020.12-SP2:/apps/env/modulefiles/synopsys/starrc/2020.09-SP5:
 XLIB_NO_SHM=1
-TERM=xterm-256color
 SHELL=/bin/csh
 MAKEFLAGS=
 GENUSHOME=/apps/cadence/genus201
 _LMFILES_001=/apps/env/modulefiles/synopsys/syn/2020.09-SP5:/apps/env/modulefiles/synopsys/synplity/2020.09-SP1:/apps/env/modulefiles/synopsys/txs/2020.09-SP4:/apps/env/modulefiles/synopsys/vclp/2020.03:/apps/env/modulefiles/synopsys/vcs/2020.12-SP2:/apps/env/modulefiles/synopsys/verdi/2020.12-SP2:/apps/env/modulefiles/synopsys/wv/2020.03:/apps/env/modulefiles/mentor/calibre/2020.4:/apps/env/modulefiles/mentor/tessent/2020.4
-SSH_CLIENT=10.1.255.10 61020 22
+SSH_CLIENT=10.1.255.10 55025 22
 LORENTZ_LICENSE_FILE=5260@server01
 VCS_BITMODE=64-bit
 TERM_PROGRAM_VERSION=1.85.2
@@ -244,14 +244,14 @@ QTLIB=/usr/lib64/qt-3.3/lib
 MGLS_LICENSE_FILE=1717@server01
 VCLP_HOME=/apps/synopsys/vc_static-2020.03
 VSCODE_GIT_IPC_HANDLE=/run/user/1020/vscode-git-34f3a73952.sock
-SSH_CONNECTION=10.1.255.10 61020 10.2.255.14 22
+SSH_CONNECTION=10.1.255.10 55025 10.2.255.12 22
 CDS_LIC_FILE=5280@server01
 MODULESHOME=/usr/share/Modules
-VSCODE_IPC_HOOK_CLI=/run/user/1020/vscode-ipc-60d78d8d-d05f-4ed6-9d7b-7565b4983b26.sock
+VSCODE_IPC_HOOK_CLI=/run/user/1020/vscode-ipc-7ab5f7ed-2396-474b-8873-50804de07202.sock
 EMXHOME=/apps/cadence/emx
 LESSOPEN=||/usr/bin/lesspipe.sh %s
 BROWSER=/home/users/zhangcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh
-SHLIB_PATH=/apps/ansys/redhawk-2020R2.6/lib
+SHLIB_PATH=/apps/ansys/redhawk-2020R2.6/lib:/apps/ansys/redhawk-2020R2.6/lib:/apps/ansys/redhawk-2020R2.6/lib
 IUSHOME=/apps/cadence/incisive152.086
 GIT_ASKPASS=/home/users/zhangcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh
 VSCODE_GIT_ASKPASS_NODE=/home/users/zhangcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node
@@ -285,8 +285,8 @@ argv[11]=simv
 argv[12]=-cm_dir
 argv[13]=./covdir.vdb
 286 profile - 100
-          CPU/Mem usage: 0.100 sys,  0.390 user,  436.59M mem
-287 Elapsed time:    0:00:00    Wed Dec  3 16:42:20 2025
+          CPU/Mem usage: 0.100 sys,  0.410 user,  440.80M mem
+287 Elapsed time:    0:00:01    Wed Dec  3 18:38:43 2025
 288 pliAppInit
 289 [SC]Init: MemoryConsumed=0.00MB ElapsedTime=0hour 0min. 0sec.
 290 FSDB_GATE is set.
@@ -316,79 +316,79 @@ argv[13]=./covdir.vdb
 314 *Verdi* : Enable +mda dumping.
 315 *Verdi* : End of traversing.
 316 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.120 sys,  0.420 user,  537.48M mem
-                   incr: 0.010 sys,  0.030 user,  8.51M mem
-                   accu: 0.010 sys,  0.030 user,  8.51M mem
-              accu incr: 0.010 sys,  0.030 user,  8.51M mem
+          CPU/Mem usage: 0.110 sys,  0.450 user,  541.69M mem
+                   incr: 0.000 sys,  0.030 user,  8.51M mem
+                   accu: 0.000 sys,  0.030 user,  8.51M mem
+              accu incr: 0.000 sys,  0.030 user,  8.51M mem
 
           Count usage: 6220 var,  4507 idcode,  812 callback
                  incr: 6220 var,  4507 idcode,  812 callback
                  accu: 6220 var,  4507 idcode,  812 callback
             accu incr: 6220 var,  4507 idcode,  812 callback
-317 Elapsed time:    0:00:01    Wed Dec  3 16:42:21 2025
+317 Elapsed time:    0:00:01    Wed Dec  3 18:38:43 2025
 318 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.120 sys,  0.430 user,  538.67M mem
-                   incr: 0.000 sys,  0.010 user,  1.19M mem
-                   accu: 0.010 sys,  0.040 user,  9.70M mem
-              accu incr: 0.000 sys,  0.010 user,  1.19M mem
+          CPU/Mem usage: 0.110 sys,  0.450 user,  542.88M mem
+                   incr: 0.000 sys,  0.000 user,  1.19M mem
+                   accu: 0.000 sys,  0.030 user,  9.70M mem
+              accu incr: 0.000 sys,  0.000 user,  1.19M mem
 
           Count usage: 6220 var,  4507 idcode,  812 callback
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 6220 var,  4507 idcode,  812 callback
             accu incr: 0 var,  0 idcode,  0 callback
-319 Elapsed time:    0:00:01    Wed Dec  3 16:42:21 2025
+319 Elapsed time:    0:00:01    Wed Dec  3 18:38:43 2025
 320 sps_tcl_fsdbDumpvars_vd_main
 321 argv[0]: +fsdbfile+autoflush
 322 *Verdi* : Create FSDB file 'autoflush.fsdb'
 323 *Verdi* : Begin traversing the scopes, layer (0).
 324 *Verdi* : End of traversing.
 325 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.130 sys,  0.470 user,  555.91M mem
-                   incr: 0.010 sys,  0.040 user,  7.79M mem
-                   accu: 0.010 sys,  0.040 user,  7.79M mem
-              accu incr: 0.010 sys,  0.040 user,  7.79M mem
+          CPU/Mem usage: 0.120 sys,  0.500 user,  560.11M mem
+                   incr: 0.000 sys,  0.050 user,  7.79M mem
+                   accu: 0.000 sys,  0.050 user,  7.79M mem
+              accu incr: 0.000 sys,  0.050 user,  7.79M mem
 
           Count usage: 13265 var,  5340 idcode,  908 callback
                  incr: 7045 var,  5340 idcode,  96 callback
                  accu: 7045 var,  5340 idcode,  96 callback
             accu incr: 7045 var,  5340 idcode,  96 callback
-326 Elapsed time:    0:00:01    Wed Dec  3 16:42:21 2025
+326 Elapsed time:    0:00:01    Wed Dec  3 18:38:43 2025
 327 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.130 sys,  0.470 user,  556.96M mem
+          CPU/Mem usage: 0.120 sys,  0.500 user,  561.16M mem
                    incr: 0.000 sys,  0.000 user,  1.05M mem
-                   accu: 0.010 sys,  0.040 user,  8.85M mem
+                   accu: 0.000 sys,  0.050 user,  8.85M mem
               accu incr: 0.000 sys,  0.000 user,  1.05M mem
 
           Count usage: 13265 var,  5340 idcode,  908 callback
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 7045 var,  5340 idcode,  96 callback
             accu incr: 0 var,  0 idcode,  0 callback
-328 Elapsed time:    0:00:01    Wed Dec  3 16:42:21 2025
+328 Elapsed time:    0:00:01    Wed Dec  3 18:38:43 2025
 329 sps_tcl_fsdbDumpon_vd_main at 0 : N/A(0)
 330 *Verdi* : fsdbDumpon - All FSDB files at 0 ps.
 331 End of simulation at 81975000
-332 Memory usage: 670.642 M
-333 Elapsed time:    0:00:04    Wed Dec  3 16:42:24 2025
+332 Memory usage: 675.901 M
+333 Elapsed time:    0:00:05    Wed Dec  3 18:38:47 2025
 334 Begin FSDB profile info:
-335 FSDB Writer : bc1(108032) bcn(1376859) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.247370) io wait(0.000000) theadpool wait(0.000000)
+335 FSDB Writer : bc1(130708) bcn(1353923) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.259802) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 336 End FSDB profile info
-337 FSDB closed. Name: mult.fsdb Size: 2265942
+337 FSDB closed. Name: mult.fsdb Size: 2573373
 338 Begin FSDB profile info:
-339 FSDB Writer : bc1(57030) bcn(752528) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.132868) io wait(0.000000) theadpool wait(0.000000)
+339 FSDB Writer : bc1(70220) bcn(751098) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.137207) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 340 End FSDB profile info
-341 FSDB closed. Name: autoflush.fsdb Size: 1148784
+341 FSDB closed. Name: autoflush.fsdb Size: 1246476
 342 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
-343                      - BlockUsed:16 Acquire:1523923 BufferUsed:29811406
-344                      - Flush:5 Expand:0 ProducerWait:0 ConsumerWait:14
-345                      - MainProducerTime:4.292557562 TotalConsumerTime:0.404802956
-346                      - ElapsedTime:3.882296000
-347 Producer   0 profile - BlockUsed:16 Acquire:1523923 BufferUsed:29811406
-348 Consumer   0 profile - Affinity:-1 CPUTime:0.404802956 LifeTime:3.083287016 (0.13%)
-349                      - BlockUsed:16 Acquire:1523923 BufferUsed:29811406
+343                      - BlockUsed:17 Acquire:1523663 BufferUsed:30538156
+344                      - Flush:5 Expand:0 ProducerWait:0 ConsumerWait:15
+345                      - MainProducerTime:4.525404119 TotalConsumerTime:0.402598847
+346                      - ElapsedTime:4.065078000
+347 Producer   0 profile - BlockUsed:17 Acquire:1523663 BufferUsed:30538156
+348 Consumer   0 profile - Affinity:-1 CPUTime:0.402598847 LifeTime:3.238593761 (0.12%)
+349                      - BlockUsed:17 Acquire:1523663 BufferUsed:30538156
 350 SimExit
-351 Elapsed time:    0:00:04    Wed Dec  3 16:42:24 2025
+351 Elapsed time:    0:00:05    Wed Dec  3 18:38:47 2025
 352 Sim process exit

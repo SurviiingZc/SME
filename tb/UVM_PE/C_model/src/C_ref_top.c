@@ -128,6 +128,7 @@ void PE_C_top(
             o_Result[1] = o_Result[0];
             o_Result[2] = o_Result[0];
             o_Result[3] = o_Result[0];
+            break;
         }
         case FMOPS:{
             o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling,0);
