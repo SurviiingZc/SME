@@ -1,6 +1,6 @@
 #!/bin/csh -f
 
-cd /simulation/SME/simulation
+cd /simulation/wangjialong/SME_TPU_PE/Public_SME/SME/tb/simulation
 
 #This ENV is used to avoid overriding current script in next vcselab run 
 setenv SNPS_VCSELAB_SCRIPT_NO_OVERRIDE  1
