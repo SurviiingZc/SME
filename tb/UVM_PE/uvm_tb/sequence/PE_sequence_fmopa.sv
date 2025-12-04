@@ -80,6 +80,7 @@ class PE_sequence_fmopa extends PE_sequence;
             end
             
             finish_item(tr);
+            #10;
         end
         // 序列完成后drop objection
         if (starting_phase != null) begin

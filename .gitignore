@@ -1,7 +1,8 @@
-/tb/UVM_PE/sim/build_dir
-/tb/UVM_PE/sim/covdir*
-/tb/UVM_PE/sim/csrc*
+tb/UVM_PE/sim/build_dir*
+tb/UVM_PE/sim/covdir*
+tb/UVM_PE/sim/csrc*
 /tb/UVM_PE/sim/simv*
 /tb/UVM_PE/sim/*xml
 /tb/UVM_PE/sim/*log
 /tb/UVM_PE/sim/*fsdb
+/tb/UVM_PE/sim/verdiLog
