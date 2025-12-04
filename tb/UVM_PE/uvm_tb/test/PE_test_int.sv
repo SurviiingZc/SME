@@ -31,10 +31,7 @@ class PE_test_int extends uvm_test;
         PE_sequence_smlall  seq_smlall;
         PE_sequence_umlal   seq_umlal;
         PE_sequence_umlall  seq_umlall;
-        
-        phase.raise_objection(this);
-        
-        `uvm_info("TEST", "Running all combinations test", UVM_LOW)
+    
         seq_smopa   = PE_sequence_smopa::type_id::create("seq_smopa");
         seq_smops   = PE_sequence_smops::type_id::create("seq_smops") ;
         seq_sumopa  = PE_sequence_sumopa::type_id::create("seq_sumopa") ;
@@ -49,7 +46,10 @@ class PE_test_int extends uvm_test;
         seq_smlall  = PE_sequence_smlall::type_id::create("seq_smlall") ;
         seq_umlal   = PE_sequence_umlal::type_id::create("seq_umlal") ;
         seq_umlall  = PE_sequence_umlall::type_id::create("seq_umlall");
-
+        
+        phase.raise_objection(this);
+        
+        `uvm_info("TEST", "Running all combinations test", UVM_LOW)
         seq_smopa.start(env.agent.sequencer);  
         seq_smops.start(env.agent.sequencer);  
         seq_sumopa.start(env.agent.sequencer); 

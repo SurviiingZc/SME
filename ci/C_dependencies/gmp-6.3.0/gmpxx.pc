@@ -1,4 +1,4 @@
-prefix=/home/users/SME/local
+prefix=/home/users/zhaoyingjie/local
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${exec_prefix}/lib

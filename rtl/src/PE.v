@@ -828,7 +828,7 @@ generate
             .o_rounded_result      ( P5_Round_Result[i*32+:32]  )
         );
 
-        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : i_Result[i*32+:32] ;
+        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : {4{P5_FP32_Result}} ;
     end
 endgenerate
 
@@ -846,11 +846,11 @@ C6_Round#(
     .o_rounded_result      ( P5_FP32_Result             )
 );
 
-assign i_Result = (is_int_op) ? P1_Int_Result : {4{P5_FP32_Result}};
+assign i_Result = (is_int_op) ? P1_Int_Result : P5_Result;
 Pipline_6 u_Pipline_6(
     .clk             ( clk              ),
     .rst_n           ( rst_n            ),
-    .i_Round_Result  ( P5_Result         ),
+    .i_Round_Result  ( i_Result         ),
     .o_Result        ( o_Result         )
 );
 

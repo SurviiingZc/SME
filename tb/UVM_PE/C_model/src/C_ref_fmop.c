@@ -651,7 +651,7 @@ uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t 
     rounding_mode = roundmode_converter(rounding);
     // 初始化高精度MPFR变量
     mpfr_t mpfr_A, mpfr_B, mpfr_C, mpfr_product, mpfr_sum;
-    mpfr_prec_t prec = 256;
+    mpfr_prec_t prec = 512;
     if(N==32){  //计算value1*value2+valueA
         mpfr_t result_fp32;
         mpfr_inits2(prec, mpfr_A, mpfr_B, mpfr_C, mpfr_product, mpfr_sum, NULL);
@@ -668,7 +668,7 @@ uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t 
         mpfr_mul(mpfr_product, mpfr_A, mpfr_B, MPFR_RNDN);
         // 根据add_sub位选择加法或减法
         if (add_sub == 1) //c + (a*b)
-            mpfr_add(mpfr_sum, mpfr_product, mpfr_C, MPFR_RNDN);
+            mpfr_add(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
         else if(add_sub == 0) //c - (a*b)
             mpfr_sub(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
         else
@@ -1133,7 +1133,7 @@ uint32_t handle_denormal_rounding(mpfr_t exact_value, uint8_t N, FPRounding roun
     
     int sign = mpfr_sgn(exact_value) < 0 ? 1 : 0;
     mpfr_t abs_value;
-    mpfr_init2(abs_value, 256); // 使用更高精度
+    mpfr_init2(abs_value, 512); // 使用更高精度
     mpfr_abs(abs_value, exact_value, MPFR_RNDN);
     
     uint32_t result = 0;
@@ -1145,7 +1145,7 @@ uint32_t handle_denormal_rounding(mpfr_t exact_value, uint8_t N, FPRounding roun
         
         // 使用MPFR精确计算缩放值
         mpfr_t scaled, int_part, frac_part, half_ulp;
-        mpfr_inits2(256, scaled, int_part, frac_part, half_ulp, NULL);
+        mpfr_inits2(512, scaled, int_part, frac_part, half_ulp, NULL);
         
         // scaled = abs_value / min_denormal_fp32
         mpfr_set_d(scaled, min_denormal_fp32, MPFR_RNDN);
@@ -1207,7 +1207,7 @@ uint32_t handle_denormal_rounding(mpfr_t exact_value, uint8_t N, FPRounding roun
         
         // 使用MPFR精确计算
         mpfr_t scaled, int_part, frac_part, half_ulp;
-        mpfr_inits2(256, scaled, int_part, frac_part, half_ulp, NULL);
+        mpfr_inits2(512, scaled, int_part, frac_part, half_ulp, NULL);
         
         // scaled = abs_value / min_denormal_fp16
         mpfr_set_d(scaled, min_denormal_fp16, MPFR_RNDN);
