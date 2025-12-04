@@ -154,7 +154,7 @@ Limit information:
 cputime		unlimited
 filesize		unlimited
 datasize		unlimited
-stacksize		unlimited
+stacksize		8192 kbytes
 coredumpsize		0 kbytes
 memoryuse		unlimited
 vmemoryuse		unlimited
@@ -285,8 +285,8 @@ argv[11]=simv
 argv[12]=-cm_dir
 argv[13]=./covdir.vdb
 286 profile - 100
-          CPU/Mem usage: 0.090 sys,  0.420 user,  440.81M mem
-287 Elapsed time:    0:00:01    Wed Dec  3 23:31:16 2025
+          CPU/Mem usage: 0.110 sys,  0.400 user,  440.81M mem
+287 Elapsed time:    0:00:00    Thu Dec  4 15:40:13 2025
 288 pliAppInit
 289 [SC]Init: MemoryConsumed=0.00MB ElapsedTime=0hour 0min. 0sec.
 290 FSDB_GATE is set.
@@ -316,79 +316,79 @@ argv[13]=./covdir.vdb
 314 *Verdi* : Enable +mda dumping.
 315 *Verdi* : End of traversing.
 316 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.110 sys,  0.460 user,  541.70M mem
-                   incr: 0.010 sys,  0.040 user,  8.50M mem
-                   accu: 0.010 sys,  0.040 user,  8.50M mem
-              accu incr: 0.010 sys,  0.040 user,  8.50M mem
+          CPU/Mem usage: 0.120 sys,  0.440 user,  541.70M mem
+                   incr: 0.000 sys,  0.030 user,  8.50M mem
+                   accu: 0.000 sys,  0.030 user,  8.50M mem
+              accu incr: 0.000 sys,  0.030 user,  8.50M mem
 
           Count usage: 6237 var,  4524 idcode,  812 callback
                  incr: 6237 var,  4524 idcode,  812 callback
                  accu: 6237 var,  4524 idcode,  812 callback
             accu incr: 6237 var,  4524 idcode,  812 callback
-317 Elapsed time:    0:00:01    Wed Dec  3 23:31:16 2025
+317 Elapsed time:    0:00:00    Thu Dec  4 15:40:13 2025
 318 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.110 sys,  0.460 user,  542.90M mem
+          CPU/Mem usage: 0.120 sys,  0.440 user,  542.89M mem
                    incr: 0.000 sys,  0.000 user,  1.19M mem
-                   accu: 0.010 sys,  0.040 user,  9.70M mem
+                   accu: 0.000 sys,  0.030 user,  9.70M mem
               accu incr: 0.000 sys,  0.000 user,  1.19M mem
 
           Count usage: 6237 var,  4524 idcode,  812 callback
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 6237 var,  4524 idcode,  812 callback
             accu incr: 0 var,  0 idcode,  0 callback
-319 Elapsed time:    0:00:01    Wed Dec  3 23:31:16 2025
+319 Elapsed time:    0:00:00    Thu Dec  4 15:40:13 2025
 320 sps_tcl_fsdbDumpvars_vd_main
 321 argv[0]: +fsdbfile+autoflush
 322 *Verdi* : Create FSDB file 'autoflush.fsdb'
 323 *Verdi* : Begin traversing the scopes, layer (0).
 324 *Verdi* : End of traversing.
 325 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.120 sys,  0.510 user,  560.14M mem
-                   incr: 0.010 sys,  0.050 user,  7.80M mem
-                   accu: 0.010 sys,  0.050 user,  7.80M mem
-              accu incr: 0.010 sys,  0.050 user,  7.80M mem
+          CPU/Mem usage: 0.130 sys,  0.500 user,  560.14M mem
+                   incr: 0.000 sys,  0.050 user,  7.80M mem
+                   accu: 0.000 sys,  0.050 user,  7.80M mem
+              accu incr: 0.000 sys,  0.050 user,  7.80M mem
 
           Count usage: 13299 var,  5357 idcode,  908 callback
                  incr: 7062 var,  5357 idcode,  96 callback
                  accu: 7062 var,  5357 idcode,  96 callback
             accu incr: 7062 var,  5357 idcode,  96 callback
-326 Elapsed time:    0:00:01    Wed Dec  3 23:31:16 2025
+326 Elapsed time:    0:00:00    Thu Dec  4 15:40:13 2025
 327 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.120 sys,  0.510 user,  561.19M mem
+          CPU/Mem usage: 0.130 sys,  0.500 user,  561.19M mem
                    incr: 0.000 sys,  0.000 user,  1.05M mem
-                   accu: 0.010 sys,  0.050 user,  8.86M mem
+                   accu: 0.000 sys,  0.050 user,  8.86M mem
               accu incr: 0.000 sys,  0.000 user,  1.05M mem
 
           Count usage: 13299 var,  5357 idcode,  908 callback
                  incr: 0 var,  0 idcode,  0 callback
                  accu: 7062 var,  5357 idcode,  96 callback
             accu incr: 0 var,  0 idcode,  0 callback
-328 Elapsed time:    0:00:01    Wed Dec  3 23:31:16 2025
+328 Elapsed time:    0:00:00    Thu Dec  4 15:40:13 2025
 329 sps_tcl_fsdbDumpon_vd_main at 0 : N/A(0)
 330 *Verdi* : fsdbDumpon - All FSDB files at 0 ps.
 331 End of simulation at 81975000
-332 Memory usage: 676.979 M
-333 Elapsed time:    0:00:04    Wed Dec  3 23:31:19 2025
+332 Memory usage: 674.869 M
+333 Elapsed time:    0:00:04    Thu Dec  4 15:40:17 2025
 334 Begin FSDB profile info:
-335 FSDB Writer : bc1(135458) bcn(1433279) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.232705) io wait(0.000000) theadpool wait(0.000000)
+335 FSDB Writer : bc1(113629) bcn(1097858) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.225310) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 336 End FSDB profile info
-337 FSDB closed. Name: mult.fsdb Size: 2574454
+337 FSDB closed. Name: mult.fsdb Size: 2179187
 338 Begin FSDB profile info:
-339 FSDB Writer : bc1(72590) bcn(824263) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.132063) io wait(0.000000) theadpool wait(0.000000)
+339 FSDB Writer : bc1(61722) bcn(554589) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.126246) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 340 End FSDB profile info
-341 FSDB closed. Name: autoflush.fsdb Size: 1246646
+341 FSDB closed. Name: autoflush.fsdb Size: 1075168
 342 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
-343                      - BlockUsed:18 Acquire:1607769 BufferUsed:32362101
-344                      - Flush:5 Expand:0 ProducerWait:0 ConsumerWait:16
-345                      - MainProducerTime:4.521022613 TotalConsumerTime:0.427385194
-346                      - ElapsedTime:4.054291000
-347 Producer   0 profile - BlockUsed:18 Acquire:1607769 BufferUsed:32362101
-348 Consumer   0 profile - Affinity:-1 CPUTime:0.427385194 LifeTime:3.258651967 (0.13%)
-349                      - BlockUsed:18 Acquire:1607769 BufferUsed:32362101
+343                      - BlockUsed:13 Acquire:1250519 BufferUsed:23764811
+344                      - Flush:5 Expand:0 ProducerWait:0 ConsumerWait:11
+345                      - MainProducerTime:4.307419243 TotalConsumerTime:0.228090504
+346                      - ElapsedTime:3.880374000
+347 Producer   0 profile - BlockUsed:13 Acquire:1250519 BufferUsed:23764811
+348 Consumer   0 profile - Affinity:-1 CPUTime:0.228090504 LifeTime:3.043874555 (0.07%)
+349                      - BlockUsed:13 Acquire:1250519 BufferUsed:23764811
 350 SimExit
-351 Elapsed time:    0:00:05    Wed Dec  3 23:31:20 2025
+351 Elapsed time:    0:00:04    Thu Dec  4 15:40:17 2025
 352 Sim process exit
