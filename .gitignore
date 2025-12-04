@@ -5,8 +5,3 @@
 /tb/UVM_PE/sim/*xml
 /tb/UVM_PE/sim/*log
 /tb/UVM_PE/sim/*fsdb
-/tb/UVM_PE/sim/*so
-/tb/UVM_PE/sim/*tcl
-/tb/UVM_PE/sim/*conf
-/tb/UVM_PE/sim/*sh
-/tb/UVM_PE/sim/*key
