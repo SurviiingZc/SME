@@ -18,27 +18,27 @@ int Compute_func_sel(
                 compute_func = INT_CALC;
                 break;
             }
-// 
-            case FP32:
-            case FP16: {
+
+            case FP32: {
 		        if(!i_Is_Widening){
                     compute_func = (i_Add_or_Subtract == Addition_Operation) ? FMOPA : FMOPS;
+		        }
+                break;	 
+            }
+
+            case FP16: {
+		        if(!i_Is_Widening){
+                    compute_func = (i_Add_or_Subtract == Addition_Operation) ? FMOPA_FP16 : FMOPS_FP16;
 		        }
 		        else {
 			        compute_func = (i_Add_or_Subtract == Addition_Operation) ? FMOPA_W : FMOPS_W;
 		        }
                 break;	 
             }
-
             case BF16: {
                 compute_func =  (i_Add_or_Subtract == Addition_Operation) ? BFMOPA : BFMOPS;
                 break;
             }
-
-            case FP8: {
-                break;
-            }
-
             default: 
                 break;
         }
@@ -52,10 +52,13 @@ int Compute_func_sel(
                 break;
             }
 
-            case FP32:
-            case FP16: {
-		        if(i_Is_Widening == Operands_Is_Not_Widening){
+            case FP32: {
                     compute_func = FMLA;
+                break;	 
+            }
+            case FP16: {
+		        if(i_Is_Widening == 0){
+                    compute_func = FMLA_FP16;
                 }
                 else{
                     if(i_Vector_Group_Num == Single_Vector_Group){
@@ -67,15 +70,6 @@ int Compute_func_sel(
                 }
                 break;	 
             }
-
-            case BF16: {
-                break;
-            }
-
-            case FP8: {
-                break;
-            }
-
             default: 
                 break;
         }
@@ -92,7 +86,7 @@ void PE_C_top(
     int       i_ZnIsSigned            ,
     int       i_Num_of_Vector_Group   ,
     int       i_Vector_Group_Num      ,
-    int       i_Exception_Handling    ,//要拆分成寄存器
+    uint32_t  i_Exception_Handling    ,//要拆分成寄存器
     int       i_Active_Element_A      ,//4bit的有效指示
     int       i_Active_Element_B      ,
     int       i_ZA_Base_Address       ,
@@ -137,7 +131,76 @@ void PE_C_top(
             o_Result[3] = o_Result[0];
             break;
         }
-
+        case FMOPA_FP16:{
+            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 16, i_Exception_Handling,1);
+            o_Result[1] = FPMulAdd_ZA(i_Operand_C[1], i_Operand_A, ((i_Operand_B>>16) & 0xFFFF), 16, i_Exception_Handling,1);
+            o_Result[2] = FPMulAdd_ZA(i_Operand_C[2], ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, 16, i_Exception_Handling,1);
+            o_Result[3] = FPMulAdd_ZA(i_Operand_C[3], ((i_Operand_A>>16) & 0xFFFF), ((i_Operand_B>>16) & 0xFFFF), 16, i_Exception_Handling,1);
+            break;
+        }
+        case FMOPS_FP16:{
+            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 16, i_Exception_Handling,0);
+            o_Result[1] = FPMulAdd_ZA(i_Operand_C[1], i_Operand_A, ((i_Operand_B>>16) & 0xFFFF), 16, i_Exception_Handling,0);
+            o_Result[2] = FPMulAdd_ZA(i_Operand_C[2], ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, 16, i_Exception_Handling,0);
+            o_Result[3] = FPMulAdd_ZA(i_Operand_C[3], ((i_Operand_A>>16) & 0xFFFF), ((i_Operand_B>>16) & 0xFFFF), 16, i_Exception_Handling,0);
+            break;
+        }
+        case FMOPA_W:{
+            o_Result[0] = FPDotAdd_ZA(i_Operand_C[0], i_Operand_A, ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, ((i_Operand_B>>16) & 0xFFFF), i_Exception_Handling,1);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
+        case FMOPS_W:{
+            o_Result[0] = FPDotAdd_ZA(i_Operand_C[0], i_Operand_A, ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, ((i_Operand_B>>16) & 0xFFFF), i_Exception_Handling,0);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
+        case BFMOPA:{
+            o_Result[0] = BFDotAdd(i_Operand_C[0], i_Operand_A, ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, ((i_Operand_B>>16) & 0xFFFF), i_Exception_Handling,1);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
+        case BFMOPS:{
+            o_Result[0] = BFDotAdd(i_Operand_C[0], i_Operand_A, ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, ((i_Operand_B>>16) & 0xFFFF), i_Exception_Handling,0);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
+        case FDOT:{
+            o_Result[0] = FPDotAdd_ZA(i_Operand_C[0], i_Operand_A, ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, ((i_Operand_B>>16) & 0xFFFF), i_Exception_Handling,1);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
+        case FMLA:{
+            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling,1);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
+        case FMLA_FP16:{
+            o_Result[0] = FPMulAdd_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 16, i_Exception_Handling,1);
+            o_Result[1] = FPMulAdd_ZA(i_Operand_C[1], i_Operand_A, ((i_Operand_B>>16) & 0xFFFF), 16, i_Exception_Handling,1);
+            o_Result[2] = FPMulAdd_ZA(i_Operand_C[2], ((i_Operand_A>>16) & 0xFFFF), i_Operand_B, 16, i_Exception_Handling,1);
+            o_Result[3] = FPMulAdd_ZA(i_Operand_C[3], ((i_Operand_A>>16) & 0xFFFF), ((i_Operand_B>>16) & 0xFFFF), 16, i_Exception_Handling,1);
+            break;
+        }
+        case FMLAL:{
+            o_Result[0] = FPMulAddH_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling);
+            o_Result[1] = o_Result[0];
+            o_Result[2] = o_Result[0];
+            o_Result[3] = o_Result[0];
+            break;
+        }
         default: break;
     }
 }
