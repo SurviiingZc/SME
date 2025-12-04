@@ -1,6 +1,9 @@
 /tb/UVM_PE/sim/
+<<<<<<< HEAD
 !/tb/UVM_PE/sim/Makefile
 !/tb/UVM_PE/sim/*.rc
+=======
+>>>>>>> ef26b79ba6d5270150533e61538df7481c8faf11
 
 # Build and Release Folders
 bin-debug/

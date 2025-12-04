@@ -22,17 +22,26 @@ class PE_test_fmop extends uvm_test;
         PE_sequence_fmops   seq_fmops;
         PE_sequence_fmops_w seq_fmops_w;
         
-        seq_fmopa   = PE_sequence_fmopa::type_id::create("seq_fmopa");
-        // seq_fmopa_w = PE_sequence_fmopa_w::type_id::create("seq_fmopa_w");
-        seq_fmops   = PE_sequence_fmops::type_id::create("seq_fmops");
-        // seq_fmops_w = PE_sequence_fmops_w::type_id::create("seq_fmops_w");
-        
+<<<<<<< HEAD
+=======
         phase.raise_objection(this);
         
         `uvm_info("TEST", "Running all sign combinations test", UVM_LOW)
+>>>>>>> ef26b79ba6d5270150533e61538df7481c8faf11
+        seq_fmopa   = PE_sequence_fmopa::type_id::create("seq_fmopa");
+        // seq_fmopa_w = PE_sequence_fmopa_w::type_id::create("seq_fmopa_w");
+        // seq_fmops   = PE_sequence_fmops::type_id::create("seq_fmops");
+        // seq_fmops_w = PE_sequence_fmops_w::type_id::create("seq_fmops_w");
+        
+<<<<<<< HEAD
+        phase.raise_objection(this);
+        
+        `uvm_info("TEST", "Running all sign combinations test", UVM_LOW)
+=======
+>>>>>>> ef26b79ba6d5270150533e61538df7481c8faf11
         seq_fmopa.start(env.agent.sequencer);  
         // seq_fmopa_w.start(env.agent.sequencer);
-        seq_fmops.start(env.agent.sequencer);  
+        // seq_fmops.start(env.agent.sequencer);  
         // seq_fmops_w.start(env.agent.sequencer);            
         
         phase.drop_objection(this);

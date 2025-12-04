@@ -668,7 +668,7 @@ uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t 
         mpfr_mul(mpfr_product, mpfr_A, mpfr_B, MPFR_RNDN);
         // 根据add_sub位选择加法或减法
         if (add_sub == 1) //c + (a*b)
-            mpfr_add(mpfr_sum, mpfr_product, mpfr_C, MPFR_RNDN);
+            mpfr_add(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
         else if(add_sub == 0) //c - (a*b)
             mpfr_sub(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
         else
