@@ -846,11 +846,11 @@ C6_Round#(
     .o_rounded_result      ( P5_FP32_Result             )
 );
 
-assign i_Result = (is_int_op) ? P1_Int_Result : {4{P5_FP32_Result}};
+assign i_Result = (is_int_op) ? P1_Int_Result : P5_Round_Result;
 Pipline_6 u_Pipline_6(
     .clk             ( clk              ),
     .rst_n           ( rst_n            ),
-    .i_Round_Result  ( P5_Result         ),
+    .i_Round_Result  ( P5_Result        ),
     .o_Result        ( o_Result         )
 );
 

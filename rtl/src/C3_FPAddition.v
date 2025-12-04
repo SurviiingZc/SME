@@ -93,9 +93,9 @@ assign Neg_Min_Mant  = ~Min_Mant + 1 						    				;
 assign Mant_Com		 = Mant_Max + Neg_Min_Mant[47:24]							;
 
 assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : (Mant_Max + Min_Mant[47:24])	;
-assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Mant[23:0]}		;
-assign o_Sum_Expo	 = Expo_Max													;
-assign o_Sum_Sign	 = Sign_Max													;
+// assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Mant[23:0]}		;
+// assign o_Sum_Expo	 = Expo_Max													;
+// assign o_Sum_Sign	 = Sign_Max													;
     
 
 assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2)                 						            ;
@@ -117,6 +117,9 @@ assign o_Temp_Mant 	         = {1'b0,Fuse_Max_Mant} + {1'b0,Fuse_Neg_Min_Mant} +
 assign o_Temp_Expo	         = Fuse_Expo_Max											                    ;
 assign o_Temp_Sign	         = Fuse_Sign_Max											                    ;
 
+assign o_Sum_Mant            = o_Temp_Mant[48:0]                                                            ; //改
+assign o_Sum_Expo            = o_Temp_Expo[7:0]                                                             ;
+assign o_Sum_Sign            = o_Temp_Sign                                                                  ;
 
 // C3_CLA_72 u_C3_CLA_72(
 //     .i_Cin      ( Fuse_is_Comp          ),
