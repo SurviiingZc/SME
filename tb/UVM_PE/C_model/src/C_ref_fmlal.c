@@ -99,7 +99,7 @@ uint32_t FPMulAddH(uint32_t addend, uint32_t op1, uint32_t op2, uint8_t N,
             
             // 初始化高精度MPFR变量
             mpfr_t mpfr_A, mpfr_B, mpfr_C, mpfr_product, mpfr_sum;
-            mpfr_prec_t prec = 256;
+            mpfr_prec_t prec = 512;
             
             mpfr_inits2(prec, mpfr_A, mpfr_B, mpfr_C, mpfr_product, mpfr_sum, NULL);
             mpfr_t result_fp32;
