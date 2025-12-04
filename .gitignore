@@ -1,22 +1,8 @@
-/tb/UVM_PE/sim/
-!/tb/UVM_PE/sim/Makefile
-!/tb/UVM_PE/sim/*.rc
-
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-
-# Other files and folders
-.settings/
-
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+tb/UVM_PE/sim/build_dir*
+tb/UVM_PE/sim/covdir*
+tb/UVM_PE/sim/csrc*
+/tb/UVM_PE/sim/simv*
+/tb/UVM_PE/sim/*xml
+/tb/UVM_PE/sim/*log
+/tb/UVM_PE/sim/*fsdb
+/tb/UVM_PE/sim/verdiLog

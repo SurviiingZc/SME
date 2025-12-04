@@ -21,6 +21,8 @@ class PE_test_fmop extends uvm_test;
         PE_sequence_fmopa_w seq_fmopa_w;
         PE_sequence_fmops   seq_fmops;
         PE_sequence_fmops_w seq_fmops_w;
+        PE_sequence_smopa   seq_smopa;
+
         
         phase.raise_objection(this);
         
@@ -30,7 +32,10 @@ class PE_test_fmop extends uvm_test;
         // seq_fmops   = PE_sequence_fmops::type_id::create("seq_fmops");
         // seq_fmops_w = PE_sequence_fmops_w::type_id::create("seq_fmops_w");
         
-        seq_fmopa.start(env.agent.sequencer);  
+        phase.raise_objection(this);
+        
+        `uvm_info("TEST", "Running all sign combinations test", UVM_LOW)
+        seq_fmopa.start(env.agent.sequencer);
         // seq_fmopa_w.start(env.agent.sequencer);
         // seq_fmops.start(env.agent.sequencer);  
         // seq_fmops_w.start(env.agent.sequencer);            
