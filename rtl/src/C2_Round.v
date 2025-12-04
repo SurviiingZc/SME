@@ -42,10 +42,10 @@ module C2_Round #(
     wire        [31         :0]     o_FPZero                     ;
     wire        [31         :0]     o_FPInfinity                 ;
     wire        EBF                                              = i_Exception_Handling[8]                                                          ;
-    assign                                S_bit                  = |adjusted_mantissa[BF16_IDX_LO:0]                                                ;
-    assign                                L_bit                  = ~int_mant[BF16_IDX_LO]                                                           ;
     wire        [F-1:0]                   int_mant               = adjusted_mantissa[BF16_IDX_HI:BF16_IDX_LO]                                       ;
-    //wire        [BF16_IDX_LO:0]           error                  = adjusted_mantissa[BF16_IDX_LO:0]                                                 ;
+    assign                                S_bit                  = |adjusted_mantissa[BF16_IDX_LO:0]                                                ;
+    assign                                L_bit                  = ~int_mant[0]                                                                     ;
+        //wire        [BF16_IDX_LO:0]           error                  = adjusted_mantissa[BF16_IDX_LO:0]                                                 ;
     wire        [F:0]                     int_mant_roundup       = int_mant + 1'b1                                                                  ;
     wire        [F:0]                     int_mant_round         = ( S_bit && L_bit) ? (int_mant_roundup) : int_mant                                ;   
     wire                                  flush_zero_condition   = (exponent < minimum_exp) ? 1'b1 : 1'b0                                           ;

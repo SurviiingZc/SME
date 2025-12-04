@@ -13,8 +13,11 @@ module C4_Round #(
     input       [19:0]          i_Exception_Handling        ,     // FPCR register  
     input                       i_N                         ,     // 1 > 32 0 > 16
     input                       i_isbfloat16                ,     // bfloat16 flag 
-    input                       i_sticky_bit                ,    
-    output     [31:0]           o_rounded_result                  // Rounded result
+    input                       i_sticky_bit                ,
+    output                      o_sign                      ,
+    output      [IN_WIDTH-1:0]  o_normal_mantissa           ,    
+    output      [EXP_WIDTH :0]  o_normal_exp                , 
+    output      [31:0]          o_rounded_result                  // Rounded result
 );
 
 
