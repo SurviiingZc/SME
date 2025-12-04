@@ -22,9 +22,6 @@ class PE_test_fmop extends uvm_test;
         PE_sequence_fmops   seq_fmops;
         PE_sequence_fmops_w seq_fmops_w;
         PE_sequence_smopa   seq_smopa;
-
-        
-        phase.raise_objection(this);
         
         `uvm_info("TEST", "Running all sign combinations test", UVM_LOW)
         seq_fmopa   = PE_sequence_fmopa::type_id::create("seq_fmopa");

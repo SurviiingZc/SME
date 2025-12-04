@@ -250,7 +250,7 @@ class PE_sequence_fmopa extends PE_sequence;
             end
             
             finish_item(tr);
-            #10;
+
         end
         
         if (starting_phase != null) begin
