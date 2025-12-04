@@ -79,7 +79,7 @@ input       [  9:0]   i_Temp_Expo             ;
 input       [ 72:0]   i_Temp_Mant             ;
 input       [  3:0]   i_Is_Exception          ;
 input                 i_Sticky_Bit            ;
-output                o_Sticky_Bit            ;
+output reg            o_Sticky_Bit            ;
 output reg  [  3:0]   o_Is_Exception          ;
 output reg            o_Compute_Mode          ;
 output reg  [ 2:0]    o_Compute_Precision     ;
