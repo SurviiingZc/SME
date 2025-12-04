@@ -381,10 +381,17 @@ openFileDlg = 949,394,602,483
 saveSigDlg = 1003,539,551,386
 QwInfoMsgDlg = 904,663,750,250
 SearchValueDialog = 1109,680,339,105
+<<<<<<< HEAD
 QwWarnMsgDlg = 979,885,600,250
 qWaveSignalDialog = 870,486,800,479
 unknownSave = 1048,610,461,245
 restoreSigDlg = 1003,513,551,438
+=======
+unknownSave = 1039,603,461,245
+qWaveSignalDialog = 879,493,800,479
+restoreSigDlg = 1003,513,551,438
+QwWarnMsgDlg = 979,959,600,250
+>>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
 QwUserAskDlg = 1118,667,324,134
 [Relationship]
 hideRecursiceNode = FALSE
@@ -673,6 +680,7 @@ isOneSearchVisible = TRUE
 [VIA.oneSearch.preference.vgifColumnSettingRC]
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0]
 parRuleSets = ""
+<<<<<<< HEAD
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column0]
 name = Time
 width = 60
@@ -703,6 +711,8 @@ width = 60
 visualIndex = 3
 isHidden = FALSE
 isUserChangeColumnVisible = FALSE
+=======
+>>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
 [Vi]
 ViFont = "Clean 14"
 ViBG = white
@@ -784,8 +794,13 @@ AutoApplySeverityColor = TRUE
 scope_to_save_with_macro
 open_file_dir
 open_rc_file_dir
+<<<<<<< HEAD
 getSignalForm = 0 0 800 479 100 30 100 30
 viewPort = 0 25 2560 823 239 65
+=======
+getSignalForm = 879 456 800 479 245 381 505 183
+viewPort = 0 25 2560 701 239 65
+>>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
 legendBackground = -c ID_BLACK
 valueBackground = -c ID_BLACK
 curveBackground = -c ID_BLACK
@@ -1313,7 +1328,11 @@ AddImportArgument = FALSE
 LineBreakWithScope = TRUE
 StopAfterCompileOption = -s
 [wave.0]
+<<<<<<< HEAD
 viewPort = 0 25 2560 823 239 65
+=======
+viewPort = 0 25 2560 701 239 65
+>>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
 [wave.1]
 viewPort = 127 219 960 332 100 65
 [wave.2]
