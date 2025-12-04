@@ -54,7 +54,7 @@ sim:
 
 verdi:
 	verdi -ssf mult.fsdb -f filelist.f &
-
+	
 clean:
 	rm -rf build_dir *.o *.log *.vdb *simv* *.key *.fsdb csrc*
 	rm -rf csrc vdCovLog verdiLog
