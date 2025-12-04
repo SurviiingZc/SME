@@ -223,14 +223,10 @@ Selection-LineWidth = 1
 [FSM_Dlg-Print]
 Orientation = Landscape
 [FileBrowser]
-<<<<<<< HEAD
-nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
+<<<<<<<
 nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\""
-=======
-nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
-nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/FP.rc\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/m\
-ult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/INT.rc\""
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
+>>>>>>>
+nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
 [Form]
 version = Verdi_R-2020.12-SP2
 [General]
@@ -391,29 +387,17 @@ saveWaveformStat = TRUE
 savePropStat = FALSE
 savePropDtl = TRUE
 [QtDialog]
-openFileDlg = 949,394,602,483
+<<<<<<<
+>>>>>>>
 saveSigDlg = 1003,539,551,386
 QwInfoMsgDlg = 904,663,750,250
 SearchValueDialog = 1109,680,339,105
-<<<<<<< HEAD
-<<<<<<< HEAD
-QwWarnMsgDlg = 979,885,600,250
 qWaveSignalDialog = 870,486,800,479
 unknownSave = 1048,610,461,245
-restoreSigDlg = 1003,513,551,438
-=======
-unknownSave = 1039,603,461,245
-qWaveSignalDialog = 879,493,800,479
-restoreSigDlg = 1003,513,551,438
-QwWarnMsgDlg = 979,959,600,250
->>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
-=======
-unknownSave = 1039,603,461,245
-QwWarnMsgDlg = 979,1033,600,250
-qWaveSignalDialog = 879,493,800,479
+restoreSigDlg = 994,506,551,438
 ActiveFileDialog = 1050,596,457,272
 openFileDlg = 978,491,602,483
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
+QwWarnMsgDlg = 979,922,600,250
 QwUserAskDlg = 1118,667,324,134
 [Relationship]
 hideRecursiceNode = FALSE
@@ -429,7 +413,9 @@ HighlightSafetyObject = TRUE
 3 = string (session file name)
 4 = string (session file name)
 5 = string (session file name)
-1 = /simulation/wzh/SME/tb/UVM_PE/sim/verdiLog/novas_autosave.ses
+<<<<<<<
+>>>>>>>
+1 = /simulation/SME/SME/tb/UVM_PE/sim/verdiLog/novas_autosave.ses
 2 = /simulation/SME/UVM_PE/UVM_PE_C_V2/sim/verdiLog/novas_autosave.ses
 [Simulation]
 scsPath = scsim
@@ -708,24 +694,8 @@ viaLogViewerDefaultRuleOneSearchForm = "share/VIA/Apps/PredefinedRules/Misc/Ones
 [VIA.interactiveDebug.preference]
 DefaultDisplayTimeUnit = "1.000000ns"
 DefaultLogTimeUnit = "1.000000ns"
-<<<<<<< HEAD
+<<<<<<<
 isOneSearchVisible = TRUE
-[VIA.oneSearch.preference.vgifColumnSettingRC]
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0]
-parRuleSets = ""
-<<<<<<< HEAD
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column0]
-name = Time
-width = 60
-visualIndex = 0
-isHidden = TRUE
-isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
-name = Severity
-width = 60
-visualIndex = 1
-isHidden = TRUE
-=======
 [VIA.interactiveDebug.preference.vgifColumnSettingRC]
 [VIA.interactiveDebug.preference.vgifColumnSettingRC.setting0]
 parRuleSets = "/apps/synopsys/verdi_vR-2020.12-SP2/share/VIA/Apps/PredefinedParRules/par_rule_OVM.rc /apps/synopsys/verdi_vR-2020.12-SP2/share/VIA/Apps/PredefinedParRules/par_rule_UVM.rc /apps/synopsys/verdi_vR-2020.12-SP2/share/VIA/Apps/PredefinedParRules/par_rule_LP.r\
@@ -753,7 +723,7 @@ name = Code
 width = 60
 visualIndex = 3
 isHidden = FALSE
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
+>>>>>>>
 isUserChangeColumnVisible = FALSE
 [VIA.interactiveDebug.preference.vgifColumnSettingRC.setting0.column4]
 name = Severity
@@ -770,54 +740,43 @@ isUserChangeColumnVisible = FALSE
 [VIA.oneSearch.preference]
 DefaultDisplayTimeUnit = "1.000000ns"
 DefaultLogTimeUnit = "1.000000ns"
-isOneSearchVisible = FALSE
+isOneSearchVisible = TRUE
 [VIA.oneSearch.preference.vgifColumnSettingRC]
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0]
 parRuleSets = ""
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column0]
 name = Message
 width = 60
-visualIndex = 4
+visualIndex = 0
 isHidden = FALSE
 isUserChangeColumnVisible = FALSE
-<<<<<<< HEAD
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
-name = Code
-=======
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
 name = Severity
 width = 60
-visualIndex = 1
+visualIndex = 2
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
 name = Time
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
 width = 60
-visualIndex = 2
+visualIndex = 1
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
 name = Code
 width = 60
-visualIndex = 2
+visualIndex = 3
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column4]
 name = Type
 width = 60
-visualIndex = 3
-<<<<<<< HEAD
+visualIndex = 4
 isHidden = FALSE
-isUserChangeColumnVisible = FALSE
-=======
->>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
-=======
-isHidden = TRUE
 isUserChangeColumnVisible = FALSE
 [VIA.parRule]
 parRulePathInterForm = ""
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
+>>>>>>>
 [Vi]
 ViFont = "Clean 14"
 ViBG = white
@@ -899,18 +858,10 @@ AutoApplySeverityColor = TRUE
 scope_to_save_with_macro
 open_file_dir
 open_rc_file_dir
-<<<<<<< HEAD
-<<<<<<< HEAD
+<<<<<<<
+>>>>>>>
 getSignalForm = 0 0 800 479 100 30 100 30
-viewPort = 0 25 2560 823 239 65
-=======
-getSignalForm = 879 456 800 479 245 381 505 183
-viewPort = 0 25 2560 701 239 65
->>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
-=======
-getSignalForm = 879 456 800 479 164 381 390 89
-viewPort = 0 25 2560 731 239 65
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
+viewPort = 0 25 2560 590 239 65
 legendBackground = -c ID_BLACK
 valueBackground = -c ID_BLACK
 curveBackground = -c ID_BLACK
@@ -1073,18 +1024,11 @@ printBasic = 1 0 0 FALSE FALSE
 printDest = -printer {}
 printSignature = {%f %h %t} {}
 curveWindow_Drag&Drop_Mode = TRUE
-<<<<<<< HEAD
-RecentFile1 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
-RecentFile2 = "\"/simulation/wzh/SME/tb/UVM_PE/sim/mult.fsdb\""
-RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\""
+RecentFile1 = "\"/simulation/SME/SME/tb/UVM_PE/sim/mult.fsdb\""
+RecentFile2 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
+RecentFile3 = "\"/simulation/wangjialong/SME_TPU_PE/Public_SME/SME/tb/UVM_PE/sim/mult.fsdb\""
 RecentFile4 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
 RecentFile5 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
-=======
-RecentFile1 = "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/mult.fsdb\""
-RecentFile2 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
-RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
-RecentFile4 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
 open_file_time_range = FALSE
 legend_window_font = -f COURIER12 -c ID_CYAN5
 value_window_font = -f COURIER12 -c ID_CYAN5
@@ -1178,6 +1122,8 @@ ShowMergeMenuItem = FALSE
 fsmScoreMode = transition
 [eco]
 NameRule = 
+<<<<<<<
+>>>>>>>
 IsFreezeSilicon = FALSE
 cellQuantityManagement = FALSE
 ManageMode = INSTANCE_NAME
@@ -1187,7 +1133,7 @@ InputPinStatus = 1
 OutputPinStatus = 2
 RevisedComponentColor = ID_BLUE5
 SpareCellColor = ID_RED5
-UserName = wangzhenhao
+UserName = SME
 CommentFormat = Novas ECO updated by ${UserName} ${Date} ${Time} 
 PrefixN = eco_n
 PrefixP = eco_p
@@ -1445,15 +1391,9 @@ AddImportArgument = FALSE
 LineBreakWithScope = TRUE
 StopAfterCompileOption = -s
 [wave.0]
-<<<<<<< HEAD
-<<<<<<< HEAD
-viewPort = 0 25 2560 823 239 65
-=======
-viewPort = 0 25 2560 701 239 65
->>>>>>> 689f6b65a3f322f4f999f09a2af229a3089ebbc8
-=======
-viewPort = 0 25 2560 731 239 65
->>>>>>> 9add250867ea85f0d20357526ae2454710767364
+<<<<<<<
+>>>>>>>
+viewPort = 0 25 2560 590 239 65
 [wave.1]
 viewPort = 127 219 960 332 100 65
 [wave.2]

@@ -117,8 +117,13 @@ end
 
 always @(*) begin
     if(is_denormal) begin
-        adjusted_mantissa               = (i_mantissa_in << (-(exponent)))  ;
-        biased_exp                      = 0                                 ;                   
+        if(i_exp_temp > 0) begin
+        adjusted_mantissa               = (i_mantissa_in << (i_exp_temp)) ; 
+        end  
+        else begin
+            adjusted_mantissa               = i_mantissa_in;    
+        end 
+        biased_exp                      = 0              ;  
     end
     else begin
         adjusted_mantissa               = mantissa                      ;

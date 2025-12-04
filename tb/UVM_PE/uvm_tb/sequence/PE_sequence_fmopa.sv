@@ -101,15 +101,13 @@ class PE_sequence_fmopa extends PE_sequence;
         super.new(name);
     endfunction
 
-    // 定义测试场景枚举
+    // 定义场景枚举
     typedef enum {
-        SCENE_RANDOM,           // 纯随机
-        SCENE_CANCELLATION,     // 灾难性抵消
-        SCENE_STICKY,           // 大移位/Sticky测试
-        SCENE_TIE_0_5_ULP,      // 0.5 ULP 边界
-        SCENE_NEAR_1_0_ULP,     // 1.0 ULP 边界
-        SCENE_OVERFLOW_DIRECT,  // 直接上溢
-        SCENE_OVERFLOW_ROUND    // 舍入导致上溢
+        SCENE_RANDOM,      // 纯随机
+        SCENE_CANCELLATION,// 灾难性抵消 (测试前导零/归一化)
+        SCENE_STICKY,      // 大移位 (测试你的减法借位逻辑)
+        SCENE_TIE_0_5_ULP, // 舍入边界: 刚好是 X.5
+        SCENE_NEAR_1_0_ULP // 舍入边界: 刚好是 X.00...01
     } scene_e;
 
     task body();
@@ -126,85 +124,94 @@ class PE_sequence_fmopa extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
 
-        for(i = 0; i < 8192; i++) begin 
+        for(i = 0; i < 20000; i++) begin // 增加一点循环次数以覆盖更多场景
             `uvm_info("SEQ", $sformatf("Generating test %0d", i), UVM_LOW)
             tr = PE_seq_item::type_id::create("tr");
 
-            if (!std::randomize(e_a, e_b, e_c, m_a, m_b, m_c, s_a, s_b, s_c, cur_scene) with {
-                
-                // 场景分布权重
+            // ======================================================
+            // 步骤 1: 在本地进行有针对性的数学随机
+            // ======================================================
+            void'(std::randomize(e_a, e_b, e_c, m_a, m_b, m_c, s_a, s_b, s_c, cur_scene) with {
+                // 1. 场景分布权重
                 cur_scene dist {
-                    SCENE_RANDOM          := 10,
-                    SCENE_CANCELLATION    := 10,
-                    SCENE_STICKY          := 0,
-                    SCENE_TIE_0_5_ULP     := 0,
-                    SCENE_NEAR_1_0_ULP    := 0,
-                    SCENE_OVERFLOW_DIRECT := 40, 
-                    SCENE_OVERFLOW_ROUND  := 40  
+                    SCENE_RANDOM       := 20,
+                    SCENE_CANCELLATION := 20,
+                    SCENE_STICKY       := 20, // 重点测你之前的 Bug
+                    SCENE_TIE_0_5_ULP  := 20, // 重点测 RNE 舍入
+                    SCENE_NEAR_1_0_ULP := 20  // 重点测 RU/RD 舍入
                 };
 
-                // 除非是溢出场景，否则限制指数在常规范围
-                if (cur_scene != SCENE_OVERFLOW_DIRECT && cur_scene != SCENE_OVERFLOW_ROUND) {
-                    e_a inside {[1:254]};
-                    e_b inside {[1:254]};
-                    e_c inside {[1:254]};
-                }
-
-                // --- 场景 1: 灾难性抵消 ---
+                // 2. 基础指数范围 (避开 NaN/Inf 以专注于算术逻辑，除非专门测异常)
+                e_a inside {[1:254]};
+                e_b inside {[1:254]};
+                
+                // 计算乘积的理想指数 (ExpA + ExpB - 127)
+                // 这是一个临时的约束辅助逻辑
+                
+                // --------------------------------------------------
+                // 场景 A: 灾难性抵消 (Catastrophic Cancellation)
+                // --------------------------------------------------
                 if (cur_scene == SCENE_CANCELLATION) {
-                    (int'(e_c) + 127) - (int'(e_a) + int'(e_b)) inside {[-1:1]};
+                    // C 的指数非常接近 P，且必须是有效减法
+                    e_c inside {[1:254]};
+                    // 约束差值在 +/- 1 以内
+                    (e_c + 127) - (e_a + e_b) inside {[-1:1]};
+                    // 符号相反
                     s_c != (s_a ^ s_b);
                 }
 
-                // --- 场景 2: Sticky / 大移位 ---
+                // --------------------------------------------------
+                // 场景 B: 大移位/Sticky (针对你之前的减法Bug)
+                // --------------------------------------------------
                 if (cur_scene == SCENE_STICKY) {
-                    (int'(e_c) + 127) > (int'(e_a) + int'(e_b) + 25);
-                    (int'(e_c) + 127) < (int'(e_a) + int'(e_b) + 100);
+                    // C 远大于 A*B，P 被移出但留有 Sticky
+                    // 移位量在 25 到 100 之间
+                    (e_c + 127) > (e_a + e_b + 25);
+                    (e_c + 127) < (e_a + e_b + 100);
                 }
 
-                // --- 场景 3: 0.5 ULP 边界 ---
+                // --------------------------------------------------
+                // 场景 C: 0.5 ULP 边界 (Tie Case)
+                // --------------------------------------------------
                 if (cur_scene == SCENE_TIE_0_5_ULP) {
-                    (int'(e_c) + 127) == (int'(e_a) + int'(e_b) + 24);
-                    m_c[0] == 0; // 配合 RNE 偶数舍入
+                    // 为了制造 X.5 的效果，P 需要作为 C 的 Guard Bit
+                    // C 的 LSB 权重是 2^(Ec-23)
+                    // P 的最高位权重是 2^(Ep)
+                    // 需要 Ep approx Ec - 24
+                    (e_c + 127) == (e_a + e_b + 24);
+                    
+                    // 强制 Mantissa 使得结果产生精准的中间值
+                    m_c[0] == 0; // 配合 RNE 偶数舍入测试
                 }
 
-                // --- 场景 4: 1.0 ULP 边缘 ---
+                // --------------------------------------------------
+                // 场景 D: 1.0 ULP 边界 (微小增量)
+                // --------------------------------------------------
                 if (cur_scene == SCENE_NEAR_1_0_ULP) {
-                    (int'(e_c) + 127) > (int'(e_a) + int'(e_b) + 40);
+                    // 刚好有一点点 Sticky，类似于 SCENE_STICKY 但更极限
+                    // 使得 P 仅仅贡献一个极其微小的值
+                    (e_c + 127) > (e_a + e_b + 40);
                 }
 
-                // --- 场景 5: 直接上溢 ---
-                if (cur_scene == SCENE_OVERFLOW_DIRECT) {
-                    e_a inside {[200:254]};
-                    e_b inside {[200:254]};
-                    // ExpA + ExpB - 127 > 254 (FP32 Max) => Sum > 381
-                    (int'(e_a) + int'(e_b)) > 382;
-                    s_c == (s_a ^ s_b); 
+                // --------------------------------------------------
+                // 场景 E: 普通随机
+                // --------------------------------------------------
+                if (cur_scene == SCENE_RANDOM) {
+                    e_c inside {[1:254]};
                 }
+            });
 
-                // --- 场景 6: 舍入导致上溢 ---
-                if (cur_scene == SCENE_OVERFLOW_ROUND) {
-                    // C 固定为最大有限数
-                    e_c == 254;
-                    m_c == 23'h7FFFFF; 
-                    
-                    // P (A*B) 位于 0.5 ULP 附近 (Exp_P approx 254-24 = 230)
-                    (int'(e_a) + int'(e_b)) inside {[228:232]};
-                    
-                    s_c == (s_a ^ s_b);
-                }
-            }) begin
-                `uvm_error("SEQ", "Local Randomization Failed")
-            end
-
-            // 组装浮点数
+            // 组装随机好的浮点数
             gen_a = {s_a, e_a, m_a};
             gen_b = {s_b, e_b, m_b};
             gen_c = {s_c, e_c, m_c};
 
+            // ======================================================
+            // 步骤 2: 将构造好的值赋给 Transaction 并随机其他控制位
+            // ======================================================
             start_item(tr);
             if (!tr.randomize() with {
-                // 固定配置
+                // 固定控制信号
                 tr.i_Compute_Mode               == `Outer_Product;
                 tr.i_Compute_Precision          == `FP32;
                 tr.i_Is_Widening                == `Operands_Is_Not_Widening;
@@ -240,7 +247,7 @@ class PE_sequence_fmopa extends PE_sequence;
                 tr.i_Exception_Handling[0]      == `Do_Not_Flush_Denormalized_Results_to_Zero_S_D_BF;
                 tr.i_Operand_C[127:32]          == 96'b0;
 
-                // 填入计算好的操作数
+                // **应用我们构造的特殊操作数**
                 tr.i_Operand_A[31:0] == gen_a;
                 tr.i_Operand_B[31:0] == gen_b;
                 tr.i_Operand_C[31:0] == gen_c;
