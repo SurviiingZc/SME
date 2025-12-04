@@ -739,7 +739,7 @@ generate
             .i_Temp_Sign2          ( P4_SignA[i]                        ),
             .i_Temp_Expo1          ( P4_Normal_Exp[9:0]                 ),
             .i_Temp_Expo2          ( {2'd0,P4_ExpoA[i*8+:8]}            ),
-            .i_Temp_Mant1          ( P4_Normal_Mantissa[47:0]           ),
+            .i_Temp_Mant1          ( P4_Normal_Mantissa[i*47 +: 47]     ),
             .i_Temp_Mant2          ( {P4_MantA[i*24+:24],24'd0}         ),
             .i_sticky_bit          ( C2_sticky_flag[i]                  ),
             .o_Temp_Sign           ( P4_Temp_Sign[i]                    ),
@@ -815,10 +815,10 @@ Pipline_5 u_Pipline_5(
 generate
     for(i = 0 ; i < 4 ; i = i + 1) begin : Add_ZA_Round
         C6_Round#(
-            .IN_WIDTH              ( 49                         ),
+            .IN_WIDTH              ( 48                         ),
             .EXP_WIDTH             ( 10                         )
         )u_C6_Round(        
-            .i_op                  ( P5_Mant[i*49+:49]          ),
+            .i_op                  ( P5_Mant[i*48+:48]          ),
             .i_exp                 ( P5_Sum_Expo[i*10+:10]      ),
             .i_sign                ( P5_Sum_Sign[i*1+:1]        ),
             .i_Exception_Handling  ( P5_Exception_Handling      ),
@@ -828,7 +828,7 @@ generate
             .o_rounded_result      ( P5_Round_Result[i*32+:32]  )
         );
 
-        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : i_Result[i*32+:32] ;
+        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : P5_Round_Result[i*32+:32] ;
     end
 endgenerate
 
@@ -846,11 +846,11 @@ C6_Round#(
     .o_rounded_result      ( P5_FP32_Result             )
 );
 
-assign i_Result = (is_int_op) ? P1_Int_Result : P5_Round_Result;
+assign i_Result = (is_int_op) ? P1_Int_Result : P5_Result;
 Pipline_6 u_Pipline_6(
     .clk             ( clk              ),
     .rst_n           ( rst_n            ),
-    .i_Round_Result  ( P5_Result        ),
+    .i_Round_Result  ( i_Result         ),
     .o_Result        ( o_Result         )
 );
 

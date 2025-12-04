@@ -41,7 +41,7 @@ class PE_env_scb extends uvm_scoreboard;
             // 详细调试信息
             `uvm_info("SB_DEBUG", $sformatf("Comparing transaction %0d:", total_count), UVM_HIGH)
             `uvm_info("SB_DEBUG", $sformatf("  Inputs: A=0x%08h, B=0x%08h, C=0x%08h", 
-                      tr_dut.i_Operand_A, tr_dut.i_Operand_B, tr_dut.i_Operand_C[31:0]), UVM_MEDIUM)
+                      tr_dut.i_Operand_A, tr_dut.i_Operand_B, tr_dut.i_Operand_C), UVM_MEDIUM)
             
             // 检查结果是否匹配
             if (tr_dut.o_Result === tr_ref.expected) begin

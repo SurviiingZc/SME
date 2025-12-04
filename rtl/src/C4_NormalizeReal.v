@@ -88,21 +88,33 @@ end
 
 always @(*) begin
     if(is_denormal) begin
-        if(i_exp_true == 0) begin
-            adjusted_mantissa           = (i_mantissa_in)  ;
-            biased_exp                  = 0                   ;
-        end
-        else begin
-            adjusted_mantissa          = (i_mantissa_in >> (-1*i_exp_true));
-            biased_exp                 = 0                                   ;
-        end
+        adjusted_mantissa               =  i_mantissa_in << (shift_amt - 6'd1)  ;
+        biased_exp                      = biased_exp_unconstrained              ;           
     end
     else begin
         adjusted_mantissa               = mantissa                      ;
         //biased_exp                      = (i_is_Multiplier == 1) ? exponent : biased_exp_unconstrained     ; //乘法选用第一个 加法用第二个
-        biased_exp                      = exponent     ;
+        biased_exp                      = biased_exp_unconstrained     ;
     end
 end
+
+// always @(*) begin
+//     if(is_denormal) begin
+//         if(i_exp_true == 0) begin
+//             adjusted_mantissa           = (i_mantissa_in)  ;
+//             biased_exp                  = 0                   ;
+//         end
+//         else begin
+//             adjusted_mantissa          = (i_mantissa_in >> (-i_exp_true));
+//             biased_exp                 = 0                                   ;
+//         end
+//     end
+//     else begin
+//         adjusted_mantissa               = mantissa                      ;
+//         //biased_exp                      = (i_is_Multiplier == 1) ? exponent : biased_exp_unconstrained     ; //乘法选用第一个 加法用第二个
+//         biased_exp                      = exponent     ;
+//     end
+// end
 
 C4_LZC_round #(
     .WIDTH(IN_WIDTH)
