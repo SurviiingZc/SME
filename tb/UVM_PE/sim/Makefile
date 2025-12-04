@@ -1,6 +1,6 @@
 export FSDB_NAME=mult
 SEED=2
-VERB=UVM_MEDIUM
+#VERB=UVM_MEDIUM
 # TESTNAME=PE_test_int
 TESTNAME=PE_test_fmop 
 Is_PipLine=+define+Is_PipLine

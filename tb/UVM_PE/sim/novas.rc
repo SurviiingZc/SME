@@ -223,8 +223,8 @@ Selection-LineWidth = 1
 [FSM_Dlg-Print]
 Orientation = Landscape
 [FileBrowser]
-nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
 nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
+nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
 [Form]
 version = Verdi_R-2020.12-SP2
 [General]
@@ -377,14 +377,15 @@ saveWaveformStat = TRUE
 savePropStat = FALSE
 savePropDtl = TRUE
 [QtDialog]
-openFileDlg = 978,491,602,483
 restoreSigDlg = 1003,513,551,438
 saveSigDlg = 1003,539,551,386
-QwWarnMsgDlg = 979,737,600,250
 QwInfoMsgDlg = 904,663,750,250
 SearchValueDialog = 1109,680,339,105
-unknownSave = 1048,610,461,245
-QwUserAskDlg = 1118,667,324,134
+unknownSave = 1039,603,461,245
+qWaveSignalDialog = 870,486,800,479
+QwWarnMsgDlg = 979,885,600,250
+openFileDlg = 949,394,602,483
+QwUserAskDlg = 1118,669,324,130
 [Relationship]
 hideRecursiceNode = FALSE
 [Safety]
@@ -396,11 +397,11 @@ ErrorObject = ID_GRAY5
 AnnotateSignal = TRUE
 HighlightSafetyObject = TRUE
 [Session Cache]
-2 = string (session file name)
 3 = string (session file name)
 4 = string (session file name)
 5 = string (session file name)
-1 = /simulation/SME/UVM_PE/UVM_PE_C_V2/sim/verdiLog/novas_autosave.ses
+1 = /simulation/zhangcheng/SME/tb/UVM_PE/sim/verdiLog/novas_autosave.ses
+2 = /simulation/SME/UVM_PE/UVM_PE_C_V2/sim/verdiLog/novas_autosave.ses
 [Simulation]
 scsPath = scsim
 scsOption = 
@@ -582,7 +583,7 @@ pdmlMacro = ID_BLACK
 font = COURIER12
 annotFont = Helvetica_M_R_10
 [Text.1]
-viewport = -1 27 2560 1337 45
+viewport = -10 20 2560 1337 45
 [TextPrinter]
 Orientation = Landscape
 Indicator = FALSE
@@ -673,33 +674,33 @@ isOneSearchVisible = TRUE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0]
 parRuleSets = ""
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column0]
-name = Severity
-width = 60
-visualIndex = 1
-isHidden = TRUE
-isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
-name = Message
-width = 2000
-visualIndex = 4
-isHidden = FALSE
-isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
-name = Time
-width = 60
-visualIndex = 0
-isHidden = TRUE
-isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
 name = Code
 width = 60
 visualIndex = 2
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column4]
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
 name = Type
 width = 60
 visualIndex = 3
+isHidden = TRUE
+isUserChangeColumnVisible = FALSE
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
+name = Message
+width = 2000
+visualIndex = 4
+isHidden = FALSE
+isUserChangeColumnVisible = FALSE
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
+name = Time
+width = 60
+visualIndex = 0
+isHidden = TRUE
+isUserChangeColumnVisible = FALSE
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column4]
+name = Severity
+width = 60
+visualIndex = 1
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
 [Vi]
@@ -783,7 +784,7 @@ AutoApplySeverityColor = TRUE
 scope_to_save_with_macro
 open_file_dir
 open_rc_file_dir
-getSignalForm = 0 0 800 479 100 30 100 30
+getSignalForm = 870 449 800 479 164 381 390 89
 viewPort = 0 25 2560 752 239 65
 legendBackground = -c ID_BLACK
 valueBackground = -c ID_BLACK
@@ -947,8 +948,10 @@ printBasic = 1 0 0 FALSE FALSE
 printDest = -printer {}
 printSignature = {%f %h %t} {}
 curveWindow_Drag&Drop_Mode = TRUE
-RecentFile1 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
-RecentFile2 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
+RecentFile1 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
+RecentFile2 = "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/mult.fsdb\""
+RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
+RecentFile4 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
 open_file_time_range = FALSE
 legend_window_font = -f COURIER12 -c ID_CYAN5
 value_window_font = -f COURIER12 -c ID_CYAN5
@@ -980,7 +983,6 @@ maskFsaRegRule = TRUE
 maskFsaCoreRule = TRUE
 maskFsaSfsmRule = TRUE
 maskFsaEcrRule = TRUE
-RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
 [cov_hier_name_column]
 justify = TRUE
 [coverageColors]
@@ -1052,7 +1054,7 @@ InputPinStatus = 1
 OutputPinStatus = 2
 RevisedComponentColor = ID_BLUE5
 SpareCellColor = ID_RED5
-UserName = SME
+UserName = zhangcheng
 CommentFormat = Novas ECO updated by ${UserName} ${Date} ${Time} 
 PrefixN = eco_n
 PrefixP = eco_p
