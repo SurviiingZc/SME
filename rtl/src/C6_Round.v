@@ -55,6 +55,7 @@ module C6_Round #(
         .biased_exp         ( i_biased_exp         ),
         .exponent           ( i_exponent           ),
         .adjusted_mantissa  ( i_adjusted_mantissa  ),
+        .i_sticky_bit       ( i_sticky_bit         ),
         .o_Rounded_result   ( BFRound_result       )
     );
 

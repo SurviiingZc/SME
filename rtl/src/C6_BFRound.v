@@ -9,8 +9,9 @@ module C6_BFRound #(
 )(
     input                                               i_sign                      ,
     input                                               i_N                         ,  // 1 > 32 0 > 16
-    input      signed   [EXP_WIDTH-1:0]                   biased_exp                  ,
-    input      signed   [EXP_WIDTH-1:0]                   exponent                    ,
+    input      signed   [EXP_WIDTH-1:0]                 biased_exp                  ,
+    input      signed   [EXP_WIDTH-1:0]                 exponent                    ,
+    input                                               i_sticky_bit                ,
     input               [IN_WIDTH-1:0]                  adjusted_mantissa           ,
     output     reg      [31:0]                          o_Rounded_result            
 );
@@ -20,14 +21,17 @@ module C6_BFRound #(
     localparam minimum_exp = -126                                ;   // Minimum exponent value
     localparam BF16_IDX_HI = IN_WIDTH - 1                        ;
     localparam BF16_IDX_LO = IN_WIDTH - F-1                      ;
-
+    wire                            S_bit,L_bit                  ;
     wire        [31         :0]     o_Normal_Result              ;
     wire        [31         :0]     o_FPZero                     ;
     wire        [31         :0]     o_FPInfinity                 ;
-    wire        [BF16_IDX_HI:BF16_IDX_LO] int_mant               = adjusted_mantissa[BF16_IDX_HI:BF16_IDX_LO]                          ;
-    wire        [BF16_IDX_LO:0]           error                  = adjusted_mantissa[BF16_IDX_LO:0]                                    ;
-    wire        [F:0]                     int_mant_round         = ( error != 0 && int_mant[BF16_IDX_LO] == 1'b0) ? (int_mant + 1'b1) : int_mant ;   
-    wire                                  flush_zero_condition   = (exponent < minimum_exp) ? 1'b1 : 1'b0            ;
+    assign                          S_bit = |adjusted_mantissa[BF16_IDX_LO:0]   ;
+    assign                          L_bit = ~int_mant[BF16_IDX_LO]              ;
+    wire        [F-1:0]                   int_mant               = adjusted_mantissa[BF16_IDX_HI:BF16_IDX_LO]       ;
+    // wire        [BF16_IDX_LO:0]           error                  = adjusted_mantissa[BF16_IDX_LO:0]                 ;
+    wire        [F:0]                     int_mant_roundup       = int_mant + 1'b1                                  ;
+    wire        [F:0]                     int_mant_round         = ( S_bit && L_bit) ? (int_mant_roundup) : int_mant;   
+    wire                                  flush_zero_condition   = (exponent < minimum_exp) ? 1'b1 : 1'b0           ;
     wire        [31         :0]           Normal_Result          = {i_sign,biased_exp[7:0],int_mant_round[22:0]}                       ;
     always @(*) begin
         if (flush_zero_condition) begin
