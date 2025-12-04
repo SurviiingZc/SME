@@ -54,8 +54,6 @@ class PE_driver extends uvm_driver #(PE_seq_item);
             // 保持输入信号稳定6个周期
             `ifdef Is_PipLine
                 repeat(5) @(vif.drv_cb);
-            `else
-                repeat(1) @(vif.drv_cb);
             `endif
 
             // 在第6个周期捕获输出
