@@ -25,7 +25,7 @@ void PE_C_top(
     int       i_ZnIsSigned            ,
     int       i_Num_of_Vector_Group   ,
     int       i_Vector_Group_Num      ,
-    int       i_Exception_Handling    ,//要拆分成寄存器
+    uint32_t       i_Exception_Handling    ,//要拆分成寄存器
     int       i_Active_Element_A      ,//4bit的有效指示
     int       i_Active_Element_B      ,
     int       i_ZA_Base_Address       ,

@@ -103,7 +103,7 @@ void BFUnpack(uint32_t fpval, FPType* fptype, uint8_t *sign, float* value, uint8
 uint32_t BFRound(float value1, float value2, uint8_t N){
     //先计算出精确的A*B
     mpfr_t mpfr_A, mpfr_B, mpfr_op;
-    mpfr_prec_t prec = 256;
+    mpfr_prec_t prec = 512;
     mpfr_inits2(prec, mpfr_A, mpfr_B, mpfr_op, NULL);
 
     // 清除之前的异常标志
@@ -261,7 +261,7 @@ uint32_t FPAdd_BF16(uint32_t op1, uint32_t op2, FPCR_Type fpcr, uint8_t N, uint8
 uint32_t BFRound_1(float value1, float value2, uint8_t N, uint8_t add_sub){
     //先计算出精确的A+B
     mpfr_t mpfr_A, mpfr_B, mpfr_op;
-    mpfr_prec_t prec = 256;
+    mpfr_prec_t prec = 512;
     mpfr_inits2(prec, mpfr_A, mpfr_B, mpfr_op, NULL);
 
     // 清除之前的异常标志
