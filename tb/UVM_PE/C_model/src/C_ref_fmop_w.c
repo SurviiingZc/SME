@@ -231,7 +231,7 @@ uint32_t FPDot(uint32_t op1_a, uint32_t op1_b, uint32_t op2_a, uint32_t op2_b,
             // 使用MPFR进行精确计算
             mpfr_t mpfr1_a, mpfr1_b, mpfr2_a, mpfr2_b;
             mpfr_t mpfr_product1, mpfr_product2, mpfr_sum;
-            mpfr_prec_t prec = 256;
+            mpfr_prec_t prec = 512;
             
             mpfr_inits2(prec, mpfr1_a, mpfr1_b, mpfr2_a, mpfr2_b, 
                        mpfr_product1, mpfr_product2, mpfr_sum, NULL);
@@ -405,7 +405,7 @@ uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N
         else {
             // 使用MPFR进行精确计算
             mpfr_t mpfr1, mpfr2, mpfr_sum;
-            mpfr_prec_t prec = 256;
+            mpfr_prec_t prec = 512;
             
             mpfr_inits2(prec, mpfr1, mpfr2, mpfr_sum, NULL);
             

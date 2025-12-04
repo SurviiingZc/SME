@@ -304,5 +304,8 @@
 #define FDOT                            7
 #define FMLA                            8
 #define FMLAL                           9                       
+#define FMOPA_FP16                      10
+#define FMOPS_FP16                      11
+#define FMLA_FP16                       12
 
 #endif
