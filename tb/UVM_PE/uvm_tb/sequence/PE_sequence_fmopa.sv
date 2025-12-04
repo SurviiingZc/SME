@@ -213,7 +213,7 @@ class PE_sequence_fmopa extends PE_sequence;
             if (!tr.randomize() with {
                 // 固定控制信号
                 tr.i_Compute_Mode               == `Outer_Product;
-                tr.i_Compute_Precision          == `FP32;
+                tr.i_Compute_Precision          == `FP16;
                 tr.i_Is_Widening                == `Operands_Is_Not_Widening;
                 tr.i_Add_or_Subtract            == `Addition_Operation;
                 tr.i_Active_Element_A           == 4'b1111;
@@ -248,10 +248,22 @@ class PE_sequence_fmopa extends PE_sequence;
                 tr.i_Operand_C[127:32]          == 96'b0;
 
                 // **应用我们构造的特殊操作数**
-                tr.i_Operand_A[31:0] == gen_a;
-                tr.i_Operand_B[31:0] == gen_b;
-                tr.i_Operand_C[31:0] == gen_c;
-                
+                if(i_Compute_Precision == `FP32) {
+                    tr.i_Operand_A[31:0] == gen_a;
+                    tr.i_Operand_B[31:0] == gen_b;
+                    tr.i_Operand_C[31:0] == gen_c;
+                }
+                else if(i_Compute_Precision == `FP16) {
+                    // 对于其他精度，保持完全随机
+                    tr.i_Operand_A[31:16] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_B[31:16] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_A[15:0] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_B[15:0] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_C[31:16]== 16'd0;
+                    tr.i_Operand_C[63:48]== 16'd0;
+                    tr.i_Operand_C[95:80]== 16'd0; 
+                    tr.i_Operand_C[127:112]== 16'd0;                      
+                }
             }) begin
                `uvm_error("RND", "Transaction Randomization failed")
             end
