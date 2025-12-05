@@ -770,21 +770,17 @@ uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t 
                         result = mpfr_to_fp16(result_fp16, rounding_mode);
                     }
                 }
-                // //Alternative half precision（处理存疑）
-                // else {
-                //     if(biased_exp >= (1 << E)){
-                //         // 提取符号位的最低有效位（0或1）并扩展到32位
-                //         uint32_t sign_extended = (sign & 1) ? 0xFFFFFFFF : 0;
-                //         // 生成一个低31位全1的掩码
-                //         uint32_t ones_mask = (1U << 31) - 1;
-                //         // 组合结果：符号位放在最高位，其余31位为1
-                //         result = (sign_extended & 0x80000000) | ones_mask;
-                //     }
-                //     else{
-                //         mpfr_set(result_fp32, mpfr_sum, rounding_mode);
-                //         result = mpfr_to_uint32(result_fp32);
-                //     }
-                // }
+                else{
+                    // AltFP half precision
+                    if (biased_exp >= (1 << E)) {
+                        uint32_t sign_bit = (sign & 1) ? (1 << 15) : 0;
+                        result = sign_bit | ((1 << (N-1)) - 1);
+                    } else {
+                        // 无上溢情况，使用FP16专用的转换
+                        mpfr_set(result_fp16, mpfr_sum, rounding_mode);
+                        result = mpfr_to_fp16(result_fp16, rounding_mode);
+                    }
+                }
             }
         }
         
