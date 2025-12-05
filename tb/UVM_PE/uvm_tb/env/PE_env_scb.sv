@@ -1,3 +1,6 @@
+`ifndef PE_ENV_SCB_SV
+`define PE_ENV_SCB_SV
+
 class PE_env_scb extends uvm_scoreboard;
     `uvm_component_utils(PE_env_scb)
     
@@ -39,14 +42,13 @@ class PE_env_scb extends uvm_scoreboard;
             total_count++;
             
             // 详细调试信息
-            `uvm_info("SB_DEBUG", $sformatf("Comparing transaction %0d:", total_count), UVM_HIGH)
-            `uvm_info("SB_DEBUG", $sformatf("  Inputs: A=0x%08h, B=0x%08h, C=0x%08h", 
-                      tr_dut.i_Operand_A, tr_dut.i_Operand_B, tr_dut.i_Operand_C), UVM_MEDIUM)
+            `uvm_info("SB_DEBUG", $sformatf("Comparing transaction %0d: Inputs: A=0x%08h, B=0x%08h, C=0x%08h", 
+                    total_count, tr_dut.i_Operand_A, tr_dut.i_Operand_B, tr_dut.i_Operand_C), UVM_MEDIUM)
             
             // 检查结果是否匹配
             if (tr_dut.o_Result === tr_ref.expected) begin
                 `uvm_info("SB", $sformatf("PASS: Transaction %0d matched DUT=0x%08h, REF=0x%08h\n", 
-                           total_count, tr_dut.o_Result, tr_ref.expected), UVM_MEDIUM)
+                           total_count, tr_dut.o_Result, tr_ref.expected), UVM_LOW)
             end else begin
                 error_count++;
                 `uvm_error("SB", $sformatf("FAIL: Transaction %0d mismatch! DUT=0x%08h, REF=0x%08h\n", 
@@ -61,9 +63,11 @@ class PE_env_scb extends uvm_scoreboard;
                     total_count, error_count), UVM_LOW)
         
         if (error_count == 0) begin
-            `uvm_info("SB", "*** TEST PASSED ***", UVM_NONE)
+            `uvm_info("SB", "******** TEST PASSED ********", UVM_NONE)
         end else begin
-            `uvm_error("SB", "*** TEST FAILED ***")
+            `uvm_error("SB", "******** TEST FAILED ********")
         end
     endfunction
 endclass
+
+`endif

@@ -1,3 +1,6 @@
+`ifndef PE_MONITOR_SV
+`define PE_MONITOR_SV
+
 `ifdef Is_PipLine
     class PE_monitor extends uvm_monitor;
         `uvm_component_utils(PE_monitor)
@@ -8,7 +11,7 @@
         // 流水线相关
         PE_seq_item input_queue[$];    // 输入事务队列
         int pipeline_stages[$];         // 流水线阶段队列
-        int pipeline_depth = 7;         // 固定6周期延迟
+        int pipeline_depth = 7;         // 默认7周期延迟，整数为3
         
         int mon_item_num = 0;
         
@@ -71,8 +74,8 @@
                     
                     mon_item_num++;
                     
-                    `uvm_info("MONITOR", $sformatf("Captured input %0d at time %0t, A=0x%08h", 
-                            mon_item_num, $time, tr.i_Operand_A), UVM_LOW)
+                    `uvm_info("MONITOR", $sformatf("Captured input %0d at time %0t, A=0x%08h, B=0x%08h, C=0x%08h", 
+                            mon_item_num, $time, tr.i_Operand_A, tr.i_Operand_B, tr.i_Operand_C), UVM_MEDIUM)
                 end
             end
         endtask
@@ -136,8 +139,8 @@
             static bit [127:0] last_operand_C = 0;
             
             bit changed = (vif.mon_cb.i_Operand_A != last_operand_A) ||
-                        (vif.mon_cb.i_Operand_B != last_operand_B) ||
-                        (vif.mon_cb.i_Operand_C != last_operand_C);
+                          (vif.mon_cb.i_Operand_B != last_operand_B) ||
+                          (vif.mon_cb.i_Operand_C != last_operand_C);
             
             last_operand_A = vif.mon_cb.i_Operand_A;
             last_operand_B = vif.mon_cb.i_Operand_B;
@@ -215,14 +218,6 @@
             end
         endtask
         
-        // 检测输入信号是否发生变化（新事务开始）
-        function bit inputs_changed();
-            // 检查关键输入信号是否非零，表示新事务开始
-            return (vif.mon_cb.i_Operand_A != 0 || 
-                    vif.mon_cb.i_Operand_B != 0 ||
-                    vif.mon_cb.i_Operand_C != 0);
-        endfunction
-
         function void report_phase(uvm_phase phase);
             super.report_phase(phase);
             `uvm_info(get_type_name(), 
@@ -230,3 +225,4 @@
         endfunction
     endclass
 `endif
+`endif // PE_MONITOR_SV

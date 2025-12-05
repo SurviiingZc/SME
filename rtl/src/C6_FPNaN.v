@@ -13,6 +13,6 @@ module C6_FPNaN (
     output [31:0]   o_FPNaN
 );
 
-assign o_FPNaN = (i_Data_Width == 1'd0) ? {16'd0,i_Sign,{16{1'd1}}} : {i_Sign,{31{1'd1}}} ; 
+assign o_FPNaN = (i_Data_Width == 1'd0) ? {16'd0,i_Sign,{15{1'd1}}} : {i_Sign,{31{1'd1}}} ; 
 
 endmodule

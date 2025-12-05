@@ -23,8 +23,8 @@ module C5_FPAddition(
     output                     o_Temp_Sign            ,
     output          [  9:0]    o_Temp_Expo            ,
     output          [ 72:0]    o_Temp_Mant            ,
-	output          [ 48:0]    o_Sum_Mant		      ,
-	output          [  7:0]	   o_Sum_Expo		      ,
+	output          [ 47:0]    o_Sum_Mant		      ,
+	output          [  9:0]	   o_Sum_Expo		      ,
 	output                	   o_Sum_Sign		      ,
     output                     o_Sticky_Bit            
 );
@@ -150,8 +150,8 @@ assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_
 assign o_Temp_Expo	         = Fuse_Expo_Max											                    ;
 assign o_Temp_Sign	         = Fuse_Sign_Max 			                                                    ;
 
-assign o_Sum_Mant            = o_Temp_Mant[72:24]                                                           ; 
-assign o_Sum_Expo            = o_Temp_Expo[9:2]                                                             ;
+assign o_Sum_Mant            = o_Temp_Mant[72:25]                                                           ; 
+assign o_Sum_Expo            = o_Temp_Expo                                                                  ;
 assign o_Sum_Sign            = o_Temp_Sign                                                                  ;
 
 

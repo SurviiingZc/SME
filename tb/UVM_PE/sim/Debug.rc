@@ -1,0 +1,74 @@
+Magic 271485
+Revision Verdi_R-2020.12-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 1920 459 239 122
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/simulation/zhuxingyu/DigitalChip/SME/tb/UVM_PE/sim/mult.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 22992.787060 46600.607520
+cursor 35001.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 0
+; marker line index
+markerPos 8
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "" "/simulation/zhuxingyu/DigitalChip/SME/tb/UVM_PE/sim/mult.fsdb"
+addSignal -h 15 /PE_tb/dut/i_Operand_A[31:0]
+addSignal -h 15 -holdScope i_Operand_B[31:0]
+addSignal -h 15 -holdScope i_Operand_C[127:0]
+addSignal -h 15 -holdScope o_Result[127:0]
+addGroup "G2"
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C1_FPMultiplyComb/u_FPMutiArray/ExpFP16A[1:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope ExpFP16B[1:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C1_FPMultiplyComb/u_FPUnpackAll/T_OutExpo[3:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C1_FPMultiplyComb/u_FPMutiArray/FracFP16A[1:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope FracFP16B[1:0]
+addSignal -h 15 -holdScope FP16Result[3:0]
+addGroup "G3"
+addSignal -h 15 /PE_tb/dut/P1_Mant[191:0]
+addSignal -h 15 -holdScope P1_OutSign[3:0]
+addSignal -h 15 -holdScope P1_OutExpo[35:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/Comb2[1]/u_C2_Round/u_NormalizeReal/i_exp[8:0]
+addGroup "G4"
+addSignal -h 15 /PE_tb/dut/P1_Normal_sign[3:0]
+addSignal -h 15 -holdScope P1_Normal_exp[3:0]
+addSignal -h 15 -holdScope P1_Normal_mantissa[3:0]
+addGroup "G5"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

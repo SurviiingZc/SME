@@ -27,11 +27,11 @@ module C5_FPADDComb(
     output [  9:0]    o_Temp_Expo            ,
     output [ 72:0]    o_Temp_Mant            ,
 
-    output [ 48:0]    o_Mant                 ,
+    output [ 47:0]    o_Mant                 ,
     output [ 31:0]    o_Fault_Result         ,
     output            o_IsBfloat16           ,
     output            o_N                    ,
-	output [  7:0]	  o_Sum_Expo		     ,
+	output [  9:0]	  o_Sum_Expo		     ,
 	output      	  o_Sum_Sign		     ,
     output      	  o_is_Exception         ,
     output            o_Sticky_Bit          

@@ -1,0 +1,107 @@
+Magic 271485
+Revision Verdi_R-2020.12-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 1920 418 239 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/simulation/zhuxingyu/DigitalChip/SME/tb/UVM_PE/sim/mult.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 32053840.267802 32066626.732890
+cursor 32055001.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 40
+; marker line index
+markerPos 53
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "PE"
+activeDirFile "" "/simulation/zhuxingyu/DigitalChip/SME/tb/UVM_PE/sim/mult.fsdb"
+addSignal -h 15 /PE_tb/dut/clk
+addSignal -h 15 -holdScope rst_n
+addSignal -h 15 -holdScope i_Compute_Mode
+addSignal -h 15 -holdScope i_Compute_Precision[2:0]
+addSignal -h 15 -holdScope i_Is_Widening
+addSignal -h 15 -holdScope i_Add_or_Subtract
+addSignal -h 15 -holdScope o_Result[127:0]
+addGroup "C5"
+addSignal -h 15 /PE_tb/dut/P4_Fuse_MultiAdd_Result[31:0]
+addSignal -h 15 -holdScope P4_Operand_C[31:0]
+addSignal -h 15 -holdScope P4_Normal_Sign[0]
+addSignal -h 15 -holdScope P4_SignA[0]
+addSignal -h 15 -holdScope P4_Normal_Exp[9:0]
+addSignal -h 15 -holdScope P4_ExpoA[7:0]
+addSignal -h 15 -holdScope P4_Normal_Mantissa[47:0]
+addSignal -h 15 -holdScope P4_MantA[23:0]
+addSignal -h 15 -holdScope C2_sticky_flag[0]
+addSignal -h 15 -holdScope P4_Temp_Sign[0]
+addSignal -h 15 -holdScope P4_Temp_Expo[0][9:0]
+addSignal -h 15 -holdScope P4_Temp_Mant[0][72:0]
+addSignal -h 15 -holdScope P4_Fault_Result[31:0]
+addSignal -h 15 -holdScope P4_IsBfloat16[0]
+addSignal -h 15 -holdScope P4_N[0]
+addSignal -c ID_YELLOW5 -ls solid -lw 1 -h 15 -UNSIGNED -HEX -holdScope P4_Mant[48:0]
+addSignal -c ID_YELLOW5 -ls solid -lw 1 -h 15 -holdScope P4_Sum_Expo[7:0]
+addSignal -c ID_YELLOW5 -ls solid -lw 1 -h 15 -holdScope P4_Sum_Sign[0]
+addSignal -c ID_YELLOW5 -ls solid -lw 1 -h 15 -holdScope P4_Sticky_Bit[0]
+addGroup "FIXING"
+addSignal -h 15 -UNSIGNED -BIN /PE_tb/dut/i_Operand_C[127:0]
+addSignal -h 15 /PE_tb/dut/Add_ZA[0]/u_C5_FPADDComb/u_C5_FPAddition/i_Temp_Sign1
+addSignal -h 15 -holdScope i_Temp_Sign2
+addSignal -h 15 -holdScope i_Temp_Expo1[9:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope i_Temp_Expo2[9:0]
+addSignal -h 15 -holdScope i_Temp_Mant1[47:0]
+addSignal -h 15 -holdScope i_Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Sum_Mant[48:0]
+addSignal -h 15 -holdScope o_Sum_Expo[7:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+addSignal -h 15 -holdScope o_Sticky_Bit
+addSignal -h 15 -holdScope Sticky_Temp[23:0]
+addGroup "C1_MutiArray"
+addSignal -h 15 -UNSIGNED -BIN /PE_tb/dut/u_C1_FPMultiplyComb/u_FPMutiArray/i_Operand_A[31:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope i_Operand_B[31:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope ExpFP16A[1:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope ExpFP16B[1:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope FP16HiddenBitA[1:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope FP16HiddenBitB[1:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope FracFP16A[1:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope FracFP16B[1:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope FP16Result[3:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C1_FPMultiplyComb/u_FPUnpackAll/T_OutExpo[3:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/P1_Normal_exp[3:0]
+addSignal -h 15 -holdScope P1_Normal_mantissa[3:0]
+addGroup "G6"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

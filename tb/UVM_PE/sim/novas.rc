@@ -223,11 +223,11 @@ Selection-LineWidth = 1
 [FSM_Dlg-Print]
 Orientation = Landscape
 [FileBrowser]
+<<<<<<<
+>>>>>>>
 nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/FP.rc\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/m\
 ult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/INT.rc\""
 nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\""
-<<<<<<<
->>>>>>>
 [Form]
 version = Verdi_R-2020.12-SP2
 [General]
@@ -348,6 +348,11 @@ Text_annotFont = Helvetica_M_R_10
 cmd1 = "xterm -font 9x15 -fg black -bg gray -e"
 name = "vi"
 options = "+${CurLine} ${CurFullFileName}"
+[PostProcessPlus]
+SaveOpenDatabase = TRUE
+RelativePath = FALSE
+SaveAllWindow = TRUE
+AdvancePanel = FALSE
 [Power]
 PowerDownInstance = ID_GRAY1
 RetentionSignal = ID_YELLOW2
@@ -388,17 +393,21 @@ saveWaveformStat = TRUE
 savePropStat = FALSE
 savePropDtl = TRUE
 [QtDialog]
-<<<<<<<
-openFileDlg = 978,491,602,483
->>>>>>>
-saveSigDlg = 1003,539,551,386
 QwInfoMsgDlg = 904,663,750,250
 SearchValueDialog = 1109,680,339,105
-QwWarnMsgDlg = 979,922,600,250
-qWaveSignalDialog = 870,486,800,479
+<<<<<<<
 unknownSave = 1048,610,461,245
-restoreSigDlg = 1003,513,551,438
+>>>>>>>
+qWaveSignalDialog = 870,486,800,479
 ActiveFileDialog = 1050,596,457,272
+openFileDlg = 658,311,602,483
+restoreSigDlg = 683,333,551,438
+highlightColor = 621,389,675,327
+searchScope_base = 680,241,558,548
+fileWithNote = 631,281,655,543
+QwWarnMsgDlg = 979,1152,600,250
+saveSigDlg = 983,449,551,386
+ExpressionDialog = 890,486,778,493
 QwUserAskDlg = 1118,667,324,134
 [Relationship]
 hideRecursiceNode = FALSE
@@ -411,13 +420,13 @@ ErrorObject = ID_GRAY5
 AnnotateSignal = TRUE
 HighlightSafetyObject = TRUE
 [Session Cache]
-3 = string (session file name)
-4 = string (session file name)
 5 = string (session file name)
 <<<<<<<
 >>>>>>>
-1 = /simulation/wangjialong/SME_TPU_PE/Public_SME/SME/tb/UVM_PE/sim/verdiLog/novas_autosave.ses
-2 = /simulation/SME/UVM_PE/UVM_PE_C_V2/sim/verdiLog/novas_autosave.ses
+1 = /simulation/wzh/SME/tb/UVM_PE/sim/verdiLog/novas_autosave.ses
+2 = /simulation/zhuxingyu/DigitalChip/SME/tb/UVM_PE/sim/Verdi.ses
+3 = /simulation/zhuxingyu/DigitalChip/SME/tb/UVM_PE/sim/DebugVerdi.ses
+4 = /simulation/SME/UVM_PE/UVM_PE_C_V2/sim/verdiLog/novas_autosave.ses
 [Simulation]
 scsPath = scsim
 scsOption = 
@@ -489,9 +498,11 @@ bSVTBMode = TRUE
 SimMode = TRUE
 uvmAware = TRUE
 smartlog = TRUE
+restoreSimState = FALSE
+enableReverseDebug = FALSE
 [SimulationPlus2]
-eventDumpUnfinish = FALSE
 dumpPowerRoot = FALSE
+eventDumpUnfinish = FALSE
 [Source]
 wordWrapOn = TRUE
 viewReuse = TRUE
@@ -522,9 +533,9 @@ nLineSize = 1024
 [Test]
 verbose_progress = FALSE
 [TestBenchBrowser]
--showUVMDynamicHierTreeWin = FALSE
 DataViewTooltip = TRUE
 hideWatchView = TRUE
+-showUVMDynamicHierTreeWin = FALSE
 [Text]
 hdlTypeName = blue4
 hdlLibrary = blue4
@@ -690,8 +701,8 @@ Button3 = "Next ? Time" "#${Arg:Next Time} $stop;.\n"
 Button2 = "Next 1000 Time" "#1000 $stop;.\n"
 Button1 = "Dump All Signals" "$fsdbDumpvars;\n"
 [VIA]
-viaLogViewerDefaultRuleOneSearchForm = "share/VIA/Apps/PredefinedRules/Misc/Onesearch_rule.rc"
 viaLogViewerDefaultRuleInterForm = "share/VIA/Apps/PredefinedRules/UVM_OVM_i_rule.rc"
+viaLogViewerDefaultRuleOneSearchForm = "share/VIA/Apps/PredefinedRules/Misc/Onesearch_rule.rc"
 [VIA.oneSearch.preference]
 DefaultDisplayTimeUnit = "1.000000ns"
 DefaultLogTimeUnit = "1.000000ns"
@@ -700,21 +711,21 @@ isOneSearchVisible = TRUE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0]
 parRuleSets = ""
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column0]
-name = Type
-width = 60
-visualIndex = 3
-isHidden = FALSE
-isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
 name = Time
 width = 60
 visualIndex = 0
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
 name = Message
 width = 60
 visualIndex = 4
+isHidden = FALSE
+isUserChangeColumnVisible = FALSE
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
+name = Type
+width = 60
+visualIndex = 3
 isHidden = FALSE
 isUserChangeColumnVisible = FALSE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
@@ -815,8 +826,8 @@ open_file_dir
 open_rc_file_dir
 <<<<<<<
 >>>>>>>
-getSignalForm = 0 0 800 479 100 30 100 30
-viewPort = 0 25 2560 710 239 65
+getSignalForm = 879 456 800 479 164 381 390 89
+viewPort = 0 25 2560 725 506 122
 legendBackground = -c ID_BLACK
 valueBackground = -c ID_BLACK
 curveBackground = -c ID_BLACK
@@ -979,10 +990,10 @@ printBasic = 1 0 0 FALSE FALSE
 printDest = -printer {}
 printSignature = {%f %h %t} {}
 curveWindow_Drag&Drop_Mode = TRUE
-RecentFile1 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
-RecentFile2 = "\"/simulation/wangjialong/SME_TPU_PE/Public_SME/SME/tb/UVM_PE/sim/mult.fsdb\""
-RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
-RecentFile4 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
+RecentFile1 = "\"/simulation/wzh/SME/tb/UVM_PE/sim/mult.fsdb\""
+RecentFile2 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
+RecentFile3 = "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/mult.fsdb\""
+RecentFile4 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
 RecentFile5 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
 open_file_time_range = FALSE
 legend_window_font = -f COURIER12 -c ID_CYAN5
@@ -1088,7 +1099,7 @@ InputPinStatus = 1
 OutputPinStatus = 2
 RevisedComponentColor = ID_BLUE5
 SpareCellColor = ID_RED5
-UserName = wangjialong
+UserName = wangzhenhao
 CommentFormat = Novas ECO updated by ${UserName} ${Date} ${Time} 
 PrefixN = eco_n
 PrefixP = eco_p
@@ -1348,7 +1359,7 @@ StopAfterCompileOption = -s
 [wave.0]
 <<<<<<<
 >>>>>>>
-viewPort = 0 25 2560 710 239 65
+viewPort = 0 25 2560 725 506 122
 [wave.1]
 viewPort = 127 219 960 332 100 65
 [wave.2]
