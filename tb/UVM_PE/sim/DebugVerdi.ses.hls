@@ -1,0 +1,4 @@
+	PE_tb.dut.P4_Mant[48:0]	ID_YELLOW5
+	PE_tb.dut.P4_Sum_Expo[7:0]	ID_YELLOW5
+	PE_tb.dut.P4_Sum_Sign[0]	ID_YELLOW5
+	PE_tb.dut.P4_Sticky_Bit[0]	ID_YELLOW5

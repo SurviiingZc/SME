@@ -61,7 +61,7 @@ generate
     
     for(i = 0 ; i < 2 ; i = i + 1) begin : I_FP16Muti
         for(j = 0 ; j < 2 ; j = j + 1) begin : J_FP16Muti
-            assign FP16Result[i*2+j] = FracFP16B[i] * FracFP16A[j]  ;
+            assign FP16Result[i+j*2] = FracFP16B[i] * FracFP16A[j]  ;
         end
     end
 
