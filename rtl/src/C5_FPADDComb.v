@@ -22,7 +22,7 @@ module C5_FPADDComb(
     input  [  9:0]    i_Temp_Expo2           ,
     input  [ 47:0]    i_Temp_Mant1           ,
     input  [ 47:0]    i_Temp_Mant2           ,
-    input  [  3:0]    i_sticky_bit           ,
+    input             i_sticky_bit           ,
     output            o_Temp_Sign            ,
     output [  9:0]    o_Temp_Expo            ,
     output [ 72:0]    o_Temp_Mant            ,
