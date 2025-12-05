@@ -121,10 +121,10 @@ assign Compute_Precision_Operand2   = i_Compute_Precision                       
 generate
     for(i = 0 ; i < 2 ; i = i + 1) begin : I_OUT
         for(j = 0 ; j < 2 ; j = j + 1) begin : J_OUT
-            assign T_OutExpo[i*2+j]         = T_Expo2[i] + T_Expo1[j] ;
-            assign T_OutSign[i*2+j]         = T_Sign2[i] ^ T_Sign1[j] ;
-            assign o_OutSign[(i*2+j)*1+:1]  = T_OutSign[i*2+j]        ;
-            assign o_OutExpo[(i*2+j)*9+:9]  = T_OutExpo[i*2+j]        ;
+            assign T_OutExpo[i+j*2]         = T_Expo2[i] + T_Expo1[j] ;
+            assign T_OutSign[i+j*2]         = T_Sign2[i] ^ T_Sign1[j] ;
+            assign o_OutSign[(i+j*2)*1+:1]  = T_OutSign[i+j*2]        ;
+            assign o_OutExpo[(i+j*2)*9+:9]  = T_OutExpo[i+j*2]        ;
         end
     end
 

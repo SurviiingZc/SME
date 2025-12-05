@@ -184,24 +184,29 @@ wire  [ 31:0]    P4_ZA_Base_Address         ;
 wire  [127:0]    P4_Operand_C               ;
 wire  [127:0]    P4_Fuse_MultiAdd_Result    ;
 wire  [  2:0]    P4_Precision_Addend        ;
-wire  [195:0]    P4_Mant                    ;
+wire  [191:0]    P4_Mant                    ;
 wire  [127:0]    P4_Fault_Result            ;
 wire  [  3:0]    P4_IsBfloat16              ;
 wire  [  3:0]    P4_N                       ;
-wire  [ 31:0]	 P4_Sum_Expo		        ;
+wire  [ 39:0]	 P4_Sum_Expo		        ;
 wire  [  3:0]    P4_Sum_Sign		        ;
 wire  [  3:0]    P4_Normal_Sign             ;
 wire  [ 39:0]    P4_Normal_Exp              ;
 wire  [191:0]    P4_Normal_Mantissa         ;
-wire             P4_Temp_Sign  [3:0]        ;
-wire  [  9:0]    P4_Temp_Expo  [3:0]        ;
-wire  [ 72:0]    P4_Temp_Mant  [3:0]        ;
-wire             P4_Sticky_Bit [3:0]        ;              
-wire             P5_Sticky_Bit [3:0]        ;              
+wire             P4_Temp_Sign   [  3:0]     ;
+wire  [  9:0]    P4_Temp_Expo   [  3:0]     ;
+wire  [ 72:0]    P4_Temp_Mant   [  3:0]     ;
+wire  [  3:0]    P4_Sticky_Bit              ;              
+wire  [  3:0]    P5_Sticky_Bit              ;              
 wire  [ 11:0]    P4_TypeA                   ;
 wire  [  3:0]    P4_SignA                   ;
 wire  [ 31:0]    P4_ExpoA                   ;
 wire  [ 95:0]    P4_MantA                   ;
+
+wire  [  3:0]    P4_Temp_SignA              ;
+wire  [ 31:0]    P4_Temp_ExpoA              ;
+wire  [ 95:0]    P4_Temp_MantA              ;
+
 wire  [127:0]    P4_Result                  ;
 wire  [  3:0]    P4_Is_Exception            ;
 wire  [  3:0]    P4_is_Exception            ;
@@ -221,7 +226,7 @@ wire  [ 31:0]    P5_ZA_Base_Address         ;
 wire  [127:0]    P5_Operand_C               ;
 wire  [127:0]    P5_Fuse_MultiAdd_Result    ;
 wire  [  2:0]    P5_Precision_Addend        ;
-wire  [195:0]    P5_Mant                    ;
+wire  [191:0]    P5_Mant                    ;
 wire  [127:0]    P5_Fault_Result            ;
 wire  [  3:0]    P5_IsBfloat16              ;
 wire  [  3:0]    P5_N                       ;
@@ -735,21 +740,21 @@ generate
             .i_Value1              ( P4_Fuse_MultiAdd_Result[i*32+:32]  ),
             .i_Value2              ( P4_Operand_C[i*32+:32]             ),
             .i_FuseAdd_SelfAdd     (                                    ),
-            .i_Temp_Sign1          ( P4_Normal_Sign[0]                  ),
+            .i_Temp_Sign1          ( P4_Normal_Sign[i]                  ),
             .i_Temp_Sign2          ( P4_SignA[i]                        ),
-            .i_Temp_Expo1          ( P4_Normal_Exp[9:0]                 ),
+            .i_Temp_Expo1          ( P4_Normal_Exp[i*10+:10]            ),
             .i_Temp_Expo2          ( {2'd0,P4_ExpoA[i*8+:8]}            ),
-            .i_Temp_Mant1          ( P4_Normal_Mantissa[i*47 +: 47]     ),
+            .i_Temp_Mant1          ( P4_Normal_Mantissa[i*48 +: 48]     ),
             .i_Temp_Mant2          ( {P4_MantA[i*24+:24],24'd0}         ),
             .i_sticky_bit          ( C2_sticky_flag[i]                  ),
             .o_Temp_Sign           ( P4_Temp_Sign[i]                    ),
             .o_Temp_Expo           ( P4_Temp_Expo[i]                    ),
             .o_Temp_Mant           ( P4_Temp_Mant[i]                    ),
-            .o_Mant                ( P4_Mant[i*49+:49]                  ),
+            .o_Mant                ( P4_Mant[i*48+:48]                  ),
             .o_Fault_Result        ( P4_Fault_Result[i*32+:32]          ),
             .o_IsBfloat16          ( P4_IsBfloat16[i*1+:1]              ),
             .o_N                   ( P4_N[i*1+:1]                       ),
-            .o_Sum_Expo            ( P4_Sum_Expo[i*8+:8]                ),
+            .o_Sum_Expo            ( P4_Sum_Expo[i*10+:10]              ),
             .o_Sum_Sign            ( P4_Sum_Sign[i*1+:1]                ),
             .o_is_Exception        ( P4_is_Exception[i]                 ),
             .o_Sticky_Bit          ( P4_Sticky_Bit[i]                   )
@@ -787,8 +792,8 @@ Pipline_5 u_Pipline_5(
     .i_Temp_Expo            ( P4_Temp_Expo[0]         ),
     .i_Temp_Mant            ( P4_Temp_Mant[0]         ),
     .i_Is_Exception         ( P4_Refresh_Is_Exception ),
-    .i_Sticky_Bit           ( P4_Sticky_Bit[0]        ),
-    .o_Sticky_Bit           ( P5_Sticky_Bit[0]        ),
+    .i_Sticky_Bit           ( P4_Sticky_Bit           ),
+    .o_Sticky_Bit           ( P5_Sticky_Bit           ),
     .o_Is_Exception         ( P5_Is_Exception         ),
     .o_Mant                 ( P5_Mant                 ),
     .o_Fault_Result         ( P5_Fault_Result         ),
@@ -824,7 +829,7 @@ generate
             .i_Exception_Handling  ( P5_Exception_Handling      ),
             .i_N                   ( P5_N[i*1+:1]               ),
             .i_isbfloat16          ( P5_IsBfloat16[i*1+:1]      ),
-            .i_sticky_bit          ( P5_Sticky_Bit[0]           ),
+            .i_sticky_bit          ( P5_Sticky_Bit[i]           ),
             .o_rounded_result      ( P5_Round_Result[i*32+:32]  )
         );
 

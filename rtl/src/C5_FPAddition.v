@@ -19,12 +19,12 @@ module C5_FPAddition(
     input           [  9:0]    i_Temp_Expo2           ,
     input           [ 47:0]    i_Temp_Mant1           ,
     input           [ 47:0]    i_Temp_Mant2           ,
-    input           [  3:0]    i_sticky_bit           ,
+    input                      i_sticky_bit           ,
     output                     o_Temp_Sign            ,
     output          [  9:0]    o_Temp_Expo            ,
     output          [ 72:0]    o_Temp_Mant            ,
-	output          [ 48:0]    o_Sum_Mant		      ,
-	output          [  7:0]	   o_Sum_Expo		      ,
+	output          [ 47:0]    o_Sum_Mant		      ,
+	output          [  9:0]	   o_Sum_Expo		      ,
 	output                	   o_Sum_Sign		      ,
     output                     o_Sticky_Bit            
 );
@@ -124,7 +124,7 @@ assign Temp_Expo2            = (i_Temp_Expo2 == 'd0) ? 9'sd1 : i_Temp_Expo2     
 assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
 assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 
-                                    (i_sticky_bit[0])                                                       ;
+                                    (i_sticky_bit)                                                       ;
 assign o_Sticky_Bit          = Sticky_Bit                                                                   ;
 assign Mant_Min_Or           = |Fuse_Mant_Min                                                               ;
 assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
@@ -150,8 +150,8 @@ assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_
 assign o_Temp_Expo	         = Fuse_Expo_Max											                    ;
 assign o_Temp_Sign	         = Fuse_Sign_Max 			                                                    ;
 
-assign o_Sum_Mant            = o_Temp_Mant[72:24]                                                           ; 
-assign o_Sum_Expo            = o_Temp_Expo[9:2]                                                             ;
+assign o_Sum_Mant            = o_Temp_Mant[72:25]                                                           ; 
+assign o_Sum_Expo            = o_Temp_Expo                                                                  ;
 assign o_Sum_Sign            = o_Temp_Sign                                                                  ;
 
 
