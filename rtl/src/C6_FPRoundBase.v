@@ -219,10 +219,12 @@ module C6_FPRoundBase #(
         round_deor2nor_fp32;
 
 
-    wire signed [EXP_WIDTH:0] biased_exp_round_uncon = i_biased_exp_unconstrained + carry_uncon;
-    wire        [FP32_F+1 :0] int_mant_uncon_final     = (round_up_unconstrained) ? (int_mant_round_uncon) : int_mant_unconstrained   ;    
-    wire signed [EXP_WIDTH:0] biased_exp_round       = (round_deor2nor)         ?    1'b1                :(carry_main + i_biased_exp );
-    wire        [FP32_F+1 :0] int_mant_round_final     = (round_up)               ?  int_mant_round        : int_mant                 ;
+    wire signed [EXP_WIDTH:0] biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+    wire        [FP32_F+1 :0] int_mant_uncon_final           = (round_up_unconstrained)   ? (int_mant_round_uncon)     : int_mant_unconstrained         ;    
+    wire signed [EXP_WIDTH:0] biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+    wire signed [EXP_WIDTH:0] biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+    wire signed [EXP_WIDTH:0] biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+    wire        [FP32_F+1 :0] int_mant_round_final           = (round_up)                 ?  int_mant_round            : int_mant                       ;
     
     // UF OF
     wire Is_FZ16               = FPCR_FZ16 && (i_N == 0);
@@ -232,7 +234,7 @@ module C6_FPRoundBase #(
     wire IEEE_half             = i_N == 1 | FPCR_APH == 0;
     wire Alter_half            = i_N == 0 && FPCR_APH == 1;
     wire flush_zero_condition1 = !ALTFP && (Is_flush) && (Is_exp_lt_mini); 
-    wire flush_zero_condition2 =  ALTFP && (Is_flush) && (biased_exp_round_uncon < 1) && (int_mant_uncon_final != 0) ;
+    wire flush_zero_condition2 =  ALTFP && (Is_flush) && (biased_exp_round_uncon_final < 1) && (int_mant_uncon_final != 0) ;
     //wire flush_zero_condition3 = (i_exp_true == 0) && (op == 0);
     
     wire overflow_inf          = (biased_exp_round >= exponent_max) && (IEEE_half) && overflow_to_inf;
@@ -274,11 +276,11 @@ module C6_FPRoundBase #(
         .IN_WIDTH         ( IN_WIDTH ),
         .EXP_WIDTH        ( EXP_WIDTH )
     )u_Normal_Result(
-        .i_Sign           ( i_sign           ),
-        .biased_exp_round ( biased_exp_round ),
-        .int_mant_round   ( int_mant_round_final   ),
-        .i_Data_Width     ( i_Data_Width     ),
-        .o_Normal_Result  ( o_Normal_Result  )
+        .i_Sign           ( i_sign                  ),
+        .biased_exp_round ( biased_exp_round_final  ),
+        .int_mant_round   ( int_mant_round_final    ),
+        .i_Data_Width     ( i_Data_Width            ),
+        .o_Normal_Result  ( o_Normal_Result         )
     );
 
     C6_FPNaN FPNaN(

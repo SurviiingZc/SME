@@ -213,7 +213,7 @@ class PE_sequence_fmopa extends PE_sequence;
             if (!tr.randomize() with {
                 // 固定控制信号
                 tr.i_Compute_Mode               == `Outer_Product;
-                tr.i_Compute_Precision          == `FP16;
+                tr.i_Compute_Precision          == `FP32;
                 tr.i_Is_Widening                == `Operands_Is_Not_Widening;
                 tr.i_Add_or_Subtract            == `Addition_Operation;
                 tr.i_Active_Element_A           == 4'b1111;
@@ -246,12 +246,17 @@ class PE_sequence_fmopa extends PE_sequence;
                 tr.i_Exception_Handling[1]      == `IEEE_Handling_Floating_Point_Numbers;
                 tr.i_Exception_Handling[0]      == `Do_Not_Flush_Denormalized_Results_to_Zero_S_D_BF;
 
-                // **应用我们构造的特殊操作数**
+
                 if(i_Compute_Precision == `FP32) {
-                    tr.i_Operand_A[31:0] == gen_a;
-                    tr.i_Operand_B[31:0] == gen_b;
-                    tr.i_Operand_C[31:0] == gen_c;
+                    tr.i_Operand_A[31:0] == 32'h40000001;
+                    tr.i_Operand_B[31:0] == 32'h00000041;
+                    tr.i_Operand_C[31:0] == 32'h00090221;
                     tr.i_Operand_C[127:32] == 96'b0;
+
+                    // tr.i_Operand_A[31:0] == gen_a;
+                    // tr.i_Operand_B[31:0] == gen_b;
+                    // tr.i_Operand_C[31:0] == gen_c;
+                    // tr.i_Operand_C[127:32] == 96'b0;
                 }
                 else if(i_Compute_Precision == `FP16) {
                     // 对于其他精度，保持完全随机
