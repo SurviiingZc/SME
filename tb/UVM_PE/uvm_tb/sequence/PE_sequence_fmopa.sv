@@ -213,7 +213,7 @@ class PE_sequence_fmopa extends PE_sequence;
             if (!tr.randomize() with {
                 // 固定控制信号
                 tr.i_Compute_Mode               == `Outer_Product;
-                tr.i_Compute_Precision          == `FP32;
+                tr.i_Compute_Precision          == `FP16;
                 tr.i_Is_Widening                == `Operands_Is_Not_Widening;
                 tr.i_Add_or_Subtract            == `Addition_Operation;
                 tr.i_Active_Element_A           == 4'b1111;
