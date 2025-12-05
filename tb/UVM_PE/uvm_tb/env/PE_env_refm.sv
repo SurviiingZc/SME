@@ -53,8 +53,8 @@ class PE_env_refm extends uvm_component;
         ref_tr = PE_seq_item::type_id::create("ref_tr");
         ref_tr.copy(tr);
         
-        `uvm_info("REFM", $sformatf("Calling FPMulAdd_ZA with: addend=0x%08h, op1=0x%08h, op2=0x%08h, N=%0d, fpcr=0x%05h",
-           tr.i_Operand_C[31:0], tr.i_Operand_A, tr.i_Operand_B, 32, {12'b0,tr.i_Exception_Handling}), UVM_HIGH)
+        `uvm_info("REFM", $sformatf("Calling C_ref_top with: C=0x%08h, A=0x%08h, B=0x%08h, fpcr=0x%05h",
+           tr.i_Operand_C[31:0], tr.i_Operand_A, tr.i_Operand_B, {12'b0,tr.i_Exception_Handling}), UVM_HIGH)
         
         opc[0] = ref_tr.i_Operand_C[31:0];
         opc[1] = ref_tr.i_Operand_C[63:32];
@@ -78,10 +78,9 @@ class PE_env_refm extends uvm_component;
             ref_tr.i_Operand_B             ,
             opc                            ,
             ores               
-        );
-        `uvm_info("REFM", $sformatf("DPI function returned: 0x%08h", ores[0]), UVM_HIGH)
-        
+        );        
         result = {ores[3],ores[2],ores[1],ores[0]};
+        `uvm_info("REFM", $sformatf("DPI function returned: 0x%08h", result), UVM_HIGH)
         ref_tr.expected = result;
         item_ref_port.write(ref_tr);
         

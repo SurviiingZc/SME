@@ -223,11 +223,11 @@ Selection-LineWidth = 1
 [FSM_Dlg-Print]
 Orientation = Landscape
 [FileBrowser]
-nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\""
-nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/FP.rc\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/m\
-ult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/INT.rc\""
 <<<<<<<
 >>>>>>>
+nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/FP.rc\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/m\
+ult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/INT.rc\""
+nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\""
 [Form]
 version = Verdi_R-2020.12-SP2
 [General]
@@ -388,17 +388,17 @@ saveWaveformStat = TRUE
 savePropStat = FALSE
 savePropDtl = TRUE
 [QtDialog]
-restoreSigDlg = 994,506,551,438
-saveSigDlg = 1003,539,551,386
 QwInfoMsgDlg = 904,663,750,250
 SearchValueDialog = 1109,680,339,105
-QwWarnMsgDlg = 979,922,600,250
 qWaveSignalDialog = 870,486,800,479
 ActiveFileDialog = 1050,596,457,272
-openFileDlg = 978,491,602,483
 <<<<<<<
 >>>>>>>
 unknownSave = 1048,610,461,245
+openFileDlg = 978,491,602,483
+QwWarnMsgDlg = 979,959,600,250
+restoreSigDlg = 1003,513,551,438
+saveSigDlg = 1003,539,551,386
 QwUserAskDlg = 1118,667,324,134
 [Relationship]
 hideRecursiceNode = FALSE
@@ -856,8 +856,10 @@ AutoApplySeverityColor = TRUE
 scope_to_save_with_macro
 open_file_dir
 open_rc_file_dir
+<<<<<<<
+>>>>>>>
 getSignalForm = 879 456 800 479 164 381 390 89
-viewPort = 0 25 2560 689 239 65
+viewPort = 0 25 2560 719 304 1
 legendBackground = -c ID_BLACK
 valueBackground = -c ID_BLACK
 curveBackground = -c ID_BLACK
@@ -1020,10 +1022,11 @@ printBasic = 1 0 0 FALSE FALSE
 printDest = -printer {}
 printSignature = {%f %h %t} {}
 curveWindow_Drag&Drop_Mode = TRUE
-RecentFile1 = "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/mult.fsdb\""
-RecentFile2 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
-RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
+RecentFile1 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\""
+RecentFile2 = "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/mult.fsdb\""
+RecentFile3 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\""
 RecentFile4 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
+RecentFile5 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
 open_file_time_range = FALSE
 legend_window_font = -f COURIER12 -c ID_CYAN5
 value_window_font = -f COURIER12 -c ID_CYAN5
@@ -1055,9 +1058,6 @@ maskFsaRegRule = TRUE
 maskFsaCoreRule = TRUE
 maskFsaSfsmRule = TRUE
 maskFsaEcrRule = TRUE
-<<<<<<<
->>>>>>>
-RecentFile5 = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/signal.rc\""
 [cov_hier_name_column]
 justify = TRUE
 [coverageColors]
@@ -1389,7 +1389,7 @@ AddImportArgument = FALSE
 LineBreakWithScope = TRUE
 StopAfterCompileOption = -s
 [wave.0]
-viewPort = 0 25 2560 689 239 65
+viewPort = 0 25 2560 719 304 1
 [wave.1]
 viewPort = 127 219 960 332 100 65
 [wave.2]

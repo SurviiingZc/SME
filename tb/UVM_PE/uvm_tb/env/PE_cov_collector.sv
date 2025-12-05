@@ -31,6 +31,6 @@ class PE_cov_collector extends uvm_component;
         coverage_percentage = cov_summary.get_coverage();
         `uvm_info("COV", $sformatf("Functional coverage: %.2f%%", coverage_percentage), UVM_LOW)
     endfunction
-endclass
+    endclass
 
 `endif // PE_COV_COLLECTOR_SV
