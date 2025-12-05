@@ -49,7 +49,7 @@ class PE_test_int extends uvm_test;
         
         phase.raise_objection(this);
         
-        `uvm_info("TEST", "Running all combinations test", UVM_LOW)
+        `uvm_info("TEST", "Running all int test", UVM_LOW)
         seq_smopa.start(env.agent.sequencer);  
         seq_smops.start(env.agent.sequencer);  
         seq_sumopa.start(env.agent.sequencer); 
