@@ -9,7 +9,7 @@ module C2_NormalizeReal #(
 )(
     input                                       i_sign                         ,
     input               [EXP_WIDTH-1:0]         i_exp                          ,
-    input  wire         [IN_WIDTH-1:0]          i_mantissa_in                    ,
+    input  wire         [IN_WIDTH-1:0]          i_mantissa_in                  ,
     input               [1:0]                   i_Data_Width                   , 
     input                                       i_is_Multiplier                ,     
     output                                      o_sign                         ,
@@ -90,14 +90,6 @@ reg    [47:0]   mask_out_bits;
 reg    [47:0]   shifted_out_bits    ;
 
 always @(*) begin
-    if(exponent < 0) begin
-        adjusted_mantissa          = mantissa >> (-(exponent))   ;
-        biased_exp                 = 0                        ;
-        shift_adj                  = (-(i_exp_true))                                   ;
-        mask_out_bits              = (48'd1 << shift_adj) - 1                          ;
-        shifted_out_bits           = ({i_mantissa_in[21:0],26'b0} & mask_out_bits)     ;
-        sticky_flag                = |shifted_out_bits                                 ;
-    end
     if(is_denormal) begin
         case (i_Data_Width)
         2'b00: begin
@@ -133,15 +125,49 @@ always @(*) begin
             sticky_flag                = |shifted_out_bits                                 ;
         end  
     endcase
-    end
-    else begin
-        adjusted_mantissa               = mantissa                      ;
-        //biased_exp                      = (i_is_Multiplier == 1) ? exponent : biased_exp_unconstrained     ; //乘法选用第一个 加法用第二个
-        biased_exp                      = exponent                      ;
-        shift_adj                       = 9'd0                          ;
-        mask_out_bits                   = (48'd1 << shift_adj) - 1      ;
-        shifted_out_bits                = 48'd0                         ;
-        sticky_flag                     = 1'b0                                          ;
+    end else if(exponent <= 0) begin
+        case (i_Data_Width)
+        2'b00: begin
+            adjusted_mantissa              = {i_mantissa_in[21:0],26'b0} << (i_exp_true)            ;
+            biased_exp                     = 0                                                      ;
+            shift_adj                      = (-(i_exp_true))                                        ;
+            mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
+            shifted_out_bits               = ({i_mantissa_in[21:0],26'b0} & mask_out_bits)          ;
+            sticky_flag                    = |shifted_out_bits                                      ;
+        end
+        2'b01: begin
+            adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
+            biased_exp                     = 0                                                      ;
+            shift_adj                      = (-(i_exp_true))                                        ;
+            mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
+            shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
+            sticky_flag                    = |shifted_out_bits                                      ;
+        end
+        2'b10: begin
+            adjusted_mantissa              = {i_mantissa_in[15:0],32'b0} << (i_exp_true)            ;
+            biased_exp                     = 0                                                      ;
+            shift_adj                      = (-(i_exp_true))                                        ;
+            mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
+            shifted_out_bits               = {i_mantissa_in[15:0],32'b0} & mask_out_bits            ;
+            sticky_flag                    = |shifted_out_bits                                      ;
+        end
+        default: begin
+            adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
+            biased_exp                     = 0                                                      ;
+            shift_adj                      = (-(i_exp_true))                                        ;
+            mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
+            shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
+            sticky_flag                    = |shifted_out_bits                                      ;
+        end  
+    endcase
+    end else begin
+        adjusted_mantissa                  = mantissa                                               ;
+        //biased_exp                         = (i_is_Multiplier == 1) ? exponent : biased_exp_unconstrained     ; //乘法选用第一个 加法用第二个
+        biased_exp                         = exponent                                               ;
+        shift_adj                          = 9'd0                                                   ;
+        mask_out_bits                      = (48'd1 << shift_adj) - 1                               ;
+        shifted_out_bits                   = 48'd0                                                  ;
+        sticky_flag                        = 1'b0                                                   ;
     end
 end
 
