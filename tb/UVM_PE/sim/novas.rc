@@ -226,7 +226,7 @@ Orientation = Landscape
 <<<<<<<
 >>>>>>>
 nWaveOpenFsdbDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/mult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/FP.rc\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/m\
-ult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/INT.rc\""
+ult.fsdb\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/INT.rc\"" "\"/simulation/zhangcheng/SME/tb/UVM_PE/sim/FMOPAFP16.rc\""
 nWaveRestoreRCDirHistory = "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/FP.rc\"" "\"/simulation/SME/UVM_PE/UVM_PE_C_V2/sim/INT.rc\""
 [Form]
 version = Verdi_R-2020.12-SP2
@@ -400,14 +400,14 @@ unknownSave = 1048,610,461,245
 >>>>>>>
 qWaveSignalDialog = 870,486,800,479
 ActiveFileDialog = 1050,596,457,272
-openFileDlg = 658,311,602,483
-restoreSigDlg = 683,333,551,438
 highlightColor = 621,389,675,327
 searchScope_base = 680,241,558,548
 fileWithNote = 631,281,655,543
-QwWarnMsgDlg = 979,1152,600,250
 saveSigDlg = 983,449,551,386
 ExpressionDialog = 890,486,778,493
+QwWarnMsgDlg = 979,1152,600,250
+restoreSigDlg = 1003,513,551,438
+openFileDlg = 978,491,602,483
 QwUserAskDlg = 1118,667,324,134
 [Relationship]
 hideRecursiceNode = FALSE
@@ -711,34 +711,34 @@ isOneSearchVisible = TRUE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0]
 parRuleSets = ""
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column0]
-name = Time
+name = Severity
 width = 60
-visualIndex = 0
+visualIndex = 1
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
 [VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column1]
-name = Message
-width = 60
-visualIndex = 4
-isHidden = FALSE
-isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
 name = Type
 width = 60
 visualIndex = 3
 isHidden = FALSE
 isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column2]
 name = Code
 width = 60
 visualIndex = 2
 isHidden = TRUE
 isUserChangeColumnVisible = FALSE
-[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column4]
-name = Severity
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column3]
+name = Time
 width = 60
-visualIndex = 1
+visualIndex = 0
 isHidden = TRUE
+isUserChangeColumnVisible = FALSE
+[VIA.oneSearch.preference.vgifColumnSettingRC.setting0.column4]
+name = Message
+width = 60
+visualIndex = 4
+isHidden = FALSE
 isUserChangeColumnVisible = FALSE
 [VIA.parRule]
 parRulePathInterForm = ""
@@ -827,7 +827,7 @@ open_rc_file_dir
 <<<<<<<
 >>>>>>>
 getSignalForm = 879 456 800 479 164 381 390 89
-viewPort = 0 25 2560 725 506 122
+viewPort = 0 25 2560 940 328 206
 legendBackground = -c ID_BLACK
 valueBackground = -c ID_BLACK
 curveBackground = -c ID_BLACK
@@ -1359,7 +1359,7 @@ StopAfterCompileOption = -s
 [wave.0]
 <<<<<<<
 >>>>>>>
-viewPort = 0 25 2560 725 506 122
+viewPort = 0 25 2560 940 328 206
 [wave.1]
 viewPort = 127 219 960 332 100 65
 [wave.2]
