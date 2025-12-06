@@ -11,7 +11,7 @@ CM = -cm line+cond+fsm+branch+tgl
 CM_NAME = -cm_name simv
 CM_DIR = -cm_dir ./covdir.vdb
 
-all: comp sim
+all: clean comp sim
 
 # 添加 MPFR 库路径配置
 MPFR_INCLUDE = /usr/local/include

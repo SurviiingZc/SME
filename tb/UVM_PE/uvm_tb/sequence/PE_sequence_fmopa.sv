@@ -224,7 +224,7 @@ class PE_sequence_fmopa extends PE_sequence;
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;
-                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero;
+                tr.i_Exception_Handling[16:15]  == `Round_Towards_Minus_Infinity; //Round_to_Nearest_Mode Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero          
                 // tr.i_Exception_Handling[16:15] dist {
                 //     `Round_Towards_Plus_Infinity  := 25,
                 //     `Round_to_Nearest_Mode        := 25,
