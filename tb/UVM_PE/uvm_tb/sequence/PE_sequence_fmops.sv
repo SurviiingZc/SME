@@ -20,7 +20,7 @@ class PE_sequence_fmops extends PE_sequence;
             start_item(tr);
             if (!tr.randomize() with {
                 tr.i_Compute_Mode               ==  `Outer_Product;
-                tr.i_Compute_Precision          ==  `FP32; //inside  {`FP32, `FP16};
+                tr.i_Compute_Precision          ==  `FP16; //inside  {`FP32, `FP16};
                 tr.i_Is_Widening                ==  `Operands_Is_Not_Widening;
                 tr.i_Add_or_Subtract            ==  `Subtraction_Operation;
                 //tr.i_ZmIsSigned                 ==  `Zm_Is_Unsigned;
@@ -30,7 +30,7 @@ class PE_sequence_fmops extends PE_sequence;
                 tr.i_Active_Element_A           ==  4'b1111;
                 tr.i_Active_Element_B           ==  4'b1111;
                 tr.i_ZA_Base_Address            ==  32'hffff;
-                tr.i_Exception_Handling[19]     == `Alternative_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
+                tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
                 tr.i_Exception_Handling[16:15]  == `Round_to_Nearest_Mode; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero          
