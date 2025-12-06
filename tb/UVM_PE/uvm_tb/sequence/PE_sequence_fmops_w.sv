@@ -13,7 +13,7 @@ class PE_sequence_fmops_w extends PE_sequence;
         int i;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
-        for(i = 0; i < 1024; i++)begin
+        for(i = 0; i < 8000; i++)begin
             `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_LOW)
             tr = PE_seq_item::type_id::create("tr");
 
@@ -36,7 +36,7 @@ class PE_sequence_fmops_w extends PE_sequence;
                 // tr.i_Operand_A[31:0] == 31'h1a5c1adb;
                 // tr.i_Operand_B[31:0] == 31'h1e5ebedb;
                 // tr.i_Operand_C[31:0] == 31'h3e5ebfff;
-
+                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero; //Round_to_Nearest_Mode Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero          
                 //tr.i_Exception_Handling[16:15] == 2'b01;
 
                 i_Operand_A[31:0] dist {
