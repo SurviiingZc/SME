@@ -102,8 +102,30 @@ addSignal -h 15 -holdScope i_mantissa_in[47:0]
 addSignal -h 15 -UNSIGNED -UDEC -holdScope biased_exp[9:0]
 addSignal -h 15 -2COMP -UDEC -holdScope i_exp_true[9:0]
 addSignal -h 15 -holdScope adjusted_mantissa[47:0]
+addGroup "A*B+C [0]" -e FALSE
+addSignal -h 15 /PE_tb/dut/Add_ZA[0]/u_C5_FPADDComb/u_C5_FPAddition/i_Temp_Sign1
+addSignal -h 15 -holdScope i_Temp_Sign2
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Temp_Expo1[9:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Temp_Expo2[9:0]
+addSignal -h 15 -holdScope i_Temp_Mant1[47:0]
+addSignal -h 15 -holdScope i_Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+addSignal -h 15 -UNSIGNED -UDEC -holdScope o_Sum_Expo[9:0]
+addSignal -h 15 -holdScope o_Sum_Mant[47:0]
+addSignal -h 15 -holdScope o_Sticky_Bit
 addGroup "A*B+C [1]" -e FALSE
 addSignal -h 15 /PE_tb/dut/Add_ZA[1]/u_C5_FPADDComb/u_C5_FPAddition/i_Temp_Sign1
+addSignal -h 15 -holdScope i_Temp_Sign2
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Temp_Expo1[9:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Temp_Expo2[9:0]
+addSignal -h 15 -holdScope i_Temp_Mant1[47:0]
+addSignal -h 15 -holdScope i_Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+addSignal -h 15 -UNSIGNED -UDEC -holdScope o_Sum_Expo[9:0]
+addSignal -h 15 -holdScope o_Sum_Mant[47:0]
+addSignal -h 15 -holdScope o_Sticky_Bit
+addGroup "A*B+C [2]" -e FALSE
+addSignal -h 15 /PE_tb/dut/Add_ZA[2]/u_C5_FPADDComb/u_C5_FPAddition/i_Temp_Sign1
 addSignal -h 15 -holdScope i_Temp_Sign2
 addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Temp_Expo1[9:0]
 addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Temp_Expo2[9:0]
