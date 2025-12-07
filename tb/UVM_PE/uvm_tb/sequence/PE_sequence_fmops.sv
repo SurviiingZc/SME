@@ -33,7 +33,7 @@ class PE_sequence_fmops extends PE_sequence;
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
-                tr.i_Exception_Handling[16:15]  == `Round_to_Nearest_Mode; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero          
+                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero Round_to_Nearest_Mode         
                 tr.i_Exception_Handling[14:13]  == `Stride_1;
                 tr.i_Exception_Handling[12]     == `Do_Not_Flush_Denormalized_Results_to_Zero_Half;// Flush_Denormalized_Results_to_Zero_Half Do_Not_Flush_Denormalized_Results_to_Zero_Half
                 tr.i_Exception_Handling[11:10]  == `Length_1;
@@ -47,25 +47,46 @@ class PE_sequence_fmops extends PE_sequence;
                 tr.i_Exception_Handling[2]      == `Not_Affect_Output_Elements;
                 tr.i_Exception_Handling[1]      == `IEEE_Handling_Floating_Point_Numbers;
                 tr.i_Exception_Handling[0]      == `Do_Not_Flush_Denormalized_Results_to_Zero_S_D_BF;
-                tr.i_Operand_C[127:32]          == 96'b0;
+                // tr.i_Operand_C[127:32]          == 96'b0;
                 // tr.i_Operand_A[31:0] == 31'h1a5c1adb;
                 // tr.i_Operand_B[31:0] == 31'h1e5ebedb;
                 // tr.i_Operand_C[31:0] == 31'h3e5ebfff;
+                if(i_Compute_Precision == `FP32) {
+                    tr.i_Operand_A[31:0] == 32'h40000001;
+                    tr.i_Operand_B[31:0] == 32'h00000041;
+                    tr.i_Operand_C[31:0] == 32'h00090221;
+                    tr.i_Operand_C[127:32] == 96'b0;
 
-                i_Operand_A[31:0] dist {
-                    [32'h00800001:32'h7fffffff] :/ 50,
-                    [32'h80800001:32'hffffffff] :/ 50
-                };
+                    // tr.i_Operand_A[31:0] == gen_a;
+                    // tr.i_Operand_B[31:0] == gen_b;
+                    // tr.i_Operand_C[31:0] == gen_c;
+                    // tr.i_Operand_C[127:32] == 96'b0;
+                }
+                else if(i_Compute_Precision == `FP16) {
+                    // 对于其他精度，保持完全随机
+                    tr.i_Operand_A[31:16] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_B[31:16] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_A[15:0] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_B[15:0] inside {[16'h0000:16'hffff]};
+                    tr.i_Operand_C[31:16]== 16'd0;
+                    tr.i_Operand_C[63:48]== 16'd0;
+                    tr.i_Operand_C[95:80]== 16'd0; 
+                    tr.i_Operand_C[127:112]== 16'd0;                      
+                }
+                // i_Operand_A[31:0] dist {
+                //     [32'h00800001:32'h7fffffff] :/ 50,
+                //     [32'h80800001:32'hffffffff] :/ 50
+                // };
 
-                i_Operand_B[31:0] dist {
-                    [32'h00800001:32'h3fffffff] :/ 50,
-                    [32'h80800001:32'hbfffffff] :/ 50
-                };
+                // i_Operand_B[31:0] dist {
+                //     [32'h00800001:32'h3fffffff] :/ 50,
+                //     [32'h80800001:32'hbfffffff] :/ 50
+                // };
 
-                i_Operand_C[31:0] dist {
-                    [32'h00800001:32'h3fffffff] :/ 50,
-                    [32'h80800001:32'hbfffffff] :/ 50
-                };
+                // i_Operand_C[31:0] dist {
+                //     [32'h00800001:32'h3fffffff] :/ 50,
+                //     [32'h80800001:32'hbfffffff] :/ 50
+                // };
                 
                 // i_Exception_Handling[16:15] dist {
                 //     2'b00 := 25,
