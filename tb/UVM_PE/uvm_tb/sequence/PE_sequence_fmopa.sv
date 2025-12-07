@@ -1,13 +1,11 @@
 // `include "macro_definition.svh"
 // `include "uvm_macros.svh"
-
 // class PE_sequence_fmopa extends PE_sequence;
-//     `uvm_object_utils(PE_sequence_fmopa)
 
+//     `uvm_object_utils(PE_sequence_fmopa)
 //     function new(string name = "PE_sequence_fmopa");
 //         super.new(name);
 //     endfunction
-    
 //     task body();
 //         PE_seq_item tr;
 //         int i;
@@ -52,7 +50,6 @@
 //                 // tr.i_Operand_B[31:0] == 32'h41200000;
 //                 // tr.i_Operand_C[31:0] == 32'h3f800000;
 
-                
 
 //                 i_Operand_A[31:0] dist {
 //                     [32'h00000000:32'h7fffffff] :/ 50,
@@ -68,6 +65,7 @@
 //                     [32'h00000000:32'h7fffffff] :/ 50,
 //                     [32'h80000000:32'hffffffff] :/ 50
 //                 };
+
                 
 //                 // i_Exception_Handling[16:15] dist {
 //                 //     2'b00 := 25,
@@ -75,10 +73,11 @@
 //                 //     2'b10 := 25,
 //                 //     2'b11 :/ 25 
 //                 // };
+
 //             }) begin
 //                `uvm_error("RND", "Randomization failed")
 //             end
-            
+         
 //             finish_item(tr);
 //         end
 //         // 序列完成后drop objection
@@ -101,139 +100,71 @@ class PE_sequence_fmopa extends PE_sequence;
         super.new(name);
     endfunction
 
-    // 定义场景枚举
-    typedef enum {
-        SCENE_RANDOM,      // 纯随机
-        SCENE_CANCELLATION,// 灾难性抵消 (测试前导零/归一化)
-        SCENE_STICKY,      // 大移位 (测试你的减法借位逻辑)
-        SCENE_TIE_0_5_ULP, // 舍入边界: 刚好是 X.5
-        SCENE_NEAR_1_0_ULP // 舍入边界: 刚好是 X.00...01
-    } scene_e;
+    typedef enum bit [3:0] {
+        SC_RANDOM          = 0, 
+        SC_NAN_INPUT       = 1, 
+        SC_INVALID_MUL     = 2, 
+        SC_INVALID_ADD     = 3, 
+        SC_INF_GEN         = 4, 
+        SC_INF_OPERAND     = 5, 
+        SC_INF_SAME_SIGN   = 6, 
+        SC_EXACT_CANCEL    = 7, 
+        SC_ZERO_ADD        = 8, 
+        SC_TINY_FMA        = 9, 
+        SC_ROUNDING_EDGE   = 10 
+    } scenario_e;
+
+    const bit [7:0] FP32_EXP_ONES = 8'hFF;
+    const bit [4:0] FP16_EXP_ONES = 5'h1F;
 
     task body();
         PE_seq_item tr;
+        scenario_e current_scenario;
         int i;
-        
-        // 临时变量，用于构造特定的浮点数
-        bit [31:0] gen_a, gen_b, gen_c;
-        bit [7:0]  e_a, e_b, e_c;
-        bit [22:0] m_a, m_b, m_c;
-        bit        s_a, s_b, s_c;
-        scene_e    cur_scene;
-
+        int tiny_sub_case;   
+        int round_sub_case;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
 
-        for(i = 0; i < 8000; i++) begin // 增加一点循环次数以覆盖更多场景
-            `uvm_info("SEQ", $sformatf("Generating test %0d", i), UVM_LOW)
+        for(i = 0; i < 32768; i++) begin
             tr = PE_seq_item::type_id::create("tr");
-
-            // ======================================================
-            // 步骤 1: 在本地进行有针对性的数学随机
-            // ======================================================
-            void'(std::randomize(e_a, e_b, e_c, m_a, m_b, m_c, s_a, s_b, s_c, cur_scene) with {
-                // 1. 场景分布权重
-                cur_scene dist {
-                    SCENE_RANDOM       := 20,
-                    SCENE_CANCELLATION := 20,
-                    SCENE_STICKY       := 20, // 重点测你之前的 Bug
-                    SCENE_TIE_0_5_ULP  := 20, // 重点测 RNE 舍入
-                    SCENE_NEAR_1_0_ULP := 20  // 重点测 RU/RD 舍入
-                };
-
-                // 2. 基础指数范围 (避开 NaN/Inf 以专注于算术逻辑，除非专门测异常)
-                e_a inside {[1:254]};
-                e_b inside {[1:254]};
-                
-                // 计算乘积的理想指数 (ExpA + ExpB - 127)
-                // 这是一个临时的约束辅助逻辑
-                
-                // --------------------------------------------------
-                // 场景 A: 灾难性抵消 (Catastrophic Cancellation)
-                // --------------------------------------------------
-                if (cur_scene == SCENE_CANCELLATION) {
-                    // C 的指数非常接近 P，且必须是有效减法
-                    e_c inside {[1:254]};
-                    // 约束差值在 +/- 1 以内
-                    (e_c + 127) - (e_a + e_b) inside {[-1:1]};
-                    // 符号相反
-                    s_c != (s_a ^ s_b);
-                }
-
-                // --------------------------------------------------
-                // 场景 B: 大移位/Sticky (针对你之前的减法Bug)
-                // --------------------------------------------------
-                if (cur_scene == SCENE_STICKY) {
-                    // C 远大于 A*B，P 被移出但留有 Sticky
-                    // 移位量在 25 到 100 之间
-                    (e_c + 127) > (e_a + e_b + 25);
-                    (e_c + 127) < (e_a + e_b + 100);
-                }
-
-                // --------------------------------------------------
-                // 场景 C: 0.5 ULP 边界 (Tie Case)
-                // --------------------------------------------------
-                if (cur_scene == SCENE_TIE_0_5_ULP) {
-                    // 为了制造 X.5 的效果，P 需要作为 C 的 Guard Bit
-                    // C 的 LSB 权重是 2^(Ec-23)
-                    // P 的最高位权重是 2^(Ep)
-                    // 需要 Ep approx Ec - 24
-                    (e_c + 127) == (e_a + e_b + 24);
-                    
-                    // 强制 Mantissa 使得结果产生精准的中间值
-                    m_c[0] == 0; // 配合 RNE 偶数舍入测试
-                }
-
-                // --------------------------------------------------
-                // 场景 D: 1.0 ULP 边界 (微小增量)
-                // --------------------------------------------------
-                if (cur_scene == SCENE_NEAR_1_0_ULP) {
-                    // 刚好有一点点 Sticky，类似于 SCENE_STICKY 但更极限
-                    // 使得 P 仅仅贡献一个极其微小的值
-                    (e_c + 127) > (e_a + e_b + 40);
-                }
-
-                // --------------------------------------------------
-                // 场景 E: 普通随机
-                // --------------------------------------------------
-                if (cur_scene == SCENE_RANDOM) {
-                    e_c inside {[1:254]};
-                }
-            });
-
-            // 组装随机好的浮点数
-            gen_a = {s_a, e_a, m_a};
-            gen_b = {s_b, e_b, m_b};
-            gen_c = {s_c, e_c, m_c};
-
-            // ======================================================
-            // 步骤 2: 将构造好的值赋给 Transaction 并随机其他控制位
-            // ======================================================
             start_item(tr);
+
+            if (!std::randomize(current_scenario) with {
+                current_scenario dist {
+                    SC_RANDOM        := 20,
+                    SC_NAN_INPUT     := 5,
+                    SC_INVALID_MUL   := 5,
+                    SC_INVALID_ADD   := 5,
+                    SC_INF_GEN       := 5,
+                    SC_INF_OPERAND   := 5,
+                    SC_INF_SAME_SIGN := 5,
+                    SC_EXACT_CANCEL  := 5,
+                    SC_ZERO_ADD      := 5,
+                    SC_TINY_FMA      := 20,
+                    SC_ROUNDING_EDGE := 20
+                };
+            }) begin
+                `uvm_error("SEQ", "Scenario randomization failed")
+            end
+            void'(std::randomize(tiny_sub_case) with { tiny_sub_case dist { 0:=25, 1:=75 }; });
+            void'(std::randomize(round_sub_case) with { round_sub_case dist { 0:=40, 1:=40, 2:=20 }; });
+            `uvm_info("SEQ", $sformatf("Loop %0d: Scenario: %s", i, current_scenario.name()), UVM_HIGH)
+
             if (!tr.randomize() with {
-                // 固定控制信号
                 tr.i_Compute_Mode               == `Outer_Product;
-                tr.i_Compute_Precision          == `FP16;
                 tr.i_Is_Widening                == `Operands_Is_Not_Widening;
-                tr.i_Add_or_Subtract            == `Addition_Operation;
+                tr.i_Add_or_Subtract            == `Addition_Operation; 
                 tr.i_Active_Element_A           == 4'b1111;
                 tr.i_Active_Element_B           == 4'b1111;
                 tr.i_ZA_Base_Address            == 32'hffff;
-                
-                // 异常处理配置
-                tr.i_Exception_Handling[19]     == `Alternative_Half_Precision_Format;
+                tr.i_Compute_Precision          == `FP16;
+                tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
-                tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;
-                tr.i_Exception_Handling[16:15]  == `Round_Towards_Minus_Infinity; //Round_to_Nearest_Mode Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero          
-                // tr.i_Exception_Handling[16:15] dist {
-                //     `Round_Towards_Plus_Infinity  := 25,
-                //     `Round_to_Nearest_Mode        := 25,
-                //     `Round_Towards_Minus_Infinity := 25,
-                //     `Round_Towards_Zero           := 25
-                // };
-                
+                tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
+                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero Round_to_Nearest_Mode         
                 tr.i_Exception_Handling[14:13]  == `Stride_1;
-                tr.i_Exception_Handling[12]     == `Do_Not_Flush_Denormalized_Results_to_Zero_Half;
+                tr.i_Exception_Handling[12]     == `Do_Not_Flush_Denormalized_Results_to_Zero_Half;// Flush_Denormalized_Results_to_Zero_Half Do_Not_Flush_Denormalized_Results_to_Zero_Half
                 tr.i_Exception_Handling[11:10]  == `Length_1;
                 tr.i_Exception_Handling[9]      == `Trap_Disabled_for_Input_Denormal;
                 tr.i_Exception_Handling[8]      == `Standard_BFloat16_Behaviors;
@@ -245,21 +176,92 @@ class PE_sequence_fmopa extends PE_sequence;
                 tr.i_Exception_Handling[2]      == `Not_Affect_Output_Elements;
                 tr.i_Exception_Handling[1]      == `IEEE_Handling_Floating_Point_Numbers;
                 tr.i_Exception_Handling[0]      == `Do_Not_Flush_Denormalized_Results_to_Zero_S_D_BF;
+                
+                if (current_scenario == SC_ROUNDING_EDGE) {
+                    if (tr.i_Compute_Precision == `FP32) {
+                        tr.i_Operand_C[127:32] == 96'b0;
+                        i_Operand_A[30:23] inside {[50:100]}; 
+                        i_Operand_B[30:23] inside {[50:100]};
+                        
+                        if (round_sub_case == 0) { // Tie Case (0.5 ULP)
+                            (int'(i_Operand_C[30:23]) + 127) == (int'(i_Operand_A[30:23]) + int'(i_Operand_B[30:23]) + 24);
+                            i_Operand_C[0] == 1'b0; 
+                        }
+                        else if (round_sub_case == 1) { // Sticky Case
+                            (int'(i_Operand_C[30:23]) + 127) > (int'(i_Operand_A[30:23]) + int'(i_Operand_B[30:23]) + 25);
+                            (int'(i_Operand_C[30:23]) + 127) < (int'(i_Operand_A[30:23]) + int'(i_Operand_B[30:23]) + 60);
+                        }
+                        else { // 1.0 ULP Case
+                            (int'(i_Operand_C[30:23]) + 127) == (int'(i_Operand_A[30:23]) + int'(i_Operand_B[30:23]) + 23);
+                        }
+                    } 
+                    else {
+                        tr.i_Operand_C[31:16]== 16'd0;
+                        tr.i_Operand_C[63:48]== 16'd0;
+                        tr.i_Operand_C[95:80]== 16'd0; 
+                        tr.i_Operand_C[127:112]== 16'd0;
 
+                        i_Operand_A[14:10] inside {[5:12]};
+                        i_Operand_B[14:10] inside {[5:12]};
 
-                if(i_Compute_Precision == `FP32) {
-                    tr.i_Operand_A[31:0] == 32'h40000001;
-                    tr.i_Operand_B[31:0] == 32'h00000041;
-                    tr.i_Operand_C[31:0] == 32'h00090221;
+                        if (round_sub_case == 0) { // Tie Case
+                            (int'(i_Operand_C[14:10]) + 15) == (int'(i_Operand_A[14:10]) + int'(i_Operand_B[14:10]) + 11);
+                            i_Operand_C[0] == 1'b0;
+                        }
+                        else if (round_sub_case == 1) { // Sticky Case
+                            (int'(i_Operand_C[14:10]) + 15) > (int'(i_Operand_A[14:10]) + int'(i_Operand_B[14:10]) + 12);
+                            (int'(i_Operand_C[14:10]) + 15) < (int'(i_Operand_A[14:10]) + int'(i_Operand_B[14:10]) + 25);
+                        }
+                        else { // 1.0 ULP
+                            (int'(i_Operand_C[14:10]) + 15) == (int'(i_Operand_A[14:10]) + int'(i_Operand_B[14:10]) + 10);
+                        }
+                        i_Operand_A[30:16] != 0; 
+                        i_Operand_B[30:16] != 0;
+                    }
+                }
+                
+                if (tr.i_Compute_Precision == `FP32 && current_scenario != SC_ROUNDING_EDGE) {
                     tr.i_Operand_C[127:32] == 96'b0;
 
-                    // tr.i_Operand_A[31:0] == gen_a;
-                    // tr.i_Operand_B[31:0] == gen_b;
-                    // tr.i_Operand_C[31:0] == gen_c;
-                    // tr.i_Operand_C[127:32] == 96'b0;
+                    if (current_scenario == SC_NAN_INPUT) {
+                        (i_Operand_A[30:23] == FP32_EXP_ONES && i_Operand_A[22:0] != 0) ||
+                        (i_Operand_B[30:23] == FP32_EXP_ONES && i_Operand_B[22:0] != 0) ||
+                        (i_Operand_C[30:23] == FP32_EXP_ONES && i_Operand_C[22:0] != 0);
+                    }
+                    if (current_scenario == SC_INVALID_MUL) { 
+                        ((i_Operand_A[30:0] == 0) && (i_Operand_B[30:23] == FP32_EXP_ONES && i_Operand_B[22:0] == 0)) ||
+                        ((i_Operand_B[30:0] == 0) && (i_Operand_A[30:23] == FP32_EXP_ONES && i_Operand_A[22:0] == 0));
+                    }
+                    if (current_scenario == SC_INVALID_ADD) { 
+                        (i_Operand_A[30:23] == FP32_EXP_ONES && i_Operand_A[22:0] == 0);
+                        (i_Operand_B == 32'h3F800000); 
+                        (i_Operand_C[30:23] == FP32_EXP_ONES && i_Operand_C[22:0] == 0); 
+                        i_Operand_A[31] != i_Operand_C[31]; 
+                    }
+                    if (current_scenario == SC_INF_GEN) {
+                        i_Operand_A[30:23] inside {[200:254]}; 
+                        i_Operand_B[30:23] inside {[200:254]}; 
+                    }
+                    if (current_scenario == SC_INF_OPERAND) {
+                        i_Operand_A[30:23] < 127; i_Operand_B[30:23] < 127;
+                        i_Operand_C[30:23] == FP32_EXP_ONES && i_Operand_C[22:0] == 0; 
+                    }
+                    if (current_scenario == SC_EXACT_CANCEL) {
+                        i_Operand_A == 32'h40000000; i_Operand_B == 32'h40000000; i_Operand_C == 32'hC0800000; 
+                    }
+                    if (current_scenario == SC_TINY_FMA) {
+                        i_Operand_C[30:23] inside {[100:150]}; 
+                        if (tiny_sub_case == 0) { // 指数直接下溢
+                            i_Operand_A[30:23] inside {[1:60]}; i_Operand_B[30:23] inside {[1:60]}; 
+                            (int'(i_Operand_A[30:23]) + int'(i_Operand_B[30:23])) <= 127;
+                        } else { // 规格化导致下溢
+                            i_Operand_A[30:23] == 0; i_Operand_B[30:23] inside {[0:5]}; 
+                            i_Operand_A[22:5] == 0; i_Operand_A[4:0]  != 0; 
+                        }
+                    }
                 }
-                else if(i_Compute_Precision == `FP16) {
-                    // 对于其他精度，保持完全随机
+
+                else if (tr.i_Compute_Precision == `FP16 && current_scenario != SC_ROUNDING_EDGE) {
                     tr.i_Operand_A[31:16] inside {[16'h0000:16'hffff]};
                     tr.i_Operand_B[31:16] inside {[16'h0000:16'hffff]};
                     tr.i_Operand_A[15:0] inside {[16'h0000:16'hffff]};
@@ -267,20 +269,70 @@ class PE_sequence_fmopa extends PE_sequence;
                     tr.i_Operand_C[31:16]== 16'd0;
                     tr.i_Operand_C[63:48]== 16'd0;
                     tr.i_Operand_C[95:80]== 16'd0; 
-                    tr.i_Operand_C[127:112]== 16'd0;                      
+                    tr.i_Operand_C[127:112]== 16'd0;
+
+                    if (current_scenario == SC_NAN_INPUT) {
+                        (i_Operand_A[14:10] == FP16_EXP_ONES && i_Operand_A[9:0] != 0) ||
+                        (i_Operand_B[14:10] == FP16_EXP_ONES && i_Operand_B[9:0] != 0) ||
+                        (i_Operand_C[14:10] == FP16_EXP_ONES && i_Operand_C[9:0] != 0);
+                        i_Operand_A[30:26] dist { FP16_EXP_ONES :/ 10, [0:30] :/ 90 };
+                        i_Operand_B[30:26] dist { FP16_EXP_ONES :/ 10, [0:30] :/ 90 };
+                    }
+                    if (current_scenario == SC_INVALID_MUL) {
+                        ((i_Operand_A[14:0] == 0) && (i_Operand_B[14:10] == FP16_EXP_ONES && i_Operand_B[9:0] == 0)) ||
+                        ((i_Operand_B[14:0] == 0) && (i_Operand_A[14:10] == FP16_EXP_ONES && i_Operand_A[9:0] == 0));
+                        i_Operand_A[30:16] != 0; i_Operand_B[30:16] != 0;
+                    }
+                    if (current_scenario == SC_INVALID_ADD) {
+                        (i_Operand_A[14:10] == FP16_EXP_ONES && i_Operand_A[9:0] == 0); 
+                        (i_Operand_B[15:0] == 16'h3C00); 
+                        (i_Operand_C[14:10] == FP16_EXP_ONES && i_Operand_C[9:0] == 0); 
+                        i_Operand_A[15] != i_Operand_C[15]; 
+                        i_Operand_A[30:26] inside {[1:20]}; i_Operand_B[30:26] inside {[1:20]};
+                    }
+                    if (current_scenario == SC_INF_GEN) {
+                        i_Operand_A[14:10] inside {[25:30]}; i_Operand_B[14:10] inside {[25:30]};
+                        i_Operand_A[30:26] inside {[25:30]}; i_Operand_B[30:26] inside {[25:30]}; 
+                    }
+                    if (current_scenario == SC_EXACT_CANCEL) {
+                        i_Operand_A[15:0] == 16'h4000; i_Operand_B[15:0] == 16'h4000; i_Operand_C[15:0] == 16'hC400; 
+                        i_Operand_A[31:16] == 16'h4000; i_Operand_B[31:16] == 16'h4000;
+                    }
+                    if (current_scenario == SC_TINY_FMA) {
+                        i_Operand_C[14:10] inside {[10:20]}; 
+                        if (tiny_sub_case == 0) { // 指数直接下溢
+                            i_Operand_A[14:10] inside {[1:14]}; i_Operand_B[14:10] inside {[1:14]}; 
+                            (int'(i_Operand_A[14:10]) + int'(i_Operand_B[14:10])) <= 15;
+                        } else { // 规格化导致下溢
+                            i_Operand_A[14:10] == 0; i_Operand_B[14:10] inside {[0:3]};
+                            i_Operand_A[9:3] == 0; i_Operand_A[2:0] != 0;
+                        }
+                        i_Operand_A[30:26] inside {[0:10]}; i_Operand_B[30:26] inside {[0:10]};
+                    }
+                }
+                
+                if (current_scenario == SC_ZERO_ADD) {
+                    if (tr.i_Compute_Precision == `FP32) {
+                        i_Operand_A[30:0] == 0; i_Operand_B[30:0] == 0; i_Operand_C[30:0] == 0;
+                    } else {
+                        i_Operand_A[14:0] == 0; i_Operand_B[14:0] == 0; i_Operand_C[14:0] == 0;
+                        i_Operand_A[30:16] == 0; i_Operand_B[30:16] == 0;
+                    }
+                }
+                if (current_scenario == SC_INF_SAME_SIGN) {
+                    if (tr.i_Compute_Precision == `FP32) {
+                        i_Operand_A == 32'h7F800000; i_Operand_B == 32'h3F800000; i_Operand_C == 32'h7F800000;
+                    } else {
+                        i_Operand_A[15:0] == 16'h7C00; i_Operand_B[15:0] == 16'h3C00; i_Operand_C[15:0] == 16'h7C00;
+                        i_Operand_A[31:16] == 16'h7C00; i_Operand_B[31:16] == 16'h3C00; 
+                    }
                 }
             }) begin
-               `uvm_error("RND", "Transaction Randomization failed")
+               `uvm_error("RND", "Randomization failed")
             end
-            
             finish_item(tr);
-
         end
-        
-        if (starting_phase != null) begin
-            starting_phase.drop_objection(this);
-        end
-
+        if (starting_phase != null) starting_phase.drop_objection(this);
         `uvm_info("SEQ", "Sequence completed", UVM_LOW)
     endtask
 endclass
