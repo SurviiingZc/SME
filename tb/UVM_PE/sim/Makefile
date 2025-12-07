@@ -57,4 +57,4 @@ verdi:
 
 clean:
 	rm -rf build_dir *.o *.log *.vdb *simv* *.key *.fsdb csrc*
-	rm -rf csrc vdCovLog verdi*
+	rm -rf csrc vdCovLog verdi* *Debug* *.png

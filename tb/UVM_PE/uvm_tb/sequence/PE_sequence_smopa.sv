@@ -33,25 +33,25 @@ class PE_sequence_smopa extends PE_sequence;
                 tr.i_Exception_Handling[19:17]  == 3'b0;
                 tr.i_Exception_Handling[14:0]   == 15'b0;
                 tr.i_Operand_C[127:32]          == 96'b0;
-                tr.i_Operand_A[31:0] == 32'h00000001;
-                tr.i_Operand_B[31:0] == 32'h00000002;
-                tr.i_Operand_C[31:0] == 32'h00000003;
+                // tr.i_Operand_A[31:0] == 32'h00000001;
+                // tr.i_Operand_B[31:0] == 32'h00000002;
+                // tr.i_Operand_C[31:0] == 32'h00000003;
                 // tr.i_Exception_Handling[16:15] == 2'b01;
 
-                // i_Operand_A[31:0] dist {
-                //     [32'h00800001:32'h7fffffff] :/ 50,
-                //     [32'h80800001:32'hffffffff] :/ 50
-                // };
+                i_Operand_A[31:0] dist {
+                    [32'h00800001:32'h7fffffff] :/ 50,
+                    [32'h80800001:32'hffffffff] :/ 50
+                };
 
-                // i_Operand_B[31:0] dist {
-                //     [32'h00800001:32'h3fffffff] :/ 50,
-                //     [32'h80800001:32'hbfffffff] :/ 50
-                // };
+                i_Operand_B[31:0] dist {
+                    [32'h00800001:32'h3fffffff] :/ 50,
+                    [32'h80800001:32'hbfffffff] :/ 50
+                };
 
-                // i_Operand_C[31:0] dist {
-                //     [32'h00800001:32'h3fffffff] :/ 50,
-                //     [32'h80800001:32'hbfffffff] :/ 50
-                // };
+                i_Operand_C[31:0] dist {
+                    [32'h00800001:32'h3fffffff] :/ 50,
+                    [32'h80800001:32'hbfffffff] :/ 50
+                };
                 
                 // i_Exception_Handling[16:15] dist {
                 //     2'b00 := 25,
