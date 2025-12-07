@@ -114,7 +114,7 @@
 `include "uvm_macros.svh"
 
 class PE_sequence_fmops extends PE_sequence;
-    `uvm_object_utils(PE_sequence_fmsub)
+    `uvm_object_utils(PE_sequence_fmops)
 
     function new(string name = "PE_sequence_fmsub");
         super.new(name);

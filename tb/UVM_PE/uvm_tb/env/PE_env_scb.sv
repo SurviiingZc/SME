@@ -48,11 +48,11 @@ class PE_env_scb extends uvm_scoreboard;
             // 检查结果是否匹配
             if (tr_dut.o_Result === tr_ref.expected) begin
                 `uvm_info("SB", $sformatf("PASS: Transaction %0d matched DUT=0x%08h, REF=0x%08h\n", 
-                           total_count, tr_dut.o_Result, tr_ref.expected), UVM_LOW)
+                           total_count, tr_dut.o_Result, tr_ref.expected), UVM_MEDIUM)
             end else begin
                 error_count++;
-                `uvm_error("SB", $sformatf("FAIL: Transaction %0d mismatch! DUT=0x%08h, REF=0x%08h\n", 
-                          total_count, tr_dut.o_Result, tr_ref.expected))
+                `uvm_error("SB", $sformatf("FAIL: Transaction %0d mismatch! Inputs: A=0x%08h, B=0x%08h, C=0x%08h, DUT=0x%08h, REF=0x%08h\n", 
+                          total_count, tr_dut.i_Operand_A, tr_dut.i_Operand_B, tr_dut.i_Operand_C, tr_dut.o_Result, tr_ref.expected))
             end
         end
     endtask

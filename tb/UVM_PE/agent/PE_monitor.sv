@@ -84,7 +84,11 @@
         task monitor_outputs();
             forever begin
                 @(vif.mon_cb);
-                
+                if(vif.i_Compute_Precision == `INT16 || vif.i_Compute_Precision == `INT8) begin
+                    pipeline_depth = 3; // 整数模式3周期延迟
+                end else begin
+                    pipeline_depth = 7; // 浮点模式7周期延迟
+                end
                 // 检查队列中是否有事务已完成流水线
                 if(pipeline_stages.size() > 0 && pipeline_stages[0] >= pipeline_depth) begin
                     // 获取最早的事务
@@ -152,7 +156,7 @@
         function void report_phase(uvm_phase phase);
             super.report_phase(phase);
             `uvm_info(get_type_name(), 
-                $sformatf("Captured %0d transactions", mon_item_num), UVM_LOW)
+                $sformatf("Captured %0d transactions", mon_item_num), UVM_MEDIUM)
         endfunction
     endclass
 `else
@@ -221,7 +225,7 @@
         function void report_phase(uvm_phase phase);
             super.report_phase(phase);
             `uvm_info(get_type_name(), 
-                $sformatf("Captured %0d transactions", mon_item_num), UVM_LOW)
+                $sformatf("Captured %0d transactions", mon_item_num), UVM_MEDIUM)
         endfunction
     endclass
 `endif
