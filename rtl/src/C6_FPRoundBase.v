@@ -11,8 +11,8 @@ module C6_FPRoundBase #(
     parameter EXP_WIDTH  = 9         
 )(
     input                               i_sign                      ,
-    input  signed   [EXP_WIDTH-1:0]     i_biased_exp                ,
-    input  signed   [EXP_WIDTH-1:0]     i_biased_exp_unconstrained  ,
+    input           [EXP_WIDTH-1:0]     i_biased_exp                ,
+    input           [EXP_WIDTH-1:0]     i_biased_exp_unconstrained  ,
     input  signed   [EXP_WIDTH-1:0]     i_exp_true                  ,
     input  signed   [EXP_WIDTH-1:0]     i_exponent                  ,
     input           [IN_WIDTH-1:0]      i_adjusted_mantissa         ,
@@ -162,8 +162,8 @@ module C6_FPRoundBase #(
         ({(FP16_F+1){i_is_fp16}} & mant_fp16_uncon) |
         ({(FP32_F+1){i_is_fp32}} & mant_fp32_uncon);
 
-    wire [EXP_WIDTH-1:0]      exponent_max         = (i_is_bf16) ? 9'd255 :(i_is_fp16) ? 9'd31 :9'd255         ;
-    wire [EXP_WIDTH-1:0]      exponent_max_plus1   = (i_is_bf16) ? 9'd256 :(i_is_fp16) ? 9'd32 :9'd256         ;
+    wire [10:0]      exponent_max         = (i_is_bf16) ? 255 :(i_is_fp16) ? 31 :255         ;
+    wire [10:0]      exponent_max_plus1   = (i_is_bf16) ? 256 :(i_is_fp16) ? 32 :256         ;
     
     // wire                    error_gt_half        = (error > half)                                        ;
     // wire                    error_eq_half        = (error == half)                                       ;
@@ -219,12 +219,12 @@ module C6_FPRoundBase #(
         round_deor2nor_fp32;
 
 
-    wire signed [EXP_WIDTH:0] biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
-    wire        [FP32_F+1 :0] int_mant_uncon_final           = (round_up_unconstrained)   ? (int_mant_round_uncon)     : int_mant_unconstrained         ;    
-    wire signed [EXP_WIDTH:0] biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
-    wire signed [EXP_WIDTH:0] biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
-    wire signed [EXP_WIDTH:0] biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
-    wire        [FP32_F+1 :0] int_mant_round_final           = (round_up)                 ?  int_mant_round            : int_mant                       ;
+    wire [10:0]             biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+    wire [FP32_F+1 :0]      int_mant_uncon_final           = (round_up_unconstrained)   ? (int_mant_round_uncon)     : int_mant_unconstrained         ;    
+    wire [10:0]             biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+    wire [10:0]             biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+    wire [10:0]             biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+    wire [FP32_F+1 :0]      int_mant_round_final           = (round_up)                 ?  int_mant_round            : int_mant                       ;
     
     // UF OF
     wire Is_FZ16               = FPCR_FZ16 && (i_N == 0);
@@ -237,10 +237,9 @@ module C6_FPRoundBase #(
     wire flush_zero_condition2 =  ALTFP && (Is_flush) && (biased_exp_round_uncon_final < 1) && (int_mant_uncon_final != 0) ;
     //wire flush_zero_condition3 = (i_exp_true == 0) && (op == 0);
     
-    wire overflow_inf          = (biased_exp_round >= exponent_max) && (IEEE_half) && overflow_to_inf;
-    wire overflow_maxnor       = (biased_exp_round >= exponent_max) && (IEEE_half) && (!overflow_to_inf);
-    wire overflow_NaN          = (biased_exp_round >= exponent_max_plus1) && (Alter_half);
-
+    wire overflow_inf          = (biased_exp_round_final >= exponent_max) && (IEEE_half) && overflow_to_inf;
+    wire overflow_maxnor       = (biased_exp_round_final >= exponent_max) && (IEEE_half) && (!overflow_to_inf);
+    wire overflow_NaN          = (biased_exp_round_final >= exponent_max_plus1) && (Alter_half);
     always @(*) begin
     case (1'b1)
         // flush_zero_condition3:

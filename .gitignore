@@ -6,5 +6,5 @@ tb/UVM_PE/sim/csrc*
 /tb/UVM_PE/sim/*log
 /tb/UVM_PE/sim/*fsdb
 /tb/UVM_PE/sim/verdiLog
-/tb/UVM_PE/sim/*Debug*
-/tb/UVM_PE/sim/*.png
+tb/UVM_PE/sim/novas.conf
+tb/UVM_PE/sim/novas.rc

@@ -124,8 +124,8 @@ class PE_sequence_fmopa extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
 
-        for(i = 0; i < 2000; i++) begin // 增加一点循环次数以覆盖更多场景
-            `uvm_info("SEQ", $sformatf("Generating test %0d", i), UVM_LOW)
+        for(i = 0; i < 32768; i++) begin // 增加一点循环次数以覆盖更多场景
+            `uvm_info("SEQ", $sformatf("Generating test %0d", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 
             // ======================================================
@@ -213,7 +213,7 @@ class PE_sequence_fmopa extends PE_sequence;
             if (!tr.randomize() with {
                 // 固定控制信号
                 tr.i_Compute_Mode               == `Outer_Product;
-                tr.i_Compute_Precision          == `FP16;
+                tr.i_Compute_Precision      inside {`FP16,`FP32};
                 tr.i_Is_Widening                == `Operands_Is_Not_Widening;
                 tr.i_Add_or_Subtract            == `Addition_Operation;
                 tr.i_Active_Element_A           == 4'b1111;
@@ -224,7 +224,7 @@ class PE_sequence_fmopa extends PE_sequence;
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;
-                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero;
+                // tr.i_Exception_Handling[16:15]  == `Round_Towards_Minus_Infinity; //Round_to_Nearest_Mode Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero          
                 // tr.i_Exception_Handling[16:15] dist {
                 //     `Round_Towards_Plus_Infinity  := 25,
                 //     `Round_to_Nearest_Mode        := 25,

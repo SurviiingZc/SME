@@ -1,9 +1,24 @@
 export FSDB_NAME=mult
 SEED=2
-VERB=UVM_MEDIUM
+#=========================================#
+#				Log Setting				  #
+#=========================================#
+VERB=UVM_LOW #只打印错误信息
+# VERB=UVM_MEDIUM #打印输入输出和结果信息
+# VERB=UVM_HIGH
+#=========================================#
+#				Test case				  #
+#=========================================#
 # TESTNAME=PE_test_int
 TESTNAME=PE_test_fmop 
+#TESTNAME=PE_test_fdot
+#TESTNAME=PE_test_bfmop
+#TESTNAME=PE_test_all
+
 Is_PipLine=+define+Is_PipLine
+#=========================================#
+#				Design file    		      #
+#=========================================#
 MACRO_DEFS = ../rtl/macro_definition.svh
 RTL_DIR = ../rtl
 
