@@ -3,6 +3,7 @@ SEED=2
 VERB=UVM_MEDIUM
 # TESTNAME=PE_test_int
 TESTNAME=PE_test_fmop 
+# TESTNAME=PE_test_fdot
 Is_PipLine=+define+Is_PipLine
 MACRO_DEFS = ../rtl/macro_definition.svh
 RTL_DIR = ../rtl
