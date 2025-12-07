@@ -11,14 +11,10 @@ VERB=UVM_LOW #只打印错误信息
 #=========================================#
 # TESTNAME=PE_test_int
 TESTNAME=PE_test_fmop 
-<<<<<<< HEAD
 #TESTNAME=PE_test_fdot
 #TESTNAME=PE_test_bfmop
 #TESTNAME=PE_test_all
 
-=======
-# TESTNAME=PE_test_fdot
->>>>>>> 22f95a6167f3f26aa9ed10ca1c6445cecd8abada
 Is_PipLine=+define+Is_PipLine
 #=========================================#
 #				Design file    		      #
