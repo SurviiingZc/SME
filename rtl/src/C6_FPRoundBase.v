@@ -231,33 +231,46 @@ module C6_FPRoundBase #(
     wire Is_FZ                 = FPCR_FZ   && (i_N == 1); 
     wire Is_exp_lt_mini        = (i_exponent < i_minimum_exp) ? 1'b1 : 1'b0;
     wire Is_flush              = Is_FZ16 | Is_FZ;
-    wire IEEE_half             = i_N == 1 | FPCR_APH == 0;
-    wire Alter_half            = i_N == 0 && FPCR_APH == 1;
+    // wire IEEE_half             = i_N == 1 | FPCR_APH == 0;
+    // wire Alter_half            = i_N == 0 && FPCR_APH == 1;
     wire flush_zero_condition1 = !ALTFP && (Is_flush) && (Is_exp_lt_mini); 
     wire flush_zero_condition2 =  ALTFP && (Is_flush) && (biased_exp_round_uncon_final < 1) && (int_mant_uncon_final != 0) ;
     //wire flush_zero_condition3 = (i_exp_true == 0) && (op == 0);
-    
-    wire overflow_inf          = (biased_exp_round_final >= exponent_max) && (IEEE_half) && overflow_to_inf;
-    wire overflow_maxnor       = (biased_exp_round_final >= exponent_max) && (IEEE_half) && (!overflow_to_inf);
-    wire overflow_NaN          = (biased_exp_round_final >= exponent_max_plus1) && (Alter_half);
-    always @(*) begin
-    case (1'b1)
-        // flush_zero_condition3:
-        //     o_Rounded_result = o_FPZero_op0;
-        flush_zero_condition1: 
+    wire overflow_inf          = (biased_exp_round_final >= exponent_max) && overflow_to_inf;
+    wire overflow_maxnor       = (biased_exp_round_final >= exponent_max) && (!overflow_to_inf);
+    // wire overflow_inf          = (biased_exp_round_final >= exponent_max) && (IEEE_half) && overflow_to_inf;
+    // wire overflow_maxnor       = (biased_exp_round_final >= exponent_max) && (IEEE_half) && (!overflow_to_inf);
+    // wire overflow_NaN          = (biased_exp_round_final >= exponent_max_plus1) && (Alter_half);
+
+    always @(*) begin 
+        if(flush_zero_condition1 || flush_zero_condition2) begin
             o_Rounded_result = o_FPZero;
-        flush_zero_condition2: 
-            o_Rounded_result = o_FPZero;
-        overflow_inf: 
+        end else if(overflow_inf) begin
             o_Rounded_result = o_FPInfinity;
-        overflow_maxnor:
+        end else if(overflow_maxnor) begin
             o_Rounded_result = o_FPMaxNormal;
-        overflow_NaN: 
-            o_Rounded_result = o_FPNaN;
-        default: 
+        end else begin
             o_Rounded_result = o_Normal_Result;
-    endcase
+        end
     end
+    // always @(*) begin
+    // case (1'b1)
+    //     // flush_zero_condition3:
+    //     //     o_Rounded_result = o_FPZero_op0;
+    //     flush_zero_condition1: 
+    //         o_Rounded_result = o_FPZero;
+    //     flush_zero_condition2: 
+    //         o_Rounded_result = o_FPZero;
+    //     overflow_inf: 
+    //         o_Rounded_result = o_FPInfinity;
+    //     overflow_maxnor:
+    //         o_Rounded_result = o_FPMaxNormal;
+    //     overflow_NaN: 
+    //         o_Rounded_result = o_FPNaN;
+    //     default: 
+    //         o_Rounded_result = o_Normal_Result;
+    // endcase
+    // end
 
     C6_FPInfinity u_FPInfinity1(
         .i_Sign        ( i_sign             ),
