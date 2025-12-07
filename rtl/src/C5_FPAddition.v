@@ -125,7 +125,7 @@ assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) 
 assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 
                                     (i_sticky_bit)                                                       ;
-assign o_Sticky_Bit          = Sticky_Bit                                                                   ;
+assign o_Sticky_Bit          = Sticky_Bit | (| o_Temp_Mant[24:0])                                           ;
 assign Mant_Min_Or           = |Fuse_Mant_Min                                                               ;
 assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
 assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Temp_Mant2) ? 1'd1 : 1'd0      ;
