@@ -11,6 +11,7 @@ import PE_agent_pkg::*;
 `include "PE_env_refm.sv"
 `include "PE_env_scb.sv"
 `include "PE_env.sv" //env包含上面组件，要再最后引用
+`include "PE_cov_collector.sv"
 
 
 endpackage : PE_env_pkg
