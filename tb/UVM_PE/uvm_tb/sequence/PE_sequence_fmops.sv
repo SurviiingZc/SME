@@ -131,7 +131,8 @@ class PE_sequence_fmops extends PE_sequence;
         SC_EXACT_CANCEL    = 7, 
         SC_ZERO_ADD        = 8, 
         SC_TINY_FMA        = 9, 
-        SC_ROUNDING_EDGE   = 10 
+        SC_ROUNDING_EDGE   = 10,
+        SC_1_2_3           = 11
     } scenario_e;
 
     const bit [7:0] FP32_EXP_ONES = 8'hFF;
@@ -147,7 +148,7 @@ class PE_sequence_fmops extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
 
-        for(i = 0; i < 32768; i++) begin
+        for(i = 0; i < 30000; i++) begin
             tr = PE_seq_item::type_id::create("tr");
             start_item(tr);
 
@@ -164,7 +165,8 @@ class PE_sequence_fmops extends PE_sequence;
                     SC_EXACT_CANCEL  := 5,
                     SC_ZERO_ADD      := 5,
                     SC_TINY_FMA      := 20,
-                    SC_ROUNDING_EDGE := 20
+                    SC_ROUNDING_EDGE := 20,
+                    SC_1_2_3         := 0
                 };
             }) begin
                 `uvm_error("SEQ", "Scenario randomization failed")
@@ -185,11 +187,17 @@ class PE_sequence_fmops extends PE_sequence;
                 tr.i_Active_Element_B           == 4'b1111;
                 tr.i_ZA_Base_Address            == 32'hffff;
                 
-                tr.i_Compute_Precision          == `FP32;
+                tr.i_Compute_Precision          == `FP16;
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
-                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero Round_to_Nearest_Mode         
+                i_Exception_Handling[16:15] dist {
+                    2'b00 := 25,
+                    2'b01 := 25,
+                    2'b10 := 25,
+                    2'b11 :/ 25 
+                };
+                // tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero Round_to_Nearest_Mode         
                 tr.i_Exception_Handling[14:13]  == `Stride_1;
                 tr.i_Exception_Handling[12]     == `Do_Not_Flush_Denormalized_Results_to_Zero_Half;// Flush_Denormalized_Results_to_Zero_Half Do_Not_Flush_Denormalized_Results_to_Zero_Half
                 tr.i_Exception_Handling[11:10]  == `Length_1;
