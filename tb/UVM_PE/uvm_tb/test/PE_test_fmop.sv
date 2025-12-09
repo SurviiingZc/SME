@@ -32,7 +32,7 @@ class PE_test_fmop extends uvm_test;
         `uvm_info("TEST", "Running fmop test", UVM_LOW)
         seq_fmopa.start(env.agent.sequencer);
         // seq_fmopa_w.start(env.agent.sequencer);
-        seq_fmops.start(env.agent.sequencer);  
+        seq_fmops.start(env.agent.sequencer);
         // seq_fmops_w.start(env.agent.sequencer);
 
         phase.drop_objection(this);
