@@ -51,6 +51,9 @@ wire [31:0]      Grap_Result   [3:0]        ;
 
 wire [31:0]      T_Result      [3:0]        ;
 wire [31:0]      T_Verify      [3:0]        ;
+wire             T_Defau_NaN   [3:0]        ;
+wire             T_Infinity    [3:0]        ;
+wire             T_Ve_Zero     [3:0]        ;
 wire [ 3:0]      Done                       ;
 wire [ 3:0]      SignP                      ;
 wire [ 3:0]      InfP                       ;
@@ -253,7 +256,11 @@ generate
                                                         {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j])}} & FPInfinity[i*2+j] |
                                                         {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & FPMulAdd_Zero[i*2+j]) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i*2+j]))}} & FPZero[i*2+j];
             assign T_Verify[i*2+j]                  = {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j])}};
+            assign T_Defau_NaN[i*2+j]               = ((InvalidOp[i*2+j] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i*2+j])));
+            assign T_Infinity [i*2+j]               = ((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j]);
+            assign T_Ve_Zero  [i*2+j]               = ((is_Addend_FP32 | is_FPMulAdd_ZA) & FPMulAdd_Zero[i*2+j]) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i*2+j]))                                              ;
         end
+
     end
 endgenerate
 

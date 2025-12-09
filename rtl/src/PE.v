@@ -817,6 +817,8 @@ Pipline_5 u_Pipline_5(
     .o_Temp_Mant            ( P5_Temp_Mant            )
 );
 
+wire [127:0] Round_Result;
+
 generate
     for(i = 0 ; i < 4 ; i = i + 1) begin : Add_ZA_Round
         C6_Round#(
@@ -832,7 +834,7 @@ generate
             .i_sticky_bit          ( P5_Sticky_Bit[i]           ),
             .o_rounded_result      ( P5_Round_Result[i*32+:32]  )
         );
-        wire [127:0] Round_Result  = P5_N ? {4{P5_FP32_Result }}  : P5_Round_Result[i*32+:32]                   ;
+        assign Round_Result[i*32+:32]  = P5_N[i] ? P5_FP32_Result : P5_Round_Result[i*32+:32]                   ;
         assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : Round_Result    ;
     end
 endgenerate

@@ -61,7 +61,7 @@ C3_FPUnpackAll u_FPUnpackAll(
     .o_Mant2               ( T_Mant2               ),
     .o_Value2              (                       ),
     .o_IsBfloat16          ( o_IsBfloat16          ),
-    .o_N                   ( o_N                   ) 
+    .o_N                   ( o_N                   )
 );
 
 C3_ExceptionHandling u_ExceptionHandling(
