@@ -835,7 +835,7 @@ generate
             .o_rounded_result      ( P5_Round_Result[i*32+:32]  )
         );
         assign Round_Result[i*32+:32]  = P5_N[i] ? P5_FP32_Result : P5_Round_Result[i*32+:32]                   ;
-        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : Round_Result    ;
+        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : Round_Result[i*32+:32]    ;
     end
 endgenerate
 
