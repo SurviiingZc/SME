@@ -13,14 +13,14 @@ class PE_sequence_fmla extends PE_sequence;
         int i;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
-        for(i = 0; i < 1024; i++)begin
+        for(i = 0; i < 30000; i++)begin
             `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 
             start_item(tr);
             if (!tr.randomize() with {
                 tr.i_Compute_Mode               ==  `Inner_Product;
-                tr.i_Compute_Precision          ==  `FP16;               //inside  {`FP16, `FP32};
+                tr.i_Compute_Precision          inside  {`FP16, `FP32};
                 tr.i_Is_Widening                ==  `Operands_Is_Not_Widening;
                 tr.i_Add_or_Subtract            ==  `Addition_Operation;
                 //tr.i_ZmIsSigned                 ==  `Zm_Is_Unsigned;
