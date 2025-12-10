@@ -49,7 +49,7 @@ class PE_env_scb extends uvm_scoreboard;
             if(tr_dut.i_Compute_Precision == `FP32 | tr_dut.i_Is_Widening == `Operands_Is_Widening) begin
                 if (tr_dut.o_Result[31:0] === tr_ref.expected[31:0]) begin
                 `uvm_info("SB", $sformatf("PASS: Transaction %0d matched DUT=0x%08h, REF=0x%08h\n", 
-                           total_count, tr_dut.o_Result, tr_ref.expected), UVM_MEDIUM)
+                           total_count, tr_dut.o_Result[31:0], tr_ref.expected[31:0]), UVM_MEDIUM)
                 end else begin
                     error_count++;
                     `uvm_error("SB", $sformatf("FAIL: Transaction %0d mismatch! Inputs: A=0x%08h, B=0x%08h, C=0x%08h, DUT=0x%08h, REF=0x%08h\n", 
