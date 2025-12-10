@@ -570,7 +570,7 @@ bool overflow_handling(mpfr_t mpfr_sum, FPCR_Type fpcr, uint8_t N, mpfr_prec_t p
                 return 1;
             } 
         }
-        mpfr_clears(mantissa_scaled, int_part, error_unconstrained, mantissa_scaled_1, int_part_1, error_unconstrained_1,NULL);
+
     }
     else{ // altfp == FALSE
         switch (rounding) {
