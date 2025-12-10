@@ -3,15 +3,15 @@ SEED=2
 #=========================================#
 #				Log Setting				  #
 #=========================================#
-VERB=UVM_LOW #只打印错误信息
-# VERB=UVM_MEDIUM #打印输入输出和结果信息
+# VERB=UVM_LOW #只打印错误信息
+VERB=UVM_MEDIUM #打印输入输出和结果信息
 # VERB=UVM_HIGH
 #=========================================#
 #				Test case				  #
 #=========================================#
 # TESTNAME=PE_test_int
-TESTNAME=PE_test_fmop 
-#TESTNAME=PE_test_fdot
+# TESTNAME=PE_test_fmop 
+TESTNAME=PE_test_fdot
 #TESTNAME=PE_test_bfmop
 #TESTNAME=PE_test_all
 
