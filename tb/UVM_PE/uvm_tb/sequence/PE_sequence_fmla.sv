@@ -136,7 +136,7 @@ class PE_sequence_fmla extends PE_sequence;
         int round_sub_case;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
-        for(i = 0; i < 1024; i++)begin
+        for(i = 0; i < 30000; i++)begin
             `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
             start_item(tr);
@@ -175,7 +175,6 @@ class PE_sequence_fmla extends PE_sequence;
                 tr.i_Active_Element_A           == 4'b1111;
                 tr.i_Active_Element_B           == 4'b1111;
                 tr.i_ZA_Base_Address            == 32'hffff;
-                tr.i_Compute_Precision          == `FP32;
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
