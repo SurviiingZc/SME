@@ -257,7 +257,7 @@ generate
             assign FPDefaultNaN_Data_Width[i*2+j]  = ((InvalidOp[i*2+j] & is_Addend_FP32 & (is_FPMulAdd_ZA | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & SBFDotAdd_FPDefaultNaN[i*2+j]))         ;
             assign FPInfinity_Sign[i*2+j]          = ((is_FPMulAdd_ZA & FPMulAdd_N_FPInfinity[i*2+j]) | (is_FPDotAdd_ZA & FPDotAdd_N_FPInfinity[i*2+j])) & 1'd1 | (is_SBFDotAdd_ZA) & (i_Sign1[j] ^ i_Sign2[i]);
             assign FPInfinity_Data_Width[i*2+j]    = (is_FPMulAdd_ZA & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j]) & is_Addend_FP32) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j]) & is_Addend_FP32) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j]);
-            assign FPZero_Data_Width[i*2+j]        = (is_FPMulAdd_ZA & FPMulAdd_Zero[i*2+j] & is_Addend_FP32) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] & is_Addend_FP32) | (is_SBFDotAdd_ZA & SBFDotAdd_Zero);
+            assign FPZero_Data_Width[i*2+j]        = (is_FPMulAdd_ZA & (FPMulAdd_Zero[i*2+j] | FPMulAdd_Diff_Sign_Zero[i*2+j]) & is_Addend_FP32) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] & is_Addend_FP32) | (is_SBFDotAdd_ZA & SBFDotAdd_Zero);
             assign FPZero_Sign[i*2+j]              = (is_FPMulAdd_ZA & FPMulAdd_Zero) & Temp_SignA[i*2+j] | (is_FPMulAdd_ZA & FPDotAdd_Zero) & SignPa[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero) & (i_Sign1[j] ^ i_Sign2[i]) ;
             assign T_Result[i*2+j]                 = {32{T_Defau_NaN[i*2+j]}} & FPDefaultNaN[i*2+j] | 
                                                         {32{T_Infinity[i*2+j] & ~T_Defau_NaN[i*2+j]}} & FPInfinity[i*2+j] |
