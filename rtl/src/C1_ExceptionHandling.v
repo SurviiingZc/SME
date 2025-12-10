@@ -243,16 +243,16 @@ generate
                                                         | (((i*2 + j) == 2'd0) & is_FPDotAdd_ZA & ((Inf1[0] & Zero2[0]) | (Zero1[0] & Inf2[0]) | (Inf1[1] & Zero2[1]) | (Zero1[1] & Inf2[1]) | (InfPa[i*2+j] & InfPb[i*2+j] & (SignPa[i*2+j] != SignPb[i*2+j]))));
             
             //signed to unsigned conversion occurs
-            assign FPMulAdd_P_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd0)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd0))      ;
-            assign FPMulAdd_N_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd1)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd1))      ;
+            assign FPMulAdd_P_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd0)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd0))       ;
+            assign FPMulAdd_N_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd1)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd1))       ;
             assign FPMulAdd_Zero        [i*2+j]    = ZeroA[i*2+j] & ZeroP[i*2+j] & SignP[i*2+j] == Temp_SignA[i*2+j]                            ;
             assign FPMulAdd_Diff_Sign_Zero[i*2+j]  = ZeroA[i*2+j] & ZeroP[i*2+j] & SignP[i*2+j] != Temp_SignA[i*2+j]                            ;
-            assign FPDotAdd_P_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd0)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd0))    ;
-            assign FPDotAdd_N_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd1)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd1))    ;
-            assign FPDotAdd_Zero        [i*2+j]    = ZeroPa[i*2+j] & ZeroPb[i*2+j] & (SignPa[i*2+j] == SignPb[i*2+j])                        ;
-            assign SBFDotAdd_FPDefaultNaN[i*2+j]   = (QNaN1[j] | QNaN2[i] | (Inf1[j] & Zero2[i]) | (Inf2[i] & Zero1[j]))                   ;
-            assign SBFDotAdd_FPInfinity  [i*2+j]   = Inf1[j] | Inf2[i]                                                                        ;
-            assign SBFDotAdd_Zero        [i*2+j]   = Zero1[j] | Zero2[i]                                                                      ;
+            assign FPDotAdd_P_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd0)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd0))        ;
+            assign FPDotAdd_N_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd1)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd1))        ;
+            assign FPDotAdd_Zero        [i*2+j]    = ZeroPa[i*2+j] & ZeroPb[i*2+j] & (SignPa[i*2+j] == SignPb[i*2+j])                           ;
+            assign SBFDotAdd_FPDefaultNaN[i*2+j]   = (QNaN1[j] | QNaN2[i] | (Inf1[j] & Zero2[i]) | (Inf2[i] & Zero1[j]))                        ;
+            assign SBFDotAdd_FPInfinity  [i*2+j]   = Inf1[j] | Inf2[i]                                                                          ;
+            assign SBFDotAdd_Zero        [i*2+j]   = Zero1[j] | Zero2[i]                                                                        ;
 
             assign FPDefaultNaN_Data_Width[i*2+j]  = ((InvalidOp[i*2+j] & is_Addend_FP32 & (is_FPMulAdd_ZA | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & SBFDotAdd_FPDefaultNaN[i*2+j]))         ;
             assign FPInfinity_Sign[i*2+j]          = ((is_FPMulAdd_ZA & FPMulAdd_N_FPInfinity[i*2+j]) | (is_FPDotAdd_ZA & FPDotAdd_N_FPInfinity[i*2+j])) & 1'd1 | (is_SBFDotAdd_ZA) & (i_Sign1[j] ^ i_Sign2[i]);
@@ -263,7 +263,7 @@ generate
                                                         {32{T_Infinity[i*2+j] & ~T_Defau_NaN[i*2+j]}} & FPInfinity[i*2+j] |
                                                         {32{T_Ve_Zero[i*2+j]}} & FPZero[i*2+j] ;
             assign T_Verify[i*2+j]                  = {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j])}};
-            assign T_Defau_NaN[i*2+j]               = ((InvalidOp[i*2+j] & (is_Addend_FP32 | is_FPDotAdd_ZA | (is_FP16 & is_Not_Widening & is_Outer_Product))) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i*2+j])));
+            assign T_Defau_NaN[i*2+j]               = ((InvalidOp[i*2+j] & (is_Addend_FP32 | is_FPDotAdd_ZA | (FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP32 | FMLA_FP16))) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i*2+j])));
             assign T_Infinity [i*2+j]               = ((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j]);
             assign T_Ve_Zero  [i*2+j]               = ((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i*2+j] | FPMulAdd_Diff_Sign_Zero[i*2+j])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i*2+j]))                                              ;
         end
