@@ -548,6 +548,7 @@ C3_FPADDComb u_C3_FPADDComb(
     .i_Vector_Group_Num    ( P2_Vector_Group_Num        ),
     .i_Precision_Addend    ( P2_Precision_Addend        ),
     .i_Compute_Precision   ( P2_Compute_Precision       ),
+    .i_Add_or_Subtract     ( P2_Add_or_Subtract         ),
     .i_Exception_Handling  ( P2_Exception_Handling      ),
     .i_Sticky_Flag         ( P2_Sticky_Flag[0] | P2_Sticky_Flag[3]  ),
     .i_Value1              ( P2_Rounded_result[31:0]    ),
@@ -657,12 +658,12 @@ Pipline_3 u_Pipline_3(
 );
 
 C4_Round#(
-    .IN_WIDTH              ( 49                     ),
+    .IN_WIDTH              ( 48                     ),
     .EXP_WIDTH             ( 10                     )
 )u_C4_Round_InnerProduct(
-    .i_op                  ( P3_Temp_Mant[48:0]     ),
-    .i_exp                 ( P3_Temp_Expo           ),
-    .i_sign                ( P3_Temp_Sign           ),
+    .i_op                  ( P3_Mant                ),
+    .i_exp                 ( P3_Sum_Expo            ),
+    .i_sign                ( P3_Sum_Sign            ),
     .i_Exception_Handling  ( P3_Exception_Handling  ),
     .i_N                   ( P3_N                   ),
     .i_isbfloat16          ( P3_IsBfloat16          ),

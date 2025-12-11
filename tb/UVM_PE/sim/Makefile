@@ -11,8 +11,8 @@ VERB=UVM_LOW #只打印错误信息
 #=========================================#
 # TESTNAME=PE_test_int
 # TESTNAME=PE_test_fmop 
-TESTNAME=PE_test_fdot
-#TESTNAME=PE_test_bfmop
+# TESTNAME=PE_test_fdot
+TESTNAME=PE_test_bfmop
 #TESTNAME=PE_test_all
 
 Is_PipLine=+define+Is_PipLine
@@ -49,7 +49,7 @@ build_dir/%.o: ../C_model/src/%.c | build_dir
 	gcc -std=c99 -I$(C_INC_DIR) -I$(MPFR_INCLUDE) -fPIC -c $< -o $@
 
 comp: c_model
-		vcs -sverilog -full64 +v2k -debug_all -timescale=1ns/1ps \
+		vcs -sverilog -full64 +v2k -debug_all -timescale=1ns/1ps $(Is_PipLine) \
 		-ntb_opts uvm-1.1 -f filelist.f -l comp.log \
 		+incdir+$(RTL_DIR) $(MACRO_DEFS) \
 		-cflags "-std=c99 -I$(C_INC_DIR) -I$(MPFR_INCLUDE)"  \

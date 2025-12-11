@@ -148,6 +148,7 @@ assign Temp_TypeA       = {i_TypeA[11:9],i_TypeA[5:3],i_TypeA[8:6],i_TypeA[2:0]}
 assign Temp_SignA       = {i_SignA[3],i_SignA[1],i_SignA[2],i_SignA[0]}                                         ;
 
 
+
 generate
     for(i = 0 ; i < 4 ; i = i + 1) begin : OP_A
         assign InfA[i]  = (Temp_TypeA[i*3+:3] == `FPType_Infinity) ? 1'd1 : 1'd0    ;
@@ -170,8 +171,8 @@ generate
         assign NaNResult            [i]         = (NaNProcess == 1'd1) ? FP16NoWidResult[i] : FPNumNaNResult      ;
         assign NaNDone              [i]         = (NaNProcess == 1'd1) ? FP16NoWidDone[i] : FPNumNaNDone          ;
         assign Grap_Result          [i]         = (NaNDone[i] == 1'd1) ? NaNResult[i] : T_Result[i]               ;
-        assign Temp_Result          [i*32+:32]  = Grap_Result[i]                                                  ;
-        assign Temp_Is_Exception    [i]         = NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i] | FPMulAdd_Diff_Sign_Zero[i])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
+        assign Temp_Result          [i*32+:32]  = Grap_Result[i] | FP16NoWidResult[i]                             ;
+        assign Temp_Is_Exception    [i]         = FP16NoWidDone[i] | NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i] | FPMulAdd_Diff_Sign_Zero[i])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
     end
 endgenerate
 

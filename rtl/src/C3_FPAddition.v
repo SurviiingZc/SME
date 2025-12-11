@@ -4,7 +4,7 @@
 `include "Macro_Definition.v"
 `endif
 
-module C5_FPAddition(
+module C3_FPAddition(
 	input                      i_Sign1                ,
 	input           [  7:0]    i_Expo1                ,
 	input           [ 23:0]    i_Mant1                ,
@@ -84,13 +84,6 @@ wire            T_Temp_Sign1        ;
 wire            All_Equal           ;
 wire [  1:0]    FPCR_RMode          ;
 
-wire            Temp_Sign1        ;
-wire            Temp_Sign2        ;
-wire [  9:0]    Temp_Expo1        ;
-wire [  9:0]    Temp_Expo2        ;
-wire [ 47:0]    Temp_Mant1        ;
-wire [ 47:0]    Temp_Mant2        ;
-
 genvar i;
 
 generate
@@ -111,17 +104,28 @@ assign FPCR_RMode       = i_Exception_Handling[16:15]   ;
 // );
 
 
-assign Temp_Sign1          = ~i_FuseAdd_SelfAdd ? i_Temp_Sign1 : i_Sign1                                              ;
-assign Temp_Sign2          = ~i_FuseAdd_SelfAdd ? i_Temp_Sign2 : i_Sign2                                              ;
-assign Temp_Expo1          = ~i_FuseAdd_SelfAdd ? i_Temp_Expo1 : {2'd0,i_Expo1}                                       ;
-assign Temp_Expo2          = ~i_FuseAdd_SelfAdd ? i_Temp_Expo2 : {2'd0,i_Expo2}                                       ;
-assign Temp_Mant1          = ~i_FuseAdd_SelfAdd ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
-assign Temp_Mant2          = ~i_FuseAdd_SelfAdd ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
+assign is_Expo1_Max  = (i_Expo1 > i_Expo2) ? 1'd1 : 1'd0 						;
+assign is_Mant1_Max  = (i_Expo1 == i_Expo2 & i_Mant1 >= i_Mant2) ? 1'd1 : 1'd0  ;
+assign is_Num1_Max   = (is_Expo1_Max | is_Mant1_Max) ? 1'd1 : 1'd0 				;
+assign Sign_Max	     = is_Num1_Max ? i_Sign1 : i_Sign2 							;
+assign Expo_Max	     = is_Num1_Max ? i_Expo1 : i_Expo2 							;
+assign Mant_Max	     = is_Num1_Max ? i_Mant1 : i_Mant2 							;
+assign Sign_Min	     = is_Num1_Max ? i_Sign2 : i_Sign1 							;
+assign Expo_Min	     = is_Num1_Max ? i_Expo2 : i_Expo1 							;
+assign Mant_Min	     = is_Num1_Max ? i_Mant2 : i_Mant1 							;
+assign is_Comp		 = i_Sign1 ^ i_Sign2										;
+assign Max_Mant      = {Mant_Max,24'd0}											;
+assign Min_Mant      = {Mant_Min,24'd0} >> Exp_Diff  						    ;
+assign Neg_Min_Mant  = ~Min_Mant + 1 						    				;
+assign Neg_Min	     = Max_Mant - Min_Mant										;
+assign Mant_Com		 = Mant_Max + Neg_Min_Mant[47:24]							;
+assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
+// assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Mant[23:0]}		;
+// assign o_Sum_Expo	 = Expo_Max													;
+// assign o_Sum_Sign	 = Sign_Max													;
 
-
-
-assign Temp_Expo1            = (Temp_Expo1 == 'd0) ? 9'sd1 : Temp_Expo1                                 ;
-assign Temp_Expo2            = (Temp_Expo2 == 'd0) ? 9'sd1 : Temp_Expo2                                 ;
+assign Temp_Expo1            = (i_Temp_Expo1 == 'd0) ? 9'sd1 : i_Temp_Expo1                                 ;
+assign Temp_Expo2            = (i_Temp_Expo2 == 'd0) ? 9'sd1 : i_Temp_Expo2                                 ;
 assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
 assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 
@@ -129,17 +133,17 @@ assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) |
 assign o_Sticky_Bit          = Sticky_Bit | (| o_Temp_Mant[24:0])                                           ;
 assign Mant_Min_Or           = |Fuse_Mant_Min                                                               ;
 assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
-assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & Temp_Mant1 >= Temp_Mant2) ? 1'd1 : 1'd0      ;
+assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Temp_Mant2) ? 1'd1 : 1'd0      ;
 assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max) ? 1'd1 : 1'd0 				        ;
-assign T_Temp_Sign1          = i_Add_or_Subtract ? Temp_Sign1 : ~Temp_Sign1                             ;
-assign All_Equal             = (Temp_Expo1 == Temp_Expo2) & (Temp_Mant1 == Temp_Mant2) & (T_Temp_Sign1 ^ Temp_Sign2);
-assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? T_Temp_Sign1 : Temp_Sign2 							    ;
+assign T_Temp_Sign1          = i_Temp_Sign1                                                                 ;
+assign All_Equal             = (i_Temp_Expo1 == i_Temp_Expo2) & (i_Temp_Mant1 == i_Temp_Mant2) & (T_Temp_Sign1 ^ i_Temp_Sign2);
+assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? T_Temp_Sign1 : i_Temp_Sign2 							    ;
 assign Fuse_Expo_Max	     = Fuse_is_Num1_Max ? Temp_Expo1 : Temp_Expo2 							        ;
-assign Fuse_Mant_Max	     = Fuse_is_Num1_Max ? Temp_Mant1 : Temp_Mant2 							    ;
-assign Fuse_Sign_Min	     = Fuse_is_Num1_Max ? Temp_Sign2 : T_Temp_Sign1 							    ;
+assign Fuse_Mant_Max	     = Fuse_is_Num1_Max ? i_Temp_Mant1 : i_Temp_Mant2 							    ;
+assign Fuse_Sign_Min	     = Fuse_is_Num1_Max ? i_Temp_Sign2 : T_Temp_Sign1 							    ;
 assign Fuse_Expo_Min	     = Fuse_is_Num1_Max ? Temp_Expo2 : Temp_Expo1 							        ;
-assign Fuse_Mant_Min	     = Fuse_is_Num1_Max ? Temp_Mant2 : Temp_Mant1 							    ;
-assign Fuse_is_Comp		     = T_Temp_Sign1 ^ Temp_Sign2                       				            ;
+assign Fuse_Mant_Min	     = Fuse_is_Num1_Max ? i_Temp_Mant2 : i_Temp_Mant1 							    ;
+assign Fuse_is_Comp		     = T_Temp_Sign1 ^ i_Temp_Sign2                       				            ;
 
 assign Fuse_Exp_Diff         = Fuse_Expo_Max - Fuse_Expo_Min 										        ;
 assign Fuse_Max_Mant         = {Fuse_Mant_Max,24'd0}											            ;
