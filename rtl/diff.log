@@ -1,0 +1,1254 @@
+diff src/C1_ExceptionHandling.v src_diff/C1_ExceptionHandling.v
+54,56d53
+< wire             T_Defau_NaN   [3:0]        ;
+< wire             T_Infinity    [3:0]        ;
+< wire             T_Ve_Zero     [3:0]        ;
+121d117
+< wire [  3:0]     FPMulAdd_Diff_Sign_Zero                ;
+132d127
+< wire [  1:0]     FPCR_RMode                             ;
+139d133
+< assign FPCR_RMode       = i_Exception_Handling[16:15]   ;
+174c168
+<         assign Temp_Is_Exception    [i]         = NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i] | FPMulAdd_Diff_Sign_Zero[i])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
+---
+>         assign Temp_Is_Exception    [i]         = NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & FPMulAdd_Zero[i]) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
+188,189d181
+< 
+< 
+219d210
+< assign is_Addend_FP16         = (i_Precision_Addend == `FP16) ? 1'd1 : 1'd0 ;
+246,247c237,238
+<             assign FPMulAdd_P_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd0)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd0))       ;
+<             assign FPMulAdd_N_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd1)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd1))       ;
+---
+>             assign FPMulAdd_P_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd0)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd0))      ;
+>             assign FPMulAdd_N_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd1)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd1))      ;
+249,255c240,245
+<             assign FPMulAdd_Diff_Sign_Zero[i*2+j]  = ZeroA[i*2+j] & ZeroP[i*2+j] & SignP[i*2+j] != Temp_SignA[i*2+j]                            ;
+<             assign FPDotAdd_P_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd0)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd0))        ;
+<             assign FPDotAdd_N_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd1)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd1))        ;
+<             assign FPDotAdd_Zero        [i*2+j]    = ZeroPa[i*2+j] & ZeroPb[i*2+j] & (SignPa[i*2+j] == SignPb[i*2+j])                           ;
+<             assign SBFDotAdd_FPDefaultNaN[i*2+j]   = (QNaN1[j] | QNaN2[i] | (Inf1[j] & Zero2[i]) | (Inf2[i] & Zero1[j]))                        ;
+<             assign SBFDotAdd_FPInfinity  [i*2+j]   = Inf1[j] | Inf2[i]                                                                          ;
+<             assign SBFDotAdd_Zero        [i*2+j]   = Zero1[j] | Zero2[i]                                                                        ;
+---
+>             assign FPDotAdd_P_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd0)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd0))    ;
+>             assign FPDotAdd_N_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd1)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd1))    ;
+>             assign FPDotAdd_Zero        [i*2+j]    = ZeroPa[i*2+j] & ZeroPb[i*2+j] & (SignPa[i*2+j] == SignPb[i*2+j])                        ;
+>             assign SBFDotAdd_FPDefaultNaN[i*2+j]   = (QNaN1[j] | QNaN2[i] | (Inf1[j] & Zero2[i]) | (Inf2[i] & Zero1[j]))                   ;
+>             assign SBFDotAdd_FPInfinity  [i*2+j]   = Inf1[j] | Inf2[i]                                                                        ;
+>             assign SBFDotAdd_Zero        [i*2+j]   = Zero1[j] | Zero2[i]                                                                      ;
+260c250
+<             assign FPZero_Data_Width[i*2+j]        = (is_FPMulAdd_ZA & (FPMulAdd_Zero[i*2+j] | FPMulAdd_Diff_Sign_Zero[i*2+j]) & is_Addend_FP32) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] & is_Addend_FP32) | (is_SBFDotAdd_ZA & SBFDotAdd_Zero);
+---
+>             assign FPZero_Data_Width[i*2+j]        = (is_FPMulAdd_ZA & FPMulAdd_Zero[i*2+j] & is_Addend_FP32) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] & is_Addend_FP32) | (is_SBFDotAdd_ZA & SBFDotAdd_Zero);
+262,264c252,254
+<             assign T_Result[i*2+j]                 = {32{T_Defau_NaN[i*2+j]}} & FPDefaultNaN[i*2+j] | 
+<                                                         {32{T_Infinity[i*2+j] & ~T_Defau_NaN[i*2+j]}} & FPInfinity[i*2+j] |
+<                                                         {32{T_Ve_Zero[i*2+j]}} & FPZero[i*2+j] ;
+---
+>             assign T_Result[i*2+j]                 = {32{((InvalidOp[i*2+j] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i*2+j])))}} & FPDefaultNaN[i*2+j] | 
+>                                                         {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j])}} & FPInfinity[i*2+j] |
+>                                                         {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & FPMulAdd_Zero[i*2+j]) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i*2+j]))}} & FPZero[i*2+j];
+266,268d255
+<             assign T_Defau_NaN[i*2+j]               = ((InvalidOp[i*2+j] & (is_Addend_FP32 | is_FPDotAdd_ZA | (FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP32 | FMLA_FP16))) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i*2+j])));
+<             assign T_Infinity [i*2+j]               = ((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j]);
+<             assign T_Ve_Zero  [i*2+j]               = ((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i*2+j] | FPMulAdd_Diff_Sign_Zero[i*2+j])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i*2+j]))                                              ;
+270d256
+< 
+293,297c279,281
+<             .i_Sign          ( FPZero_Sign[k]               ),
+<             .i_Data_Width    ( FPZero_Data_Width[k]         ),
+<             .i_DiffSign_Zero ( FPMulAdd_Diff_Sign_Zero[k]   ),
+<             .i_FPCR_RMode    ( FPCR_RMode                   ),
+<             .o_FPZero        ( FPZero[k]                    )
+---
+>             .i_Sign        ( FPZero_Sign[k]        ),
+>             .i_Data_Width  ( FPZero_Data_Width[k]  ),
+>             .o_FPZero      ( FPZero[k]             )
+diff src/C1_FPUnpackAll.v src_diff/C1_FPUnpackAll.v
+108c108
+< assign o_N                          = (i_Compute_Precision == `FP32) ? 'b1 : 'b0                                       ;
+---
+> assign o_N                          = (o_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
+124c124
+<             assign T_OutExpo[i+j*2]         = ((o_Type1[3*j+:3] == `FPType_Zero) | (o_Type2[3*i+:3] == `FPType_Zero)) ? 'd0 : T_Expo2[i] + T_Expo1[j] ;
+---
+>             assign T_OutExpo[i+j*2]         = T_Expo2[i] + T_Expo1[j] ;
+diff src/C1_FPZero.v src_diff/C1_FPZero.v
+15,16d14
+<     input           i_DiffSign_Zero ,
+<     input  [ 1:0]   i_FPCR_RMode    ,
+21,29c19
+< wire  [31:0] FP16_Zero;
+< wire  [31:0] FP32_Zero;
+< 
+< assign FP16_Zero = (i_DiffSign_Zero == 1'd0) ? {16'd0,i_Sign,{5{1'd0}},{10{1'd0}}} :
+<                     (i_FPCR_RMode == `Round_Towards_Minus_Infinity) ? {16'd0,1'd1,{5{1'd0}},{10{1'd0}}} : {16'd0,1'd0,{5{1'd0}},{10{1'd0}}};
+< assign FP32_Zero = (i_DiffSign_Zero == 1'd0) ? {i_Sign,{8{1'd0}},{23{1'd0}}} :
+<                     (i_FPCR_RMode == `Round_Towards_Minus_Infinity) ? {1'd1,{8{1'd0}},{23{1'd0}}} : {1'd0,{8{1'd0}},{23{1'd0}}};
+< 
+< assign o_FPZero = (i_Data_Width == 1'd0) ? FP16_Zero : FP32_Zero    ; 
+---
+> assign o_FPZero = (i_Data_Width == 1'd0) ? {16'd0,i_Sign,{5{1'd0}},{10{1'd0}}} : {i_Sign,{8{1'd0}},{23{1'd0}}} ; 
+diff src/C3_FPADDComb.v src_diff/C3_FPADDComb.v
+9a10
+>     input             i_Add_or_Subtract      ,
+15c16
+< 	input  [ 31:0]    i_Value2               ,
+---
+> 	input  [ 31:0]    i_Value2               , 
+23a25
+>     input             i_Sticky_Bit           ,
+28c30
+<     output [ 48:0]    o_Mant                 ,
+---
+>     output [ 47:0]    o_Mant                 ,
+32c34
+< 	output [  7:0]	  o_Sum_Expo		     ,
+---
+> 	output [  9:0]	  o_Sum_Expo		     ,
+34c36,37
+<     output            o_is_Exception
+---
+>     output      	  o_is_Exception         ,
+>     output            o_Sticky_Bit          
+64c67
+<     .o_N                   ( o_N                   )
+---
+>     .o_N                   ( o_N                   ) 
+87a91
+>     .i_Add_or_Subtract  ( i_Add_or_Subtract  ),
+diff src/C3_FPAddition.v src_diff/C3_FPAddition.v
+14c14
+< 
+---
+>     input                      i_Add_or_Subtract      ,
+21a22
+>     input                      i_sticky_bit           ,
+25,28c26,29
+< 
+< 	output          [ 48:0]    o_Sum_Mant		      ,
+< 	output          [  7:0]	   o_Sum_Expo		      ,
+< 	output                	   o_Sum_Sign		     
+---
+> 	output          [ 47:0]    o_Sum_Mant		      ,
+> 	output          [  9:0]	   o_Sum_Expo		      ,
+> 	output                	   o_Sum_Sign		      ,
+>     output                     o_Sticky_Bit            
+31,32c32,36
+< wire signed [  9:0]  Temp_Expo1;
+< wire signed [  9:0]  Temp_Expo2;
+---
+> 
+> 
+> wire [23:0]     Sticky_Temp  ;
+> wire signed [  9:0]  Temp_Expo1 ;
+> wire signed [  9:0]  Temp_Expo2 ;
+40a45,47
+> wire  [ 4:0]    Check_Diff      ;
+> wire            Mant_Min_Or     ;
+> wire            Sticky_Bit      ;
+53d59
+< wire [ 8:0] 	Fuse_Sum_Sign	    ;
+59a66,68
+> wire [71:0] 	Fuse_Sum_Reslt_Copy ;
+> wire         	Fuse_C_Reslt_Copy   ;
+> wire [72:0]     Fuse_Fin_Result     ;
+61d69
+< wire [72:0] 	Fuse_Neg_Min        ;
+71d78
+< wire  [47:0] 	Fuse_Mant_Com  		;
+74,75c81,101
+< assign Temp_Expo1    = i_Temp_Expo1;
+< assign Temp_Expo2    = i_Temp_Expo2;
+---
+> wire  [ 72:0]   T_Temp_Mant         ;
+> wire            T_Temp_Sign1        ;
+> 
+> genvar i;
+> 
+> generate
+>     for(i = 0 ; i < 24 ; i = i + 1) begin
+>         assign Sticky_Temp[i] = |Fuse_Mant_Min[i:0];
+>     end
+> endgenerate
+> 
+> // C5_CLA_72 u_C5_CLA_72(
+> //     .i_Cin      ( Fuse_is_Comp          ),
+> //     .i_Addnum1  ( Fuse_Max_Mant         ),
+> //     .i_Addnum2  ( Fuse_Neg_Min_Mant     ),
+> //     .o_Cout     ( Fuse_C_Reslt          ),
+> //     .o_Sum      ( Fuse_Sum_Reslt        ),
+> //     .o_Sum_All  ( Fuse_Fin_Result       )
+> // );
+> 
+> 
+86,87d111
+< 
+< assign Exp_Diff      = Expo_Max - Expo_Min 										;
+89d112
+< // assign Min_Mant   = (Exp_Diff <= 48) ? {Mant_Min,24'd0} >> Exp_Diff : 48'd0 	;
+92c115
+< // assign Neg_Min	     = Max_Mant - Min_Mant										;//改
+---
+> assign Neg_Min	     = Max_Mant - Min_Mant										;
+94,95c117
+< 
+< assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : (Mant_Max + Min_Mant[47:24])	;
+---
+> assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
+99d120
+<     
+101,104c122,134
+< assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2)                 						            ;
+< assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Temp_Mant2)                   ;
+< assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max)               				        ;
+< assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? i_Temp_Sign1 : i_Temp_Sign2 							    ;
+---
+> assign Temp_Expo1            = (i_Temp_Expo1 == 'd0) ? 9'sd1 : i_Temp_Expo1                                 ;
+> assign Temp_Expo2            = (i_Temp_Expo2 == 'd0) ? 9'sd1 : i_Temp_Expo2                                 ;
+> assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
+> assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
+>                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 
+>                                     (i_sticky_bit)                                                       ;
+> assign o_Sticky_Bit          = Sticky_Bit | (| o_Temp_Mant[24:0])                                           ;
+> assign Mant_Min_Or           = |Fuse_Mant_Min                                                               ;
+> assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
+> assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Temp_Mant2) ? 1'd1 : 1'd0      ;
+> assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max) ? 1'd1 : 1'd0 				        ;
+> assign T_Temp_Sign1          = i_Add_or_Subtract ? i_Temp_Sign1 : ~i_Temp_Sign1                             ;
+> assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? T_Temp_Sign1 : i_Temp_Sign2 							    ;
+107c137
+< assign Fuse_Sign_Min	     = Fuse_is_Num1_Max ? i_Temp_Sign2 : i_Temp_Sign1 							    ;
+---
+> assign Fuse_Sign_Min	     = Fuse_is_Num1_Max ? i_Temp_Sign2 : T_Temp_Sign1 							    ;
+110c140
+< assign Fuse_is_Comp		     = i_Temp_Sign1 ^ i_Temp_Sign2										            ;
+---
+> assign Fuse_is_Comp		     = T_Temp_Sign1 ^ i_Temp_Sign2                       				            ;
+115,116c145,149
+< assign Fuse_Neg_Min_Mant     = Fuse_is_Comp ? ~Fuse_Min_Mant : Fuse_Min_Mant	    				        ; //改
+< assign o_Temp_Mant 	         = {1'b0,Fuse_Max_Mant} + {1'b0,Fuse_Neg_Min_Mant} + Fuse_is_Comp               ; //改
+---
+> assign Fuse_Neg_Min_Mant     = Fuse_is_Comp ? ~Fuse_Min_Mant : Fuse_Min_Mant	    				        ; 
+> 
+> wire sub_carry_in            = Fuse_is_Comp && !Sticky_Bit                                                  ; 
+> assign T_Temp_Mant           = {1'b0, Fuse_Max_Mant} + {1'b0, Fuse_Neg_Min_Mant} + sub_carry_in             ;
+> assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_Mant                        ;
+118c151
+< assign o_Temp_Sign	         = Fuse_Sign_Max											                    ;
+---
+> assign o_Temp_Sign	         = Fuse_Sign_Max 			                                                    ;
+120,121c153,154
+< assign o_Sum_Mant            = o_Temp_Mant[48:0]                                                            ; //改
+< assign o_Sum_Expo            = o_Temp_Expo[7:0]                                                             ;
+---
+> assign o_Sum_Mant            = o_Temp_Mant[72:25]                                                           ; 
+> assign o_Sum_Expo            = o_Temp_Expo                                                                  ;
+123,130d155
+< 
+< // C3_CLA_72 u_C3_CLA_72(
+< //     .i_Cin      ( Fuse_is_Comp          ),
+< //     .i_Addnum1  ( Fuse_Max_Mant         ),
+< //     .i_Addnum2  ( Fuse_Neg_Min_Mant     ),
+< //     .o_Cout     ( Fuse_C_Reslt          ),
+< //     .o_Sum      ( Fuse_Sum_Reslt        )
+< // );
+diff src/C4_Round.v src_diff/C4_Round.v
+23a24
+> 
+diff src/C5_FPADDComb.v src_diff/C5_FPADDComb.v
+85,107c85,106
+<     .i_Sign1                ( T_Sign1               ),
+<     .i_Expo1                ( T_Expo1               ),
+<     .i_Mant1                ( T_Mant1               ),
+<     .i_Sign2                ( T_Sign2               ),
+<     .i_Expo2                ( T_Expo2               ),
+<     .i_Mant2                ( T_Mant2               ),
+<     .i_Exception_Handling   ( i_Exception_Handling  ),
+<     .i_Add_or_Subtract      ( i_Add_or_Subtract     ),
+<     .i_FuseAdd_SelfAdd      ( i_FuseAdd_SelfAdd     ),
+<     .i_Temp_Sign1           ( i_Temp_Sign1          ),
+<     .i_Temp_Sign2           ( i_Temp_Sign2          ),
+<     .i_Temp_Expo1           ( i_Temp_Expo1          ),
+<     .i_Temp_Expo2           ( i_Temp_Expo2          ),
+<     .i_Temp_Mant1           ( i_Temp_Mant1          ),
+<     .i_Temp_Mant2           ( i_Temp_Mant2          ),
+<     .i_sticky_bit           ( i_sticky_bit          ),
+<     .o_Temp_Sign            ( o_Temp_Sign           ),
+<     .o_Temp_Expo            ( o_Temp_Expo           ),
+<     .o_Temp_Mant            ( o_Temp_Mant           ),
+<     .o_Sum_Mant             ( o_Mant                ),
+<     .o_Sum_Expo             ( o_Sum_Expo            ),
+<     .o_Sum_Sign             ( o_Sum_Sign            ),
+<     .o_Sticky_Bit           ( o_Sticky_Bit          )
+---
+>     .i_Sign1            ( T_Sign1            ),
+>     .i_Expo1            ( T_Expo1            ),
+>     .i_Mant1            ( T_Mant1            ),
+>     .i_Sign2            ( T_Sign2            ),
+>     .i_Expo2            ( T_Expo2            ),
+>     .i_Mant2            ( T_Mant2            ),
+>     .i_Add_or_Subtract  ( i_Add_or_Subtract  ),
+>     .i_FuseAdd_SelfAdd  ( i_FuseAdd_SelfAdd  ),
+>     .i_Temp_Sign1       ( i_Temp_Sign1       ),
+>     .i_Temp_Sign2       ( i_Temp_Sign2       ),
+>     .i_Temp_Expo1       ( i_Temp_Expo1       ),
+>     .i_Temp_Expo2       ( i_Temp_Expo2       ),
+>     .i_Temp_Mant1       ( i_Temp_Mant1       ),
+>     .i_Temp_Mant2       ( i_Temp_Mant2       ),
+>     .i_sticky_bit       ( i_sticky_bit       ),
+>     .o_Temp_Sign        ( o_Temp_Sign        ),
+>     .o_Temp_Expo        ( o_Temp_Expo        ),
+>     .o_Temp_Mant        ( o_Temp_Mant        ),
+>     .o_Sum_Mant         ( o_Mant             ),
+>     .o_Sum_Expo         ( o_Sum_Expo         ),
+>     .o_Sum_Sign         ( o_Sum_Sign         ),
+>     .o_Sticky_Bit       ( o_Sticky_Bit       )
+diff src/C5_FPAddition.v src_diff/C5_FPAddition.v
+14d13
+<     input           [ 19:0]    i_Exception_Handling   ,
+84,85c83,89
+< wire            All_Equal           ;
+< wire [  1:0]    FPCR_RMode          ;
+---
+> 
+> wire            Fuse_Temp_Sign1     ;
+> wire            Fuse_Temp_Sign2     ;
+> wire  [  9:0]   Fuse_Temp_Expo1     ;
+> wire  [  9:0]   Fuse_Temp_Expo2     ;
+> wire  [ 47:0]   Fuse_Temp_Mant1     ;
+> wire  [ 47:0]   Fuse_Temp_Mant2     ;
+95,125c99,104
+< assign FPCR_RMode       = i_Exception_Handling[16:15]   ;
+< 
+< // C5_CLA_72 u_C5_CLA_72(
+< //     .i_Cin      ( Fuse_is_Comp          ),
+< //     .i_Addnum1  ( Fuse_Max_Mant         ),
+< //     .i_Addnum2  ( Fuse_Neg_Min_Mant     ),
+< //     .o_Cout     ( Fuse_C_Reslt          ),
+< //     .o_Sum      ( Fuse_Sum_Reslt        ),
+< //     .o_Sum_All  ( Fuse_Fin_Result       )
+< // );
+< 
+< 
+< assign is_Expo1_Max  = (i_Expo1 > i_Expo2) ? 1'd1 : 1'd0 						;
+< assign is_Mant1_Max  = (i_Expo1 == i_Expo2 & i_Mant1 >= i_Mant2) ? 1'd1 : 1'd0  ;
+< assign is_Num1_Max   = (is_Expo1_Max | is_Mant1_Max) ? 1'd1 : 1'd0 				;
+< assign Sign_Max	     = is_Num1_Max ? i_Sign1 : i_Sign2 							;
+< assign Expo_Max	     = is_Num1_Max ? i_Expo1 : i_Expo2 							;
+< assign Mant_Max	     = is_Num1_Max ? i_Mant1 : i_Mant2 							;
+< assign Sign_Min	     = is_Num1_Max ? i_Sign2 : i_Sign1 							;
+< assign Expo_Min	     = is_Num1_Max ? i_Expo2 : i_Expo1 							;
+< assign Mant_Min	     = is_Num1_Max ? i_Mant2 : i_Mant1 							;
+< assign is_Comp		 = i_Sign1 ^ i_Sign2										;
+< assign Max_Mant      = {Mant_Max,24'd0}											;
+< assign Min_Mant      = {Mant_Min,24'd0} >> Exp_Diff  						    ;
+< assign Neg_Min_Mant  = ~Min_Mant + 1 						    				;
+< assign Neg_Min	     = Max_Mant - Min_Mant										;
+< assign Mant_Com		 = Mant_Max + Neg_Min_Mant[47:24]							;
+< assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
+< // assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Mant[23:0]}		;
+< // assign o_Sum_Expo	 = Expo_Max													;
+< // assign o_Sum_Sign	 = Sign_Max													;
+---
+> assign Fuse_Temp_Sign1       = i_FuseAdd_SelfAdd ? i_Temp_Sign1 : i_Sign1           ;
+> assign Fuse_Temp_Sign2       = i_FuseAdd_SelfAdd ? i_Temp_Sign2 : i_Sign2           ;
+> assign Fuse_Temp_Expo1       = i_FuseAdd_SelfAdd ? i_Temp_Expo1 : {2'd0,i_Expo1}    ;
+> assign Fuse_Temp_Expo2       = i_FuseAdd_SelfAdd ? i_Temp_Expo2 : {2'd0,i_Expo2}    ;
+> assign Fuse_Temp_Mant1       = i_FuseAdd_SelfAdd ? i_Temp_Mant1 : {i_Mant1,24'd0}   ;
+> assign Fuse_Temp_Mant2       = i_FuseAdd_SelfAdd ? i_Temp_Mant2 : {i_Mant2,24'd0}   ;
+132c111
+<                                     (i_sticky_bit)                                                       ;
+---
+>                                     (i_sticky_bit)                                                          ;
+139d117
+< assign All_Equal             = (i_Temp_Expo1 == i_Temp_Expo2) & (i_Temp_Mant1 == i_Temp_Mant2) & (T_Temp_Sign1 ^ i_Temp_Sign2);
+156,158c134,135
+< assign o_Temp_Expo	         = ~All_Equal ? Fuse_Expo_Max : 'd0											    ;
+< assign o_Temp_Sign	         = ~All_Equal ? Fuse_Sign_Max :	
+<                                 (FPCR_RMode == `Round_Towards_Minus_Infinity) ? 1'd1 : 1'd0	                ;
+---
+> assign o_Temp_Expo	         = Fuse_Expo_Max											                    ;
+> assign o_Temp_Sign	         = Fuse_Sign_Max 			                                                    ;
+diff src/C6_FPRoundBase.v src_diff/C6_FPRoundBase.v
+222c222
+<     wire signed [10:0]             biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+---
+>     wire [10:0]             biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+224,226c224,226
+<     wire signed [10:0]             biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+<     wire signed [10:0]             biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+<     wire signed [10:0]             biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+---
+>     wire [10:0]             biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+>     wire [10:0]             biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+>     wire [10:0]             biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+diff src/PE.v src_diff/PE.v
+93a94
+> wire  [  3:0]   P1_Sticky_Flag           ;
+135c136,137
+< wire  [127:0]   P2_Result                ;
+---
+> wire  [127:0]    P2_Result                ;
+> wire             P2_Sticky_Bit            ;
+172a175,182
+> wire             P3_Sign                  ;
+> wire  [  9:0]    P3_Normal_Expo           ;
+> wire  [ 48:0]    P3_Normal_Mant           ;
+> wire             P3_Sticky_Bit            ;
+> wire  [  3:0]    P2_Sticky_Flag           ;
+> wire  [  3:0]    P3_Sticky_Flag           ;
+> wire  [  3:0]    P4_Sticky_Flag           ;
+> wire  [  3:0]    P4_Select_Sticky         ;
+205d214
+< 
+209d217
+< 
+214a223,226
+> wire             P4_Sign                    ;
+> wire  [  9:0]    P4_Normal_Expo             ;
+> wire  [ 48:0]    P4_Normal_Mant             ;
+> wire             P4_FuseAdd_SelfAdd         ;
+382a395
+> 
+426c439
+<             .sticky_flag           (C2_sticky_flag[i]           ),
+---
+>             .sticky_flag           ( P1_Sticky_Flag[i]          ),
+442,458d454
+< // generate
+< //     for(i = 0 ; i < 4 ; i = i + 1) begin : Comb2
+< //         C2_FPRoundBase#(
+< //             .IN_WIDTH             ( 48 ),
+< //             .EXP_WIDTH            ( 9 )
+< //         )u_FPRoundBase(
+< //             .op                    ( P1_Mant[i*48+:48]              ),
+< //             .i_exp                 ( P1_OutExpo[i*9+:9]             ),
+< //             .i_sign                ( P1_OutSign[i*1+:1]             ),
+< //             .i_Exception_Handling  ( P1_Exception_Handling          ),
+< //             .i_N                   ( P1_N                           ),
+< //             .i_isbfloat16          ( P1_IsBfloat16                  ),
+< //             .Rounded_result        ( P1_Rounded_result[i*32+:32]    )
+< //         );
+< //     end
+< // endgenerate
+< 
+463,464d458
+< 
+< 
+497a492,493
+>     .i_Sticky_Flag          ( P1_Sticky_Flag            ),
+>     .o_Sticky_Flag          ( P2_Sticky_Flag            ),
+528a525,528
+> wire P2_Inner_Sticky_Flag   ;
+> 
+> assign P2_Inner_Sticky_Flag = P2_Sticky_Flag[0] | P2_Sticky_Flag[3] ;
+> 
+531a532
+>     .i_Add_or_Subtract     ( P2_Add_or_Subtract         ),
+546c547
+< 
+---
+>     .i_Sticky_Bit          ( P2_Inner_Sticky_Flag       ),
+556c557,558
+<     .o_is_Exception        ( P2_is_Exception            )
+---
+>     .o_is_Exception        ( P2_is_Exception            ),
+>     .o_Sticky_Bit          ( P2_Sticky_Bit              )
+559,563c561,562
+< // assign P2_Refresh_Fault_Result = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Result[127:32],P2_Fault_Result} : P2_Result ;
+< // assign P2_Refresh_Is_Exception = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Is_Exception[3:1],P2_is_Exception} : P2_Is_Exception ;
+< 
+< assign P2_Refresh_Fault_Result = P2_Result ;
+< assign P2_Refresh_Is_Exception = P2_Is_Exception ;
+---
+> assign P2_Refresh_Fault_Result = P2_Result          ;
+> assign P2_Refresh_Is_Exception = P2_Is_Exception    ;
+570,600c569,599
+<     .clk                    ( clk                    ),
+<     .rst_n                  ( rst_n                  ),
+<     .i_Compute_Mode         ( P2_Compute_Mode        ),
+<     .i_Compute_Precision    ( P2_Compute_Precision   ),
+<     .i_Is_Widening          ( P2_Is_Widening         ),
+<     .i_Add_or_Subtract      ( P2_Add_or_Subtract     ),
+<     .i_ZmIsSigned           ( P2_ZmIsSigned          ),
+<     .i_ZnIsSigned           ( P2_ZnIsSigned          ),
+<     .i_Num_of_Vector_Group  ( P2_Num_of_Vector_Group ),
+<     .i_Vector_Group_Num     ( P2_Vector_Group_Num    ),
+<     .i_Exception_Handling   ( P2_Exception_Handling  ),
+<     .i_ZA_Base_Address      ( P2_ZA_Base_Address     ),
+<     .i_Operand_C            ( P2_Operand_C           ),
+<     .i_Precision_Addend     ( P2_Precision_Addend    ),
+<     .i_Rounded_result       ( P2_Rounded_result      ),
+<     .i_Temp_Sign            ( P2_Temp_Sign           ),
+<     .i_Temp_Expo            ( P2_Temp_Expo           ),
+<     .i_Temp_Mant            ( P2_Temp_Mant           ),
+<     .i_Mant                 ( P2_Mant                ),
+<     .i_Fault_Result         ( P2_Fault_Result        ),
+<     .i_IsBfloat16           ( P2_IsBfloat16          ),
+<     .i_N                    ( P2_N                   ),
+<     .i_Sum_Expo             ( P2_Sum_Expo            ),
+<     .i_Sum_Sign             ( P2_Sum_Sign            ),
+<     .i_Normal_Sign          ( P2_Normal_Sign         ),
+<     .i_Normal_Exp           ( P2_Normal_Exp          ),
+<     .i_Normal_Mantissa      ( P2_Normal_Mantissa     ),
+<     .i_TypeA                ( P2_TypeA               ),
+<     .i_SignA                ( P2_SignA               ),
+<     .i_ExpoA                ( P2_ExpoA               ),
+<     .i_MantA                ( P2_MantA               ),
+---
+>     .clk                    ( clk                       ),
+>     .rst_n                  ( rst_n                     ),
+>     .i_Compute_Mode         ( P2_Compute_Mode           ),
+>     .i_Compute_Precision    ( P2_Compute_Precision      ),
+>     .i_Is_Widening          ( P2_Is_Widening            ),
+>     .i_Add_or_Subtract      ( P2_Add_or_Subtract        ),
+>     .i_ZmIsSigned           ( P2_ZmIsSigned             ),
+>     .i_ZnIsSigned           ( P2_ZnIsSigned             ),
+>     .i_Num_of_Vector_Group  ( P2_Num_of_Vector_Group    ),
+>     .i_Vector_Group_Num     ( P2_Vector_Group_Num       ),
+>     .i_Exception_Handling   ( P2_Exception_Handling     ),
+>     .i_ZA_Base_Address      ( P2_ZA_Base_Address        ),
+>     .i_Operand_C            ( P2_Operand_C              ),
+>     .i_Precision_Addend     ( P2_Precision_Addend       ),
+>     .i_Rounded_result       ( P2_Rounded_result         ),
+>     .i_Temp_Sign            ( P2_Temp_Sign              ),
+>     .i_Temp_Expo            ( P2_Temp_Expo              ),
+>     .i_Temp_Mant            ( P2_Temp_Mant              ),
+>     .i_Mant                 ( P2_Mant                   ),
+>     .i_Fault_Result         ( P2_Fault_Result           ),
+>     .i_IsBfloat16           ( P2_IsBfloat16             ),
+>     .i_N                    ( P2_N                      ),
+>     .i_Sum_Expo             ( P2_Sum_Expo               ),
+>     .i_Sum_Sign             ( P2_Sum_Sign               ),
+>     .i_Normal_Sign          ( P2_Normal_Sign            ),
+>     .i_Normal_Exp           ( P2_Normal_Exp             ),
+>     .i_Normal_Mantissa      ( P2_Normal_Mantissa        ),
+>     .i_TypeA                ( P2_TypeA                  ),
+>     .i_SignA                ( P2_SignA                  ),
+>     .i_ExpoA                ( P2_ExpoA                  ),
+>     .i_MantA                ( P2_MantA                  ),
+602a602,605
+>     .i_Sticky_Flag          ( P2_Sticky_Flag            ),
+>     .i_Sticky_Bit           ( P2_Sticky_Bit             ),
+>     .o_Sticky_Bit           ( P3_Sticky_Bit             ),
+>     .o_Sticky_Flag          ( P3_Sticky_Flag            ),
+605,633c608,636
+<     .o_Compute_Mode         ( P3_Compute_Mode        ),
+<     .o_Compute_Precision    ( P3_Compute_Precision   ),
+<     .o_Is_Widening          ( P3_Is_Widening         ),
+<     .o_Add_or_Subtract      ( P3_Add_or_Subtract     ),
+<     .o_ZmIsSigned           ( P3_ZmIsSigned          ),
+<     .o_ZnIsSigned           ( P3_ZnIsSigned          ),
+<     .o_Num_of_Vector_Group  ( P3_Num_of_Vector_Group ),
+<     .o_Vector_Group_Num     ( P3_Vector_Group_Num    ),
+<     .o_Exception_Handling   ( P3_Exception_Handling  ),
+<     .o_ZA_Base_Address      ( P3_ZA_Base_Address     ),
+<     .o_Operand_C            ( P3_Operand_C           ),
+<     .o_Precision_Addend     ( P3_Precision_Addend    ),
+<     .o_Rounded_result       ( P3_Rounded_result      ),
+<     .o_Temp_Sign            ( P3_Temp_Sign           ),
+<     .o_Temp_Expo            ( P3_Temp_Expo           ),
+<     .o_Temp_Mant            ( P3_Temp_Mant           ),
+<     .o_Mant                 ( P3_Mant                ),
+<     .o_Fault_Result         ( P3_Fault_Result        ),
+<     .o_IsBfloat16           ( P3_IsBfloat16          ),
+<     .o_N                    ( P3_N                   ),
+<     .o_Sum_Expo             ( P3_Sum_Expo            ),
+<     .o_Sum_Sign             ( P3_Sum_Sign            ),
+<     .o_Normal_Sign          ( P3_Normal_Sign         ),
+<     .o_Normal_Exp           ( P3_Normal_Exp          ),
+<     .o_Normal_Mantissa      ( P3_Normal_Mantissa     ),
+<     .o_TypeA                ( P3_TypeA               ),
+<     .o_SignA                ( P3_SignA               ),
+<     .o_ExpoA                ( P3_ExpoA               ),
+<     .o_MantA                ( P3_MantA               )
+---
+>     .o_Compute_Mode         ( P3_Compute_Mode           ),
+>     .o_Compute_Precision    ( P3_Compute_Precision      ),
+>     .o_Is_Widening          ( P3_Is_Widening            ),
+>     .o_Add_or_Subtract      ( P3_Add_or_Subtract        ),
+>     .o_ZmIsSigned           ( P3_ZmIsSigned             ),
+>     .o_ZnIsSigned           ( P3_ZnIsSigned             ),
+>     .o_Num_of_Vector_Group  ( P3_Num_of_Vector_Group    ),
+>     .o_Vector_Group_Num     ( P3_Vector_Group_Num       ),
+>     .o_Exception_Handling   ( P3_Exception_Handling     ),
+>     .o_ZA_Base_Address      ( P3_ZA_Base_Address        ),
+>     .o_Operand_C            ( P3_Operand_C              ),
+>     .o_Precision_Addend     ( P3_Precision_Addend       ),
+>     .o_Rounded_result       ( P3_Rounded_result         ),
+>     .o_Temp_Sign            ( P3_Temp_Sign              ),
+>     .o_Temp_Expo            ( P3_Temp_Expo              ),
+>     .o_Temp_Mant            ( P3_Temp_Mant              ),
+>     .o_Mant                 ( P3_Mant                   ),
+>     .o_Fault_Result         ( P3_Fault_Result           ),
+>     .o_IsBfloat16           ( P3_IsBfloat16             ),
+>     .o_N                    ( P3_N                      ),
+>     .o_Sum_Expo             ( P3_Sum_Expo               ),
+>     .o_Sum_Sign             ( P3_Sum_Sign               ),
+>     .o_Normal_Sign          ( P3_Normal_Sign            ),
+>     .o_Normal_Exp           ( P3_Normal_Exp             ),
+>     .o_Normal_Mantissa      ( P3_Normal_Mantissa        ),
+>     .o_TypeA                ( P3_TypeA                  ),
+>     .o_SignA                ( P3_SignA                  ),
+>     .o_ExpoA                ( P3_ExpoA                  ),
+>     .o_MantA                ( P3_MantA                  )
+644a648
+>     .i_sticky_bit          ( P3_Sticky_Bit          ),
+647,649c651,653
+<     .o_sign                (                        ),
+<     .o_normal_mantissa     (                        ),
+<     .o_normal_exp          (                        )
+---
+>     .o_sign                ( P3_Sign                ),
+>     .o_normal_mantissa     ( P3_Normal_Expo         ),
+>     .o_normal_exp          ( P3_Normal_Mant         )
+658,677d661
+< // generate
+< //     for(i = 0 ; i < 4 ; i = i + 1) begin : Outer_Product_Round
+< //         C4_Round#(
+< //             .IN_WIDTH              ( 48                             ),
+< //             .EXP_WIDTH             ( 9                              )
+< //         )u_C4_Round_InnerProduct(
+< //             .i_op                  ( P3_Normal_Mantissa[i*48+:48]   ),
+< //             .i_exp                 ( P3_Normal_Exp[i*10+:10]        ),
+< //             .i_sign                ( P3_Normal_Sign[i*1+:1]         ),
+< //             .i_Exception_Handling  ( P3_Exception_Handling          ),
+< //             .i_N                   ( P3_N                           ),
+< //             .i_isbfloat16          ( P3_IsBfloat16                  ),
+< //             .o_rounded_result      ( P3_Outer_Product[i*32+:32]     ),
+< //             .o_sign                (                                ),
+< //             .o_normal_mantissa     (                                ),
+< //             .o_normal_exp          (                                )
+< //         ); 
+< //     end
+< // endgenerate
+< 
+695c679
+<     .i_Fuse_MultiAdd_Result  ( P3_Final_Result          ),
+---
+>     .i_Fuse_MultiAdd_Result  ( P3_Inner_Result          ),
+704a689,696
+>     .i_Sign                  ( P3_Sign                  ),
+>     .i_Normal_Expo           ( P3_Normal_Expo           ),
+>     .i_Normal_Mant           ( P3_Normal_Mant           ),
+>     .i_Sticky_Flag           ( P3_Sticky_Flag           ),
+>     .o_Sticky_Flag           ( P4_Sticky_Flag           ),
+>     .o_Sign                  ( P4_Sign                  ),
+>     .o_Normal_Exp            ( P4_Normal_Exp            ),
+>     .o_Normal_Mant           ( P4_Normal_Mant           ),
+728a721,722
+> assign P4_FuseAdd_SelfAdd = P4_Compute_Mode & P4_Is_Widening & (P4_Compute_Precision == `FP16 | P4_Compute_Precision == `BF16) ;
+> assign P4_Select_Sticky   = P4_FuseAdd_SelfAdd ? 4'd0 : P4_Sticky_Flag                                                         ;
+740c734
+<             .i_Value1              ( P4_Fuse_MultiAdd_Result[i*32+:32]  ),
+---
+>             .i_Value1              ( P4_Fuse_MultiAdd_Result            ),
+742c736
+<             .i_FuseAdd_SelfAdd     (                                    ),
+---
+>             .i_FuseAdd_SelfAdd     ( P4_FuseAdd_SelfAdd                 ),
+749c743
+<             .i_sticky_bit          ( C2_sticky_flag[i]                  ),
+---
+>             .i_sticky_bit          ( P4_Select_Sticky[i]                ),
+763,767c757,758
+<         // assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_Fault_Result[i*32+:32] : P4_Result[i*32+:32];
+<         // assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_is_Exception[i] : P4_Is_Exception[i] ;
+< 
+<         assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32];
+<         assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i] ;
+---
+>         assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32]  ;
+>         assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i]     ;
+820,821d810
+< wire [127:0] Round_Result;
+< 
+837,838c826,827
+<         assign Round_Result[i*32+:32]  = P5_N[i] ? P5_FP32_Result : P5_Round_Result[i*32+:32]                   ;
+<         assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : Round_Result[i*32+:32]    ;
+---
+>         wire [127:0] Round_Result  = P5_N ? {4{P5_FP32_Result }}  : P5_Round_Result[i*32+:32]                   ;
+>         assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : Round_Result    ;
+840c829
+< endgenerate
+---
+> endgenerate 
+diff src/Pipline_2.v src_diff/Pipline_2.v
+39a40,41
+>         i_Sticky_Flag          ,
+>         o_Sticky_Flag          ,
+104a107,108
+> input       [  3:0]   i_Sticky_Flag           ;
+> output reg  [  3:0]   o_Sticky_Flag           ;
+165a170
+>         o_Sticky_Flag         <= 'd0 ;
+219a225
+>         o_Sticky_Flag         <= i_Sticky_Flag         ;
+256a263,264
+> input       [  3:0]   i_Sticky_Flag           ;
+> output      [  3:0]   o_Sticky_Flag           ;
+315a324
+> assign o_Sticky_Flag         = i_Sticky_Flag         ;
+diff src/Pipline_3.v src_diff/Pipline_3.v
+40a41,44
+>         i_Sticky_Flag          ,
+>         i_Sticky_Bit           ,
+>         o_Sticky_Bit           ,
+>         o_Sticky_Flag          ,
+108a113,116
+> input       [  3:0]   i_Sticky_Flag           ;
+> input                 i_Sticky_Bit            ;
+> output reg            o_Sticky_Bit            ;
+> output reg  [  3:0]   o_Sticky_Flag           ;
+173a182,183
+>         o_Sticky_Bit          <= 'd0 ;
+>         o_Sticky_Flag         <= 'd0 ;
+206a217,218
+>         o_Sticky_Bit          <= i_Sticky_Bit          ;
+>         o_Sticky_Flag         <= i_Sticky_Flag         ;
+244a257,260
+> input       [  3:0]   i_Sticky_Flag           ;
+> input                 i_Sticky_Bit            ;
+> output                o_Sticky_Bit            ;
+> output      [  3:0]   o_Sticky_Flag           ;
+290,296d305
+< // assign o_FuseAdd_SelfAdd     = i_FuseAdd_SelfAdd     ;
+< // assign o_Temp_Sign1          = i_Temp_Sign1          ;
+< // assign o_Temp_Sign2          = i_Temp_Sign2          ;
+< // assign o_Temp_Expo1          = i_Temp_Expo1          ;
+< // assign o_Temp_Expo2          = i_Temp_Expo2          ;
+< // assign o_Temp_Mant1          = i_Temp_Mant1          ;
+< // assign o_Temp_Mant2          = i_Temp_Mant2          ;
+314a324,325
+> assign o_Sticky_Bit          = i_Sticky_Bit          ;
+> assign o_Sticky_Flag         = i_Sticky_Flag         ;
+diff src/Pipline_4.v src_diff/Pipline_4.v
+32a33,40
+>         i_Sign                 ,
+>         i_Normal_Expo          ,
+>         i_Normal_Mant          ,
+>         i_Sticky_Flag          ,
+>         o_Sticky_Flag          ,
+>         o_Sign                 ,
+>         o_Normal_Expo          ,
+>         o_Normal_Mant          ,
+82a91,98
+> input                 i_Sign                  ;
+> input       [  9:0]   i_Normal_Expo           ;
+> input       [ 48:0]   i_Normal_Mant           ;
+> input       [  3:0]   i_Sticky_Flag           ;
+> output reg  [  3:0]   o_Sticky_Flag           ;
+> output reg            o_Sign                  ;
+> output reg  [  9:0]   o_Normal_Expo           ;
+> output reg  [ 48:0]   o_Normal_Mant           ;
+129a146,149
+>         o_Sign                 <= 'd0 ;
+>         o_Normal_Expo          <= 'd0 ;
+>         o_Normal_Mant          <= 'd0 ;
+>         o_Sticky_Flag          <= 'd0 ;
+153a174,177
+>         o_Sign                 <= i_Sign                 ;
+>         o_Normal_Expo          <= i_Normal_Expo          ;
+>         o_Normal_Mant          <= i_Normal_Mant          ;
+>         o_Sticky_Flag          <= i_Sticky_Flag          ;
+182a207,214
+> input                 i_Sign                  ;
+> input       [  9:0]   i_Normal_Expo           ;
+> input       [ 48:0]   i_Normal_Mant           ;
+> input       [  3:0]   i_Sticky_Flag           ;
+> output      [  3:0]   o_Sticky_Flag           ;
+> output                o_Sign                  ;
+> output      [  9:0]   o_Normal_Expo           ;
+> output      [ 48:0]   o_Normal_Mant           ;
+227a260,263
+> assign o_Sign                   = i_Sign                    ;
+> assign o_Normal_Expo            = i_Normal_Expo             ;
+> assign o_Normal_Mant            = i_Normal_Mant             ;
+> assign o_Sticky_Flag            = i_Sticky_Flag             ;
+diff -rn src/C1_ExceptionHandling.v src_diff/C1_ExceptionHandling.v
+d54 3
+d121 1
+d132 1
+d139 1
+d174 1
+a174 1
+        assign Temp_Is_Exception    [i]         = NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & FPMulAdd_Zero[i]) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
+d188 2
+d219 1
+d246 2
+a247 2
+            assign FPMulAdd_P_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd0)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd0))      ;
+            assign FPMulAdd_N_FPInfinity[i*2+j]    = (InfA[i*2+j] & (Temp_SignA[i*2+j] == 1'd1)) | (InfP[i*2+j] & (SignP[i*2+j] == 1'd1))      ;
+d249 7
+a255 6
+            assign FPDotAdd_P_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd0)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd0))    ;
+            assign FPDotAdd_N_FPInfinity[i*2+j]    = (InfPa[i*2+j] & (SignPa[i*2+j] == 1'd1)) | (InfPb[i*2+j] & (SignPb[i*2+j] == 1'd1))    ;
+            assign FPDotAdd_Zero        [i*2+j]    = ZeroPa[i*2+j] & ZeroPb[i*2+j] & (SignPa[i*2+j] == SignPb[i*2+j])                        ;
+            assign SBFDotAdd_FPDefaultNaN[i*2+j]   = (QNaN1[j] | QNaN2[i] | (Inf1[j] & Zero2[i]) | (Inf2[i] & Zero1[j]))                   ;
+            assign SBFDotAdd_FPInfinity  [i*2+j]   = Inf1[j] | Inf2[i]                                                                        ;
+            assign SBFDotAdd_Zero        [i*2+j]   = Zero1[j] | Zero2[i]                                                                      ;
+d260 1
+a260 1
+            assign FPZero_Data_Width[i*2+j]        = (is_FPMulAdd_ZA & FPMulAdd_Zero[i*2+j] & is_Addend_FP32) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] & is_Addend_FP32) | (is_SBFDotAdd_ZA & SBFDotAdd_Zero);
+d262 3
+a264 3
+            assign T_Result[i*2+j]                 = {32{((InvalidOp[i*2+j] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i*2+j])))}} & FPDefaultNaN[i*2+j] | 
+                                                        {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i*2+j] | FPMulAdd_N_FPInfinity[i*2+j])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i*2+j] | FPDotAdd_N_FPInfinity[i*2+j])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity[i*2+j])}} & FPInfinity[i*2+j] |
+                                                        {32{((is_Addend_FP32 | is_FPMulAdd_ZA) & FPMulAdd_Zero[i*2+j]) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i*2+j] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i*2+j]))}} & FPZero[i*2+j];
+d266 3
+d270 1
+d293 5
+a297 3
+            .i_Sign        ( FPZero_Sign[k]        ),
+            .i_Data_Width  ( FPZero_Data_Width[k]  ),
+            .o_FPZero      ( FPZero[k]             )
+diff -rn src/C1_FPUnpackAll.v src_diff/C1_FPUnpackAll.v
+d108 1
+a108 1
+assign o_N                          = (o_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
+d124 1
+a124 1
+            assign T_OutExpo[i+j*2]         = T_Expo2[i] + T_Expo1[j] ;
+diff -rn src/C1_FPZero.v src_diff/C1_FPZero.v
+d15 2
+d21 9
+a29 1
+assign o_FPZero = (i_Data_Width == 1'd0) ? {16'd0,i_Sign,{5{1'd0}},{10{1'd0}}} : {i_Sign,{8{1'd0}},{23{1'd0}}} ; 
+diff -rn src/C3_FPADDComb.v src_diff/C3_FPADDComb.v
+a9 1
+    input             i_Add_or_Subtract      ,
+d15 1
+a15 1
+	input  [ 31:0]    i_Value2               , 
+a23 1
+    input             i_Sticky_Bit           ,
+d28 1
+a28 1
+    output [ 47:0]    o_Mant                 ,
+d32 1
+a32 1
+	output [  9:0]	  o_Sum_Expo		     ,
+d34 1
+a34 2
+    output      	  o_is_Exception         ,
+    output            o_Sticky_Bit          
+d64 1
+a64 1
+    .o_N                   ( o_N                   ) 
+a87 1
+    .i_Add_or_Subtract  ( i_Add_or_Subtract  ),
+diff -rn src/C3_FPAddition.v src_diff/C3_FPAddition.v
+d14 1
+a14 1
+    input                      i_Add_or_Subtract      ,
+a21 1
+    input                      i_sticky_bit           ,
+d25 4
+a28 4
+	output          [ 47:0]    o_Sum_Mant		      ,
+	output          [  9:0]	   o_Sum_Expo		      ,
+	output                	   o_Sum_Sign		      ,
+    output                     o_Sticky_Bit            
+d31 2
+a32 5
+
+
+wire [23:0]     Sticky_Temp  ;
+wire signed [  9:0]  Temp_Expo1 ;
+wire signed [  9:0]  Temp_Expo2 ;
+a40 3
+wire  [ 4:0]    Check_Diff      ;
+wire            Mant_Min_Or     ;
+wire            Sticky_Bit      ;
+d53 1
+a59 3
+wire [71:0] 	Fuse_Sum_Reslt_Copy ;
+wire         	Fuse_C_Reslt_Copy   ;
+wire [72:0]     Fuse_Fin_Result     ;
+d61 1
+d71 1
+d74 2
+a75 21
+wire  [ 72:0]   T_Temp_Mant         ;
+wire            T_Temp_Sign1        ;
+
+genvar i;
+
+generate
+    for(i = 0 ; i < 24 ; i = i + 1) begin
+        assign Sticky_Temp[i] = |Fuse_Mant_Min[i:0];
+    end
+endgenerate
+
+// C5_CLA_72 u_C5_CLA_72(
+//     .i_Cin      ( Fuse_is_Comp          ),
+//     .i_Addnum1  ( Fuse_Max_Mant         ),
+//     .i_Addnum2  ( Fuse_Neg_Min_Mant     ),
+//     .o_Cout     ( Fuse_C_Reslt          ),
+//     .o_Sum      ( Fuse_Sum_Reslt        ),
+//     .o_Sum_All  ( Fuse_Fin_Result       )
+// );
+
+
+d86 2
+d89 1
+d92 1
+a92 1
+assign Neg_Min	     = Max_Mant - Min_Mant										;
+d94 2
+a95 1
+assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
+d99 1
+d101 4
+a104 13
+assign Temp_Expo1            = (i_Temp_Expo1 == 'd0) ? 9'sd1 : i_Temp_Expo1                                 ;
+assign Temp_Expo2            = (i_Temp_Expo2 == 'd0) ? 9'sd1 : i_Temp_Expo2                                 ;
+assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
+assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
+                                    ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 
+                                    (i_sticky_bit)                                                       ;
+assign o_Sticky_Bit          = Sticky_Bit | (| o_Temp_Mant[24:0])                                           ;
+assign Mant_Min_Or           = |Fuse_Mant_Min                                                               ;
+assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
+assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Temp_Mant2) ? 1'd1 : 1'd0      ;
+assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max) ? 1'd1 : 1'd0 				        ;
+assign T_Temp_Sign1          = i_Add_or_Subtract ? i_Temp_Sign1 : ~i_Temp_Sign1                             ;
+assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? T_Temp_Sign1 : i_Temp_Sign2 							    ;
+d107 1
+a107 1
+assign Fuse_Sign_Min	     = Fuse_is_Num1_Max ? i_Temp_Sign2 : T_Temp_Sign1 							    ;
+d110 1
+a110 1
+assign Fuse_is_Comp		     = T_Temp_Sign1 ^ i_Temp_Sign2                       				            ;
+d115 2
+a116 5
+assign Fuse_Neg_Min_Mant     = Fuse_is_Comp ? ~Fuse_Min_Mant : Fuse_Min_Mant	    				        ; 
+
+wire sub_carry_in            = Fuse_is_Comp && !Sticky_Bit                                                  ; 
+assign T_Temp_Mant           = {1'b0, Fuse_Max_Mant} + {1'b0, Fuse_Neg_Min_Mant} + sub_carry_in             ;
+assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_Mant                        ;
+d118 1
+a118 1
+assign o_Temp_Sign	         = Fuse_Sign_Max 			                                                    ;
+d120 2
+a121 2
+assign o_Sum_Mant            = o_Temp_Mant[72:25]                                                           ; 
+assign o_Sum_Expo            = o_Temp_Expo                                                                  ;
+d123 8
+diff -rn src/C4_Round.v src_diff/C4_Round.v
+a23 1
+
+diff -rn src/C5_FPADDComb.v src_diff/C5_FPADDComb.v
+d85 23
+a107 22
+    .i_Sign1            ( T_Sign1            ),
+    .i_Expo1            ( T_Expo1            ),
+    .i_Mant1            ( T_Mant1            ),
+    .i_Sign2            ( T_Sign2            ),
+    .i_Expo2            ( T_Expo2            ),
+    .i_Mant2            ( T_Mant2            ),
+    .i_Add_or_Subtract  ( i_Add_or_Subtract  ),
+    .i_FuseAdd_SelfAdd  ( i_FuseAdd_SelfAdd  ),
+    .i_Temp_Sign1       ( i_Temp_Sign1       ),
+    .i_Temp_Sign2       ( i_Temp_Sign2       ),
+    .i_Temp_Expo1       ( i_Temp_Expo1       ),
+    .i_Temp_Expo2       ( i_Temp_Expo2       ),
+    .i_Temp_Mant1       ( i_Temp_Mant1       ),
+    .i_Temp_Mant2       ( i_Temp_Mant2       ),
+    .i_sticky_bit       ( i_sticky_bit       ),
+    .o_Temp_Sign        ( o_Temp_Sign        ),
+    .o_Temp_Expo        ( o_Temp_Expo        ),
+    .o_Temp_Mant        ( o_Temp_Mant        ),
+    .o_Sum_Mant         ( o_Mant             ),
+    .o_Sum_Expo         ( o_Sum_Expo         ),
+    .o_Sum_Sign         ( o_Sum_Sign         ),
+    .o_Sticky_Bit       ( o_Sticky_Bit       )
+diff -rn src/C5_FPAddition.v src_diff/C5_FPAddition.v
+d14 1
+d84 2
+a85 7
+
+wire            Fuse_Temp_Sign1     ;
+wire            Fuse_Temp_Sign2     ;
+wire  [  9:0]   Fuse_Temp_Expo1     ;
+wire  [  9:0]   Fuse_Temp_Expo2     ;
+wire  [ 47:0]   Fuse_Temp_Mant1     ;
+wire  [ 47:0]   Fuse_Temp_Mant2     ;
+d95 31
+a125 6
+assign Fuse_Temp_Sign1       = i_FuseAdd_SelfAdd ? i_Temp_Sign1 : i_Sign1           ;
+assign Fuse_Temp_Sign2       = i_FuseAdd_SelfAdd ? i_Temp_Sign2 : i_Sign2           ;
+assign Fuse_Temp_Expo1       = i_FuseAdd_SelfAdd ? i_Temp_Expo1 : {2'd0,i_Expo1}    ;
+assign Fuse_Temp_Expo2       = i_FuseAdd_SelfAdd ? i_Temp_Expo2 : {2'd0,i_Expo2}    ;
+assign Fuse_Temp_Mant1       = i_FuseAdd_SelfAdd ? i_Temp_Mant1 : {i_Mant1,24'd0}   ;
+assign Fuse_Temp_Mant2       = i_FuseAdd_SelfAdd ? i_Temp_Mant2 : {i_Mant2,24'd0}   ;
+d132 1
+a132 1
+                                    (i_sticky_bit)                                                          ;
+d139 1
+d156 3
+a158 2
+assign o_Temp_Expo	         = Fuse_Expo_Max											                    ;
+assign o_Temp_Sign	         = Fuse_Sign_Max 			                                                    ;
+diff -rn src/C6_FPRoundBase.v src_diff/C6_FPRoundBase.v
+d222 1
+a222 1
+    wire [10:0]             biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+d224 3
+a226 3
+    wire [10:0]             biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+    wire [10:0]             biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+    wire [10:0]             biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+diff -rn src/PE.v src_diff/PE.v
+a93 1
+wire  [  3:0]   P1_Sticky_Flag           ;
+d135 1
+a135 2
+wire  [127:0]    P2_Result                ;
+wire             P2_Sticky_Bit            ;
+a172 8
+wire             P3_Sign                  ;
+wire  [  9:0]    P3_Normal_Expo           ;
+wire  [ 48:0]    P3_Normal_Mant           ;
+wire             P3_Sticky_Bit            ;
+wire  [  3:0]    P2_Sticky_Flag           ;
+wire  [  3:0]    P3_Sticky_Flag           ;
+wire  [  3:0]    P4_Sticky_Flag           ;
+wire  [  3:0]    P4_Select_Sticky         ;
+d205 1
+d209 1
+a214 4
+wire             P4_Sign                    ;
+wire  [  9:0]    P4_Normal_Expo             ;
+wire  [ 48:0]    P4_Normal_Mant             ;
+wire             P4_FuseAdd_SelfAdd         ;
+a382 1
+
+d426 1
+a426 1
+            .sticky_flag           ( P1_Sticky_Flag[i]          ),
+d442 17
+d463 2
+a497 2
+    .i_Sticky_Flag          ( P1_Sticky_Flag            ),
+    .o_Sticky_Flag          ( P2_Sticky_Flag            ),
+a528 4
+wire P2_Inner_Sticky_Flag   ;
+
+assign P2_Inner_Sticky_Flag = P2_Sticky_Flag[0] | P2_Sticky_Flag[3] ;
+
+a531 1
+    .i_Add_or_Subtract     ( P2_Add_or_Subtract         ),
+d546 1
+a546 1
+    .i_Sticky_Bit          ( P2_Inner_Sticky_Flag       ),
+d556 1
+a556 2
+    .o_is_Exception        ( P2_is_Exception            ),
+    .o_Sticky_Bit          ( P2_Sticky_Bit              )
+d559 5
+a563 2
+assign P2_Refresh_Fault_Result = P2_Result          ;
+assign P2_Refresh_Is_Exception = P2_Is_Exception    ;
+d570 31
+a600 31
+    .clk                    ( clk                       ),
+    .rst_n                  ( rst_n                     ),
+    .i_Compute_Mode         ( P2_Compute_Mode           ),
+    .i_Compute_Precision    ( P2_Compute_Precision      ),
+    .i_Is_Widening          ( P2_Is_Widening            ),
+    .i_Add_or_Subtract      ( P2_Add_or_Subtract        ),
+    .i_ZmIsSigned           ( P2_ZmIsSigned             ),
+    .i_ZnIsSigned           ( P2_ZnIsSigned             ),
+    .i_Num_of_Vector_Group  ( P2_Num_of_Vector_Group    ),
+    .i_Vector_Group_Num     ( P2_Vector_Group_Num       ),
+    .i_Exception_Handling   ( P2_Exception_Handling     ),
+    .i_ZA_Base_Address      ( P2_ZA_Base_Address        ),
+    .i_Operand_C            ( P2_Operand_C              ),
+    .i_Precision_Addend     ( P2_Precision_Addend       ),
+    .i_Rounded_result       ( P2_Rounded_result         ),
+    .i_Temp_Sign            ( P2_Temp_Sign              ),
+    .i_Temp_Expo            ( P2_Temp_Expo              ),
+    .i_Temp_Mant            ( P2_Temp_Mant              ),
+    .i_Mant                 ( P2_Mant                   ),
+    .i_Fault_Result         ( P2_Fault_Result           ),
+    .i_IsBfloat16           ( P2_IsBfloat16             ),
+    .i_N                    ( P2_N                      ),
+    .i_Sum_Expo             ( P2_Sum_Expo               ),
+    .i_Sum_Sign             ( P2_Sum_Sign               ),
+    .i_Normal_Sign          ( P2_Normal_Sign            ),
+    .i_Normal_Exp           ( P2_Normal_Exp             ),
+    .i_Normal_Mantissa      ( P2_Normal_Mantissa        ),
+    .i_TypeA                ( P2_TypeA                  ),
+    .i_SignA                ( P2_SignA                  ),
+    .i_ExpoA                ( P2_ExpoA                  ),
+    .i_MantA                ( P2_MantA                  ),
+a602 4
+    .i_Sticky_Flag          ( P2_Sticky_Flag            ),
+    .i_Sticky_Bit           ( P2_Sticky_Bit             ),
+    .o_Sticky_Bit           ( P3_Sticky_Bit             ),
+    .o_Sticky_Flag          ( P3_Sticky_Flag            ),
+d605 29
+a633 29
+    .o_Compute_Mode         ( P3_Compute_Mode           ),
+    .o_Compute_Precision    ( P3_Compute_Precision      ),
+    .o_Is_Widening          ( P3_Is_Widening            ),
+    .o_Add_or_Subtract      ( P3_Add_or_Subtract        ),
+    .o_ZmIsSigned           ( P3_ZmIsSigned             ),
+    .o_ZnIsSigned           ( P3_ZnIsSigned             ),
+    .o_Num_of_Vector_Group  ( P3_Num_of_Vector_Group    ),
+    .o_Vector_Group_Num     ( P3_Vector_Group_Num       ),
+    .o_Exception_Handling   ( P3_Exception_Handling     ),
+    .o_ZA_Base_Address      ( P3_ZA_Base_Address        ),
+    .o_Operand_C            ( P3_Operand_C              ),
+    .o_Precision_Addend     ( P3_Precision_Addend       ),
+    .o_Rounded_result       ( P3_Rounded_result         ),
+    .o_Temp_Sign            ( P3_Temp_Sign              ),
+    .o_Temp_Expo            ( P3_Temp_Expo              ),
+    .o_Temp_Mant            ( P3_Temp_Mant              ),
+    .o_Mant                 ( P3_Mant                   ),
+    .o_Fault_Result         ( P3_Fault_Result           ),
+    .o_IsBfloat16           ( P3_IsBfloat16             ),
+    .o_N                    ( P3_N                      ),
+    .o_Sum_Expo             ( P3_Sum_Expo               ),
+    .o_Sum_Sign             ( P3_Sum_Sign               ),
+    .o_Normal_Sign          ( P3_Normal_Sign            ),
+    .o_Normal_Exp           ( P3_Normal_Exp             ),
+    .o_Normal_Mantissa      ( P3_Normal_Mantissa        ),
+    .o_TypeA                ( P3_TypeA                  ),
+    .o_SignA                ( P3_SignA                  ),
+    .o_ExpoA                ( P3_ExpoA                  ),
+    .o_MantA                ( P3_MantA                  )
+a644 1
+    .i_sticky_bit          ( P3_Sticky_Bit          ),
+d647 3
+a649 3
+    .o_sign                ( P3_Sign                ),
+    .o_normal_mantissa     ( P3_Normal_Expo         ),
+    .o_normal_exp          ( P3_Normal_Mant         )
+d658 20
+d695 1
+a695 1
+    .i_Fuse_MultiAdd_Result  ( P3_Inner_Result          ),
+a704 8
+    .i_Sign                  ( P3_Sign                  ),
+    .i_Normal_Expo           ( P3_Normal_Expo           ),
+    .i_Normal_Mant           ( P3_Normal_Mant           ),
+    .i_Sticky_Flag           ( P3_Sticky_Flag           ),
+    .o_Sticky_Flag           ( P4_Sticky_Flag           ),
+    .o_Sign                  ( P4_Sign                  ),
+    .o_Normal_Exp            ( P4_Normal_Exp            ),
+    .o_Normal_Mant           ( P4_Normal_Mant           ),
+a728 2
+assign P4_FuseAdd_SelfAdd = P4_Compute_Mode & P4_Is_Widening & (P4_Compute_Precision == `FP16 | P4_Compute_Precision == `BF16) ;
+assign P4_Select_Sticky   = P4_FuseAdd_SelfAdd ? 4'd0 : P4_Sticky_Flag                                                         ;
+d740 1
+a740 1
+            .i_Value1              ( P4_Fuse_MultiAdd_Result            ),
+d742 1
+a742 1
+            .i_FuseAdd_SelfAdd     ( P4_FuseAdd_SelfAdd                 ),
+d749 1
+a749 1
+            .i_sticky_bit          ( P4_Select_Sticky[i]                ),
+d763 5
+a767 2
+        assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32]  ;
+        assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i]     ;
+d820 2
+d837 2
+a838 2
+        wire [127:0] Round_Result  = P5_N ? {4{P5_FP32_Result }}  : P5_Round_Result[i*32+:32]                   ;
+        assign P5_Result[i*32+:32] = (P5_Is_Exception[i] == 1'd1) ? P5_Fault_Result[i*32+:32] : Round_Result    ;
+d840 1
+a840 1
+endgenerate 
+diff -rn src/Pipline_2.v src_diff/Pipline_2.v
+a39 2
+        i_Sticky_Flag          ,
+        o_Sticky_Flag          ,
+a104 2
+input       [  3:0]   i_Sticky_Flag           ;
+output reg  [  3:0]   o_Sticky_Flag           ;
+a165 1
+        o_Sticky_Flag         <= 'd0 ;
+a219 1
+        o_Sticky_Flag         <= i_Sticky_Flag         ;
+a256 2
+input       [  3:0]   i_Sticky_Flag           ;
+output      [  3:0]   o_Sticky_Flag           ;
+a315 1
+assign o_Sticky_Flag         = i_Sticky_Flag         ;
+diff -rn src/Pipline_3.v src_diff/Pipline_3.v
+a40 4
+        i_Sticky_Flag          ,
+        i_Sticky_Bit           ,
+        o_Sticky_Bit           ,
+        o_Sticky_Flag          ,
+a108 4
+input       [  3:0]   i_Sticky_Flag           ;
+input                 i_Sticky_Bit            ;
+output reg            o_Sticky_Bit            ;
+output reg  [  3:0]   o_Sticky_Flag           ;
+a173 2
+        o_Sticky_Bit          <= 'd0 ;
+        o_Sticky_Flag         <= 'd0 ;
+a206 2
+        o_Sticky_Bit          <= i_Sticky_Bit          ;
+        o_Sticky_Flag         <= i_Sticky_Flag         ;
+a244 4
+input       [  3:0]   i_Sticky_Flag           ;
+input                 i_Sticky_Bit            ;
+output                o_Sticky_Bit            ;
+output      [  3:0]   o_Sticky_Flag           ;
+d290 7
+a314 2
+assign o_Sticky_Bit          = i_Sticky_Bit          ;
+assign o_Sticky_Flag         = i_Sticky_Flag         ;
+diff -rn src/Pipline_4.v src_diff/Pipline_4.v
+a32 8
+        i_Sign                 ,
+        i_Normal_Expo          ,
+        i_Normal_Mant          ,
+        i_Sticky_Flag          ,
+        o_Sticky_Flag          ,
+        o_Sign                 ,
+        o_Normal_Expo          ,
+        o_Normal_Mant          ,
+a82 8
+input                 i_Sign                  ;
+input       [  9:0]   i_Normal_Expo           ;
+input       [ 48:0]   i_Normal_Mant           ;
+input       [  3:0]   i_Sticky_Flag           ;
+output reg  [  3:0]   o_Sticky_Flag           ;
+output reg            o_Sign                  ;
+output reg  [  9:0]   o_Normal_Expo           ;
+output reg  [ 48:0]   o_Normal_Mant           ;
+a129 4
+        o_Sign                 <= 'd0 ;
+        o_Normal_Expo          <= 'd0 ;
+        o_Normal_Mant          <= 'd0 ;
+        o_Sticky_Flag          <= 'd0 ;
+a153 4
+        o_Sign                 <= i_Sign                 ;
+        o_Normal_Expo          <= i_Normal_Expo          ;
+        o_Normal_Mant          <= i_Normal_Mant          ;
+        o_Sticky_Flag          <= i_Sticky_Flag          ;
+a182 8
+input                 i_Sign                  ;
+input       [  9:0]   i_Normal_Expo           ;
+input       [ 48:0]   i_Normal_Mant           ;
+input       [  3:0]   i_Sticky_Flag           ;
+output      [  3:0]   o_Sticky_Flag           ;
+output                o_Sign                  ;
+output      [  9:0]   o_Normal_Expo           ;
+output      [ 48:0]   o_Normal_Mant           ;
+a227 4
+assign o_Sign                   = i_Sign                    ;
+assign o_Normal_Expo            = i_Normal_Expo             ;
+assign o_Normal_Mant            = i_Normal_Mant             ;
+assign o_Sticky_Flag            = i_Sticky_Flag             ;
