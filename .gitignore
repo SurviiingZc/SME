@@ -9,4 +9,3 @@ tb/UVM_PE/sim/csrc*
 tb/UVM_PE/sim/novas.conf
 tb/UVM_PE/sim/novas.rc
 tb/UVM_PE/sim/vdCovLog*
-/asic
