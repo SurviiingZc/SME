@@ -29,35 +29,42 @@ wire signed [5:0]                  lzc_shift_amt               ;
 reg  signed [EXP_WIDTH-1:0]        exponent_adj                ;
 
 wire                               is_denormal                 ;
+reg  signed [EXP_WIDTH-1:0] minimum_adj ;
 
-wire signed [EXP_WIDTH:0] i_exp_temp = {{1'b0},i_exp};
+wire signed [EXP_WIDTH:0] i_exp_temp = {{1'b0},i_exp} + minimum_adj;
 
 // assign exponent                     = $signed({{1'b0},i_exp}) + $signed(exponent_adj) + $signed(minimum_exp - 1'd1)     ;
 // assign biased_exp_unconstrained     = exponent - $signed(minimum_exp - 1'd1)                                            ;
 //assign exponent                     = $signed({{1'b0},i_exp}) + $signed(exponent_adj)        ;
-assign exponent                     = i_exp_temp       ;
+assign exponent                     = i_exp_temp + exponent_adj       ;
+//assign exponent                     = $signed({{1'b0},i_exp})       ;
 assign biased_exp_unconstrained     = exponent                                               ;
-assign is_denormal                  = ((exponent) <= 0)? 1'b1 : 1'b0                                             ;
-assign i_exp_true                   = i_exp_temp +  minimum_exp + 1'sd1                             ;
-assign o_sign                       = i_sign   ;
+assign is_denormal                  = (exponent <= 0)? 1'b1 : 1'b0                                             ;
+assign i_exp_true                   = i_exp_temp + minimum_exp + 1'sd1                             ;
+assign o_sign                       = i_sign                                                                            ;
+
 
 always @(*) begin
     case (i_Data_Width)
         2'b00: begin
             adj_exp        = 26      ;
-            minimum_exp    = -14     ;
+            minimum_exp    = -126     ;
+            minimum_adj    =112      ;
         end
         2'b01: begin
             adj_exp        = 0       ;
             minimum_exp    = -126    ;
+            minimum_adj    =112      ;
         end
         2'b10: begin
             adj_exp        = 32      ;
             minimum_exp    = -126    ;
+            minimum_adj    =0      ;
         end
         default: begin
             adj_exp        = 0       ;
             minimum_exp    = -126    ;
+            minimum_adj    =0      ;
         end
         
     endcase

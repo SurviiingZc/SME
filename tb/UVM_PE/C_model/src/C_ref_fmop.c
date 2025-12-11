@@ -224,8 +224,8 @@ void FPUnpackBase(uint32_t fpval, uint8_t N, FPCR_Type fpcr_in, bool fpexc, bool
     FPCR_Type fpcr_local = fpcr_in;
 
     bool altfp = 1;
-    bool fiz = altfp && (fpcr_local.FIZ == '1');
-    bool fz = (fpcr_local.FZ == '1') && !(altfp && (fpcr_local.AH == '1'));
+    bool fiz = altfp && (fpcr_local.FIZ == 1);
+    bool fz = (fpcr_local.FZ == 1) && !(altfp && (fpcr_local.AH == 1));
 
     if (N == 16 && !isbfloat16) {
         // 处理16位半精度浮点数

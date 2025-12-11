@@ -210,7 +210,7 @@ class PE_sequence_fmops extends PE_sequence;
                 tr.i_Exception_Handling[3]      == `Trap_Disabled_for_Invalid_Operation;
                 tr.i_Exception_Handling[2]      == `Not_Affect_Output_Elements;
                 tr.i_Exception_Handling[1]      == `IEEE_Handling_Floating_Point_Numbers;
-                tr.i_Exception_Handling[0]      == `Do_Not_Flush_Denormalized_Results_to_Zero_S_D_BF;
+                tr.i_Exception_Handling[0]      == `Flush_Denormalized_Results_to_Zero_S_D_BF;
 
                
                 if (current_scenario == SC_ROUNDING_EDGE) {
