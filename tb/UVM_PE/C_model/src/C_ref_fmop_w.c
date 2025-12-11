@@ -1,6 +1,6 @@
 #include "C_ref_fmop.h"
 #include "C_ref_fmop_w.h"
-
+#include "C_ref_bfmop.h"
 
 // FPDotAdd_ZA 函数实现
 // 半精度2路点积并加到单精度，用于SME ZA目标指令
@@ -175,10 +175,20 @@ uint32_t FPDot(uint32_t op1_a, uint32_t op1_b, uint32_t op2_a, uint32_t op2_b,
     uint8_t sign1_a, sign1_b, sign2_a, sign2_b;
     float value1_a, value1_b, value2_a, value2_b;
     
-    FPUnpackBase(op1_a, 16, fpcr, fpexc, isbfloat16, &type1_a, &sign1_a, &value1_a);
-    FPUnpackBase(op1_b, 16, fpcr, fpexc, isbfloat16, &type1_b, &sign1_b, &value1_b);
-    FPUnpackBase(op2_a, 16, fpcr, fpexc, isbfloat16, &type2_a, &sign2_a, &value2_a);
-    FPUnpackBase(op2_b, 16, fpcr, fpexc, isbfloat16, &type2_b, &sign2_b, &value2_b);
+    if(isbfloat16 == 0)
+    {
+        FPUnpackBase(op1_a, 16, fpcr, fpexc, isbfloat16, &type1_a, &sign1_a, &value1_a);
+        FPUnpackBase(op1_b, 16, fpcr, fpexc, isbfloat16, &type1_b, &sign1_b, &value1_b);
+        FPUnpackBase(op2_a, 16, fpcr, fpexc, isbfloat16, &type2_a, &sign2_a, &value2_a);
+        FPUnpackBase(op2_b, 16, fpcr, fpexc, isbfloat16, &type2_b, &sign2_b, &value2_b);
+    }
+    else if(isbfloat16 == 1)
+    {
+        BFUnpack(op1_a, &type1_a, &sign1_a, &value1_a, 16);
+        BFUnpack(op1_b, &type1_b, &sign1_b, &value1_b, 16);
+        BFUnpack(op2_a, &type2_a, &sign2_a, &value2_a, 16);
+        BFUnpack(op2_b, &type2_b, &sign2_b, &value2_b, 16);
+    }
     
     // 检查操作数类型
     bool inf1_a = (type1_a == FPType_Infinity);
