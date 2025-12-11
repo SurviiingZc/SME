@@ -219,11 +219,11 @@ module C6_FPRoundBase #(
         round_deor2nor_fp32;
 
 
-    wire [10:0]             biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+    wire signed [10:0]             biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
     wire [FP32_F+1 :0]      int_mant_uncon_final           = (round_up_unconstrained)   ? (int_mant_round_uncon)     : int_mant_unconstrained         ;    
-    wire [10:0]             biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
-    wire [10:0]             biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
-    wire [10:0]             biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+    wire signed [10:0]             biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+    wire signed [10:0]             biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+    wire signed [10:0]             biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
     wire [FP32_F+1 :0]      int_mant_round_final           = (round_up)                 ?  int_mant_round            : int_mant                       ;
     
     // UF OF
