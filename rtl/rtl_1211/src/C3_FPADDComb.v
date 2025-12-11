@@ -13,7 +13,7 @@ module C3_FPADDComb(
     input  [ 19:0]    i_Exception_Handling   ,
 	input  [ 31:0]    i_Value1               ,
 	input  [ 31:0]    i_Value2               ,
-
+    input             i_Sticky_Flag          ,
     input             i_FuseAdd_SelfAdd      ,
     input             i_Temp_Sign1           ,
     input             i_Temp_Sign2           ,
@@ -24,14 +24,14 @@ module C3_FPADDComb(
     output            o_Temp_Sign            ,
     output [  9:0]    o_Temp_Expo            ,
     output [ 72:0]    o_Temp_Mant            ,
-
     output [ 48:0]    o_Mant                 ,
     output [ 31:0]    o_Fault_Result         ,
     output            o_IsBfloat16           ,
     output            o_N                    ,
 	output [  7:0]	  o_Sum_Expo		     ,
 	output      	  o_Sum_Sign		     ,
-    output            o_is_Exception
+    output            o_is_Exception         ,
+    output            o_Sticky_Bit           
 );
 
 wire [  2:0]    T_Type1                ;
@@ -61,7 +61,7 @@ C3_FPUnpackAll u_FPUnpackAll(
     .o_Mant2               ( T_Mant2               ),
     .o_Value2              (                       ),
     .o_IsBfloat16          ( o_IsBfloat16          ),
-    .o_N                   ( o_N                   )
+    .o_N                   ( o_N                   ) 
 );
 
 C3_ExceptionHandling u_ExceptionHandling(
@@ -85,6 +85,7 @@ C3_FPAddition u_C3_FPAddition(
     .i_Sign2            ( T_Sign2            ),
     .i_Expo2            ( T_Expo2            ),
     .i_Mant2            ( T_Mant2            ),
+    .i_sticky_bit       ( i_Sticky_Flag      ),
     .i_FuseAdd_SelfAdd  ( i_FuseAdd_SelfAdd  ),
     .i_Temp_Sign1       ( i_Temp_Sign1       ),
     .i_Temp_Sign2       ( i_Temp_Sign2       ),
@@ -97,7 +98,8 @@ C3_FPAddition u_C3_FPAddition(
     .o_Temp_Mant        ( o_Temp_Mant        ),
     .o_Sum_Mant         ( o_Mant             ),
     .o_Sum_Expo         ( o_Sum_Expo         ),
-    .o_Sum_Sign         ( o_Sum_Sign         )
+    .o_Sum_Sign         ( o_Sum_Sign         ),
+    .o_Sticky_Bit       ( o_Sticky_Bit       )
 );
 
 

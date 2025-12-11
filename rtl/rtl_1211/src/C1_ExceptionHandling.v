@@ -30,7 +30,8 @@ module C1_ExceptionHandling (
     input  [  2:0]    i_Compute_Precision    ,
     input  [ 19:0]    i_Exception_Handling   ,
     output [  3:0]    o_Is_Exception         ,
-    output [127:0]    o_Result               
+    output [127:0]    o_Result               ,
+    output            o_Internal_Acc        
 );
 
 
@@ -125,7 +126,6 @@ wire [  3:0]     FPDotAdd_Zero                          ;
 wire [  3:0]     SBFDotAdd_FPDefaultNaN                 ;
 wire [  3:0]     SBFDotAdd_FPInfinity                   ;
 wire [  3:0]     SBFDotAdd_Zero                         ;
-
 wire [127:0]     Temp_Operand_C                         ;
 wire [ 11:0]     Temp_TypeA                             ;
 wire [  3:0]     Temp_SignA                             ;
@@ -196,6 +196,9 @@ assign FDOT                   = (is_Inner_Product & is_FP16 & is_Widening & is_S
 assign FMLA_FP16              = (is_Inner_Product & is_FP16 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLA_FP32              = (is_Inner_Product & is_FP32 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLAL                  = (is_Inner_Product & is_FP16 & is_Widening & is_Double_Vector) ? 1'd1 : 1'd0 ;
+
+assign o_Internal_Acc         = FMOP_Widening | BFMOP_Widening_SBF | BFMOP_Widening_EBF | FDOT ;
+
 assign Caculate_Mode          = {2{(FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP16 | FMLA_FP32 | FMLAL)}} & 2'd0 | 
                                     {2{(FMOP_Widening | BFMOP_Widening_EBF | FDOT)}} & 2'd1 |
                                     {2{(BFMOP_Widening_SBF)}} & 2'd2 |

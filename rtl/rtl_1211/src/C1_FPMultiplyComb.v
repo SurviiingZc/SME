@@ -36,7 +36,8 @@ module C1_FPMultiplyComb (
     output     [  3:0]   o_SignA                ,
     output     [ 31:0]   o_ExpoA                ,
     output     [  3:0]   o_Is_Exception         ,
-    output     [ 95:0]   o_MantA                 
+    output     [ 95:0]   o_MantA                ,
+    output               o_Internal_Acc
 );
 
 wire [ 11:0]    T_TypeA                ;

@@ -105,7 +105,7 @@ wire [2:0]       Compute_Precision_Operand1             ;
 wire [2:0]       Compute_Precision_Operand2             ;
 
 assign o_IsBfloat16                 = (i_Compute_Precision == `BF16)                                                  ;
-assign o_N                          = (o_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
+assign o_N                          = (i_Compute_Precision == `FP32) ? 'b1 : 'b0                                      ;
 assign is_16_bits                   = ((i_Compute_Precision == `BF16) | (i_Compute_Precision == `FP16)) ? 'b1 : 'b0   ;
 assign is_32_bits                   = ((i_Compute_Precision == `FP32)) ? 'b1 : 'b0                                    ;
 assign FPCR_EBF                     = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                 ;

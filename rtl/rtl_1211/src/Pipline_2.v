@@ -4,7 +4,7 @@
 `include "Macro_Definition.v"
 `endif
 
-module Pipline_3 (
+module Pipline_2 (
         clk                    ,
         rst_n                  ,
         i_Compute_Mode         ,
@@ -20,24 +20,27 @@ module Pipline_3 (
         i_Operand_C            ,
         i_Precision_Addend     ,
         i_Rounded_result       ,
-        i_Temp_Sign            ,
-        i_Temp_Expo            ,
-        i_Temp_Mant            ,
-        i_Mant                 ,
-        i_Fault_Result         ,
-        i_IsBfloat16           ,
-        i_N                    ,
-        i_Sum_Expo	           ,
-        i_Sum_Sign	           ,
+        i_FuseAdd_SelfAdd      ,
+        i_Temp_Sign1           ,
+        i_Temp_Sign2           ,
+        i_Temp_Expo1           ,
+        i_Temp_Expo2           ,
+        i_Temp_Mant1           ,
+        i_Temp_Mant2           ,
         i_Normal_Sign          ,
         i_Normal_Exp           ,
         i_Normal_Mantissa      ,
+        i_is_int_op            ,
         i_TypeA                ,
         i_SignA                ,
         i_ExpoA                ,
         i_MantA                , 
         i_Is_Exception         ,
         i_Result               ,
+        i_Sticky_Flag          ,
+        i_Internal_Acc         ,
+        o_Internal_Acc         ,
+        o_Sticky_Flag          ,
         o_Result               ,
         o_Is_Exception         ,
         o_Compute_Mode         ,
@@ -53,15 +56,13 @@ module Pipline_3 (
         o_Operand_C            ,
         o_Precision_Addend     ,
         o_Rounded_result       ,
-        o_Temp_Sign            ,
-        o_Temp_Expo            ,
-        o_Temp_Mant            ,
-        o_Mant                 ,
-        o_Fault_Result         ,
-        o_IsBfloat16           ,
-        o_N                    ,
-        o_Sum_Expo	           ,
-        o_Sum_Sign	           ,
+        o_FuseAdd_SelfAdd      ,
+        o_Temp_Sign1           ,
+        o_Temp_Sign2           ,
+        o_Temp_Expo1           ,
+        o_Temp_Expo2           ,
+        o_Temp_Mant1           ,
+        o_Temp_Mant2           ,
         o_Normal_Sign          ,
         o_Normal_Exp           ,
         o_Normal_Mantissa      ,
@@ -88,29 +89,29 @@ input       [  1:0]   i_Vector_Group_Num      ;
 input       [ 19:0]   i_Exception_Handling    ;
 input       [ 31:0]   i_ZA_Base_Address       ;
 input       [127:0]   i_Operand_C             ;
-input                 i_Temp_Sign             ;
-input       [  9:0]   i_Temp_Expo             ;
-input       [ 72:0]   i_Temp_Mant             ;
-input       [ 48:0]   i_Mant                  ;
-input       [ 31:0]   i_Fault_Result          ;
-input                 i_IsBfloat16            ;
-input                 i_N                     ;
-input       [  7:0]	  i_Sum_Expo		      ;
-input            	  i_Sum_Sign		      ;
-input       [  3:0]   i_Normal_Sign           ;
-input       [ 39:0]   i_Normal_Exp            ;
-input       [191:0]   i_Normal_Mantissa       ;
+input                 i_FuseAdd_SelfAdd       ;
+input                 i_Temp_Sign1            ;
+input                 i_Temp_Sign2            ;
+input      [  9:0]    i_Temp_Expo1            ;
+input      [  9:0]    i_Temp_Expo2            ;
+input      [ 47:0]    i_Temp_Mant1            ;
+input      [ 47:0]    i_Temp_Mant2            ;
+input      [  3:0]    i_Normal_Sign           ;
+input      [ 39:0]    i_Normal_Exp            ;
+input      [191:0]    i_Normal_Mantissa       ;
+input                 i_is_int_op             ;
 input       [ 11:0]   i_TypeA                 ;
 input       [  3:0]   i_SignA                 ;
 input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
+input       [  3:0]   i_Sticky_Flag           ;
+input                 i_Internal_Acc          ;
+output reg            o_Internal_Acc          ;
+output reg  [  3:0]   o_Sticky_Flag           ;
 output reg  [127:0]   o_Result                ;
 output reg  [  3:0]   o_Is_Exception          ;
-output reg  [  3:0]   o_Normal_Sign           ;
-output reg  [ 39:0]   o_Normal_Exp            ;
-output reg  [191:0]   o_Normal_Mantissa       ;
 output reg            o_Compute_Mode          ;
 output reg  [ 2:0]    o_Compute_Precision     ;
 output reg            o_Is_Widening           ;
@@ -124,22 +125,23 @@ output reg  [ 31:0]   o_ZA_Base_Address       ;
 output reg  [127:0]   o_Operand_C             ;
 output reg  [127:0]   o_Rounded_result        ;
 output reg  [ 2:0]    o_Precision_Addend      ;
-output reg            o_Temp_Sign             ;
-output reg  [  9:0]   o_Temp_Expo             ;
-output reg  [ 72:0]   o_Temp_Mant             ;
-output reg  [ 48:0]   o_Mant                  ;
-output reg  [ 31:0]   o_Fault_Result          ;
-output reg            o_IsBfloat16            ;
-output reg            o_N                     ;
-output reg  [  7:0]	  o_Sum_Expo		      ;
-output reg       	  o_Sum_Sign		      ;
+output reg            o_FuseAdd_SelfAdd       ;
+output reg            o_Temp_Sign1            ;
+output reg            o_Temp_Sign2            ;
+output reg [  9:0]    o_Temp_Expo1            ;
+output reg [  9:0]    o_Temp_Expo2            ;
+output reg [ 47:0]    o_Temp_Mant1            ;
+output reg [ 47:0]    o_Temp_Mant2            ;
+output reg [  3:0]    o_Normal_Sign           ;
+output reg [ 39:0]    o_Normal_Exp            ;
+output reg [191:0]    o_Normal_Mantissa       ;
 output reg [ 11:0]    o_TypeA                 ;
 output reg [  3:0]    o_SignA                 ;
 output reg [ 31:0]    o_ExpoA                 ;
 output reg [ 95:0]    o_MantA                 ;
 
 always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin
+    if (!rst_n) begin
         o_Compute_Mode        <= 'd0 ;
         o_Compute_Precision   <= 'd0 ;
         o_Is_Widening         <= 'd0 ;
@@ -153,15 +155,13 @@ always @(posedge clk or negedge rst_n) begin
         o_Operand_C           <= 'd0 ;
         o_Rounded_result      <= 'd0 ;
         o_Precision_Addend    <= 'd0 ;
-        o_Temp_Sign           <= 'd0 ;
-        o_Temp_Expo           <= 'd0 ;
-        o_Temp_Mant           <= 'd0 ;
-        o_Mant                <= 'd0 ;
-        o_Fault_Result        <= 'd0 ;
-        o_IsBfloat16          <= 'd0 ;
-        o_N                   <= 'd0 ;
-        o_Sum_Expo	          <= 'd0 ;
-        o_Sum_Sign	          <= 'd0 ;
+        o_FuseAdd_SelfAdd     <= 'd0 ;
+        o_Temp_Sign1          <= 'd0 ;
+        o_Temp_Sign2          <= 'd0 ;
+        o_Temp_Expo1          <= 'd0 ;
+        o_Temp_Expo2          <= 'd0 ;
+        o_Temp_Mant1          <= 'd0 ;
+        o_Temp_Mant2          <= 'd0 ;
         o_Normal_Sign         <= 'd0 ;
         o_Normal_Exp          <= 'd0 ;
         o_Normal_Mantissa     <= 'd0 ;
@@ -171,8 +171,33 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= 'd0 ;
         o_Is_Exception        <= 'd0 ;
         o_Result              <= 'd0 ;
-    end 
-    else begin
+        o_Sticky_Flag         <= 'd0 ;
+        o_Internal_Acc        <= 'd0 ;
+    end else if (i_is_int_op) begin
+        o_Compute_Mode        <= 'd0 ;
+        o_Compute_Precision   <= 'd0 ;
+        o_Is_Widening         <= 'd0 ;
+        o_Add_or_Subtract     <= 'd0 ;
+        o_ZmIsSigned          <= 'd0 ;
+        o_ZnIsSigned          <= 'd0 ;
+        o_Num_of_Vector_Group <= 'd0 ;
+        o_Vector_Group_Num    <= 'd0 ;
+        o_Exception_Handling  <= 'd0 ;
+        o_ZA_Base_Address     <= 'd0 ;
+        o_Operand_C           <= 'd0 ;
+        o_Rounded_result      <= 'd0 ;
+        o_Precision_Addend    <= 'd0 ;
+        o_FuseAdd_SelfAdd     <= 'd0 ;
+        o_Temp_Sign1          <= 'd0 ;
+        o_Temp_Sign2          <= 'd0 ;
+        o_Temp_Expo1          <= 'd0 ;
+        o_Temp_Expo2          <= 'd0 ;
+        o_Temp_Mant1          <= 'd0 ;
+        o_Temp_Mant2          <= 'd0 ;
+        o_Normal_Sign         <= 'd0 ;
+        o_Normal_Exp          <= 'd0 ;
+        o_Normal_Mantissa     <= 'd0 ;
+    end else begin
         o_Compute_Mode        <= i_Compute_Mode        ;
         o_Compute_Precision   <= i_Compute_Precision   ;
         o_Is_Widening         <= i_Is_Widening         ;
@@ -186,15 +211,13 @@ always @(posedge clk or negedge rst_n) begin
         o_Operand_C           <= i_Operand_C           ;
         o_Rounded_result      <= i_Rounded_result      ;
         o_Precision_Addend    <= i_Precision_Addend    ;
-        o_Temp_Sign           <= i_Temp_Sign           ;
-        o_Temp_Expo           <= i_Temp_Expo           ;
-        o_Temp_Mant           <= i_Temp_Mant           ;
-        o_Mant                <= i_Mant                ;
-        o_Fault_Result        <= i_Fault_Result        ;
-        o_IsBfloat16          <= i_IsBfloat16          ;
-        o_N                   <= i_N                   ;
-        o_Sum_Expo	          <= i_Sum_Expo	           ;
-        o_Sum_Sign	          <= i_Sum_Sign	           ;
+        o_FuseAdd_SelfAdd     <= i_FuseAdd_SelfAdd     ;
+        o_Temp_Sign1          <= i_Temp_Sign1          ;
+        o_Temp_Sign2          <= i_Temp_Sign2          ;
+        o_Temp_Expo1          <= i_Temp_Expo1          ;
+        o_Temp_Expo2          <= i_Temp_Expo2          ;
+        o_Temp_Mant1          <= i_Temp_Mant1          ;
+        o_Temp_Mant2          <= i_Temp_Mant2          ;
         o_Normal_Sign         <= i_Normal_Sign         ;
         o_Normal_Exp          <= i_Normal_Exp          ;
         o_Normal_Mantissa     <= i_Normal_Mantissa     ;
@@ -204,6 +227,8 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= i_MantA               ; 
         o_Result              <= i_Result              ;
         o_Is_Exception        <= i_Is_Exception        ;
+        o_Sticky_Flag         <= i_Sticky_Flag         ;
+        o_Internal_Acc        <= i_Internal_Acc        ;
     end
 end
 
@@ -224,24 +249,27 @@ input       [  1:0]   i_Vector_Group_Num      ;
 input       [ 19:0]   i_Exception_Handling    ;
 input       [ 31:0]   i_ZA_Base_Address       ;
 input       [127:0]   i_Operand_C             ;
-input                 i_Temp_Sign             ;
-input       [  9:0]   i_Temp_Expo             ;
-input       [ 72:0]   i_Temp_Mant             ;
-input       [ 48:0]   i_Mant                  ;
-input       [ 31:0]   i_Fault_Result          ;
-input                 i_IsBfloat16            ;
-input                 i_N                     ;
-input       [  7:0]	  i_Sum_Expo		      ;
-input            	  i_Sum_Sign		      ;
-input       [  3:0]   i_Normal_Sign           ;
-input       [ 39:0]   i_Normal_Exp            ;
-input       [191:0]   i_Normal_Mantissa       ;
+input                 i_FuseAdd_SelfAdd       ;
+input                 i_Temp_Sign1            ;
+input                 i_Temp_Sign2            ;
+input      [  9:0]    i_Temp_Expo1            ;
+input      [  9:0]    i_Temp_Expo2            ;
+input      [ 47:0]    i_Temp_Mant1            ;
+input      [ 47:0]    i_Temp_Mant2            ;
+input      [  3:0]    i_Normal_Sign           ;
+input      [ 39:0]    i_Normal_Exp            ;
+input      [191:0]    i_Normal_Mantissa       ;
+input                 i_is_int_op             ;
 input       [ 11:0]   i_TypeA                 ;
 input       [  3:0]   i_SignA                 ;
 input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
+input       [  3:0]   i_Sticky_Flag           ;
+input                 i_Internal_Acc          ;
+output                o_Internal_Acc          ;
+output      [  3:0]   o_Sticky_Flag           ;
 output      [127:0]   o_Result                ;
 output      [  3:0]   o_Is_Exception          ;
 output                o_Compute_Mode          ;
@@ -256,16 +284,14 @@ output      [ 19:0]   o_Exception_Handling    ;
 output      [ 31:0]   o_ZA_Base_Address       ;
 output      [127:0]   o_Operand_C             ;
 output      [127:0]   o_Rounded_result        ;
-output      [  2:0]   o_Precision_Addend      ;
-output                o_Temp_Sign             ;
-output     [  9:0]    o_Temp_Expo             ;
-output     [ 72:0]    o_Temp_Mant             ;
-output     [ 48:0]    o_Mant                  ;
-output     [ 31:0]    o_Fault_Result          ;
-output                o_IsBfloat16            ;
-output                o_N                     ;
-output     [  7:0]	  o_Sum_Expo		      ;
-output          	  o_Sum_Sign		      ;
+output      [ 2:0]    o_Precision_Addend      ;
+output                o_FuseAdd_SelfAdd       ;
+output                o_Temp_Sign1            ;
+output                o_Temp_Sign2            ;
+output     [  9:0]    o_Temp_Expo1            ;
+output     [  9:0]    o_Temp_Expo2            ;
+output     [ 47:0]    o_Temp_Mant1            ;
+output     [ 47:0]    o_Temp_Mant2            ;
 output     [  3:0]    o_Normal_Sign           ;
 output     [ 39:0]    o_Normal_Exp            ;
 output     [191:0]    o_Normal_Mantissa       ;
@@ -287,22 +313,13 @@ assign o_ZA_Base_Address     = i_ZA_Base_Address     ;
 assign o_Operand_C           = i_Operand_C           ;
 assign o_Rounded_result      = i_Rounded_result      ;
 assign o_Precision_Addend    = i_Precision_Addend    ;
-// assign o_FuseAdd_SelfAdd     = i_FuseAdd_SelfAdd     ;
-// assign o_Temp_Sign1          = i_Temp_Sign1          ;
-// assign o_Temp_Sign2          = i_Temp_Sign2          ;
-// assign o_Temp_Expo1          = i_Temp_Expo1          ;
-// assign o_Temp_Expo2          = i_Temp_Expo2          ;
-// assign o_Temp_Mant1          = i_Temp_Mant1          ;
-// assign o_Temp_Mant2          = i_Temp_Mant2          ;
-assign o_Temp_Sign           = i_Temp_Sign           ;
-assign o_Temp_Expo           = i_Temp_Expo           ;
-assign o_Temp_Mant           = i_Temp_Mant           ;
-assign o_Mant                = i_Mant                ;
-assign o_Fault_Result        = i_Fault_Result        ;
-assign o_IsBfloat16          = i_IsBfloat16          ;
-assign o_N                   = i_N                   ;
-assign o_Sum_Expo	         = i_Sum_Expo	         ;
-assign o_Sum_Sign	         = i_Sum_Sign	         ;
+assign o_FuseAdd_SelfAdd     = i_FuseAdd_SelfAdd     ;
+assign o_Temp_Sign1          = i_Temp_Sign1          ;
+assign o_Temp_Sign2          = i_Temp_Sign2          ;
+assign o_Temp_Expo1          = i_Temp_Expo1          ;
+assign o_Temp_Expo2          = i_Temp_Expo2          ;
+assign o_Temp_Mant1          = i_Temp_Mant1          ;
+assign o_Temp_Mant2          = i_Temp_Mant2          ;
 assign o_Normal_Sign         = i_Normal_Sign         ;
 assign o_Normal_Exp          = i_Normal_Exp          ;
 assign o_Normal_Mantissa     = i_Normal_Mantissa     ;
@@ -312,6 +329,8 @@ assign o_ExpoA               = i_ExpoA               ;
 assign o_MantA               = i_MantA               ;
 assign o_Is_Exception        = i_Is_Exception        ;
 assign o_Result              = i_Result              ;
+assign o_Sticky_Flag         = i_Sticky_Flag         ;
+assign o_Internal_Acc        = i_Internal_Acc        ;
 
 `endif
     

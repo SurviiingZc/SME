@@ -4,7 +4,7 @@
 `include "Macro_Definition.v"
 `endif
 
-module C5_FPAddition(
+module C3_FPAddition(
 	input                      i_Sign1                ,
 	input           [  7:0]    i_Expo1                ,
 	input           [ 23:0]    i_Mant1                ,
