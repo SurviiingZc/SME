@@ -130,7 +130,7 @@ always @(*) begin
         2'b00: begin
             adjusted_mantissa              = {i_mantissa_in[21:0],26'b0} << (i_exp_true)            ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                        ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = ({i_mantissa_in[21:0],26'b0} & mask_out_bits)          ;
             sticky_flag                    = |shifted_out_bits                                      ;
@@ -138,7 +138,7 @@ always @(*) begin
         2'b01: begin
             adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                        ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
             sticky_flag                    = |shifted_out_bits                                      ;
@@ -146,7 +146,7 @@ always @(*) begin
         2'b10: begin
             adjusted_mantissa              = {i_mantissa_in[15:0],32'b0} << (i_exp_true)            ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                        ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = {i_mantissa_in[15:0],32'b0} & mask_out_bits            ;
             sticky_flag                    = |shifted_out_bits                                      ;
@@ -154,7 +154,7 @@ always @(*) begin
         default: begin
             adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                        ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
             sticky_flag                    = |shifted_out_bits                                      ;

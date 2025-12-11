@@ -15,6 +15,7 @@ import PE_seq_pkg::*;
 `include "PE_test_bfmop.sv"
 `include "PE_test_int.sv"
 `include "PE_test_fdot.sv"
+`include "PE_test_bfmop.sv"
 
 endpackage : PE_test_pkg
 

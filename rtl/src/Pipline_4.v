@@ -30,6 +30,10 @@ module Pipline_4 (
         i_MantA                ,
         i_Is_Exception         ,
         i_Result               ,
+        i_Sticky_Flag          ,
+        i_Internal_Acc         ,
+        o_Internal_Acc         ,
+        o_Sticky_Flag          ,
         o_Result               ,
         o_Is_Exception         ,
         o_Compute_Mode         ,
@@ -80,6 +84,10 @@ input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
+input       [  3:0]   i_Sticky_Flag           ;
+input                 i_Internal_Acc          ;
+output reg            o_Internal_Acc          ;
+output reg  [  3:0]   o_Sticky_Flag           ;
 output reg  [127:0]   o_Result                ;
 output reg  [  3:0]   o_Is_Exception          ;
 output reg  [  3:0]   o_Normal_Sign           ;
@@ -127,6 +135,8 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA                <= 'd0 ;
         o_Is_Exception         <= 'd0 ;
         o_Result               <= 'd0 ;
+        o_Sticky_Flag          <= 'd0 ;
+        o_Internal_Acc         <= 'd0 ;
     end 
     else begin
         o_Compute_Mode         <= i_Compute_Mode         ;
@@ -151,6 +161,8 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA                <= i_MantA                ;
         o_Result               <= i_Result               ;
         o_Is_Exception         <= i_Is_Exception         ;
+        o_Sticky_Flag          <= i_Sticky_Flag          ;
+        o_Internal_Acc         <= i_Internal_Acc         ;
     end
 end
 
@@ -180,6 +192,10 @@ input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
+input       [  3:0]   i_Sticky_Flag           ;
+input                 i_Internal_Acc          ;
+output                o_Internal_Acc          ;
+output      [  3:0]   o_Sticky_Flag           ;
 output      [127:0]   o_Result                ;
 output      [  3:0]   o_Is_Exception          ;
 output                o_Compute_Mode          ;
@@ -225,6 +241,8 @@ assign o_ExpoA                  = i_ExpoA                   ;
 assign o_MantA                  = i_MantA                   ;
 assign o_Is_Exception           = i_Is_Exception            ;
 assign o_Result                 = i_Result                  ;
+assign o_Sticky_Flag            = i_Sticky_Flag             ;
+assign o_Internal_Acc           = i_Internal_Acc            ;
 
 `endif
     

@@ -51,6 +51,7 @@ C5_FPUnpackAll u_FPUnpackAll(
     .i_Compute_Precision   ( i_Compute_Precision   ),
     .i_Precision_Addend    ( i_Precision_Addend    ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
+    .i_FuseAdd_SelfAdd     ( i_FuseAdd_SelfAdd     ),
     .i_Value1              ( i_Value1              ),
     .i_Value2              ( i_Value2              ),
     .o_Type1               ( T_Type1               ),
