@@ -277,7 +277,7 @@ void FPUnpackBase(uint32_t fpval, uint8_t N, FPCR_Type fpcr_in, bool fpexc, bool
             frac32 = fpval & 0x7FFFFF;
         }
         if (IsZero(exp32, 8)) {
-            if (IsZero(frac32, isbfloat16 ? 7 : 23)) {
+            if (frac32 == 0) {
                *type = FPType_Zero;
                *value = 0.0;
             } else if (fz || fiz) {
@@ -288,19 +288,19 @@ void FPUnpackBase(uint32_t fpval, uint8_t N, FPCR_Type fpcr_in, bool fpexc, bool
                }
             } else {
                *type = FPType_Denormal;
-               *value = pow(2.0, -126) * (frac32 * pow(2.0, isbfloat16 ? -7 : -23));
+               *value = pow(2.0, -126) * (frac32 * pow(2.0, -23));
             }
         } else if (IsOnes(exp32, 8)) {
-            if (IsZero(frac32, isbfloat16 ? 7 : 23)) {
+            if (frac32 == 0) {
                *type = FPType_Infinity;
                *value = HUGE_VAL;
             } else {
-               *type = (frac32 & (isbfloat16 ? 0x400000 : 0x400000)) ? FPType_QNaN : FPType_SNaN;
+               *type = (frac32 & 0x400000) ? FPType_QNaN : FPType_SNaN;
                *value = NAN;
             }
         } else {
             *type = FPType_Nonzero;
-            *value = pow(2.0, exp32 - 127) * (1.0 + frac32 * pow(2.0, isbfloat16 ? -7 : -23));
+            *value = pow(2.0, exp32 - 127) * (1.0 + frac32 * pow(2.0, -23));
         }
 
         if (*sign == 1) {
