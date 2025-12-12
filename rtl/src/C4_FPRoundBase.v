@@ -94,29 +94,29 @@ module C4_FPRoundBase #(
     assign FP32_R_bit       = i_adjusted_mantissa[FP32_IDX_LO-2]    ;
     assign FP16_G_bit       = i_adjusted_mantissa[FP16_IDX_LO-1]    ;
     assign FP16_R_bit       = i_adjusted_mantissa[FP16_IDX_LO-2]    ;
-    assign BF16_G_bit       = i_adjusted_mantissa[BF16_IDX_LO-1]    ;
-    assign BF16_R_bit       = i_adjusted_mantissa[BF16_IDX_LO-2]    ;
+    // assign BF16_G_bit       = i_adjusted_mantissa[BF16_IDX_LO-1]    ;
+    // assign BF16_R_bit       = i_adjusted_mantissa[BF16_IDX_LO-2]    ;
     assign FP32_G_bit_uncon = i_mantissa[FP32_IDX_LO-1]             ;
     assign FP32_R_bit_uncon = i_mantissa[FP32_IDX_LO-2]             ;
     assign FP16_G_bit_uncon = i_mantissa[FP16_IDX_LO-1]             ;
     assign FP16_R_bit_uncon = i_mantissa[FP16_IDX_LO-2]             ;
-    assign BF16_G_bit_uncon = i_mantissa[BF16_IDX_LO-1]             ;
-    assign BF16_R_bit_uncon = i_mantissa[BF16_IDX_LO-2]             ;
+    // assign BF16_G_bit_uncon = i_mantissa[BF16_IDX_LO-1]             ;
+    // assign BF16_R_bit_uncon = i_mantissa[BF16_IDX_LO-2]             ;
     assign FP32_S_bit       = |i_adjusted_mantissa[FP32_IDX_LO-2:0] ;
     assign FP16_S_bit       = |i_adjusted_mantissa[FP16_IDX_LO-2:0] ;
-    assign BF16_S_bit       = |i_adjusted_mantissa[BF16_IDX_LO-2:0] ;
+    // assign BF16_S_bit       = |i_adjusted_mantissa[BF16_IDX_LO-2:0] ;
     assign FP32_S_bit_uncon = |i_mantissa[FP32_IDX_LO-2:0]          ;
     assign FP16_S_bit_uncon = |i_mantissa[FP16_IDX_LO-2:0]          ;
-    assign BF16_S_bit_uncon = |i_mantissa[BF16_IDX_LO-2:0]          ;
+    // assign BF16_S_bit_uncon = |i_mantissa[BF16_IDX_LO-2:0]          ;
     assign FP32_L_bit       = i_adjusted_mantissa[FP32_IDX_LO]      ;
     assign FP16_L_bit       = i_adjusted_mantissa[FP16_IDX_LO]      ;
-    assign BF16_L_bit       = i_adjusted_mantissa[BF16_IDX_LO]      ;
+    // assign BF16_L_bit       = i_adjusted_mantissa[BF16_IDX_LO]      ;
     assign FP16_L_bit_uncon = i_mantissa[FP32_IDX_LO]               ;
-    assign BF16_L_bit_uncon = i_mantissa[FP16_IDX_LO]               ;
-    assign BF16_L_bit_uncon = i_mantissa[BF16_IDX_LO]               ;
-    wire [BF16_IDX_HI:BF16_IDX_LO]  mant_bf16_uncon = i_mantissa[BF16_IDX_HI:BF16_IDX_LO]             ;
+    // assign BF16_L_bit_uncon = i_mantissa[FP16_IDX_LO]               ;
+    // assign BF16_L_bit_uncon = i_mantissa[BF16_IDX_LO]               ;
+    // wire [BF16_IDX_HI:BF16_IDX_LO]  mant_bf16_uncon = i_mantissa[BF16_IDX_HI:BF16_IDX_LO]             ;
     //wire [BF16_IDX_LO-1:0]          err_bf16_uncon  = i_mantissa[BF16_IDX_LO-1:0]                     ;
-    wire [BF16_IDX_HI:BF16_IDX_LO]  mant_bf16       = i_adjusted_mantissa[BF16_IDX_HI:BF16_IDX_LO]    ;
+    // wire [BF16_IDX_HI:BF16_IDX_LO]  mant_bf16       = i_adjusted_mantissa[BF16_IDX_HI:BF16_IDX_LO]    ;
     //wire [BF16_IDX_LO-1:0]          err_bf16        = i_adjusted_mantissa[BF16_IDX_LO-1:0]            ;
 
     wire [FP16_IDX_HI:FP16_IDX_LO]  mant_fp16_uncon = i_mantissa[FP16_IDX_HI:FP16_IDX_LO]             ;
@@ -143,22 +143,22 @@ module C4_FPRoundBase #(
     //     ({IN_WIDTH-BF16_F{i_is_bf16}} & HALF_BF16) |
     //     ({IN_WIDTH-BF16_F{i_is_fp16}} & HALF_FP16) |
     //     ({IN_WIDTH-BF16_F{i_is_fp32}} & HALF_FP32);
-    assign G_bit        = (i_is_bf16 & BF16_G_bit) | (i_is_fp16 & FP16_G_bit) | (i_is_fp32 & FP32_G_bit)                    ;
-    assign G_bit_uncon  = (i_is_bf16 & BF16_G_bit_uncon) | (i_is_fp16 & FP16_G_bit_uncon) | (i_is_fp32 & FP32_G_bit_uncon)  ;
-    assign R_bit        = (i_is_bf16 & BF16_R_bit) | (i_is_fp16 & FP16_R_bit) | (i_is_fp32 & FP32_R_bit)                    ;
-    assign R_bit_uncon  = (i_is_bf16 & BF16_R_bit_uncon) | (i_is_fp16 & FP16_R_bit_uncon) | (i_is_fp32 & FP32_R_bit_uncon)  ;
-    assign S_bit        = (i_is_bf16 & BF16_S_bit) | (i_is_fp16 & FP16_S_bit) | (i_is_fp32 & FP32_S_bit) | i_sticky_bit     ;
-    assign S_bit_uncon  = (i_is_bf16 & BF16_S_bit_uncon) | (i_is_fp16 & FP16_S_bit_uncon) | (i_is_fp32 & FP32_S_bit_uncon)  ;
-    assign L_bit        = (i_is_bf16 & BF16_L_bit) | (i_is_fp16 & FP16_L_bit) | (i_is_fp32 & FP32_L_bit) | i_sticky_bit     ;
-    assign L_bit_uncon  = (i_is_bf16 & BF16_L_bit_uncon) | (i_is_fp16 & FP16_L_bit_uncon) | (i_is_fp32 & FP32_L_bit_uncon)  ;
+    assign G_bit        = (i_is_fp16 & FP16_G_bit) | (i_is_fp32 & FP32_G_bit)                    ;
+    assign G_bit_uncon  = (i_is_fp16 & FP16_G_bit_uncon) | (i_is_fp32 & FP32_G_bit_uncon)  ;
+    assign R_bit        = (i_is_fp16 & FP16_R_bit) | (i_is_fp32 & FP32_R_bit)                    ;
+    assign R_bit_uncon  = (i_is_fp16 & FP16_R_bit_uncon) | (i_is_fp32 & FP32_R_bit_uncon)  ;
+    assign S_bit        = (i_is_fp16 & FP16_S_bit) | (i_is_fp32 & FP32_S_bit) | i_sticky_bit     ;
+    assign S_bit_uncon  = (i_is_fp16 & FP16_S_bit_uncon) | (i_is_fp32 & FP32_S_bit_uncon)  ;
+    assign L_bit        = (i_is_fp16 & FP16_L_bit) | (i_is_fp32 & FP32_L_bit) | i_sticky_bit     ;
+    assign L_bit_uncon  = (i_is_fp16 & FP16_L_bit_uncon) | (i_is_fp32 & FP32_L_bit_uncon)  ;
 
     wire [FP32_F:0] int_mant = 
-        ({(FP32_F+1){i_is_bf16}} & mant_bf16) |
+        // ({(FP32_F+1){i_is_bf16}} & mant_bf16) |
         ({(FP16_F+1){i_is_fp16}} & mant_fp16) |
         ({(FP32_F+1){i_is_fp32}} & mant_fp32);
 
     wire [FP32_F:0] int_mant_unconstrained = 
-        ({(FP32_F+1){i_is_bf16}} & mant_bf16_uncon) |
+        // ({(FP32_F+1){i_is_bf16}} & mant_bf16_uncon) |
         ({(FP16_F+1){i_is_fp16}} & mant_fp16_uncon) |
         ({(FP32_F+1){i_is_fp32}} & mant_fp32_uncon);
 
@@ -219,43 +219,38 @@ module C4_FPRoundBase #(
         round_deor2nor_fp32;
 
 
-    wire signed [EXP_WIDTH:0] biased_exp_round_uncon = i_biased_exp_unconstrained + carry_uncon;
-    wire        [FP32_F+1 :0] int_mant_uncon_final     = (round_up_unconstrained) ? (int_mant_round_uncon) : int_mant_unconstrained   ;    
-    wire signed [EXP_WIDTH:0] biased_exp_round       = (round_deor2nor)         ?    1'b1                :(carry_main + i_biased_exp );
-    wire        [FP32_F+1 :0] int_mant_round_final     = (round_up)               ?  int_mant_round        : int_mant                 ;
+    wire signed [10:0]  biased_exp_round_uncon         = i_biased_exp_unconstrained + carry_uncon                                                 ;
+    wire [FP32_F+1 :0]  int_mant_uncon_final           = (round_up_unconstrained)   ? (int_mant_round_uncon)     : int_mant_unconstrained         ;    
+    wire signed [10:0]  biased_exp_round_uncon_final   = (round_up_unconstrained)   ?  biased_exp_round_uncon    : i_biased_exp_unconstrained     ;
+    wire signed [10:0]  biased_exp_round               = (round_deor2nor)           ?    1'b1                    :(carry_main + i_biased_exp )    ;
+    wire signed [10:0]  biased_exp_round_final         = (round_up)                 ?  biased_exp_round          : i_biased_exp                   ;
+    wire [FP32_F+1 :0]  int_mant_round_final           = (round_up)                 ?  int_mant_round            : int_mant                       ;
     
     // UF OF
     wire Is_FZ16               = FPCR_FZ16 && (i_N == 0);
     wire Is_FZ                 = FPCR_FZ   && (i_N == 1); 
-    wire Is_exp_lt_mini        = (i_exponent < i_minimum_exp) ? 1'b1 : 1'b0;
+    wire Is_exp_lt_mini        = (i_exp_true < i_minimum_exp) ? 1'b1 : 1'b0;
     wire Is_flush              = Is_FZ16 | Is_FZ;
-    wire IEEE_half             = i_N == 1 | FPCR_APH == 0;
-    wire Alter_half            = i_N == 0 && FPCR_APH == 1;
+    // wire IEEE_half             = i_N == 1 | FPCR_APH == 0;
+    // wire Alter_half            = i_N == 0 && FPCR_APH == 1;
     wire flush_zero_condition1 = !ALTFP && (Is_flush) && (Is_exp_lt_mini); 
-    wire flush_zero_condition2 =  ALTFP && (Is_flush) && (biased_exp_round_uncon < 1) && (int_mant_uncon_final != 0) ;
+    wire flush_zero_condition2 =  ALTFP && (Is_flush) && (biased_exp_round_uncon_final < 1) && (int_mant_uncon_final != 0) ;
     //wire flush_zero_condition3 = (i_exp_true == 0) && (op == 0);
-    
-    wire overflow_inf          = (biased_exp_round >= exponent_max) && (IEEE_half) && overflow_to_inf;
-    wire overflow_maxnor       = (biased_exp_round >= exponent_max) && (IEEE_half) && (!overflow_to_inf);
-    wire overflow_NaN          = (biased_exp_round >= exponent_max_plus1) && (Alter_half);
-
-    always @(*) begin
-    case (1'b1)
-        // flush_zero_condition3:
-        //     o_Rounded_result = o_FPZero_op0;
-        flush_zero_condition1: 
-            o_Rounded_result = o_FPZero;
-        flush_zero_condition2: 
-            o_Rounded_result = o_FPZero;
-        overflow_inf: 
-            o_Rounded_result = o_FPInfinity;
-        overflow_maxnor:
-            o_Rounded_result = o_FPMaxNormal;
-        overflow_NaN: 
-            o_Rounded_result = o_FPNaN;
-        default: 
+    wire overflow_inf          = (biased_exp_round_final >= exponent_max) && overflow_to_inf;
+    wire overflow_maxnor       = (biased_exp_round_final >= exponent_max) && (!overflow_to_inf);
+    // wire overflow_inf          = (biased_exp_round_final >= exponent_max) && (IEEE_half) && overflow_to_inf;
+    // wire overflow_maxnor       = (biased_exp_round_final >= exponent_max) && (IEEE_half) && (!overflow_to_inf);
+    // wire overflow_NaN          = (biased_exp_round_final >= exponent_max_plus1) && (Alter_half);
+    always @(*) begin 
+        if(flush_zero_condition1 || flush_zero_condition2) begin
+            o_Rounded_result = {i_sign,31'd0};
+        end else if(overflow_inf) begin
+            o_Rounded_result = {i_sign,8'd255,23'd0};
+        end else if(overflow_maxnor) begin
+            o_Rounded_result = {i_sign,8'd254,23'h7FFFFF};
+        end else begin
             o_Rounded_result = o_Normal_Result;
-    endcase
+        end
     end
 
     C4_FPInfinity u_FPInfinity1(
@@ -274,11 +269,12 @@ module C4_FPRoundBase #(
         .IN_WIDTH         ( IN_WIDTH ),
         .EXP_WIDTH        ( EXP_WIDTH )
     )u_Normal_Result(
-        .i_Sign           ( i_sign           ),
-        .biased_exp_round ( biased_exp_round ),
-        .int_mant_round   ( int_mant_round_final   ),
-        .i_Data_Width     ( i_Data_Width     ),
-        .o_Normal_Result  ( o_Normal_Result  )
+        .i_Sign             ( i_sign                  ),
+        .i_biased_exp_round ( biased_exp_round_final  ),
+        .i_int_mant_round   ( int_mant_round_final    ),
+        .i_Data_Width       ( i_Data_Width            ),
+        .i_N                ( i_N                     ),
+        .o_Normal_Result    ( o_Normal_Result         )
     );
 
     C4_FPNaN FPNaN(

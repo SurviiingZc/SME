@@ -16,16 +16,16 @@ module C3_FPAddition(
     input                      i_FuseAdd_SelfAdd      ,
     input                      i_Temp_Sign1           ,
     input                      i_Temp_Sign2           ,
-    input           [  9:0]    i_Temp_Expo1           ,
-    input           [  9:0]    i_Temp_Expo2           ,
+    input signed    [  9:0]    i_Temp_Expo1           ,
+    input signed    [  9:0]    i_Temp_Expo2           ,
     input           [ 47:0]    i_Temp_Mant1           ,
     input           [ 47:0]    i_Temp_Mant2           ,
     input                      i_sticky_bit           ,
     output                     o_Temp_Sign            ,
-    output          [  9:0]    o_Temp_Expo            ,
+    output signed   [  9:0]    o_Temp_Expo            ,
     output          [ 72:0]    o_Temp_Mant            ,
 	output          [ 47:0]    o_Sum_Mant		      ,
-	output          [  9:0]	   o_Sum_Expo		      ,
+	output signed   [  9:0]	   o_Sum_Expo		      ,
 	output                	   o_Sum_Sign		      ,
     output                     o_Sticky_Bit            
 );
@@ -72,10 +72,10 @@ wire			Fuse_is_Num1_Max	;
 wire			Fuse_is_Expo1_Max	;
 wire			Fuse_is_Mant1_Max	;
 wire         	Fuse_Sign_Max    	;
-wire  [ 8:0] 	Fuse_Expo_Max    	;
+wire  signed [ 9:0] 	Fuse_Expo_Max    	;
 wire  [47:0] 	Fuse_Mant_Max    	;
 wire         	Fuse_Sign_Min  		;
-wire  [ 8:0] 	Fuse_Expo_Min  		;
+wire  signed [ 9:0] 	Fuse_Expo_Min  		;
 wire  [47:0] 	Fuse_Mant_Min  		;
 wire            is_Comp             ;
 wire            Fuse_is_Comp        ;
@@ -124,8 +124,8 @@ assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
 // assign o_Sum_Expo	 = Expo_Max													;
 // assign o_Sum_Sign	 = Sign_Max													;
 
-assign Temp_Expo1            = (i_Temp_Expo1 == 'd0) ? 9'sd1 : i_Temp_Expo1                                 ;
-assign Temp_Expo2            = (i_Temp_Expo2 == 'd0) ? 9'sd1 : i_Temp_Expo2                                 ;
+assign Temp_Expo1            = i_Temp_Expo1                                 ;
+assign Temp_Expo2            = i_Temp_Expo2                                 ;
 assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
 assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 

@@ -82,7 +82,7 @@ wire  [  2:0]   P1_Precision_Addend      ;
 wire            P1_FuseAdd_SelfAdd       ;
 wire  [127:0]   P1_Round_result          ;
 wire            P1_Normal_sign     [3:0] ;
-wire  [  9:0]   P1_Normal_exp      [3:0] ;
+wire  signed [  9:0]   P1_Normal_exp      [3:0] ;
 wire  [ 47:0]   P1_Normal_mantissa [3:0] ;
 wire  [127:0]   P1_Int_Result            ;  
 wire  [  3:0]   P1_Normal_Sign           ;
@@ -114,18 +114,18 @@ wire   [ 2:0]    P2_Precision_Addend      ;
 wire             P2_FuseAdd_SelfAdd       ;
 wire             P2_Temp_Sign1            ;
 wire             P2_Temp_Sign2            ;
-wire  [  9:0]    P2_Temp_Expo1            ;
-wire  [  9:0]    P2_Temp_Expo2            ;
+wire  signed [  9:0]    P2_Temp_Expo1     ;
+wire  signed [  9:0]    P2_Temp_Expo2     ;
 wire  [ 47:0]    P2_Temp_Mant1            ;
 wire  [ 47:0]    P2_Temp_Mant2            ;
 wire             P2_Temp_Sign             ;
 wire [  9:0]     P2_Temp_Expo             ;
 wire [ 72:0]     P2_Temp_Mant             ;
-wire [ 48:0]     P2_Mant                  ;
+wire [ 47:0]     P2_Mant                  ;
 wire [ 31:0]     P2_Fault_Result          ;
 wire             P2_IsBfloat16            ;
 wire             P2_N                     ;
-wire [  7:0]	 P2_Sum_Expo		      ;
+wire [  9:0]	 P2_Sum_Expo		      ;
 wire      	     P2_Sum_Sign		      ;
 wire  [ 11:0]    P2_TypeA                 ;
 wire  [  3:0]    P2_SignA                 ;
@@ -158,11 +158,11 @@ wire  [ 2:0]     P3_Precision_Addend      ;
 wire             P3_Temp_Sign             ;
 wire  [  9:0]    P3_Temp_Expo             ;
 wire  [ 72:0]    P3_Temp_Mant             ;
-wire  [ 48:0]    P3_Mant                  ;
+wire  [ 47:0]    P3_Mant                  ;
 wire  [ 31:0]    P3_Fault_Result          ;
 wire             P3_IsBfloat16            ;
 wire             P3_N                     ;
-wire  [  7:0]	 P3_Sum_Expo		      ;
+wire  [  9:0]	 P3_Sum_Expo		      ;
 wire       	     P3_Sum_Sign		      ;
 wire  [  3:0]    P3_Normal_Sign           ;
 wire  [ 39:0]    P3_Normal_Exp            ;
@@ -432,6 +432,7 @@ generate
             .i_Exception_Handling  ( P1_Exception_Handling      ),
             .i_N                   ( P1_N                       ),
             .i_isbfloat16          ( P1_IsBfloat16              ),
+            .i_is_widening         ( P1_Is_Widening             ),
             .o_sign                ( P1_Normal_sign[i]          ),
             .o_round_result        ( P1_Round_result[i*32+:32]  ),
             .o_normal_mantissa     ( P1_Normal_mantissa[i]      ),
