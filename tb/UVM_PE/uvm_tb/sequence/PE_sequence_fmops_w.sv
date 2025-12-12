@@ -14,7 +14,7 @@ class PE_sequence_fmops_w extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
         for(i = 0; i < 50000; i++)begin
-            `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_LOW)
+            `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 
             start_item(tr);
