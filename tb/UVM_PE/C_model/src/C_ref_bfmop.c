@@ -18,6 +18,7 @@ uint32_t BFDotAdd(uint32_t addend, uint32_t op1_a, uint32_t op1_b, uint32_t op2_
         bool fpexc = false;
         fpcr.DN = 1; 
         prod = FPDot(op1_a, op1_b, op2_a, op2_b, fpcr, isbfloat16, fpexc, N);
+        printf("A1B1+A2B2 = %08X\n", prod);
         result = FPAdd(addend, prod, fpcr, fpexc, N, add_sub);
     }
     return result;
