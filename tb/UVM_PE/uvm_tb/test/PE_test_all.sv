@@ -55,15 +55,15 @@ class PE_test_all extends uvm_test;
         // seq_smlall  = PE_sequence_smlall::type_id::create("seq_smlall") ;
         // seq_umlal   = PE_sequence_umlal::type_id::create("seq_umlal") ;
         // seq_umlall  = PE_sequence_umlall::type_id::create("seq_umlall");
-        // seq_fmopa   = PE_sequence_fmopa::type_id::create("seq_fmopa");
-        // seq_fmopa_w = PE_sequence_fmopa_w::type_id::create("seq_fmopa_w");
-        // seq_fmops   = PE_sequence_fmops::type_id::create("seq_fmops");
-        // seq_fmops_w = PE_sequence_fmops_w::type_id::create("seq_fmops_w");
+        seq_fmopa   = PE_sequence_fmopa::type_id::create("seq_fmopa");
+        seq_fmopa_w = PE_sequence_fmopa_w::type_id::create("seq_fmopa_w");
+        seq_fmops   = PE_sequence_fmops::type_id::create("seq_fmops");
+        seq_fmops_w = PE_sequence_fmops_w::type_id::create("seq_fmops_w");
         // seq_fmlal   = PE_sequence_fmlal::type_id::create("seq_fmlal");
-        // seq_fmla    = PE_sequence_fmla::type_id::create("seq_fmla");
+        seq_fmla    = PE_sequence_fmla::type_id::create("seq_fmla");
         seq_bfmopa  = PE_sequence_bfmopa::type_id::create("seq_bfmopa");
         seq_bfmops  = PE_sequence_bfmops::type_id::create("seq_bfmops");
-        // seq_fdot    = PE_sequence_fdot::type_id::create("seq_fdot");
+        seq_fdot    = PE_sequence_fdot::type_id::create("seq_fdot");
 
         phase.raise_objection(this);
         
@@ -82,15 +82,15 @@ class PE_test_all extends uvm_test;
         // seq_smlall.start(env.agent.sequencer); 
         // seq_umlal.start(env.agent.sequencer);  
         // seq_umlall.start(env.agent.sequencer);           
-        // seq_fmopa.start(env.agent.sequencer);
-        // seq_fmopa_w.start(env.agent.sequencer);
-        // seq_fmops.start(env.agent.sequencer);  
-        // seq_fmops_w.start(env.agent.sequencer);
+        seq_fmopa.start(env.agent.sequencer);
+        seq_fmopa_w.start(env.agent.sequencer);
+        seq_fmops.start(env.agent.sequencer);  
+        seq_fmops_w.start(env.agent.sequencer);
         // seq_fmlal.start(env.agent.sequencer); 
-        // seq_fmla.start(env.agent.sequencer);  
+        seq_fmla.start(env.agent.sequencer);  
         seq_bfmopa.start(env.agent.sequencer);
         seq_bfmops.start(env.agent.sequencer);
-        // seq_fdot.start(env.agent.sequencer);
+        seq_fdot.start(env.agent.sequencer);
           
         phase.drop_objection(this);
         
