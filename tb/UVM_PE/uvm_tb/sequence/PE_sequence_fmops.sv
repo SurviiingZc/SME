@@ -148,7 +148,7 @@ class PE_sequence_fmops extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
 
-        for(i = 0; i < 30000; i++) begin
+        for(i = 0; i < 50000; i++) begin
             tr = PE_seq_item::type_id::create("tr");
             start_item(tr);
 

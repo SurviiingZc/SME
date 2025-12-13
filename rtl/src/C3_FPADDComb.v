@@ -87,6 +87,7 @@ C3_FPAddition u_C3_FPAddition(
     .i_Expo2                ( T_Expo2               ),
     .i_Mant2                ( T_Mant2               ),
     .i_Exception_Handling   ( i_Exception_Handling  ),
+    .i_Compute_Precision    ( i_Compute_Precision   ),
     .i_Add_or_Subtract      ( i_Add_or_Subtract     ),
     .i_sticky_bit           ( i_Sticky_Flag         ),
     .i_FuseAdd_SelfAdd      ( i_FuseAdd_SelfAdd     ),
