@@ -17,6 +17,7 @@ module C2_Round #(
     input                        i_N                   ,  // 1 > 32 0 > 16
     input                        i_isbfloat16          ,
     input                        i_sticky_bit          ,
+    input                        i_is_widening         ,
     //input                        i_is_Multiplier       ,
     output                       o_sign                ,
     output reg  [31:0]           o_round_result        ,
@@ -50,9 +51,9 @@ module C2_Round #(
     wire        [F:0]                     int_mant_round         = ( S_bit && L_bit) ? (int_mant_roundup) : int_mant                                ;   
     wire                                  flush_zero_condition   = (exponent < minimum_exp) ? 1'b1 : 1'b0                                           ;
     wire        [31         :0]           Normal_Result          = {i_sign,biased_exp[7:0],int_mant_round[22:0]}                                    ;
-    wire        is_bf16                     = (i_N == 1) & i_isbfloat16                                                                             ;
-    wire        is_fp16                     = (i_N == 0)                                                                                            ;
-    wire        is_fp32                     = (i_N == 1) & !i_isbfloat16                                                                            ;
+    wire        is_bf16                     = ~i_N & i_isbfloat16                                                                                   ;
+    wire        is_fp16                     = ~i_N & ~i_isbfloat16                                                                                  ;
+    wire        is_fp32                     = i_N                                                                                                   ;
     wire [1:0]  i_Data_Width                                                                                                                        ;
     assign      i_Data_Width[1]             = is_bf16                                                                                               ;
     assign      i_Data_Width[0]             = is_fp32                                                                                               ;
@@ -79,9 +80,9 @@ module C2_Round #(
         .i_exp                     ( i_exp                     ),
         .i_mantissa_in             ( i_op                      ),
         .i_Data_Width              ( i_Data_Width              ),
-        //.i_is_Multiplier           ( i_is_Multiplier           ),
         .o_sign                    ( o_sign                    ),
         .biased_exp                ( biased_exp                ),
+        .i_is_widening             ( i_is_widening             ),
         //.biased_exp_unconstrained  ( biased_exp_unconstrained  ),
         //.i_exp_true                ( i_exp_true                ),
         .exponent                  ( exponent                  ),
