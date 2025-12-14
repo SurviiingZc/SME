@@ -22,6 +22,7 @@ module C3_FPAddition(
     input           [ 47:0]    i_Temp_Mant1           ,
     input           [ 47:0]    i_Temp_Mant2           ,
     input                      i_sticky_bit           ,
+    input                      i_Keep_Expo_signed     ,
     output                     o_Temp_Sign            ,
     output signed   [  9:0]    o_Temp_Expo            ,
     output          [ 72:0]    o_Temp_Mant            ,
@@ -36,6 +37,8 @@ module C3_FPAddition(
 wire [23:0]     Sticky_Temp  ;
 wire signed [  9:0]  Temp_Expo1 ;
 wire signed [  9:0]  Temp_Expo2 ;
+wire signed [  9:0]  Expo1      ;
+wire signed [  9:0]  Expo2      ;
 wire [ 7:0] 	Exp_Diff	 ;
 wire [ 7:0] 	Sum_Sign	 ;
 wire [47:0] 	Max_Mant	 ;
@@ -135,12 +138,14 @@ assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
 // assign o_Sum_Sign	 = Sign_Max													;
 assign Expo1_Temp          = (i_Expo1 == 'd0)   ? 'd1          : i_Expo1                                              ;
 assign Expo2_Temp          = (i_Expo2 == 'd0)   ? 'd1          : i_Expo2                                              ;
-assign Temp_Sign1          = ~i_FuseAdd_SelfAdd ? i_Temp_Sign1 : i_Sign1                                              ;
-assign Temp_Sign2          = ~i_FuseAdd_SelfAdd ? i_Temp_Sign2 : i_Sign2                                              ;
-assign TempExpo1           = ~i_FuseAdd_SelfAdd ? i_Temp_Expo1 : {2'd0,Expo1_Temp}                                    ;
-assign TempExpo2           = ~i_FuseAdd_SelfAdd ? i_Temp_Expo2 : {2'd0,Expo2_Temp}                                    ;
-assign Temp_Mant1          = ~i_FuseAdd_SelfAdd ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
-assign Temp_Mant2          = ~i_FuseAdd_SelfAdd ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
+assign Expo1               = (i_Temp_Expo1=='d0)? 'd1          : i_Temp_Expo1                                         ;
+assign Expo2               = (i_Temp_Expo2=='d0)? 'd1          : i_Temp_Expo2                                         ;
+assign Temp_Sign1          = i_Keep_Expo_signed ? i_Temp_Sign1 : i_Sign1                                              ;
+assign Temp_Sign2          = i_Keep_Expo_signed ? i_Temp_Sign2 : i_Sign2                                              ;
+assign TempExpo1           = i_Keep_Expo_signed ? i_Temp_Expo1 : {2'd0,Expo1_Temp}                                    ;
+assign TempExpo2           = i_Keep_Expo_signed ? i_Temp_Expo2 : {2'd0,Expo2_Temp}                                    ;
+assign Temp_Mant1          = i_Keep_Expo_signed ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
+assign Temp_Mant2          = i_Keep_Expo_signed ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
 
 
 assign Temp_Expo1            = TempExpo1                                                                    ;

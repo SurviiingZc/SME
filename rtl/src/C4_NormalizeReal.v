@@ -37,7 +37,7 @@ assign i_exp_temp                   = i_exp + minimum_adj                       
 assign exponent                     = i_exp_temp + exponent_adj                              ;
 assign biased_exp_unconstrained     = exponent                                               ;
 assign i_exp_true                   = i_exp_temp                                             ;
-assign is_denormal                  = (i_exp_true <= 0)? 1'b1 : 1'b0                         ;
+assign is_denormal                  = (exponent <= 0)? 1'b1 : 1'b0                           ;
 assign o_sign                       = i_sign                                                 ;
 
 

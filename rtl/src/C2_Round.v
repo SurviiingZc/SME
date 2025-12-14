@@ -18,11 +18,10 @@ module C2_Round #(
     input                        i_isbfloat16          ,
     input                        i_is_widening         ,
     input                        i_Keep_Expo_signed    ,
-    //input                        i_is_Multiplier       ,
     output                       o_sign                ,
     output      [31:0]           o_round_result        ,
     output      [IN_WIDTH-1:0]   o_normal_mantissa     ,
-    output reg                   sticky_flag           ,
+    output                       o_sticky_flag         ,
     output      [EXP_WIDTH :0]   o_normal_exp          
 );
     localparam E = 8                                             ;   // Exponent bits
@@ -44,13 +43,14 @@ module C2_Round #(
     wire        [31         :0]     normal_Result                ;  
     reg         [31         :0]     round_result                 ;
     wire        [F-1:0]             int_mant                     ;
+    wire                            sticky_flag                  ;
     wire        EBF                     = i_Exception_Handling[8]                               ;
     assign      int_mant                = adjusted_mantissa[BF16_IDX_HI:BF16_IDX_LO]            ;
     assign      S_bit                   = |adjusted_mantissa[BF16_IDX_LO:0]  | sticky_flag      ;
     assign      L_bit                   = ~int_mant[0]                                          ;
     assign      int_mant_roundup        = int_mant + 1'b1                                       ;
     assign      int_mant_round          = ( S_bit && L_bit) ? (int_mant_roundup) : int_mant     ;   
-    assign      flush_zero_condition    = (exponent < minimum_exp) ? 1'b1 : 1'b0                ;
+    assign      flush_zero_condition    = (exponent < 1) ? 1'b1 : 1'b0                ;
     assign      normal_Result           = {i_sign,biased_exp[7:0],int_mant_round[22:0]}         ;
     assign      is_bf16                 = ~i_N & i_isbfloat16                                   ;
     assign      is_fp16                 = ~i_N & ~i_isbfloat16                                  ;
@@ -60,6 +60,7 @@ module C2_Round #(
     assign      o_normal_mantissa       = adjusted_mantissa                                     ;
     assign      o_normal_exp            = biased_exp                                            ;
     assign      o_round_result          = round_result                                          ;
+    assign      o_sticky_flag           = ~flush_zero_condition & sticky_flag                   ;
     always @(*) begin
         if (flush_zero_condition) begin
             round_result = {i_sign,31'd0};

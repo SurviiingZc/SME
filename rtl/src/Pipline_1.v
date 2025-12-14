@@ -173,7 +173,7 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= i_MantA               ; 
         o_Is_Exception        <= i_Is_Exception        ;
         o_Internal_Acc        <= i_Internal_Acc        ;
-        o_Keep_Expo_signed    <= i_Keep_Expo_signed
+        o_Keep_Expo_signed    <= i_Keep_Expo_signed    ;
     end
 end
 

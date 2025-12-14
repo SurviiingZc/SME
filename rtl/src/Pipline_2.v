@@ -39,6 +39,8 @@ module Pipline_2 (
         i_Result               ,
         i_Sticky_Flag          ,
         i_Internal_Acc         ,
+        i_Keep_Expo_signed     ,
+        o_Keep_Expo_signed     ,
         o_Internal_Acc         ,
         o_Sticky_Flag          ,
         o_Result               ,
@@ -108,6 +110,8 @@ input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
 input       [  3:0]   i_Sticky_Flag           ;
 input                 i_Internal_Acc          ;
+input                 i_Keep_Expo_signed      ;
+output                o_Keep_Expo_signed      ;
 output reg            o_Internal_Acc          ;
 output reg  [  3:0]   o_Sticky_Flag           ;
 output reg  [127:0]   o_Result                ;
@@ -173,6 +177,7 @@ always @(posedge clk or negedge rst_n) begin
         o_Result              <= 'd0 ;
         o_Sticky_Flag         <= 'd0 ;
         o_Internal_Acc        <= 'd0 ;
+        o_Keep_Expo_signed    <= 'd0 ;
     end else if (i_is_int_op) begin
         o_Compute_Mode        <= 'd0 ;
         o_Compute_Precision   <= 'd0 ;
@@ -229,6 +234,7 @@ always @(posedge clk or negedge rst_n) begin
         o_Is_Exception        <= i_Is_Exception        ;
         o_Sticky_Flag         <= i_Sticky_Flag         ;
         o_Internal_Acc        <= i_Internal_Acc        ;
+        o_Keep_Expo_signed    <= i_Keep_Expo_signed    ;
     end
 end
 
@@ -268,6 +274,8 @@ input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
 input       [  3:0]   i_Sticky_Flag           ;
 input                 i_Internal_Acc          ;
+input                 i_Keep_Expo_signed      ;
+output                o_Keep_Expo_signed      ;
 output                o_Internal_Acc          ;
 output      [  3:0]   o_Sticky_Flag           ;
 output      [127:0]   o_Result                ;
@@ -331,6 +339,7 @@ assign o_Is_Exception        = i_Is_Exception        ;
 assign o_Result              = i_Result              ;
 assign o_Sticky_Flag         = i_Sticky_Flag         ;
 assign o_Internal_Acc        = i_Internal_Acc        ;
+assign o_Keep_Expo_signed    = i_Keep_Expo_signed    ;
 
 `endif
     

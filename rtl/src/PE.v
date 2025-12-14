@@ -59,6 +59,7 @@ wire  [  3:0]   P0_Is_Exception          ;
 wire            P0_Internal_Acc          ;
 wire            P0_Keep_Expo_signed      ;
 wire            P1_Keep_Expo_signed      ;
+wire            P2_Keep_Expo_signed      ;
 
 wire            P1_Internal_Acc          ;
 wire  [63:0]    P1_Int_Product           ;
@@ -442,7 +443,7 @@ generate
             .o_sign                ( P1_Normal_sign[i]          ),
             .o_round_result        ( P1_Round_result[i*32+:32]  ),
             .o_normal_mantissa     ( P1_Normal_mantissa[i]      ),
-            .sticky_flag           ( P1_Sticky_Flag[i]          ),
+            .o_sticky_flag         ( P1_Sticky_Flag[i]          ),
             .o_normal_exp          ( P1_Normal_exp[i]           )
         );
 
@@ -516,6 +517,8 @@ Pipline_2 u_Pipline_2(
     .i_Result               ( P1_Result                 ),
     .i_Sticky_Flag          ( P1_Sticky_Flag            ),
     .i_Internal_Acc         ( P1_Internal_Acc           ),
+    .i_Keep_Expo_signed     ( P1_Keep_Expo_signed       ),
+    .o_Keep_Expo_signed     ( P2_Keep_Expo_signed       ),
     .o_Internal_Acc         ( P2_Internal_Acc           ),
     .o_Sticky_Flag          ( P2_Sticky_Flag            ),
     .o_Result               ( P2_Result                 ),
@@ -567,7 +570,7 @@ C3_FPADDComb u_C3_FPADDComb(
     .i_Temp_Expo2          ( P2_Temp_Expo2              ),
     .i_Temp_Mant1          ( P2_Temp_Mant1              ),
     .i_Temp_Mant2          ( P2_Temp_Mant2              ),
-    
+    .i_Keep_Expo_signed    ( P2_Keep_Expo_signed        ),
     .o_Temp_Sign           ( P2_Temp_Sign               ),
     .o_Temp_Expo           ( P2_Temp_Expo               ),
     .o_Temp_Mant           ( P2_Temp_Mant               ),
@@ -887,6 +890,7 @@ C6_Round#(
     .i_exp                 ( P5_Temp_Expo               ),
     .i_sign                ( P5_Temp_Sign               ),
     .i_Exception_Handling  ( P5_Exception_Handling      ),
+    .i_Compute_Precision   ( P5_Compute_Precision       ),
     .i_N                   ( P5_N[0]                    ),
     .i_isbfloat16          ( P5_IsBfloat16[0]           ),
     .i_sticky_bit          ( P5_Sticky_Bit[0]           ),
