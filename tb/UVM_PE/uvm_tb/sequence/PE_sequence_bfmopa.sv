@@ -64,17 +64,8 @@ class PE_sequence_bfmopa extends PE_sequence;
         };
 
         // --- 具体数值约束 ---
-        if (tr.i_Exception_Handling[8] != `Extended_BFloat16_Behaviors; ) {
-            tr.i_Operand_A[31:16] inside {[16'h0000:16'hffff]};
-            tr.i_Operand_B[31:16] inside {[16'h0000:16'hffff]};
-            tr.i_Operand_A[15:0] inside {[16'h0000:16'hffff]};
-            tr.i_Operand_B[15:0] inside {[16'h0000:16'hffff]};
-            tr.i_Operand_C[127:32]          == 96'b0;
-            // tr.i_Operand_C[31:16]== 16'd0;
-            // tr.i_Operand_C[63:48]== 16'd0;
-            // tr.i_Operand_C[95:80]== 16'd0; 
-            // tr.i_Operand_C[127:112]== 16'd0;          
-        } else {
+        
+              
             // 1. NaN 输入
             if (cur_scenario == BF_SC_NAN_INPUT) {
                 (rand_a1 == BF16_QNAN) || (rand_b1 == BF16_QNAN) || (rand_c == FP32_QNAN);
@@ -173,7 +164,7 @@ class PE_sequence_bfmopa extends PE_sequence;
                 rand_c  == 32'h3F800000; // FP32 1.0
             }
         }
-    }
+    
 
     task body();
         PE_seq_item tr;
