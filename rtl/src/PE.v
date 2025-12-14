@@ -796,8 +796,12 @@ generate
             .o_Sticky_Bit          ( P4_Sticky_Bit[i]                   )
         );
 
-        assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_Fault_Result[i*32+:32] : P4_Result[i*32+:32];
-        assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_is_Exception[i] : P4_Is_Exception[i] ;
+        assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Result[i*32+:32] : P4_Fault_Result[i*32+:32];
+        assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Is_Exception[i] :  P4_is_Exception[i];
+
+        // assign P4_Refresh_Fault_Result[i*32+:32] = P4_Fault_Result[i*32+:32]    ;
+        // assign P4_Refresh_Is_Exception[i*1+:1] = P4_is_Exception[i]             ;
+
 
         // assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32];
         // assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i] ;
