@@ -32,6 +32,8 @@ module Pipline_1 (
         i_MantA                ,
         i_Is_Exception         ,
         i_Internal_Acc         ,
+        i_Keep_Expo_signed     ,
+        o_Keep_Expo_signed     ,
         o_Internal_Acc         ,
         o_Is_Exception         ,
         o_Compute_Mode         ,
@@ -88,6 +90,8 @@ input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input                 i_Internal_Acc          ;
+input                 i_Keep_Expo_signed      ;
+output                o_Keep_Expo_signed      ;
 output reg            o_Internal_Acc          ;
 output reg  [  3:0]   o_Is_Exception          ;
 output reg            o_Compute_Mode          ;
@@ -141,6 +145,7 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= 'd0 ;
         o_Is_Exception        <= 'd0 ;
         o_Internal_Acc        <= 'd0 ;
+        o_Keep_Expo_signed    <= 'd0 ;
     end
     else begin
         o_Compute_Mode        <= i_Compute_Mode        ;
@@ -168,6 +173,7 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= i_MantA               ; 
         o_Is_Exception        <= i_Is_Exception        ;
         o_Internal_Acc        <= i_Internal_Acc        ;
+        o_Keep_Expo_signed    <= i_Keep_Expo_signed
     end
 end
 
@@ -199,6 +205,8 @@ input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input                 i_Internal_Acc          ;
+input                 i_Keep_Expo_signed      ;
+output                o_Keep_Expo_signed      ;
 output                o_Internal_Acc          ;
 output      [  3:0]   o_Is_Exception          ;
 output                o_Compute_Mode          ;
@@ -251,7 +259,7 @@ assign o_ExpoA               = i_ExpoA               ;
 assign o_MantA               = i_MantA               ;
 assign o_Is_Exception        = i_Is_Exception        ;
 assign o_Internal_Acc        = i_Internal_Acc        ;
-
+assign o_Keep_Expo_signed    = i_Keep_Expo_signed    ;
 `endif
     
 endmodule
