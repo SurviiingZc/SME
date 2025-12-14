@@ -122,7 +122,7 @@ bool FPProcessNaNs3(FPType type1, FPType type2, FPType type3,
     uint32_t* result) ;
 FPRounding FPRoundingMode(FPCR_Type fpcr);
 uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t N, 
-                             FPCR_Type fpcr_in, FPRounding rounding, bool fpexc, uint8_t add_sub);
+                             FPCR_Type fpcr_in, FPRounding rounding, bool fpexc);
 mpfr_rnd_t roundmode_converter(FPRounding rounding);
 uint32_t mpfr_to_uint32(mpfr_t result_fp32);
 bool overflow_handling(mpfr_t mpfr_sum, FPCR_Type fpcr, uint8_t N, mpfr_prec_t prec,
