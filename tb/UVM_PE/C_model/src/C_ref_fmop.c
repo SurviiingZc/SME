@@ -8,6 +8,15 @@ uint32_t FPMulAdd_ZA(uint32_t addend, uint32_t op1, uint32_t op2, uint8_t N, uin
     // 验证N的有效性
     assert(N == 16 || N == 32);
 
+    if(add_sub == 0) { //减法
+        // 翻转op2的符号位
+        if (N == 16) {
+            op2 ^= (1U << 15);
+        } else if (N == 32) {
+            op2 ^= (1U << 31);
+        }
+    }
+
     FPCR_Type fpcr = assign_FPCR(fpcr_in);//运行一次，将uin32_t的fpcr转为FPCR_Type类型
 
     bool fpexc = false;
@@ -78,7 +87,7 @@ uint32_t FPMulAdd_ZA(uint32_t addend, uint32_t op1, uint32_t op2, uint8_t N, uin
         }
         // 正常计算
         else {
-            result = FMOPA_Normal_Compute(valueA, value1, value2, N, fpcr, rounding, fpexc ,add_sub);
+            result = FMOPA_Normal_Compute(valueA, value1, value2, N, fpcr, rounding, fpexc);
         }
     }
     
@@ -91,6 +100,15 @@ uint32_t FPMulAdd(uint32_t addend, uint32_t op1, uint32_t op2, uint8_t N, FPCR_T
     
     // 验证N的有效性
     assert(N == 16 || N == 32);
+
+    if(add_sub == 0) { //减法
+        // 翻转op2的符号位
+        if (N == 16) {
+            op2 ^= (1U << 15);
+        } else if (N == 32) {
+            op2 ^= (1U << 31);
+        }
+    }
 
     fpexc = false;
     fpcr.DN = 1;
@@ -160,7 +178,7 @@ uint32_t FPMulAdd(uint32_t addend, uint32_t op1, uint32_t op2, uint8_t N, FPCR_T
         }
         // 正常计算
         else {
-            result = FMOPA_Normal_Compute(valueA, value1, value2, N, fpcr, rounding, fpexc, add_sub);
+            result = FMOPA_Normal_Compute(valueA, value1, value2, N, fpcr, rounding, fpexc);
         }
     }
     
@@ -633,7 +651,7 @@ uint32_t mpfr_to_fp16(mpfr_t result_fp, mpfr_rnd_t rounding_mode) {
 }
 
 uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t N, FPCR_Type fpcr_in,
-                                FPRounding rounding, bool fpexc, uint8_t add_sub) {
+                                FPRounding rounding, bool fpexc) {
     FPCR_Type fpcr =  fpcr_in;
     fpcr.AHP = 0;
     // bool isbfloat16 = false;
@@ -665,13 +683,8 @@ uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t 
 
         // 精确计算 A * B
         mpfr_mul(mpfr_product, mpfr_A, mpfr_B, MPFR_RNDN);
-        // 根据add_sub位选择加法或减法
-        if (add_sub == 1) //c + (a*b)
-            mpfr_add(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
-        else if(add_sub == 0) //c - (a*b)
-            mpfr_sub(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
-        else
-            fprintf(stderr, "错误:add_sub的值无效!期望0或1,但得到%d\n", add_sub);
+        
+        mpfr_add(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
 
         if(mpfr_zero_p(mpfr_sum)){ 
             uint8_t result_sign=1;
@@ -727,13 +740,8 @@ uint32_t FMOPA_Normal_Compute(float valueA, float value1, float value2, uint8_t 
 
         // 精确计算 A * B
         mpfr_mul(mpfr_product, mpfr_A, mpfr_B, MPFR_RNDN);
-        // 根据add_sub位选择加法或减法
-        if (add_sub == 1) //c + (a*b)
-            mpfr_add(mpfr_sum, mpfr_product, mpfr_C, MPFR_RNDN);
-        else if(add_sub == 0) //c - (a*b)
-            mpfr_sub(mpfr_sum, mpfr_C, mpfr_product, MPFR_RNDN);
-        else
-            fprintf(stderr, "错误:add_sub的值无效!期望0或1,但得到%d\n", add_sub);
+
+        mpfr_add(mpfr_sum, mpfr_product, mpfr_C, MPFR_RNDN);
 
         if (mpfr_zero_p(mpfr_sum)) { 
             uint8_t result_sign = 1;
