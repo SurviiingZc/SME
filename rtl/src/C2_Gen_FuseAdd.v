@@ -19,6 +19,6 @@ module C2_Gen_FuseAdd (
 wire FPCR_EBF;
 
 assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0           ;
-assign o_FuseAdd_SelfAdd    = (i_Compute_Precision == `BF16) && !FPCR_EBF ? 1'd1 : 1'd0 ;
+assign o_FuseAdd_SelfAdd    = (i_Compute_Precision == `BF16) ? 1'd1 : 1'd0 ;
 
 endmodule
