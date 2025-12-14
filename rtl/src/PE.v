@@ -57,6 +57,8 @@ wire  [ 31:0]   P0_ExpoA                 ;
 wire  [ 95:0]   P0_MantA                 ;
 wire  [  3:0]   P0_Is_Exception          ;
 wire            P0_Internal_Acc          ;
+wire            P0_Keep_Expo_signed      ;
+wire            P1_Keep_Expo_signed      ;
 
 wire            P1_Internal_Acc          ;
 wire  [63:0]    P1_Int_Product           ;
@@ -320,6 +322,7 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .o_ExpoA                ( P0_ExpoA               ),
     .o_Is_Exception         ( P0_Is_Exception        ),
     .o_MantA                ( P0_MantA               ),
+    .o_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
     .o_Internal_Acc         ( P0_Internal_Acc        )
 );
 
@@ -366,6 +369,8 @@ Pipline_1 u_Pipline_1(
     .i_MantA                ( P0_MantA               ),
     .i_Is_Exception         ( P0_Is_Exception        ),
     .i_Internal_Acc         ( P0_Internal_Acc        ),
+    .i_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
+    .o_Keep_Expo_signed     ( P1_Keep_Expo_signed    ),
     .o_Internal_Acc         ( P1_Internal_Acc        ),
     .o_Compute_Mode         ( P1_Compute_Mode        ),
     .o_Compute_Precision    ( P1_Compute_Precision   ),
@@ -432,6 +437,7 @@ generate
             .i_Exception_Handling  ( P1_Exception_Handling      ),
             .i_N                   ( P1_N                       ),
             .i_isbfloat16          ( P1_IsBfloat16              ),
+            .i_Keep_Expo_signed    ( P1_Keep_Expo_signed        ),
             .i_is_widening         ( P1_Is_Widening             ),
             .o_sign                ( P1_Normal_sign[i]          ),
             .o_round_result        ( P1_Round_result[i*32+:32]  ),
@@ -701,7 +707,7 @@ C4_Gen_OuterSign u_C4_Gen_OuterSign(
 //     end
 // endgenerate
 
-assign P3_Final_Result = {96'd0,P3_Inner_Result};
+assign P3_Final_Result = P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
 
 Pipline_4 u_Pipline_4(
     .clk                     ( clk                      ),
@@ -790,11 +796,11 @@ generate
             .o_Sticky_Bit          ( P4_Sticky_Bit[i]                   )
         );
 
-        // assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_Fault_Result[i*32+:32] : P4_Result[i*32+:32];
-        // assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_is_Exception[i] : P4_Is_Exception[i] ;
+        assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_Fault_Result[i*32+:32] : P4_Result[i*32+:32];
+        assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_is_Exception[i] : P4_Is_Exception[i] ;
 
-        assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32];
-        assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i] ;
+        // assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32];
+        // assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i] ;
     end
 endgenerate
 

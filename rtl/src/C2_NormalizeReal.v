@@ -12,6 +12,8 @@ module C2_NormalizeReal #(
     input  wire         [IN_WIDTH-1:0]          i_mantissa_in                  ,
     input               [1:0]                   i_Data_Width                   ,
     input                                       i_is_widening                  , //1表示处于Widening路径（保留负指数），0表示标准路径（处理下溢）     
+    input                                       i_EBF                          ,
+    input                                       i_Keep_Expo_signed             ,
     output                                      o_sign                         ,
     output reg  signed [EXP_WIDTH:0]            biased_exp                     ,
     output      signed [EXP_WIDTH:0]            biased_exp_unconstrained       ,
@@ -91,7 +93,7 @@ reg    [47:0]   shifted_out_bits;
 
 // 添加 Widening 逻辑分支 在此模式下，忽略 Denormal 判定，强制保留 Full Precision
 always @(*) begin
-    if (i_is_widening) begin
+    if (i_Keep_Expo_signed) begin
         if (~(|i_mantissa_in)) begin
             // 纯 0 输入处理
             adjusted_mantissa = 0;

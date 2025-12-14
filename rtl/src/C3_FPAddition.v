@@ -86,6 +86,14 @@ wire            All_Equal           ;
 wire signed [  9:0]    All_Equal_Expo      ;
 wire [  1:0]    FPCR_RMode          ;
 
+wire [  7:0]    Expo1_Temp          ;
+wire [  7:0]    Expo2_Temp          ;
+wire            Temp_Sign1          ;
+wire            Temp_Sign2          ;
+wire [  9:0]    TempExpo1           ;
+wire [  9:0]    TempExpo2           ;
+wire [ 47:0]    Temp_Mant1          ;
+wire [ 47:0]    Temp_Mant2          ;
 genvar i;
 
 generate
@@ -125,9 +133,18 @@ assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
 // assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Mant[23:0]}		;
 // assign o_Sum_Expo	 = Expo_Max													;
 // assign o_Sum_Sign	 = Sign_Max													;
+assign Expo1_Temp          = (i_Expo1 == 'd0)   ? 'd1          : i_Expo1                                              ;
+assign Expo2_Temp          = (i_Expo2 == 'd0)   ? 'd1          : i_Expo2                                              ;
+assign Temp_Sign1          = ~i_FuseAdd_SelfAdd ? i_Temp_Sign1 : i_Sign1                                              ;
+assign Temp_Sign2          = ~i_FuseAdd_SelfAdd ? i_Temp_Sign2 : i_Sign2                                              ;
+assign TempExpo1           = ~i_FuseAdd_SelfAdd ? i_Temp_Expo1 : {2'd0,Expo1_Temp}                                    ;
+assign TempExpo2           = ~i_FuseAdd_SelfAdd ? i_Temp_Expo2 : {2'd0,Expo2_Temp}                                    ;
+assign Temp_Mant1          = ~i_FuseAdd_SelfAdd ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
+assign Temp_Mant2          = ~i_FuseAdd_SelfAdd ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
 
-assign Temp_Expo1            = i_Temp_Expo1                                 ;
-assign Temp_Expo2            = i_Temp_Expo2                                 ;
+
+assign Temp_Expo1            = TempExpo1                                                                    ;
+assign Temp_Expo2            = TempExpo2                                                                    ;
 assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
 assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 

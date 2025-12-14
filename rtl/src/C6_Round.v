@@ -39,8 +39,8 @@ module C6_Round #(
     //1102改
     reg [31:0] result;
     always @(*) begin
-        if (is_bf16) begin
-            result = (EBF == 0 | !`FEAT_EBF16 ) ? BFRound_result : FPRoundBase_result;
+        if (EBF == 0 & i_isbfloat16 ) begin
+            result = BFRound_result ;
         end else begin
             result = FPRoundBase_result;
         end
@@ -56,7 +56,7 @@ module C6_Round #(
         .exponent           ( i_exponent           ),
         .adjusted_mantissa  ( i_adjusted_mantissa  ),
         .i_sticky_bit       ( i_sticky_bit         ),
-        .o_Rounded_result   ( BFRound_result       )
+        .o_round_result     ( BFRound_result       )
     );
 
     C6_FPRoundBase#(
