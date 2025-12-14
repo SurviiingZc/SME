@@ -4,22 +4,29 @@ uint32_t BFDotAdd(uint32_t addend, uint32_t op1_a, uint32_t op1_b, uint32_t op2_
                      uint32_t fpcr_in, uint8_t add_sub) {
     uint8_t N = 32;
     assert(N == 32);
+
+    if(add_sub == 0) { //减法
+        // 翻转op2的符号位
+        op2_a ^= (1U << 15);
+        op2_b ^= (1U << 15);
+    }
+
     FPCR_Type fpcr = assign_FPCR(fpcr_in);//运行一次，将uin32_t的fpcr转为FPCR_Type类型
     
     uint32_t prod;
     uint32_t result;
 
     if(fpcr.EBF == 0){  // 标准的 BFloat16 行为(!IsFeatureImplemented(FEAT_EBF16) = 0)
-        prod = FPAdd_BF16(BFMulH(op1_a, op2_a, fpcr, N/2), BFMulH(op1_b, op2_b, fpcr, N/2), fpcr, N, 1);
-        result = FPAdd_BF16(addend, prod, fpcr, N, add_sub);
+        prod = FPAdd_BF16(BFMulH(op1_a, op2_a, fpcr, N/2), BFMulH(op1_b, op2_b, fpcr, N/2), fpcr, N);
+        result = FPAdd_BF16(addend, prod, fpcr, N);
     }
     else{
         bool isbfloat16 = true;
         bool fpexc = false;
         fpcr.DN = 1; 
         prod = FPDot(op1_a, op1_b, op2_a, op2_b, fpcr, isbfloat16, fpexc, N);
-        printf("A1B1+A2B2 = %08X\n", prod);
-        result = FPAdd(addend, prod, fpcr, fpexc, N, add_sub);
+        printf("A1*B1+A2*B2 = %08X\n", prod);
+        result = FPAdd(addend, prod, fpcr, fpexc, N);
     }
     return result;
 }
@@ -226,7 +233,7 @@ uint32_t BFRound(float value1, float value2, uint8_t N){
 }
 
 //N应为32
-uint32_t FPAdd_BF16(uint32_t op1, uint32_t op2, FPCR_Type fpcr, uint8_t N, uint8_t add_sub){
+uint32_t FPAdd_BF16(uint32_t op1, uint32_t op2, FPCR_Type fpcr, uint8_t N){
     assert(N == 32);
 
     uint32_t result;
@@ -253,13 +260,13 @@ uint32_t FPAdd_BF16(uint32_t op1, uint32_t op2, FPCR_Type fpcr, uint8_t N, uint8
         else if(zero1 && zero2 && sign1 == sign2)
             result = FPZero(sign1, N);
         else 
-            result = BFRound_1(value1, value2, N, add_sub);
+            result = BFRound_1(value1, value2, N);
     }
     return result;
 }
 
 //N=32
-uint32_t BFRound_1(float value1, float value2, uint8_t N, uint8_t add_sub){
+uint32_t BFRound_1(float value1, float value2, uint8_t N){
     //先计算出精确的A+B
     mpfr_t mpfr_A, mpfr_B, mpfr_op;
     mpfr_prec_t prec = 512;
@@ -272,13 +279,7 @@ uint32_t BFRound_1(float value1, float value2, uint8_t N, uint8_t add_sub){
     mpfr_set_flt(mpfr_A, value1, MPFR_RNDN);
     mpfr_set_flt(mpfr_B, value2, MPFR_RNDN);
 
-    // 根据add_sub位选择加法或减法
-    if (add_sub == 1) 
-        mpfr_add(mpfr_op, mpfr_A, mpfr_B, MPFR_RNDN);
-    else if(add_sub == 0) 
-        mpfr_sub(mpfr_op, mpfr_A, mpfr_B, MPFR_RNDN);
-    else
-        fprintf(stderr, "错误:add_sub的值无效!期望0或1,但得到%d\n", add_sub);
+    mpfr_add(mpfr_op, mpfr_A, mpfr_B, MPFR_RNDN);
 
     uint32_t result;
     if(mpfr_zero_p(mpfr_op))

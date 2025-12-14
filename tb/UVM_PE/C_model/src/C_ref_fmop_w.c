@@ -10,6 +10,12 @@ uint32_t FPDotAdd_ZA(uint32_t addend, uint32_t op1_a, uint32_t op1_b,
 
     FPCR_Type fpcr = assign_FPCR(fpcr_in);//运行一次，将uin32_t的fpcr转为FPCR_Type类型
     
+    if(add_sub == 0) { //减法
+        // 翻转op2的符号位
+        op2_a ^= (1U << 15);
+        op2_b ^= (1U << 15);
+    }
+
     // 验证N的有效性（N=32）
     uint8_t N = 32;
     assert(N == 32);
@@ -28,7 +34,7 @@ uint32_t FPDotAdd_ZA(uint32_t addend, uint32_t op1_a, uint32_t op1_b,
     prod = FPDot(op1_a, op1_b, op2_a, op2_b, fpcr, isbfloat16, fpexc, N);
     
     // 将点积结果与加数相加
-    result = FPAdd(addend, prod, fpcr, fpexc, N, add_sub);
+    result = FPAdd(addend, prod, fpcr, fpexc, N);
     
     return result;
 }
@@ -355,10 +361,10 @@ bool FPProcessNaNs(FPType type1, FPType type2, uint32_t op1, uint32_t op2,
 
 // FPAdd 函数实现
 //op1为addend  op2为四个FP16乘加结果
-uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N, uint8_t add_sub) {
+uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N) {
     // 验证N的有效性
     assert(N == 16 || N == 32 || N == 64);
-    
+
     uint32_t result = 0;
     bool done = false;
     
@@ -416,13 +422,7 @@ uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N
             mpfr_set_flt(mpfr1, value1, MPFR_RNDN);
             mpfr_set_flt(mpfr2, value2, MPFR_RNDN);
             
-            // 根据add_sub位选择加法或减法
-            if (add_sub == 1) //addend + (a1*b1+a2*b2)
-                mpfr_add(mpfr_sum, mpfr1, mpfr2, MPFR_RNDN);
-            else if(add_sub == 0) //addend - (a1*b1+a2*b2)
-                mpfr_sub(mpfr_sum, mpfr1, mpfr2, MPFR_RNDN);
-            else
-                fprintf(stderr, "错误:add_sub的值无效!期望0或1,但得到%d\n", add_sub);
+            mpfr_add(mpfr_sum, mpfr1, mpfr2, MPFR_RNDN);
             
             if (mpfr_zero_p(mpfr_sum)) {
                 // 精确零结果：符号取决于舍入模式
