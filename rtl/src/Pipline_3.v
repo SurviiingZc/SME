@@ -38,6 +38,12 @@ module Pipline_3 (
         i_MantA                , 
         i_Is_Exception         ,
         i_Result               ,
+        i_Sticky_Flag          ,
+        i_Sticky_Bit           ,
+        i_Internal_Acc         ,
+        o_Internal_Acc         ,
+        o_Sticky_Bit           ,
+        o_Sticky_Flag          ,
         o_Result               ,
         o_Is_Exception         ,
         o_Compute_Mode         ,
@@ -91,11 +97,11 @@ input       [127:0]   i_Operand_C             ;
 input                 i_Temp_Sign             ;
 input       [  9:0]   i_Temp_Expo             ;
 input       [ 72:0]   i_Temp_Mant             ;
-input       [ 48:0]   i_Mant                  ;
+input       [ 47:0]   i_Mant                  ;
 input       [ 31:0]   i_Fault_Result          ;
 input                 i_IsBfloat16            ;
 input                 i_N                     ;
-input       [  7:0]	  i_Sum_Expo		      ;
+input       [  9:0]	  i_Sum_Expo		      ;
 input            	  i_Sum_Sign		      ;
 input       [  3:0]   i_Normal_Sign           ;
 input       [ 39:0]   i_Normal_Exp            ;
@@ -106,6 +112,12 @@ input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
+input       [  3:0]   i_Sticky_Flag           ;
+input            	  i_Sticky_Bit            ;
+input                 i_Internal_Acc          ;
+output reg            o_Internal_Acc          ;
+output reg            o_Sticky_Bit            ;
+output reg  [  3:0]   o_Sticky_Flag           ;
 output reg  [127:0]   o_Result                ;
 output reg  [  3:0]   o_Is_Exception          ;
 output reg  [  3:0]   o_Normal_Sign           ;
@@ -127,11 +139,11 @@ output reg  [ 2:0]    o_Precision_Addend      ;
 output reg            o_Temp_Sign             ;
 output reg  [  9:0]   o_Temp_Expo             ;
 output reg  [ 72:0]   o_Temp_Mant             ;
-output reg  [ 48:0]   o_Mant                  ;
+output reg  [ 47:0]   o_Mant                  ;
 output reg  [ 31:0]   o_Fault_Result          ;
 output reg            o_IsBfloat16            ;
 output reg            o_N                     ;
-output reg  [  7:0]	  o_Sum_Expo		      ;
+output reg  [  9:0]	  o_Sum_Expo		      ;
 output reg       	  o_Sum_Sign		      ;
 output reg [ 11:0]    o_TypeA                 ;
 output reg [  3:0]    o_SignA                 ;
@@ -171,6 +183,9 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= 'd0 ;
         o_Is_Exception        <= 'd0 ;
         o_Result              <= 'd0 ;
+        o_Sticky_Flag         <= 'd0 ;
+        o_Sticky_Bit          <= 'd0 ;
+        o_Internal_Acc        <= 'd0 ;
     end 
     else begin
         o_Compute_Mode        <= i_Compute_Mode        ;
@@ -204,6 +219,9 @@ always @(posedge clk or negedge rst_n) begin
         o_MantA               <= i_MantA               ; 
         o_Result              <= i_Result              ;
         o_Is_Exception        <= i_Is_Exception        ;
+        o_Sticky_Flag         <= i_Sticky_Flag         ;
+        o_Sticky_Bit          <= i_Sticky_Bit          ;
+        o_Internal_Acc        <= i_Internal_Acc        ;
     end
 end
 
@@ -227,11 +245,11 @@ input       [127:0]   i_Operand_C             ;
 input                 i_Temp_Sign             ;
 input       [  9:0]   i_Temp_Expo             ;
 input       [ 72:0]   i_Temp_Mant             ;
-input       [ 48:0]   i_Mant                  ;
+input       [ 47:0]   i_Mant                  ;
 input       [ 31:0]   i_Fault_Result          ;
 input                 i_IsBfloat16            ;
 input                 i_N                     ;
-input       [  7:0]	  i_Sum_Expo		      ;
+input       [  9:0]	  i_Sum_Expo		      ;
 input            	  i_Sum_Sign		      ;
 input       [  3:0]   i_Normal_Sign           ;
 input       [ 39:0]   i_Normal_Exp            ;
@@ -242,6 +260,12 @@ input       [ 31:0]   i_ExpoA                 ;
 input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input       [127:0]   i_Result                ;
+input       [  3:0]   i_Sticky_Flag           ;
+input            	  i_Sticky_Bit            ;
+input                 i_Internal_Acc          ;
+output                o_Internal_Acc          ;
+output                o_Sticky_Bit            ;
+output      [  3:0]   o_Sticky_Flag           ;
 output      [127:0]   o_Result                ;
 output      [  3:0]   o_Is_Exception          ;
 output                o_Compute_Mode          ;
@@ -260,11 +284,11 @@ output      [  2:0]   o_Precision_Addend      ;
 output                o_Temp_Sign             ;
 output     [  9:0]    o_Temp_Expo             ;
 output     [ 72:0]    o_Temp_Mant             ;
-output     [ 48:0]    o_Mant                  ;
+output     [ 47:0]    o_Mant                  ;
 output     [ 31:0]    o_Fault_Result          ;
 output                o_IsBfloat16            ;
 output                o_N                     ;
-output     [  7:0]	  o_Sum_Expo		      ;
+output     [  9:0]	  o_Sum_Expo		      ;
 output          	  o_Sum_Sign		      ;
 output     [  3:0]    o_Normal_Sign           ;
 output     [ 39:0]    o_Normal_Exp            ;
@@ -312,6 +336,9 @@ assign o_ExpoA               = i_ExpoA               ;
 assign o_MantA               = i_MantA               ;
 assign o_Is_Exception        = i_Is_Exception        ;
 assign o_Result              = i_Result              ;
+assign o_Sticky_Flag         = i_Sticky_Flag         ;
+assign o_Sticky_Bit          = i_Sticky_Bit          ;
+assign o_Internal_Acc        = i_Internal_Acc        ;
 
 `endif
     

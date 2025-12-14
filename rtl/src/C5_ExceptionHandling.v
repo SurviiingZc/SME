@@ -16,7 +16,7 @@ module C5_ExceptionHandling (
 
     input  [  2:0]    i_Type2                ,
     input             i_Sign2                ,
-
+    input             i_Add_or_Subtract      ,
     input             i_Compute_Mode         ,
     input             i_Is_Widening          ,
     input  [  1:0]    i_Vector_Group_Num     ,
@@ -32,6 +32,7 @@ wire            FPInfinity_Data_Width       ;
 wire            FPZero_Sign                 ;
 wire            FPZero_Data_Width           ;
 wire            FPDefaultNaN_Data_Width     ;
+wire            T_Sign1                     ;
 
 wire [31:0]     FPDefaultNaN                ;
 wire [31:0]     FPZero                      ;
@@ -50,23 +51,24 @@ wire            Sign_Infinity               ;
 wire            Sign_NInfinity              ;
 wire            Sign_Zero                   ;
 
+assign T_Sign1              = i_Add_or_Subtract ? i_Sign1 : ~i_Sign1                      ;
 assign FPCR_AH              = i_Exception_Handling[1]                                     ;
 assign FPCR_EBF             = i_Exception_Handling[8]                                     ;
 assign Inf1                 = (i_Type1 == `FPType_Infinity)                               ;
 assign Inf2                 = (i_Type2 == `FPType_Infinity)                               ;
 assign Zero1                = (i_Type1 == `FPType_Zero)                                   ;
-assign Zero2                = (i_Type1 == `FPType_Zero)                                   ;
-assign FPData_Width         = (((i_Compute_Mode == `Outer_Product & i_Compute_Precision == `FP16 & i_Is_Widening == 0) | ((i_Compute_Mode == `Inner_Product & i_Compute_Precision == `FP16 & i_Is_Widening == 0 & i_Vector_Group_Num == `Single_Vector_Group))) == 1'd1); 
-assign Sign_NaN             = Inf1 & Inf2 & (i_Sign1 ^ i_Sign2)                           ;
-assign Sign_PInfinity       = (Inf1 & (i_Sign1 == 1'd0)) | (Inf2 & (i_Sign2 == 1'd0))     ;
-assign Sign_NInfinity       = (Inf1 & (i_Sign1 == 1'd1)) | (Inf2 & (i_Sign2 == 1'd1))     ;
+assign Zero2                = (i_Type2 == `FPType_Zero)                                   ;
+assign FPData_Width         = i_Is_Widening | (((i_Compute_Mode == `Outer_Product & i_Compute_Precision == `FP16 & i_Is_Widening == 0) | ((i_Compute_Mode == `Inner_Product & i_Compute_Precision == `FP16 & i_Is_Widening == 0 & i_Vector_Group_Num == `Single_Vector_Group))) == 1'd1); 
+assign Sign_NaN             = Inf1 & Inf2 & (T_Sign1 ^ i_Sign2)                           ;
+assign Sign_PInfinity       = (Inf1 & (T_Sign1 == 1'd0)) | (Inf2 & (i_Sign2 == 1'd0))     ;
+assign Sign_NInfinity       = (Inf1 & (T_Sign1 == 1'd1)) | (Inf2 & (i_Sign2 == 1'd1))     ;
 assign Sign_Infinity        = Sign_PInfinity | Sign_NInfinity                             ;
 assign FPInfinity_Sign      = Sign_NInfinity                                              ;
-assign FPZero_Sign          = i_Sign1                                                     ;
-assign Sign_Zero            = (Zero1 & Zero2 & ~(i_Sign1 ^ i_Sign2))                      ;
+assign FPZero_Sign          = T_Sign1                                                     ;
+assign Sign_Zero            = (Zero1 & Zero2 & ~(T_Sign1 ^ i_Sign2))                      ;
 assign o_is_Exception       = Sign_NaN | Sign_Infinity | Sign_Zero                        ;
 assign o_Result             = {32{Sign_NaN}} & FPDefaultNaN | 
-                                {32{Sign_Infinity}} & FPInfinity |
+                                {32{~Sign_NaN & Sign_Infinity}} & FPInfinity |
                                 {32{Sign_Zero}} & FPZero                                  ;
 
 

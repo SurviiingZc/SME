@@ -1,6 +1,6 @@
 /*
-Verision: 20250809
-
+Version: 20250809_Widening_Support
+Update: Added i_is_widening control to bypass denormal handling for intermediate widening results.
 */
 module C2_NormalizeReal #(
     parameter IN_WIDTH  = 48,  
@@ -10,8 +10,10 @@ module C2_NormalizeReal #(
     input                                       i_sign                         ,
     input               [EXP_WIDTH-1:0]         i_exp                          ,
     input  wire         [IN_WIDTH-1:0]          i_mantissa_in                  ,
-    input               [1:0]                   i_Data_Width                   , 
-    input                                       i_is_Multiplier                ,     
+    input               [1:0]                   i_Data_Width                   ,
+    input                                       i_is_widening                  , //1表示处于Widening路径（保留负指数），0表示标准路径（处理下溢）     
+    input                                       i_EBF                          ,
+    input                                       i_Keep_Expo_signed             ,
     output                                      o_sign                         ,
     output reg  signed [EXP_WIDTH:0]            biased_exp                     ,
     output      signed [EXP_WIDTH:0]            biased_exp_unconstrained       ,
@@ -39,6 +41,7 @@ assign biased_exp_unconstrained     = exponent - minimum_exp - 1'd1             
 assign is_denormal                  = (i_exp_true <= 0)? 1'b1 : 1'b0                     ;
 assign o_sign                       = i_sign                                             ;
 
+
 always @(*) begin
     case (i_Data_Width)
         2'b00: begin
@@ -50,17 +53,18 @@ always @(*) begin
             minimum_exp    = -126    ;
         end
         2'b10: begin
-            adj_exp        = 32      ;
+            adj_exp        = 0       ;
             minimum_exp    = -126    ;
         end
         default: begin
             adj_exp        = 0       ;
             minimum_exp    = -126    ;
         end
-        
     endcase
 end
 
+
+// 这里计算出的 mantissa 已经是左移规格化后的（1.xxxx），exponent 也是调整过的
 always @(*) begin
     shift_amt = 0;
     exponent_adj = 0;
@@ -73,7 +77,6 @@ always @(*) begin
     end
     else if(lzc_shift_amt == 6'd0)begin
         shift_amt     = 6'd1;
-        //mantissa      = i_mantissa_in >> shift_amt;
         mantissa      = i_mantissa_in;
         exponent_adj  = 1;
     end
@@ -86,11 +89,29 @@ end
 
 reg     [9:0]   shift_adj;
 reg    [47:0]   mask_out_bits;
+reg    [47:0]   shifted_out_bits;
 
-reg    [47:0]   shifted_out_bits    ;
-
+// 添加 Widening 逻辑分支 在此模式下，忽略 Denormal 判定，强制保留 Full Precision
 always @(*) begin
-    if(is_denormal) begin
+    if (i_Keep_Expo_signed) begin
+        if (~(|i_mantissa_in)) begin
+            // 纯 0 输入处理
+            adjusted_mantissa = 0;
+            biased_exp        = exponent;
+            sticky_flag       = 0;
+            shift_adj         = 0;
+            mask_out_bits     = 0;
+            shifted_out_bits  = 0;
+        end else begin
+            adjusted_mantissa = mantissa; 
+            biased_exp        = exponent; 
+            sticky_flag       = 0; 
+            shift_adj         = 0;
+            mask_out_bits     = 0;
+            shifted_out_bits  = 0;
+        end
+    end 
+    else if(is_denormal) begin
         case (i_Data_Width)
         2'b00: begin
             adjusted_mantissa          = ({i_mantissa_in[21:0],26'b0} >> (-(i_exp_true)))  ;
@@ -109,11 +130,11 @@ always @(*) begin
             sticky_flag                = |shifted_out_bits                                 ;
         end
         2'b10: begin
-            adjusted_mantissa          = ({i_mantissa_in[15:0],32'b0} >> (-i_exp_true))    ;
+            adjusted_mantissa          = i_mantissa_in >> (-i_exp_true)                    ;
             biased_exp                 = 0                                                 ;
             shift_adj                  = -i_exp_true                                       ;
             mask_out_bits              = (48'd1 << shift_adj) - 1                          ;
-            shifted_out_bits           = ({i_mantissa_in[15:0],32'b0} & mask_out_bits)     ;
+            shifted_out_bits           = i_mantissa_in & mask_out_bits                     ;
             sticky_flag                = |shifted_out_bits                                 ;
         end
         default: begin
@@ -126,11 +147,11 @@ always @(*) begin
         end  
     endcase
     end else if(exponent <= 0) begin
-        case (i_Data_Width)
+    case (i_Data_Width)
         2'b00: begin
             adjusted_mantissa              = {i_mantissa_in[21:0],26'b0} << (i_exp_true)            ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                         ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = ({i_mantissa_in[21:0],26'b0} & mask_out_bits)          ;
             sticky_flag                    = |shifted_out_bits                                      ;
@@ -138,31 +159,30 @@ always @(*) begin
         2'b01: begin
             adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                         ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
             sticky_flag                    = |shifted_out_bits                                      ;
         end
         2'b10: begin
-            adjusted_mantissa              = {i_mantissa_in[15:0],32'b0} << (i_exp_true)            ;
+            adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                         ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
-            shifted_out_bits               = {i_mantissa_in[15:0],32'b0} & mask_out_bits            ;
+            shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
             sticky_flag                    = |shifted_out_bits                                      ;
         end
         default: begin
             adjusted_mantissa              = i_mantissa_in << (i_exp_true)                          ;
             biased_exp                     = 0                                                      ;
-            shift_adj                      = (-(i_exp_true))                                        ;
+            shift_adj                      = ((i_exp_true))                                         ;
             mask_out_bits                  = (48'd1 << shift_adj) - 1                               ;
             shifted_out_bits               = i_mantissa_in & mask_out_bits                          ;
             sticky_flag                    = |shifted_out_bits                                      ;
-        end  
+        end
     endcase
     end else begin
         adjusted_mantissa                  = mantissa                                               ;
-        //biased_exp                         = (i_is_Multiplier == 1) ? exponent : biased_exp_unconstrained     ; //乘法选用第一个 加法用第二个
         biased_exp                         = exponent                                               ;
         shift_adj                          = 9'd0                                                   ;
         mask_out_bits                      = (48'd1 << shift_adj) - 1                               ;
@@ -177,6 +197,5 @@ C2_LZC_round #(
     .in     (i_mantissa_in    ),
     .o_count  (lzc_shift_amt  )
 );
-
 
 endmodule

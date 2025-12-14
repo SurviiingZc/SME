@@ -12,6 +12,7 @@ module C5_FPUnpackAll (
     input  [  2:0]    i_Compute_Precision    ,
     input  [  2:0]    i_Precision_Addend     ,
     input  [ 19:0]    i_Exception_Handling   ,
+    input             i_FuseAdd_SelfAdd      ,
 	input  [ 31:0]    i_Value1               ,
 	input  [ 31:0]    i_Value2               ,
 
@@ -60,27 +61,29 @@ wire            T_BFSign2      ;
 wire [ 7:0]     T_BFExpo2      ;
 wire [23:0]     T_BFMant2      ;
 wire [31:0]     T_BFValue2     ;
+wire [ 2:0]     T_Precision    ;
 
+assign T_Precision          = ((i_Compute_Precision == `FP16 | i_Compute_Precision == `BF16) & i_FuseAdd_SelfAdd) ? `FP32 : i_Compute_Precision        ;
 assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                           ;
-assign o_IsBfloat16         = (i_Compute_Precision == `BF16)                                                  ;
-assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
+assign o_IsBfloat16         = (T_Precision == `BF16)                                                            ;
+assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                                 ;
 assign Operand1             = i_Value1                                                                                  ;
-assign o_Type1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFType1     : T_Type1          ;
-assign o_Sign1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFSign1     : T_Sign1          ;
-assign o_Expo1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFExpo1     : T_Expo1          ;
-assign o_Mant1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFMant1     : T_Mant1          ;
-assign o_Value1             = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFValue1    : T_Value1         ;
+assign o_Type1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFType1     : T_Type1          ;
+assign o_Sign1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFSign1     : T_Sign1          ;
+assign o_Expo1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFExpo1     : T_Expo1          ;
+assign o_Mant1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFMant1     : T_Mant1          ;
+assign o_Value1             = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFValue1    : T_Value1         ;
 
 assign Operand2             = i_Value2                                                                                 ;
-assign o_Type2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFType2     : T_Type2         ;
-assign o_Sign2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFSign2     : T_Sign2         ;
-assign o_Expo2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFExpo2     : T_Expo2         ;
-assign o_Mant2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFMant2     : T_Mant2         ;
-assign o_Value2             = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFValue2    : T_Value2        ;
+assign o_Type2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFType2     : T_Type2         ;
+assign o_Sign2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFSign2     : T_Sign2         ;
+assign o_Expo2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFExpo2     : T_Expo2         ;
+assign o_Mant2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFMant2     : T_Mant2         ;
+assign o_Value2             = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFValue2    : T_Value2        ;
 
 C5_FPUnpackBase u_FPUnpackBase_Operand1(
     .FP_Number             ( Operand1                       ),
-    .i_Compute_Precision   ( i_Compute_Precision            ),
+    .i_Compute_Precision   ( T_Precision                    ),
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_Type1                        ),
     .o_FP_Number_Sign      ( T_Sign1                        ),
@@ -91,7 +94,7 @@ C5_FPUnpackBase u_FPUnpackBase_Operand1(
 
 C5_FPUnpackBase u_FPUnpackBase_Operand2(
     .FP_Number             ( Operand2                       ),
-    .i_Compute_Precision   ( i_Compute_Precision            ),
+    .i_Compute_Precision   ( T_Precision                    ),
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_Type2                        ),
     .o_FP_Number_Sign      ( T_Sign2                        ),

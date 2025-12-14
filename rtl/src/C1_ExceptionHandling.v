@@ -30,7 +30,9 @@ module C1_ExceptionHandling (
     input  [  2:0]    i_Compute_Precision    ,
     input  [ 19:0]    i_Exception_Handling   ,
     output [  3:0]    o_Is_Exception         ,
-    output [127:0]    o_Result               
+    output [127:0]    o_Result               ,
+    output            o_Keep_Expo_signed     ,
+    output            o_Internal_Acc        
 );
 
 
@@ -125,7 +127,6 @@ wire [  3:0]     FPDotAdd_Zero                          ;
 wire [  3:0]     SBFDotAdd_FPDefaultNaN                 ;
 wire [  3:0]     SBFDotAdd_FPInfinity                   ;
 wire [  3:0]     SBFDotAdd_Zero                         ;
-
 wire [127:0]     Temp_Operand_C                         ;
 wire [ 11:0]     Temp_TypeA                             ;
 wire [  3:0]     Temp_SignA                             ;
@@ -146,6 +147,7 @@ assign o_Is_Exception   = {Temp_Is_Exception[3],Temp_Is_Exception[1],Temp_Is_Exc
 assign Temp_Operand_C   = {i_Operand_C[127:96],i_Operand_C[63:32],i_Operand_C[95:64],i_Operand_C[31:0]}         ;
 assign Temp_TypeA       = {i_TypeA[11:9],i_TypeA[5:3],i_TypeA[8:6],i_TypeA[2:0]}                                ; 
 assign Temp_SignA       = {i_SignA[3],i_SignA[1],i_SignA[2],i_SignA[0]}                                         ;
+
 
 
 generate
@@ -170,8 +172,8 @@ generate
         assign NaNResult            [i]         = (NaNProcess == 1'd1) ? FP16NoWidResult[i] : FPNumNaNResult      ;
         assign NaNDone              [i]         = (NaNProcess == 1'd1) ? FP16NoWidDone[i] : FPNumNaNDone          ;
         assign Grap_Result          [i]         = (NaNDone[i] == 1'd1) ? NaNResult[i] : T_Result[i]               ;
-        assign Temp_Result          [i*32+:32]  = Grap_Result[i]                                                  ;
-        assign Temp_Is_Exception    [i]         = NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i] | FPMulAdd_Diff_Sign_Zero[i])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
+        assign Temp_Result          [i*32+:32]  = Grap_Result[i] | FP16NoWidResult[i]                             ;
+        assign Temp_Is_Exception    [i]         = FP16NoWidDone[i] | NaNDone[i] | (((InvalidOp[i] & (is_Addend_FP32 | is_FPDotAdd_ZA)) | (is_SBFDotAdd_ZA & (SBFDotAdd_FPDefaultNaN[i])))) | ((((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_P_FPInfinity[i] | FPMulAdd_N_FPInfinity[i])) | (is_FPDotAdd_ZA & (FPDotAdd_P_FPInfinity[i] | FPDotAdd_N_FPInfinity[i])) | (is_SBFDotAdd_ZA & SBFDotAdd_FPInfinity))) | (((is_Addend_FP32 | is_FPMulAdd_ZA) & (FPMulAdd_Zero[i] | FPMulAdd_Diff_Sign_Zero[i])) | (is_FPDotAdd_ZA & FPDotAdd_Zero[i] | (is_SBFDotAdd_ZA & SBFDotAdd_Zero[i]))) ;
     end
 endgenerate
 
@@ -186,7 +188,7 @@ assign is_Not_Widening        = (i_Is_Widening == `Operands_Is_Not_Widening) ? 1
 assign is_Widening            = (i_Is_Widening == `Operands_Is_Widening) ? 1'd1 : 1'd0;
 
 
-
+assign o_Keep_Expo_signed     = FMOP_Widening | FDOT | FMLAL | BFMOP_Widening_SBF;
 assign FMOP_FP32_Non_Widening = (is_Outer_Product & is_FP32 & is_Not_Widening) ? 1'd1 : 1'd0 ;
 assign FMOP_FP16_Non_Widening = (is_Outer_Product & is_FP16 & is_Not_Widening) ? 1'd1 : 1'd0 ;
 assign FMOP_Widening          = (is_Outer_Product & is_FP16 & is_Widening) ? 1'd1 : 1'd0 ;
@@ -196,6 +198,9 @@ assign FDOT                   = (is_Inner_Product & is_FP16 & is_Widening & is_S
 assign FMLA_FP16              = (is_Inner_Product & is_FP16 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLA_FP32              = (is_Inner_Product & is_FP32 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLAL                  = (is_Inner_Product & is_FP16 & is_Widening & is_Double_Vector) ? 1'd1 : 1'd0 ;
+
+assign o_Internal_Acc         = FMOP_Widening | BFMOP_Widening_SBF | BFMOP_Widening_EBF | FDOT ;
+
 assign Caculate_Mode          = {2{(FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP16 | FMLA_FP32 | FMLAL)}} & 2'd0 | 
                                     {2{(FMOP_Widening | BFMOP_Widening_EBF | FDOT)}} & 2'd1 |
                                     {2{(BFMOP_Widening_SBF)}} & 2'd2 |

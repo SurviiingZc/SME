@@ -56,7 +56,11 @@ wire  [  3:0]   P0_SignA                 ;
 wire  [ 31:0]   P0_ExpoA                 ;
 wire  [ 95:0]   P0_MantA                 ;
 wire  [  3:0]   P0_Is_Exception          ;
+wire            P0_Internal_Acc          ;
+wire            P0_Keep_Expo_signed      ;
+wire            P1_Keep_Expo_signed      ;
 
+wire            P1_Internal_Acc          ;
 wire  [63:0]    P1_Int_Product           ;
 wire            P1_Compute_Mode          ;
 wire  [ 2:0]    P1_Compute_Precision     ;
@@ -80,7 +84,7 @@ wire  [  2:0]   P1_Precision_Addend      ;
 wire            P1_FuseAdd_SelfAdd       ;
 wire  [127:0]   P1_Round_result          ;
 wire            P1_Normal_sign     [3:0] ;
-wire  [  9:0]   P1_Normal_exp      [3:0] ;
+wire  signed [  9:0]   P1_Normal_exp      [3:0] ;
 wire  [ 47:0]   P1_Normal_mantissa [3:0] ;
 wire  [127:0]   P1_Int_Result            ;  
 wire  [  3:0]   P1_Normal_Sign           ;
@@ -91,6 +95,7 @@ wire  [  3:0]   P1_SignA                 ;
 wire  [ 31:0]   P1_ExpoA                 ;
 wire  [ 95:0]   P1_MantA                 ;
 wire  [  3:0]   P1_Is_Exception          ;
+wire    [3:0]   P1_Sticky_Flag           ;
 
 wire  [  3:0]   P2_Normal_Sign           ;
 wire  [ 39:0]   P2_Normal_Exp            ;
@@ -111,18 +116,18 @@ wire   [ 2:0]    P2_Precision_Addend      ;
 wire             P2_FuseAdd_SelfAdd       ;
 wire             P2_Temp_Sign1            ;
 wire             P2_Temp_Sign2            ;
-wire  [  9:0]    P2_Temp_Expo1            ;
-wire  [  9:0]    P2_Temp_Expo2            ;
+wire  signed [  9:0]    P2_Temp_Expo1     ;
+wire  signed [  9:0]    P2_Temp_Expo2     ;
 wire  [ 47:0]    P2_Temp_Mant1            ;
 wire  [ 47:0]    P2_Temp_Mant2            ;
 wire             P2_Temp_Sign             ;
 wire [  9:0]     P2_Temp_Expo             ;
 wire [ 72:0]     P2_Temp_Mant             ;
-wire [ 48:0]     P2_Mant                  ;
+wire [ 47:0]     P2_Mant                  ;
 wire [ 31:0]     P2_Fault_Result          ;
 wire             P2_IsBfloat16            ;
 wire             P2_N                     ;
-wire [  7:0]	 P2_Sum_Expo		      ;
+wire [  9:0]	 P2_Sum_Expo		      ;
 wire      	     P2_Sum_Sign		      ;
 wire  [ 11:0]    P2_TypeA                 ;
 wire  [  3:0]    P2_SignA                 ;
@@ -133,7 +138,11 @@ wire             P2_is_Exception          ;
 wire  [127:0]    P2_Refresh_Fault_Result  ;
 wire  [  3:0]    P2_Refresh_Is_Exception  ;
 wire  [127:0]   P2_Result                ;
+wire  [  3:0]    P2_Sticky_Flag           ;
+wire             P2_Sticky_Bit            ;
+wire             P2_Internal_Acc          ;
 
+wire             P3_Sticky_Bit            ;
 wire  [ 31:0]    P3_Inner_Result          ;
 wire             P3_Compute_Mode          ;
 wire  [ 2:0]     P3_Compute_Precision     ;
@@ -151,11 +160,11 @@ wire  [ 2:0]     P3_Precision_Addend      ;
 wire             P3_Temp_Sign             ;
 wire  [  9:0]    P3_Temp_Expo             ;
 wire  [ 72:0]    P3_Temp_Mant             ;
-wire  [ 48:0]    P3_Mant                  ;
+wire  [ 47:0]    P3_Mant                  ;
 wire  [ 31:0]    P3_Fault_Result          ;
 wire             P3_IsBfloat16            ;
 wire             P3_N                     ;
-wire  [  7:0]	 P3_Sum_Expo		      ;
+wire  [  9:0]	 P3_Sum_Expo		      ;
 wire       	     P3_Sum_Sign		      ;
 wire  [  3:0]    P3_Normal_Sign           ;
 wire  [ 39:0]    P3_Normal_Exp            ;
@@ -169,7 +178,9 @@ wire  [  3:0]    P3_SignA                 ;
 wire  [ 31:0]    P3_ExpoA                 ;
 wire  [ 95:0]    P3_MantA                 ;
 wire  [127:0]    P3_Result                ;
+wire  [  3:0]    P3_Sticky_Flag           ;
 wire  [  3:0]    P3_Is_Exception          ;
+wire             P3_Internal_Acc          ;
 
 wire             P4_Compute_Mode            ;
 wire  [ 2:0]     P4_Compute_Precision       ;
@@ -202,16 +213,16 @@ wire  [ 11:0]    P4_TypeA                   ;
 wire  [  3:0]    P4_SignA                   ;
 wire  [ 31:0]    P4_ExpoA                   ;
 wire  [ 95:0]    P4_MantA                   ;
-
 wire  [  3:0]    P4_Temp_SignA              ;
 wire  [ 31:0]    P4_Temp_ExpoA              ;
 wire  [ 95:0]    P4_Temp_MantA              ;
-
 wire  [127:0]    P4_Result                  ;
 wire  [  3:0]    P4_Is_Exception            ;
 wire  [  3:0]    P4_is_Exception            ;
 wire  [127:0]    P4_Refresh_Fault_Result    ;
 wire  [  3:0]    P4_Refresh_Is_Exception    ;
+wire  [  3:0]    P4_Sticky_Flag             ;
+wire             P4_Internal_Acc          ;
 
 wire             P5_Compute_Mode            ;
 wire  [ 2:0]     P5_Compute_Precision       ;
@@ -310,7 +321,9 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .o_SignA                ( P0_SignA               ),
     .o_ExpoA                ( P0_ExpoA               ),
     .o_Is_Exception         ( P0_Is_Exception        ),
-    .o_MantA                ( P0_MantA               )
+    .o_MantA                ( P0_MantA               ),
+    .o_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
+    .o_Internal_Acc         ( P0_Internal_Acc        )
 );
 
 IntMult_TOP u_IntMult_TOP(
@@ -355,6 +368,10 @@ Pipline_1 u_Pipline_1(
     .i_ExpoA                ( P0_ExpoA               ),
     .i_MantA                ( P0_MantA               ),
     .i_Is_Exception         ( P0_Is_Exception        ),
+    .i_Internal_Acc         ( P0_Internal_Acc        ),
+    .i_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
+    .o_Keep_Expo_signed     ( P1_Keep_Expo_signed    ),
+    .o_Internal_Acc         ( P1_Internal_Acc        ),
     .o_Compute_Mode         ( P1_Compute_Mode        ),
     .o_Compute_Precision    ( P1_Compute_Precision   ),
     .o_Is_Widening          ( P1_Is_Widening         ),
@@ -420,10 +437,12 @@ generate
             .i_Exception_Handling  ( P1_Exception_Handling      ),
             .i_N                   ( P1_N                       ),
             .i_isbfloat16          ( P1_IsBfloat16              ),
+            .i_Keep_Expo_signed    ( P1_Keep_Expo_signed        ),
+            .i_is_widening         ( P1_Is_Widening             ),
             .o_sign                ( P1_Normal_sign[i]          ),
             .o_round_result        ( P1_Round_result[i*32+:32]  ),
             .o_normal_mantissa     ( P1_Normal_mantissa[i]      ),
-            .sticky_flag           (C2_sticky_flag[i]           ),
+            .sticky_flag           ( P1_Sticky_Flag[i]          ),
             .o_normal_exp          ( P1_Normal_exp[i]           )
         );
 
@@ -495,6 +514,10 @@ Pipline_2 u_Pipline_2(
     .i_MantA                ( P1_MantA                  ),
     .i_Is_Exception         ( P1_Is_Exception           ),
     .i_Result               ( P1_Result                 ),
+    .i_Sticky_Flag          ( P1_Sticky_Flag            ),
+    .i_Internal_Acc         ( P1_Internal_Acc           ),
+    .o_Internal_Acc         ( P2_Internal_Acc           ),
+    .o_Sticky_Flag          ( P2_Sticky_Flag            ),
     .o_Result               ( P2_Result                 ),
     .o_Is_Exception         ( P2_Is_Exception           ),
     .o_Compute_Mode         ( P2_Compute_Mode           ),
@@ -532,8 +555,9 @@ C3_FPADDComb u_C3_FPADDComb(
     .i_Vector_Group_Num    ( P2_Vector_Group_Num        ),
     .i_Precision_Addend    ( P2_Precision_Addend        ),
     .i_Compute_Precision   ( P2_Compute_Precision       ),
+    .i_Add_or_Subtract     ( P2_Add_or_Subtract         ),
     .i_Exception_Handling  ( P2_Exception_Handling      ),
-
+    .i_Sticky_Flag         ( P2_Sticky_Flag[0] | P2_Sticky_Flag[3]  ),
     .i_Value1              ( P2_Rounded_result[31:0]    ),
     .i_Value2              ( P2_Rounded_result[127:96]  ),
     .i_FuseAdd_SelfAdd     ( P2_FuseAdd_SelfAdd         ),
@@ -543,7 +567,7 @@ C3_FPADDComb u_C3_FPADDComb(
     .i_Temp_Expo2          ( P2_Temp_Expo2              ),
     .i_Temp_Mant1          ( P2_Temp_Mant1              ),
     .i_Temp_Mant2          ( P2_Temp_Mant2              ),
-
+    
     .o_Temp_Sign           ( P2_Temp_Sign               ),
     .o_Temp_Expo           ( P2_Temp_Expo               ),
     .o_Temp_Mant           ( P2_Temp_Mant               ),
@@ -553,7 +577,8 @@ C3_FPADDComb u_C3_FPADDComb(
     .o_N                   ( P2_N                       ),
     .o_Sum_Expo            ( P2_Sum_Expo                ),
     .o_Sum_Sign            ( P2_Sum_Sign                ),
-    .o_is_Exception        ( P2_is_Exception            )
+    .o_is_Exception        ( P2_is_Exception            ),
+    .o_Sticky_Bit          ( P2_Sticky_Bit              )
 );
 
 // assign P2_Refresh_Fault_Result = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Result[127:32],P2_Fault_Result} : P2_Result ;
@@ -567,83 +592,90 @@ assign P2_Refresh_Is_Exception = P2_Is_Exception ;
 //=====================================================================
 
 Pipline_3 u_Pipline_3(
-    .clk                    ( clk                    ),
-    .rst_n                  ( rst_n                  ),
-    .i_Compute_Mode         ( P2_Compute_Mode        ),
-    .i_Compute_Precision    ( P2_Compute_Precision   ),
-    .i_Is_Widening          ( P2_Is_Widening         ),
-    .i_Add_or_Subtract      ( P2_Add_or_Subtract     ),
-    .i_ZmIsSigned           ( P2_ZmIsSigned          ),
-    .i_ZnIsSigned           ( P2_ZnIsSigned          ),
-    .i_Num_of_Vector_Group  ( P2_Num_of_Vector_Group ),
-    .i_Vector_Group_Num     ( P2_Vector_Group_Num    ),
-    .i_Exception_Handling   ( P2_Exception_Handling  ),
-    .i_ZA_Base_Address      ( P2_ZA_Base_Address     ),
-    .i_Operand_C            ( P2_Operand_C           ),
-    .i_Precision_Addend     ( P2_Precision_Addend    ),
-    .i_Rounded_result       ( P2_Rounded_result      ),
-    .i_Temp_Sign            ( P2_Temp_Sign           ),
-    .i_Temp_Expo            ( P2_Temp_Expo           ),
-    .i_Temp_Mant            ( P2_Temp_Mant           ),
-    .i_Mant                 ( P2_Mant                ),
-    .i_Fault_Result         ( P2_Fault_Result        ),
-    .i_IsBfloat16           ( P2_IsBfloat16          ),
-    .i_N                    ( P2_N                   ),
-    .i_Sum_Expo             ( P2_Sum_Expo            ),
-    .i_Sum_Sign             ( P2_Sum_Sign            ),
-    .i_Normal_Sign          ( P2_Normal_Sign         ),
-    .i_Normal_Exp           ( P2_Normal_Exp          ),
-    .i_Normal_Mantissa      ( P2_Normal_Mantissa     ),
-    .i_TypeA                ( P2_TypeA               ),
-    .i_SignA                ( P2_SignA               ),
-    .i_ExpoA                ( P2_ExpoA               ),
-    .i_MantA                ( P2_MantA               ),
+    .clk                    ( clk                       ),
+    .rst_n                  ( rst_n                     ),
+    .i_Compute_Mode         ( P2_Compute_Mode           ),
+    .i_Compute_Precision    ( P2_Compute_Precision      ),
+    .i_Is_Widening          ( P2_Is_Widening            ),
+    .i_Add_or_Subtract      ( P2_Add_or_Subtract        ),
+    .i_ZmIsSigned           ( P2_ZmIsSigned             ),
+    .i_ZnIsSigned           ( P2_ZnIsSigned             ),
+    .i_Num_of_Vector_Group  ( P2_Num_of_Vector_Group    ),
+    .i_Vector_Group_Num     ( P2_Vector_Group_Num       ),
+    .i_Exception_Handling   ( P2_Exception_Handling     ),
+    .i_ZA_Base_Address      ( P2_ZA_Base_Address        ),
+    .i_Operand_C            ( P2_Operand_C              ),
+    .i_Precision_Addend     ( P2_Precision_Addend       ),
+    .i_Rounded_result       ( P2_Rounded_result         ),
+    .i_Temp_Sign            ( P2_Temp_Sign              ),
+    .i_Temp_Expo            ( P2_Temp_Expo              ),
+    .i_Temp_Mant            ( P2_Temp_Mant              ),
+    .i_Mant                 ( P2_Mant                   ),
+    .i_Fault_Result         ( P2_Fault_Result           ),
+    .i_IsBfloat16           ( P2_IsBfloat16             ),
+    .i_N                    ( P2_N                      ),
+    .i_Sum_Expo             ( P2_Sum_Expo               ),
+    .i_Sum_Sign             ( P2_Sum_Sign               ),
+    .i_Normal_Sign          ( P2_Normal_Sign            ),
+    .i_Normal_Exp           ( P2_Normal_Exp             ),
+    .i_Normal_Mantissa      ( P2_Normal_Mantissa        ),
+    .i_TypeA                ( P2_TypeA                  ),
+    .i_SignA                ( P2_SignA                  ),
+    .i_ExpoA                ( P2_ExpoA                  ),
+    .i_MantA                ( P2_MantA                  ),
     .i_Is_Exception         ( P2_Refresh_Is_Exception   ),
     .i_Result               ( P2_Refresh_Fault_Result   ),
+    .i_Sticky_Flag          ( P2_Sticky_Flag            ),
+    .i_Sticky_Bit           ( P2_Sticky_Bit             ),
+    .i_Internal_Acc         ( P2_Internal_Acc           ),
+    .o_Internal_Acc         ( P3_Internal_Acc           ),
+    .o_Sticky_Bit           ( P3_Sticky_Bit             ),
+    .o_Sticky_Flag          ( P3_Sticky_Flag            ),
     .o_Result               ( P3_Result                 ),
     .o_Is_Exception         ( P3_Is_Exception           ),
-    .o_Compute_Mode         ( P3_Compute_Mode        ),
-    .o_Compute_Precision    ( P3_Compute_Precision   ),
-    .o_Is_Widening          ( P3_Is_Widening         ),
-    .o_Add_or_Subtract      ( P3_Add_or_Subtract     ),
-    .o_ZmIsSigned           ( P3_ZmIsSigned          ),
-    .o_ZnIsSigned           ( P3_ZnIsSigned          ),
-    .o_Num_of_Vector_Group  ( P3_Num_of_Vector_Group ),
-    .o_Vector_Group_Num     ( P3_Vector_Group_Num    ),
-    .o_Exception_Handling   ( P3_Exception_Handling  ),
-    .o_ZA_Base_Address      ( P3_ZA_Base_Address     ),
-    .o_Operand_C            ( P3_Operand_C           ),
-    .o_Precision_Addend     ( P3_Precision_Addend    ),
-    .o_Rounded_result       ( P3_Rounded_result      ),
-    .o_Temp_Sign            ( P3_Temp_Sign           ),
-    .o_Temp_Expo            ( P3_Temp_Expo           ),
-    .o_Temp_Mant            ( P3_Temp_Mant           ),
-    .o_Mant                 ( P3_Mant                ),
-    .o_Fault_Result         ( P3_Fault_Result        ),
-    .o_IsBfloat16           ( P3_IsBfloat16          ),
-    .o_N                    ( P3_N                   ),
-    .o_Sum_Expo             ( P3_Sum_Expo            ),
-    .o_Sum_Sign             ( P3_Sum_Sign            ),
-    .o_Normal_Sign          ( P3_Normal_Sign         ),
-    .o_Normal_Exp           ( P3_Normal_Exp          ),
-    .o_Normal_Mantissa      ( P3_Normal_Mantissa     ),
-    .o_TypeA                ( P3_TypeA               ),
-    .o_SignA                ( P3_SignA               ),
-    .o_ExpoA                ( P3_ExpoA               ),
-    .o_MantA                ( P3_MantA               )
+    .o_Compute_Mode         ( P3_Compute_Mode           ),
+    .o_Compute_Precision    ( P3_Compute_Precision      ),
+    .o_Is_Widening          ( P3_Is_Widening            ),
+    .o_Add_or_Subtract      ( P3_Add_or_Subtract        ),
+    .o_ZmIsSigned           ( P3_ZmIsSigned             ),
+    .o_ZnIsSigned           ( P3_ZnIsSigned             ),
+    .o_Num_of_Vector_Group  ( P3_Num_of_Vector_Group    ),
+    .o_Vector_Group_Num     ( P3_Vector_Group_Num       ),
+    .o_Exception_Handling   ( P3_Exception_Handling     ),
+    .o_ZA_Base_Address      ( P3_ZA_Base_Address        ),
+    .o_Operand_C            ( P3_Operand_C              ),
+    .o_Precision_Addend     ( P3_Precision_Addend       ),
+    .o_Rounded_result       ( P3_Rounded_result         ),
+    .o_Temp_Sign            ( P3_Temp_Sign              ),
+    .o_Temp_Expo            ( P3_Temp_Expo              ),
+    .o_Temp_Mant            ( P3_Temp_Mant              ),
+    .o_Mant                 ( P3_Mant                   ),
+    .o_Fault_Result         ( P3_Fault_Result           ),
+    .o_IsBfloat16           ( P3_IsBfloat16             ),
+    .o_N                    ( P3_N                      ),
+    .o_Sum_Expo             ( P3_Sum_Expo               ),
+    .o_Sum_Sign             ( P3_Sum_Sign               ),
+    .o_Normal_Sign          ( P3_Normal_Sign            ),
+    .o_Normal_Exp           ( P3_Normal_Exp             ),
+    .o_Normal_Mantissa      ( P3_Normal_Mantissa        ),
+    .o_TypeA                ( P3_TypeA                  ),
+    .o_SignA                ( P3_SignA                  ),
+    .o_ExpoA                ( P3_ExpoA                  ),
+    .o_MantA                ( P3_MantA                  )
 );
 
 C4_Round#(
-    .IN_WIDTH              ( 49                     ),
+    .IN_WIDTH              ( 48                     ),
     .EXP_WIDTH             ( 10                     )
 )u_C4_Round_InnerProduct(
-    .i_op                  ( P3_Temp_Mant[48:0]     ),
-    .i_exp                 ( P3_Temp_Expo           ),
-    .i_sign                ( P3_Temp_Sign           ),
+    .i_op                  ( P3_Mant                ),
+    .i_exp                 ( P3_Sum_Expo            ),
+    .i_sign                ( P3_Sum_Sign            ),
     .i_Exception_Handling  ( P3_Exception_Handling  ),
     .i_N                   ( P3_N                   ),
     .i_isbfloat16          ( P3_IsBfloat16          ),
     .o_rounded_result      ( P3_Inner_Result        ),
+    .i_sticky_bit          ( P3_Sticky_Bit          ),
     .o_sign                (                        ),
     .o_normal_mantissa     (                        ),
     .o_normal_exp          (                        )
@@ -675,7 +707,7 @@ C4_Gen_OuterSign u_C4_Gen_OuterSign(
 //     end
 // endgenerate
 
-assign P3_Final_Result = P3_OuterSign ? P3_Outer_Product : {96'd0,P3_Inner_Result};
+assign P3_Final_Result = P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
 
 Pipline_4 u_Pipline_4(
     .clk                     ( clk                      ),
@@ -702,6 +734,10 @@ Pipline_4 u_Pipline_4(
     .i_MantA                 ( P3_MantA                 ),
     .i_Is_Exception          ( P3_Is_Exception          ),
     .i_Result                ( P3_Result                ),
+    .i_Sticky_Flag           ( P3_Sticky_Flag           ),
+    .i_Internal_Acc          ( P3_Internal_Acc          ),
+    .o_Internal_Acc          ( P4_Internal_Acc          ),
+    .o_Sticky_Flag           ( P4_Sticky_Flag           ),
     .o_Result                ( P4_Result                ),
     .o_Is_Exception          ( P4_Is_Exception          ),
     .o_Compute_Mode          ( P4_Compute_Mode          ),
@@ -739,14 +775,14 @@ generate
             .i_Exception_Handling  ( P4_Exception_Handling              ),
             .i_Value1              ( P4_Fuse_MultiAdd_Result[i*32+:32]  ),
             .i_Value2              ( P4_Operand_C[i*32+:32]             ),
-            .i_FuseAdd_SelfAdd     (                                    ),
+            .i_FuseAdd_SelfAdd     ( P4_Internal_Acc                    ),
             .i_Temp_Sign1          ( P4_Normal_Sign[i]                  ),
             .i_Temp_Sign2          ( P4_SignA[i]                        ),
             .i_Temp_Expo1          ( P4_Normal_Exp[i*10+:10]            ),
             .i_Temp_Expo2          ( {2'd0,P4_ExpoA[i*8+:8]}            ),
             .i_Temp_Mant1          ( P4_Normal_Mantissa[i*48 +: 48]     ),
             .i_Temp_Mant2          ( {P4_MantA[i*24+:24],24'd0}         ),
-            .i_sticky_bit          ( C2_sticky_flag[i]                  ),
+            .i_sticky_bit          ( P4_Sticky_Flag[i]                  ),
             .o_Temp_Sign           ( P4_Temp_Sign[i]                    ),
             .o_Temp_Expo           ( P4_Temp_Expo[i]                    ),
             .o_Temp_Mant           ( P4_Temp_Mant[i]                    ),
@@ -760,11 +796,15 @@ generate
             .o_Sticky_Bit          ( P4_Sticky_Bit[i]                   )
         );
 
-        // assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_Fault_Result[i*32+:32] : P4_Result[i*32+:32];
-        // assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b01) ? P4_is_Exception[i] : P4_Is_Exception[i] ;
+        assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Result[i*32+:32] : P4_Fault_Result[i*32+:32];
+        assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Is_Exception[i] :  P4_is_Exception[i];
 
-        assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32];
-        assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i] ;
+        // assign P4_Refresh_Fault_Result[i*32+:32] = P4_Fault_Result[i*32+:32]    ;
+        // assign P4_Refresh_Is_Exception[i*1+:1] = P4_is_Exception[i]             ;
+
+
+        // assign P4_Refresh_Fault_Result[i*32+:32] = P4_Result[i*32+:32];
+        // assign P4_Refresh_Is_Exception[i*1+:1] = P4_Is_Exception[i] ;
     end
 endgenerate
 

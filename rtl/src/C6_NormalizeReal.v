@@ -38,7 +38,7 @@ assign exponent                     = i_exp_temp + exponent_adj       ;
 //assign exponent                     = $signed({{1'b0},i_exp})       ;
 assign biased_exp_unconstrained     = exponent                                               ;
 assign is_denormal                  = (exponent <= 0)? 1'b1 : 1'b0                                             ;
-assign i_exp_true                   = {{1'b0},i_exp} + minimum_exp - 1'd1                             ;
+assign i_exp_true                   = i_exp_temp + minimum_exp + 1'sd1                             ;
 assign o_sign                       = i_sign                                                                            ;
 
 always @(*) begin
