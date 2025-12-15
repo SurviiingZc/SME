@@ -18,11 +18,13 @@ class PE_test_fmop extends uvm_test;
     
     task run_phase(uvm_phase phase);
         PE_sequence_fmopa   seq_fmopa;
+        PE_sequence_fmopa_32 seq_fmopa_32;
         PE_sequence_fmopa_w seq_fmopa_w;
         PE_sequence_fmops   seq_fmops;
         PE_sequence_fmops_w seq_fmops_w;
 
         seq_fmopa   = PE_sequence_fmopa::type_id::create("seq_fmopa");
+        seq_fmopa_32 = PE_sequence_fmopa_32::type_id::create("seq_fmopa_32");
         seq_fmopa_w = PE_sequence_fmopa_w::type_id::create("seq_fmopa_w");
         seq_fmops   = PE_sequence_fmops::type_id::create("seq_fmops");
         seq_fmops_w = PE_sequence_fmops_w::type_id::create("seq_fmops_w");
@@ -31,6 +33,7 @@ class PE_test_fmop extends uvm_test;
         
         `uvm_info("TEST", "Running fmop test", UVM_LOW)
         seq_fmopa.start(env.agent.sequencer);
+        seq_fmopa_32.start(env.agent.sequencer);
         seq_fmopa_w.start(env.agent.sequencer);
         seq_fmops.start(env.agent.sequencer);
         seq_fmops_w.start(env.agent.sequencer);
