@@ -111,7 +111,7 @@ input       [127:0]   i_Result                ;
 input       [  3:0]   i_Sticky_Flag           ;
 input                 i_Internal_Acc          ;
 input                 i_Keep_Expo_signed      ;
-output                o_Keep_Expo_signed      ;
+output reg            o_Keep_Expo_signed      ;
 output reg            o_Internal_Acc          ;
 output reg  [  3:0]   o_Sticky_Flag           ;
 output reg  [127:0]   o_Result                ;

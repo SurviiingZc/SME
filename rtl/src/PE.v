@@ -58,6 +58,8 @@ wire  [ 95:0]   P0_MantA                 ;
 wire  [  3:0]   P0_Is_Exception          ;
 wire            P0_Internal_Acc          ;
 wire            P0_Keep_Expo_signed      ;
+wire  [31: 0]   P0_AddZA                 ;
+wire  [31: 0]   P1_AddZA                 ;
 wire            P1_Keep_Expo_signed      ;
 wire            P2_Keep_Expo_signed      ;
 
@@ -335,6 +337,7 @@ IntMult_TOP u_IntMult_TOP(
     .i_Active_Element_A      ( P0_Active_Element_A       ),
     .i_Active_Element_B      ( P0_Active_Element_B       ),
     .i_Calculation_pricision ( P0_Compute_Precision      ),
+    .o_AddZA                 ( P0_AddZA                  ),
     .o_Product               ( P0_Int_Product            )
 );
 
@@ -370,6 +373,8 @@ Pipline_1 u_Pipline_1(
     .i_MantA                ( P0_MantA               ),
     .i_Is_Exception         ( P0_Is_Exception        ),
     .i_Internal_Acc         ( P0_Internal_Acc        ),
+    .i_AddZA                ( P0_AddZA               ),
+    .o_AddZA                ( P1_AddZA               ),
     .i_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
     .o_Keep_Expo_signed     ( P1_Keep_Expo_signed    ),
     .o_Internal_Acc         ( P1_Internal_Acc        ),
@@ -420,9 +425,10 @@ IntAdditionAarry u_IntAdditionAarry(
     .i_ZmIsSigned            ( P1_ZmIsSigned                ),
     .i_ZnIsSigned            ( P1_ZnIsSigned                ),
     .i_Calculation_mode      ( P1_Compute_Mode              ),
-    .i_Num_of_Vector_Group   ( P1_Num_of_Vector_Group       ),
+    .i_Vector_Group_Num      ( P1_Vector_Group_Num          ),
     .i_Calculation_pricision ( P1_Compute_Precision         ),
     .i_Operator              ( P1_Add_or_Subtract           ),
+    .i_AddZA                 ( P1_AddZA                     ),
     .o_Output                ( P1_Int_Result                )
 );
 
