@@ -14,18 +14,20 @@ module C3_FPAddition(
     input           [ 19:0]    i_Exception_Handling   ,
     input                      i_Add_or_Subtract      ,
     input                      i_FuseAdd_SelfAdd      ,
+    input           [  2:0]    i_Compute_Precision    ,
     input                      i_Temp_Sign1           ,
     input                      i_Temp_Sign2           ,
-    input           [  9:0]    i_Temp_Expo1           ,
-    input           [  9:0]    i_Temp_Expo2           ,
+    input signed    [  9:0]    i_Temp_Expo1           ,
+    input signed    [  9:0]    i_Temp_Expo2           ,
     input           [ 47:0]    i_Temp_Mant1           ,
     input           [ 47:0]    i_Temp_Mant2           ,
     input                      i_sticky_bit           ,
+    input                      i_Keep_Expo_signed     ,
     output                     o_Temp_Sign            ,
-    output          [  9:0]    o_Temp_Expo            ,
+    output signed   [  9:0]    o_Temp_Expo            ,
     output          [ 72:0]    o_Temp_Mant            ,
 	output          [ 47:0]    o_Sum_Mant		      ,
-	output          [  9:0]	   o_Sum_Expo		      ,
+	output signed   [  9:0]	   o_Sum_Expo		      ,
 	output                	   o_Sum_Sign		      ,
     output                     o_Sticky_Bit            
 );
@@ -35,6 +37,8 @@ module C3_FPAddition(
 wire [23:0]     Sticky_Temp  ;
 wire signed [  9:0]  Temp_Expo1 ;
 wire signed [  9:0]  Temp_Expo2 ;
+wire signed [  9:0]  Expo1      ;
+wire signed [  9:0]  Expo2      ;
 wire [ 7:0] 	Exp_Diff	 ;
 wire [ 7:0] 	Sum_Sign	 ;
 wire [47:0] 	Max_Mant	 ;
@@ -72,18 +76,27 @@ wire			Fuse_is_Num1_Max	;
 wire			Fuse_is_Expo1_Max	;
 wire			Fuse_is_Mant1_Max	;
 wire         	Fuse_Sign_Max    	;
-wire  [ 8:0] 	Fuse_Expo_Max    	;
+wire  signed [ 9:0] 	Fuse_Expo_Max    	;
 wire  [47:0] 	Fuse_Mant_Max    	;
 wire         	Fuse_Sign_Min  		;
-wire  [ 8:0] 	Fuse_Expo_Min  		;
+wire  signed [ 9:0] 	Fuse_Expo_Min  		;
 wire  [47:0] 	Fuse_Mant_Min  		;
 wire            is_Comp             ;
 wire            Fuse_is_Comp        ;
 wire  [ 72:0]   T_Temp_Mant         ;
 wire            T_Temp_Sign1        ;
 wire            All_Equal           ;
+wire signed [  9:0]    All_Equal_Expo      ;
 wire [  1:0]    FPCR_RMode          ;
 
+wire [  7:0]    Expo1_Temp          ;
+wire [  7:0]    Expo2_Temp          ;
+wire            Temp_Sign1          ;
+wire            Temp_Sign2          ;
+wire [  9:0]    TempExpo1           ;
+wire [  9:0]    TempExpo2           ;
+wire [ 47:0]    Temp_Mant1          ;
+wire [ 47:0]    Temp_Mant2          ;
 genvar i;
 
 generate
@@ -123,9 +136,20 @@ assign Sum_Mant   	 = is_Comp ? {1'd0,Mant_Com} : Mant_Max + Min_Mant[47:24]	;
 // assign o_Sum_Mant 	 = is_Comp ? {Sum_Mant,Neg_Min_Mant[23:0]} : {Sum_Mant,Min_Mant[23:0]}		;
 // assign o_Sum_Expo	 = Expo_Max													;
 // assign o_Sum_Sign	 = Sign_Max													;
+assign Expo1_Temp          = (i_Expo1 == 'd0)   ? 'd1          : i_Expo1                                              ;
+assign Expo2_Temp          = (i_Expo2 == 'd0)   ? 'd1          : i_Expo2                                              ;
+assign Expo1               = (i_Temp_Expo1=='d0)? 'd1          : i_Temp_Expo1                                         ;
+assign Expo2               = (i_Temp_Expo2=='d0)? 'd1          : i_Temp_Expo2                                         ;
+assign Temp_Sign1          = i_Keep_Expo_signed ? i_Temp_Sign1 : i_Sign1                                              ;
+assign Temp_Sign2          = i_Keep_Expo_signed ? i_Temp_Sign2 : i_Sign2                                              ;
+assign TempExpo1           = i_Keep_Expo_signed ? i_Temp_Expo1 : {2'd0,Expo1_Temp}                                    ;
+assign TempExpo2           = i_Keep_Expo_signed ? i_Temp_Expo2 : {2'd0,Expo2_Temp}                                    ;
+assign Temp_Mant1          = i_Keep_Expo_signed ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
+assign Temp_Mant2          = i_Keep_Expo_signed ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
 
-assign Temp_Expo1            = (i_Temp_Expo1 == 'd0) ? 9'sd1 : i_Temp_Expo1                                 ;
-assign Temp_Expo2            = (i_Temp_Expo2 == 'd0) ? 9'sd1 : i_Temp_Expo2                                 ;
+
+assign Temp_Expo1            = TempExpo1                                                                    ;
+assign Temp_Expo2            = TempExpo2                                                                    ;
 assign Check_Diff            = (Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) ? (Fuse_Exp_Diff - 8'd24) : 5'd0           ;
 assign Sticky_Bit            = ((Fuse_Exp_Diff >= 8'd48) & Mant_Min_Or) | 
                                     ((Fuse_Exp_Diff > 8'd24 && Fuse_Exp_Diff < 8'd48) & Sticky_Temp[Check_Diff]) | 
@@ -137,6 +161,7 @@ assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & i_Temp_Mant1 >= i_Tem
 assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max) ? 1'd1 : 1'd0 				        ;
 assign T_Temp_Sign1          = i_Temp_Sign1                                                                 ;
 assign All_Equal             = (i_Temp_Expo1 == i_Temp_Expo2) & (i_Temp_Mant1 == i_Temp_Mant2) & (T_Temp_Sign1 ^ i_Temp_Sign2);
+assign All_Equal_Expo        = (i_Compute_Precision == `FP16) ? -10'sd112 : 'sd0                            ;
 assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? T_Temp_Sign1 : i_Temp_Sign2 							    ;
 assign Fuse_Expo_Max	     = Fuse_is_Num1_Max ? Temp_Expo1 : Temp_Expo2 							        ;
 assign Fuse_Mant_Max	     = Fuse_is_Num1_Max ? i_Temp_Mant1 : i_Temp_Mant2 							    ;
@@ -153,7 +178,7 @@ assign Fuse_Neg_Min_Mant     = Fuse_is_Comp ? ~Fuse_Min_Mant : Fuse_Min_Mant	   
 wire sub_carry_in            = Fuse_is_Comp && !Sticky_Bit                                                  ; 
 assign T_Temp_Mant           = {1'b0, Fuse_Max_Mant} + {1'b0, Fuse_Neg_Min_Mant} + sub_carry_in             ;
 assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_Mant                        ;
-assign o_Temp_Expo	         = ~All_Equal ? Fuse_Expo_Max : 'd0											    ;
+assign o_Temp_Expo	         = ~All_Equal ? Fuse_Expo_Max : All_Equal_Expo				             	    ;
 assign o_Temp_Sign	         = ~All_Equal ? Fuse_Sign_Max :	
                                 (FPCR_RMode == `Round_Towards_Minus_Infinity) ? 1'd1 : 1'd0	                ;
 

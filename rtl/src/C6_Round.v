@@ -13,6 +13,7 @@ module C6_Round #(
     input       [19:0]          i_Exception_Handling        ,     // FPCR register  
     input                       i_N                         ,     // 1 > 32 0 > 16
     input                       i_isbfloat16                ,     // bfloat16 flag 
+    input       [ 3:0]          i_Compute_Precision         ,
     input                       i_sticky_bit                ,    
     output     [31:0]           o_rounded_result                  // Rounded result
 );
@@ -31,7 +32,7 @@ module C6_Round #(
 
     wire        is_bf16         = (i_N == 1) & i_isbfloat16                                         ;
     wire        is_fp16         = (i_N == 0)                                                        ;
-    wire        is_fp32         = (i_N == 1) & !i_isbfloat16                                        ;
+    wire        is_fp32         = (i_N == 1)                                                        ;
     wire [1:0]  i_Data_Width    = (is_bf16) ? 2'd2 : (is_fp16) ? 2'd0 : (is_fp32) ? 2'd1 : 2'b0     ;
     wire        EBF             = i_Exception_Handling[8]                                           ;
 
@@ -39,8 +40,8 @@ module C6_Round #(
     //1102改
     reg [31:0] result;
     always @(*) begin
-        if (is_bf16) begin
-            result = (EBF == 0 | !`FEAT_EBF16 ) ? BFRound_result : FPRoundBase_result;
+        if (EBF == 0 & i_Compute_Precision==`BF16 ) begin
+            result = BFRound_result ;
         end else begin
             result = FPRoundBase_result;
         end
@@ -56,7 +57,7 @@ module C6_Round #(
         .exponent           ( i_exponent           ),
         .adjusted_mantissa  ( i_adjusted_mantissa  ),
         .i_sticky_bit       ( i_sticky_bit         ),
-        .o_Rounded_result   ( BFRound_result       )
+        .o_round_result     ( BFRound_result       )
     );
 
     C6_FPRoundBase#(

@@ -63,7 +63,7 @@ wire [23:0]     T_BFMant2      ;
 wire [31:0]     T_BFValue2     ;
 wire [ 2:0]     T_Precision    ;
 
-assign T_Precision          = ((i_Compute_Precision == `FP16) & i_FuseAdd_SelfAdd) ? `FP32 : i_Compute_Precision        ;
+assign T_Precision          = ((i_Compute_Precision == `FP16 | i_Compute_Precision == `BF16) & i_FuseAdd_SelfAdd) ? `FP32 : i_Compute_Precision        ;
 assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                           ;
 assign o_IsBfloat16         = (T_Precision == `BF16)                                                            ;
 assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                                 ;

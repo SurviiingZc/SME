@@ -31,6 +31,7 @@ module C1_ExceptionHandling (
     input  [ 19:0]    i_Exception_Handling   ,
     output [  3:0]    o_Is_Exception         ,
     output [127:0]    o_Result               ,
+    output            o_Keep_Expo_signed     ,
     output            o_Internal_Acc        
 );
 
@@ -187,7 +188,7 @@ assign is_Not_Widening        = (i_Is_Widening == `Operands_Is_Not_Widening) ? 1
 assign is_Widening            = (i_Is_Widening == `Operands_Is_Widening) ? 1'd1 : 1'd0;
 
 
-
+assign o_Keep_Expo_signed     = FMOP_Widening | FDOT | FMLAL | BFMOP_Widening_EBF;
 assign FMOP_FP32_Non_Widening = (is_Outer_Product & is_FP32 & is_Not_Widening) ? 1'd1 : 1'd0 ;
 assign FMOP_FP16_Non_Widening = (is_Outer_Product & is_FP16 & is_Not_Widening) ? 1'd1 : 1'd0 ;
 assign FMOP_Widening          = (is_Outer_Product & is_FP16 & is_Widening) ? 1'd1 : 1'd0 ;

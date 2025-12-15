@@ -53,19 +53,22 @@ class PE_sequence_fmlal extends PE_sequence;
                 
                 i_Operand_A[31:0] dist {
                     [32'h00000000:32'h7fffffff] :/ 50,
-                    [32'h80000001:32'hffffffff] :/ 50
+                    [32'h80000000:32'hffffffff] :/ 50
                 };
 
                 i_Operand_B[31:0] dist {
                     [32'h00000000:32'h7fffffff] :/ 50,
-                    [32'h80000001:32'hffffffff] :/ 50
+                    [32'h80000000:32'hffffffff] :/ 50
                 };
 
                 i_Operand_C[31:0] dist {
                     [32'h00000000:32'h7fffffff] :/ 50,
-                    [32'h80000001:32'hffffffff] :/ 50
+                    [32'h80000000:32'hffffffff] :/ 50
                 };
-                
+                i_Operand_C[63:32] dist {
+                    [32'h00000000:32'h7fffffff] :/ 50,
+                    [32'h80000000:32'hffffffff] :/ 50
+                };
                 // i_Exception_Handling[16:15] dist {
                 //     2'b00 := 25,
                 //     2'b01 := 25,

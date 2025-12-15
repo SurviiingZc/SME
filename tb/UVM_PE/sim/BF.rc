@@ -1,0 +1,141 @@
+Magic 271485
+Revision Verdi_R-2020.12-SP2
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 2560 635 402 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/simulation/wzh/SME/tb/UVM_PE/sim/mult.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 224417.356144 236854.832192
+cursor 225001.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 33
+; marker line index
+markerPos 25
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByValue
+
+
+addGroup "G1"
+activeDirFile "" "/simulation/wzh/SME/tb/UVM_PE/sim/mult.fsdb"
+addSignal -h 15 /PE_tb/dut/i_Operand_A[31:0]
+addSignal -h 15 -holdScope i_Operand_B[31:0]
+addSignal -h 15 -holdScope i_Operand_C[127:0]
+addSignal -h 15 -holdScope o_Result[127:0]
+addGroup "G2"
+addSignal -h 15 -UNSIGNED -BIN /PE_tb/dut/u_C1_FPMultiplyComb/u_FPUnpackAll/T_Sign2[1:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope T_Sign1[1:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope T_OutSign[3:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C1_FPMultiplyComb/u_FPMutiArray/ExpBF16A[1:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope ExpBF16B[1:0]
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C1_FPMultiplyComb/u_FPUnpackAll/T_OutExpo[3:0]
+addSignal -h 15 /PE_tb/dut/u_C1_FPMultiplyComb/u_FPMutiArray/FracBF16A[1:0]
+addSignal -h 15 -holdScope FracBF16B[1:0]
+addSignal -h 15 -holdScope BF16Result[3:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope o_Mant[191:0]
+addGroup "C2 Norm [0]"
+addSignal -h 15 /PE_tb/dut/Comb2[0]/u_C2_Round/u_NormalizeReal/i_sign
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_exp[8:0]
+addSignal -h 15 -2COMP -UDEC /PE_tb/dut/Comb2[0]/u_C2_Round/exponent[9:0]
+addSignal -h 15 -UNSIGNED -BIN /PE_tb/dut/Comb2[0]/u_C2_Round/u_NormalizeReal/i_mantissa_in[47:0]
+addSignal -h 15 -2COMP -UDEC -holdScope biased_exp[9:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope adjusted_mantissa[47:0]
+addSignal -h 15 -2COMP -UDEC -holdScope i_exp_true[9:0]
+addSignal -h 15 /PE_tb/dut/Comb2[0]/u_C2_Round/sticky_flag
+addSignal -h 15 -holdScope flush_zero_condition
+addSignal -h 15 -holdScope o_round_result[31:0]
+addGroup "C2 Norm [3]"
+addSignal -h 15 /PE_tb/dut/Comb2[3]/u_C2_Round/u_NormalizeReal/i_sign
+addSignal -h 15 -2COMP -UDEC -holdScope i_exp[8:0]
+addSignal -h 15 -holdScope i_mantissa_in[47:0]
+addSignal -h 15 -2COMP -UDEC -holdScope biased_exp[9:0]
+addSignal -h 15 -2COMP -UDEC -holdScope i_exp_true[9:0]
+addSignal -h 15 -holdScope adjusted_mantissa[47:0]
+addSignal -h 15 /PE_tb/dut/Comb2[3]/u_C2_Round/o_round_result[31:0]
+addSignal -h 15 -holdScope sticky_flag
+addGroup "C3"
+addSignal -h 15 /PE_tb/dut/u_C3_FPADDComb/u_C3_FPAddition/Temp_Sign1
+addSignal -h 15 -holdScope Temp_Sign2
+addSignal -h 15 -2COMP -UDEC -holdScope TempExpo1[9:0]
+addSignal -h 15 -2COMP -UDEC -holdScope TempExpo2[9:0]
+addSignal -h 15 -holdScope Temp_Mant1[47:0]
+addSignal -h 15 -holdScope Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Sum_Mant[47:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope o_Sum_Expo[9:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+addGroup "C4 Norm"
+addSignal -h 15 /PE_tb/dut/u_C4_Round_InnerProduct/u_C4_NormalizeReal/i_sign
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_exp[9:0]
+addSignal -h 15 -holdScope is_denormal
+addSignal -h 15 -UNSIGNED -BIN -holdScope i_mantissa_in[47:0]
+addSignal -h 15 -2COMP -UDEC -holdScope biased_exp[9:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope adjusted_mantissa[47:0]
+addSignal -h 15 -UNSIGNED -BIN /PE_tb/dut/u_C4_Round_InnerProduct/o_rounded_result[31:0]
+addGroup "C5"
+addSignal -h 15 /PE_tb/dut/Add_ZA[0]/u_C5_FPADDComb/i_Value1[31:0]
+addSignal -h 15 -holdScope i_Value2[31:0]
+addSignal -h 15 -holdScope T_Sign1
+addSignal -h 15 -holdScope T_Sign2
+addSignal -h 15 -UNSIGNED -UDEC -holdScope T_Expo1[7:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope T_Expo2[7:0]
+addSignal -h 15 -holdScope T_Mant1[23:0]
+addSignal -h 15 -holdScope T_Mant2[23:0]
+addSignal -h 15 /PE_tb/dut/Add_ZA[0]/u_C5_FPADDComb/u_C5_FPAddition/i_Sign1
+addSignal -h 15 -holdScope i_Sign2
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Expo1[7:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_Expo2[7:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope i_Mant1[23:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope i_Mant2[23:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope Fuse_Min_Mant[71:0]
+addSignal -h 15 -holdScope sub_carry_in
+addSignal -h 15 -UNSIGNED -HEX -holdScope o_Sum_Mant[47:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope Fuse_Mant_Min[47:0]
+addSignal -h 15 -holdScope Sticky_Bit
+addSignal -h 15 -holdScope Sticky_Temp[23:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope Check_Diff[4:0]
+addGroup "C6"
+addSignal -h 15 /PE_tb/dut/u_C6_Round_FP32/u_C6_NormalizeReal/i_sign
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_exp[9:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope i_mantissa_in[47:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope biased_exp[9:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope adjusted_mantissa[47:0]
+addSignal -h 15 /PE_tb/dut/u_C6_Round_FP32/u_C6_BFRound/int_mant[22:0]
+addSignal -h 15 -holdScope S_bit
+addSignal -h 15 -holdScope L_bit
+addSignal -h 15 -holdScope int_mant_roundup[22:0]
+addSignal -h 15 -holdScope int_mant_round[22:0]
+addSignal -h 15 -holdScope o_round_result[31:0]
+addGroup "G9"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

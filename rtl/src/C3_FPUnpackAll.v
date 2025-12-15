@@ -61,22 +61,22 @@ wire [ 7:0]     T_BFExpo2      ;
 wire [23:0]     T_BFMant2      ;
 wire [31:0]     T_BFValue2     ;
 
-assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                           ;
+assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                 ;
 assign o_IsBfloat16         = (i_Compute_Precision == `BF16)                                                  ;
 assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
-assign Operand1             = i_Value1                                                                                  ;
-assign o_Type1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFType1     : T_Type1          ;
-assign o_Sign1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFSign1     : T_Sign1          ;
-assign o_Expo1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFExpo1     : T_Expo1          ;
-assign o_Mant1              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFMant1     : T_Mant1          ;
-assign o_Value1             = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFValue1    : T_Value1         ;
+assign Operand1             = i_Value1  ;
+assign o_Type1              = T_Type1   ;
+assign o_Sign1              = T_Sign1   ;
+assign o_Expo1              = T_Expo1   ;
+assign o_Mant1              = T_Mant1   ;
+assign o_Value1             = T_Value1  ;
 
-assign Operand2             = i_Value2                                                                                 ;
-assign o_Type2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFType2     : T_Type2         ;
-assign o_Sign2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFSign2     : T_Sign2         ;
-assign o_Expo2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFExpo2     : T_Expo2         ;
-assign o_Mant2              = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFMant2     : T_Mant2         ;
-assign o_Value2             = ((FPCR_EBF == 1'd0) & (i_Compute_Precision == `BF16)) ? T_BFValue2    : T_Value2        ;
+assign Operand2             = i_Value2  ;
+assign o_Type2              = T_Type2   ;
+assign o_Sign2              = T_Sign2   ;
+assign o_Expo2              = T_Expo2   ;
+assign o_Mant2              = T_Mant2   ;
+assign o_Value2             = T_Value2  ;
 
 
 C3_FPUnpackBase u_FPUnpackBase_Operand1(

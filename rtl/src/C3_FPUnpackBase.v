@@ -129,8 +129,8 @@ assign FP16Value                = {32{(FP16ExpoAll1 & ((FPCR_AHP == `IEEE_Half_P
 assign FP16Expo                 = {3'd0,Exp16}                                                  ;
 assign FP16Mantissa             = (~FP16ExpoAll0 & ~FP16ExpoAll1) ? {13'd0,1'd1,Frac16} : {13'd0,1'd0,Frac16}         ;
 
-assign Exp32                    = (IsBfloat16 == 1'd1) ? FP_Number[14:7] : FP_Number[30:23]     ;
-assign Frac32                   = (IsBfloat16 == 1'd1) ? {FP_Number[6:0],16'd0} : FP_Number[22:0]     ;
+assign Exp32                    = FP_Number[30:23]     ;
+assign Frac32                   = FP_Number[22:0]      ;
 assign FP32ExpoAll0             = (|Exp32 == 1'd0)                                              ;
 assign FP32ExpoAll1             = (&Exp32 == 1'd1)                                              ;
 assign FP32FracAll0             = (|Frac32 == 1'd0)                                             ;

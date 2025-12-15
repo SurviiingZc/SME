@@ -30,16 +30,14 @@ module C4_Round #(
     wire           [IN_WIDTH-1:0]        i_mantissa                  ;
     wire           [31:0]                FPRoundBase_result          ;
     wire           [31:0]                BFRound_result              ;
-    wire                                 o_sign                      ;
+
 
     wire        is_bf16         = (i_N == 1) & i_isbfloat16                                         ;
     wire        is_fp16         = (i_N == 0)                                                        ;
-    wire        is_fp32         = (i_N == 1) & !i_isbfloat16                                        ;
+    wire        is_fp32         = (i_N == 1)                                                        ;    
     wire [1:0]  i_Data_Width    = (is_bf16) ? 2'd2 : (is_fp16) ? 2'd0 : (is_fp32) ? 2'd1 : 2'b0     ;
     wire        EBF             = i_Exception_Handling[8]                                           ;
 
-    //assign o_rounded_result     = (EBF == 0 | !`FEAT_EBF16 ) ? BFRound_result : FPRoundBase_result ;
-    //1102改
     reg [31:0] result;
     always @(*) begin
         if (is_bf16) begin
@@ -48,7 +46,7 @@ module C4_Round #(
             result = FPRoundBase_result;
         end
     end
-    assign o_rounded_result = result;
+    assign o_rounded_result     = result                                                            ;
     assign o_normal_exp         = i_biased_exp                                                      ;
     assign o_normal_mantissa    = i_adjusted_mantissa                                               ;
 
@@ -62,7 +60,7 @@ module C4_Round #(
         .exponent           ( i_exponent           ),
         .adjusted_mantissa  ( i_adjusted_mantissa  ),
         .i_sticky_bit       ( i_sticky_bit         ),
-        .o_Rounded_result   ( BFRound_result       )
+        .o_round_result     ( BFRound_result       )
     );
 
     C4_FPRoundBase#(

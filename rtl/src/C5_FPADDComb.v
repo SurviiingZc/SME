@@ -73,6 +73,7 @@ C5_ExceptionHandling u_ExceptionHandling(
     .i_Sign1               ( T_Sign1               ),
     .i_Type2               ( T_Type2               ),
     .i_Sign2               ( T_Sign2               ),
+    .i_Add_or_Subtract     ( i_Add_or_Subtract     ),
     .i_Compute_Mode        ( i_Compute_Mode        ),
     .i_Is_Widening         ( i_Is_Widening         ),
     .i_Vector_Group_Num    ( i_Vector_Group_Num    ),

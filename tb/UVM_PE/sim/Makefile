@@ -3,17 +3,17 @@ SEED=2
 #=========================================#
 #				Log Setting				  #
 #=========================================#
-# VERB=UVM_LOW #只打印错误信息
-VERB=UVM_MEDIUM #打印输入输出和结果信息
+VERB=UVM_LOW #只打印错误信息
+# VERB=UVM_MEDIUM #打印输入输出和结果信息
 # VERB=UVM_HIGH
 #=========================================#
 #				Test case				  #
 #=========================================#
 # TESTNAME=PE_test_int
-# TESTNAME=PE_test_fmop 
+TESTNAME=PE_test_fmop 
 # TESTNAME=PE_test_fdot
-TESTNAME=PE_test_bfmop
-#TESTNAME=PE_test_all
+# TESTNAME=PE_test_bfmop
+# TESTNAME=PE_test_all
 
 Is_PipLine=+define+Is_PipLine
 #=========================================#
@@ -49,7 +49,7 @@ build_dir/%.o: ../C_model/src/%.c | build_dir
 	gcc -std=c99 -I$(C_INC_DIR) -I$(MPFR_INCLUDE) -fPIC -c $< -o $@
 
 comp: c_model
-		vcs -sverilog -full64 +v2k -debug_all -timescale=1ns/1ps $(Is_PipLine) \
+		vcs -sverilog -full64 +v2k -debug_all -timescale=1ns/1ps \
 		-ntb_opts uvm-1.1 -f filelist.f -l comp.log \
 		+incdir+$(RTL_DIR) $(MACRO_DEFS) \
 		-cflags "-std=c99 -I$(C_INC_DIR) -I$(MPFR_INCLUDE)"  \

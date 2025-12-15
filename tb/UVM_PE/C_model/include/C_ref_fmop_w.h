@@ -14,7 +14,7 @@ bool FPProcessNaNs(FPType type1, FPType type2, uint32_t op1, uint32_t op2,
                            FPCR_Type fpcr, bool fpexc, uint8_t N, uint32_t* result);
 uint32_t FPDot(uint32_t op1_a, uint32_t op1_b, uint32_t op2_a, uint32_t op2_b,
                        FPCR_Type fpcr_in, bool isbfloat16, bool fpexc, uint8_t N);
-uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N, uint8_t add_sub);
+uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N);
 
 
 #endif
