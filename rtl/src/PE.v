@@ -223,7 +223,8 @@ wire  [  3:0]    P4_is_Exception            ;
 wire  [127:0]    P4_Refresh_Fault_Result    ;
 wire  [  3:0]    P4_Refresh_Is_Exception    ;
 wire  [  3:0]    P4_Sticky_Flag             ;
-wire             P4_Internal_Acc          ;
+wire             P4_Internal_Acc            ; 
+wire  [  3:0]    P4_Exception_Result        ;
 
 wire             P5_Compute_Mode            ;
 wire  [ 2:0]     P5_Compute_Precision       ;
@@ -796,11 +797,15 @@ generate
             .o_Sum_Expo            ( P4_Sum_Expo[i*10+:10]              ),
             .o_Sum_Sign            ( P4_Sum_Sign[i*1+:1]                ),
             .o_is_Exception        ( P4_is_Exception[i]                 ),
-            .o_Sticky_Bit          ( P4_Sticky_Bit[i]                   )
+            .o_Sticky_Bit          ( P4_Sticky_Bit[i]                   ),
+            .o_Exception_Result    ( P4_Exception_Result[i]             )
         );
 
-        assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Result[i*32+:32] : P4_Fault_Result[i*32+:32];
-        assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Is_Exception[i] :  P4_is_Exception[i];
+        assign P4_Refresh_Fault_Result[i*32+:32] = P4_Exception_Result[i] ? P4_Result[i*32+:32] : P4_Fault_Result[i*32+:32] ;
+        assign P4_Refresh_Is_Exception[i*1+:1] = P4_Exception_Result[i] ? P4_Is_Exception[i] : P4_is_Exception[i]           ;
+
+        // assign P4_Refresh_Fault_Result[i*32+:32] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Result[i*32+:32] : P4_Fault_Result[i*32+:32];
+        // assign P4_Refresh_Is_Exception[i*1+:1] = ({P4_Is_Exception[i],P4_is_Exception[i]} == 2'b10) ? P4_Is_Exception[i] :  P4_is_Exception[i];
 
         // assign P4_Refresh_Fault_Result[i*32+:32] = P4_Fault_Result[i*32+:32]    ;
         // assign P4_Refresh_Is_Exception[i*1+:1] = P4_is_Exception[i]             ;

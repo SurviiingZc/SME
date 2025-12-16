@@ -70,10 +70,10 @@ assign ALTFP        = (`FEAT_AFP == 1'd1)                               ;
 assign FIZ          = ALTFP & (FPCR_FIZ == 1'd1)                       ;
 assign FZ           = (FPCR_FZ == 1'd1) & (ALTFP & FPCR_AH == 1'd1)   ;
 assign IsBfloat16   = (i_Compute_Precision == `BF16)                    ;
-assign is_8_bits    = ((i_Compute_Precision == `FP8))                                                 ;
-assign is_16_bits   = ((i_Compute_Precision == `BF16) | (i_Compute_Precision == `FP16))               ;
-assign is_32_bits   = ((i_Compute_Precision == `FP32))                                                ;
-assign is_FP16      = ((is_16_bits == 1'd1) & ~IsBfloat16)                                           ;
+assign is_8_bits    = ((i_Compute_Precision == `FP8))                                           ;
+assign is_16_bits   = ((i_Compute_Precision == `BF16) | (i_Compute_Precision == `FP16))         ;
+assign is_32_bits   = ((i_Compute_Precision == `FP32))                                          ;
+assign is_FP16      = ((is_16_bits == 1'd1) & ~IsBfloat16)                                      ;
 
 assign Sign                 = is_32_bits ? FP_Number[31] : FP_Number[15]                        ;
 assign Exp16                = FP_Number[14:10]                                                  ;
@@ -86,8 +86,6 @@ assign FP16FracAll0         = |Frac16 == 1'd0                                   
 assign FP32ExpoAll0         = |Exp32 == 1'd0                                                    ;
 assign FP32ExpoAll1         = &Exp32 == 1'd1                                                    ;
 assign FP32FracAll0         = |Frac32 == 1'd0                                                   ;
-
-
 
 assign Fptype_16            = {3{(FP16ExpoAll0 & (FP16FracAll0 | FPCR_FZ16))}} & `FPType_Zero |
                                 {3{(FP16ExpoAll0 & ~(FP16FracAll0 | FPCR_FZ16))}} & `FPType_Denormal |
