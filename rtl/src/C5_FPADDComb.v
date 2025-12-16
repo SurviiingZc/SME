@@ -34,7 +34,8 @@ module C5_FPADDComb(
 	output [  9:0]	  o_Sum_Expo		     ,
 	output      	  o_Sum_Sign		     ,
     output      	  o_is_Exception         ,
-    output            o_Sticky_Bit          
+    output            o_Sticky_Bit           ,
+    output            o_Exception_Result     
 );
 
 wire [  2:0]    T_Type1                ;
@@ -71,6 +72,8 @@ C5_FPUnpackAll u_FPUnpackAll(
 C5_ExceptionHandling u_ExceptionHandling(
     .i_Type1               ( T_Type1               ),
     .i_Sign1               ( T_Sign1               ),
+    .i_Value1              ( i_Value1              ),
+    .i_Value2              ( i_Value2              ),
     .i_Type2               ( T_Type2               ),
     .i_Sign2               ( T_Sign2               ),
     .i_Add_or_Subtract     ( i_Add_or_Subtract     ),
@@ -80,7 +83,8 @@ C5_ExceptionHandling u_ExceptionHandling(
     .i_Compute_Precision   ( i_Compute_Precision   ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
     .o_Result              ( o_Fault_Result        ),
-    .o_is_Exception        ( o_is_Exception        )
+    .o_is_Exception        ( o_is_Exception        ),
+    .o_Exception_Result    ( o_Exception_Result    )
 );
 
 C5_FPAddition u_C5_FPAddition(
