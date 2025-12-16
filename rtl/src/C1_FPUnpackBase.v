@@ -119,7 +119,7 @@ assign Mantissa_32          = (Fptype_32 == `FPType_Nonzero) ? {1'd1,Frac32} : {
 
 
 assign o_FP_Number_Sign     = is_32_bits ? FP_Number[31] : FP_Number[15]                 ;
-assign o_FPType             = is_32_bits | IsBfloat16 ? Fptype_32     : Fptype_16                     ;
+assign o_FPType             = is_32_bits | IsBfloat16 ? Fptype_32     : Fptype_16        ;
 assign o_FP_Exponent        = is_32_bits | IsBfloat16 ? Exponent_32   : Exponent_16      ;
 assign o_FP_Mantissa        = is_32_bits | IsBfloat16 ? Mantissa_32   : Mantissa_16      ;
 assign o_FP_Number_Value    = is_32_bits ? Value_32      : Value_16                      ;
