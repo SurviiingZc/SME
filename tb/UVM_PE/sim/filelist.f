@@ -77,6 +77,9 @@
 ../../../rtl/src/C5_FPUnpackAll.v
 ../../../rtl/src/C5_FPUnpackBase.v
 ../../../rtl/src/C5_FPZero.v
+../../../rtl/src/C5_FPProcessNaN.v
+../../../rtl/src/C5_FPProcessNaNs.v
+
 ../../../rtl/src/C6_BFRound.v
 ../../../rtl/src/C6_CarryDetector.v
 ../../../rtl/src/C6_FPInfinity.v

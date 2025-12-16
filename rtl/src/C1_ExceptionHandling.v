@@ -85,7 +85,7 @@ wire             FPCR_DN                    ;
 wire             NaNProcess                 ;
 wire [127:0]     Temp_Result                ;
 wire [  3:0]     Temp_Is_Exception          ;
-
+wire [  3:0]     T_Is_Exception             ;
 wire [ 31:0]     FPNumNaNResult             ;
 wire             FPNumNaNDone               ;
 
@@ -117,6 +117,7 @@ wire             is_FPMulAdd_ZA                         ;
 wire             is_FPDotAdd_ZA                         ;
 wire             is_SBFDotAdd_ZA                        ;
 wire             is_None_ZA                             ;
+wire             Exception_Result                       ;
 wire [  3:0]     FPMulAdd_P_FPInfinity                  ;
 wire [  3:0]     FPMulAdd_N_FPInfinity                  ;
 wire [  3:0]     FPMulAdd_Zero                          ;
@@ -143,9 +144,11 @@ assign NaNProcess       = ((Caculate_Mode == 2'd0 ) | (Caculate_Mode == 2'd3)) &
 // assign o_Is_Exception   = Temp_Is_Exception                                                                     ;
 
 assign o_Result         = {Temp_Result[127:96],Temp_Result[63:32],Temp_Result[95:64],Temp_Result[31:0]}         ;
+
+// assign o_Is_Exception   = {4{Exception_Result}} & T_Is_Exception                                                ;
 assign o_Is_Exception   = {Temp_Is_Exception[3],Temp_Is_Exception[1],Temp_Is_Exception[2],Temp_Is_Exception[0]} ;
 assign Temp_Operand_C   = {i_Operand_C[127:96],i_Operand_C[63:32],i_Operand_C[95:64],i_Operand_C[31:0]}         ;
-assign Temp_TypeA       = {i_TypeA[11:9],i_TypeA[5:3],i_TypeA[8:6],i_TypeA[2:0]}                                ; 
+assign Temp_TypeA       = {i_TypeA[11:9],i_TypeA[5:3],i_TypeA[8:6],i_TypeA[2:0]}                                ;
 assign Temp_SignA       = {i_SignA[3],i_SignA[1],i_SignA[2],i_SignA[0]}                                         ;
 
 
@@ -198,6 +201,8 @@ assign FDOT                   = (is_Inner_Product & is_FP16 & is_Widening & is_S
 assign FMLA_FP16              = (is_Inner_Product & is_FP16 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLA_FP32              = (is_Inner_Product & is_FP32 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLAL                  = (is_Inner_Product & is_FP16 & is_Widening & is_Double_Vector) ? 1'd1 : 1'd0 ;
+assign Exception_Result       = FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP16 | FMLA_FP32 ;
+
 
 assign o_Internal_Acc         = FMOP_Widening | BFMOP_Widening_SBF | BFMOP_Widening_EBF | FDOT ;
 

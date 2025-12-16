@@ -28,7 +28,7 @@ module C5_FPUnpackAll (
 	output [ 23:0]    o_Mant2                ,
 	output [ 31:0]    o_Value2               ,
     output            o_IsBfloat16           ,
-    output            o_N                    
+    output            o_N                     
 );
 
 wire          is_16_bits    ;
