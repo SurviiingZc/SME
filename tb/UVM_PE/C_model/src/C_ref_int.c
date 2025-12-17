@@ -120,7 +120,7 @@ void IntAdditionArray(
     int i_ZmIsSigned,            // Zm符号控制
     int i_ZnIsSigned,            // Zn符号控制
     int i_Calculation_mode,      // 计算模式
-    int i_Num_of_Vector_Group,   // 向量组内向量的数量
+    int i_Vector_Group_Num,   // 向量组内向量的数量
     int i_Calculation_pricision, // 计算精度
     int i_Operator,              // 运算符
     int32_t *o_Output          // 128位输出结果
@@ -161,7 +161,7 @@ void IntAdditionArray(
             int64_t ext_high = signflag ? (int64_t)(int32_t)prod_high_raw : (int64_t)prod_high_raw;
 
             // 3. 根据向量组模式分支处理
-            if (i_Num_of_Vector_Group == Single_Vector_Group)
+            if (i_Vector_Group_Num == Single_Vector_Group)
             {
                 // 逻辑：将乘法两个结果相加，并与 i_Addend[0] 相加
                 // 注意：先将两个乘积相加(可能超过32位)，再加上Addend
@@ -244,7 +244,7 @@ void C_ref_int(
     int i_ZmIsSigned,            // Zm符号控制
     int i_ZnIsSigned,            // Zn符号控制
     int i_Calculation_mode,      // 计算模式
-    int i_Num_of_Vector_Group,   // 向量组内向量的数量
+    int i_Vector_Group_Num,   // 向量组内向量的数量
     int i_Calculation_precision, // 计算精度
     int i_Operator,              // 运算符
     int32_t *o_Output          // 128位输出结果
@@ -258,7 +258,7 @@ void C_ref_int(
         i_ZmIsSigned,            // Zm符号控制
         i_ZnIsSigned,            // Zn符号控制
         i_Calculation_mode,      // 计算模式
-        i_Num_of_Vector_Group,   // 向量组内向量的数量
+        i_Vector_Group_Num,   // 向量组内向量的数量
         i_Calculation_precision, // 计算精度
         i_Operator,              // 运算符
         o_Output          // 128位输出结果

@@ -38,7 +38,8 @@ module C1_FPMultiplyComb (
     output     [  3:0]   o_Is_Exception         ,
     output     [ 95:0]   o_MantA                ,
     output               o_Keep_Expo_signed     ,
-    output               o_Internal_Acc
+    output               o_Internal_Acc         ,
+    output               o_Widening_SBF         
 );
 
 wire [ 11:0]    T_TypeA                ;
@@ -111,7 +112,8 @@ C1_ExceptionHandling u_ExceptionHandling(
     .o_Is_Exception        ( o_Is_Exception        ),
     .o_Result              ( o_Result              ),
     .o_Keep_Expo_signed    ( o_Keep_Expo_signed    ),
-    .o_Internal_Acc        ( o_Internal_Acc        )
+    .o_Internal_Acc        ( o_Internal_Acc        ),
+    .o_Widening_SBF        ( o_Widening_SBF        )
 );
 
 C1_FPMutiArray u_FPMutiArray(
