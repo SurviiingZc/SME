@@ -59,6 +59,7 @@ wire  [  3:0]   P0_Is_Exception          ;
 wire            P0_Internal_Acc          ;
 wire            P0_Keep_Expo_signed      ;
 wire  [31: 0]   P0_AddZA                 ;
+wire            P0_Widening_SBF          ;
 wire  [31: 0]   P1_AddZA                 ;
 wire            P1_Keep_Expo_signed      ;
 wire            P2_Keep_Expo_signed      ;
@@ -86,6 +87,7 @@ wire  [127:0]   P1_Rounded_result        ;
 wire  [  2:0]   P1_Precision_Addend      ;
 wire            P1_FuseAdd_SelfAdd       ;
 wire  [127:0]   P1_Round_result          ;
+wire  [127:0]   P1_Final_result          ;
 wire            P1_Normal_sign     [3:0] ;
 wire  signed [  9:0]   P1_Normal_exp      [3:0] ;
 wire  [ 47:0]   P1_Normal_mantissa [3:0] ;
@@ -99,6 +101,7 @@ wire  [ 31:0]   P1_ExpoA                 ;
 wire  [ 95:0]   P1_MantA                 ;
 wire  [  3:0]   P1_Is_Exception          ;
 wire    [3:0]   P1_Sticky_Flag           ;
+wire            P1_Widening_SBF          ;
 
 wire  [  3:0]   P2_Normal_Sign           ;
 wire  [ 39:0]   P2_Normal_Exp            ;
@@ -140,10 +143,11 @@ wire  [  3:0]    P2_Is_Exception          ;
 wire             P2_is_Exception          ;
 wire  [127:0]    P2_Refresh_Fault_Result  ;
 wire  [  3:0]    P2_Refresh_Is_Exception  ;
-wire  [127:0]   P2_Result                ;
+wire  [127:0]    P2_Result                ;
 wire  [  3:0]    P2_Sticky_Flag           ;
 wire             P2_Sticky_Bit            ;
 wire             P2_Internal_Acc          ;
+wire             P2_Widening_SBF          ;
 
 wire             P3_Sticky_Bit            ;
 wire  [ 31:0]    P3_Inner_Result          ;
@@ -182,6 +186,7 @@ wire  [ 31:0]    P3_ExpoA                 ;
 wire  [ 95:0]    P3_MantA                 ;
 wire  [127:0]    P3_Result                ;
 wire  [  3:0]    P3_Sticky_Flag           ;
+wire  [  3:0]    P3_Temp_Sticky_Flag      ;
 wire  [  3:0]    P3_Is_Exception          ;
 wire             P3_Internal_Acc          ;
 
@@ -327,7 +332,8 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .o_Is_Exception         ( P0_Is_Exception        ),
     .o_MantA                ( P0_MantA               ),
     .o_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
-    .o_Internal_Acc         ( P0_Internal_Acc        )
+    .o_Internal_Acc         ( P0_Internal_Acc        ),
+    .o_Widening_SBF         ( P0_Widening_SBF        )
 );
 
 IntMult_TOP u_IntMult_TOP(
@@ -377,6 +383,8 @@ Pipline_1 u_Pipline_1(
     .i_AddZA                ( P0_AddZA               ),
     .o_AddZA                ( P1_AddZA               ),
     .i_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
+    .i_Widening_SBF         ( P0_Widening_SBF        ),
+    .o_Widening_SBF         ( P1_Widening_SBF        ),
     .o_Keep_Expo_signed     ( P1_Keep_Expo_signed    ),
     .o_Internal_Acc         ( P1_Internal_Acc        ),
     .o_Compute_Mode         ( P1_Compute_Mode        ),
@@ -457,6 +465,7 @@ generate
         assign P1_Normal_Sign[i*1+:1]       = P1_Normal_sign[i]     ;
         assign P1_Normal_Exp[i*10+:10]      = P1_Normal_exp[i]      ;
         assign P1_Normal_Mantissa[i*48+:48] = P1_Normal_mantissa[i] ;
+        assign P1_Final_result[i*32+:32]    = P1_Widening_SBF & P1_Is_Exception[i] ? P1_Result[i*32+:32] : P1_Round_result[i*32+:32];
     end
 endgenerate
 
@@ -466,22 +475,7 @@ C2_Gen_FuseAdd u_Gen_FuseAdd(
     .o_FuseAdd_SelfAdd     ( P1_FuseAdd_SelfAdd     )
 );
 
-// generate
-//     for(i = 0 ; i < 4 ; i = i + 1) begin : Comb2
-//         C2_FPRoundBase#(
-//             .IN_WIDTH             ( 48 ),
-//             .EXP_WIDTH            ( 9 )
-//         )u_FPRoundBase(
-//             .op                    ( P1_Mant[i*48+:48]              ),
-//             .i_exp                 ( P1_OutExpo[i*9+:9]             ),
-//             .i_sign                ( P1_OutSign[i*1+:1]             ),
-//             .i_Exception_Handling  ( P1_Exception_Handling          ),
-//             .i_N                   ( P1_N                           ),
-//             .i_isbfloat16          ( P1_IsBfloat16                  ),
-//             .Rounded_result        ( P1_Rounded_result[i*32+:32]    )
-//         );
-//     end
-// endgenerate
+
 
 //=====================================================================
 // Description : Pipline Level 2
@@ -504,7 +498,7 @@ Pipline_2 u_Pipline_2(
     .i_ZA_Base_Address      ( P1_ZA_Base_Address        ),
     .i_Operand_C            ( P1_Operand_C              ),
     .i_Precision_Addend     ( P1_Precision_Addend       ),
-    .i_Rounded_result       ( P1_Round_result           ),
+    .i_Rounded_result       ( P1_Final_result           ),
     .i_FuseAdd_SelfAdd      ( P1_FuseAdd_SelfAdd        ),
     .i_Temp_Sign1           ( P1_Normal_sign[0]         ),
     .i_Temp_Sign2           ( P1_Normal_sign[3]         ),
@@ -588,14 +582,15 @@ C3_FPADDComb u_C3_FPADDComb(
     .o_Sum_Expo            ( P2_Sum_Expo                ),
     .o_Sum_Sign            ( P2_Sum_Sign                ),
     .o_is_Exception        ( P2_is_Exception            ),
-    .o_Sticky_Bit          ( P2_Sticky_Bit              )
+    .o_Sticky_Bit          ( P2_Sticky_Bit              ),
+    .o_Widening_SBF        ( P2_Widening_SBF            )
 );
 
 // assign P2_Refresh_Fault_Result = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Result[127:32],P2_Fault_Result} : P2_Result ;
 // assign P2_Refresh_Is_Exception = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Is_Exception[3:1],P2_is_Exception} : P2_Is_Exception ;
 
-assign P2_Refresh_Fault_Result = P2_Result ;
-assign P2_Refresh_Is_Exception = P2_Is_Exception ;
+assign P2_Refresh_Fault_Result = P2_Widening_SBF ? {96'd0,P2_Fault_Result} : P2_Result          ;
+assign P2_Refresh_Is_Exception = P2_Widening_SBF ? {3'd0,P2_is_Exception} : P2_Is_Exception    ;
 
 //=====================================================================
 // Description : Pipline Level 3
@@ -718,6 +713,7 @@ C4_Gen_OuterSign u_C4_Gen_OuterSign(
 // endgenerate
 
 assign P3_Final_Result = P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
+assign P3_Temp_Sticky_Flag  = P3_Internal_Acc ? 4'd0 : P3_Sticky_Flag ;
 
 Pipline_4 u_Pipline_4(
     .clk                     ( clk                      ),
@@ -744,7 +740,7 @@ Pipline_4 u_Pipline_4(
     .i_MantA                 ( P3_MantA                 ),
     .i_Is_Exception          ( P3_Is_Exception          ),
     .i_Result                ( P3_Result                ),
-    .i_Sticky_Flag           ( P3_Sticky_Flag           ),
+    .i_Sticky_Flag           ( P3_Temp_Sticky_Flag      ),
     .i_Internal_Acc          ( P3_Internal_Acc          ),
     .o_Internal_Acc          ( P4_Internal_Acc          ),
     .o_Sticky_Flag           ( P4_Sticky_Flag           ),
