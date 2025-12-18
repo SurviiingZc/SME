@@ -60,6 +60,8 @@
 ../../../rtl/src/C3_FPUnpackAll.v
 ../../../rtl/src/C3_FPUnpackBase.v
 ../../../rtl/src/C3_FPZero.v
+../../../rtl/src/C3_FPProcessNaN.v
+../../../rtl/src/C3_FPProcessNaNs.v
 ../../../rtl/src/C4_BFRound.v
 ../../../rtl/src/C4_CarryDetector.v
 ../../../rtl/src/C4_FPInfinity.v

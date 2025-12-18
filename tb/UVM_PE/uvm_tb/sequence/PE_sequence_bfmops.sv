@@ -161,7 +161,7 @@ class PE_sequence_bfmops extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
             
-        for(i = 0; i < 50000; i++)begin
+        for(i = 0; i < 5000; i++)begin
             `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 
@@ -192,7 +192,7 @@ class PE_sequence_bfmops extends PE_sequence;
                 tr.i_Exception_Handling[12]     == `Do_Not_Flush_Denormalized_Results_to_Zero_Half;
                 tr.i_Exception_Handling[11:10]  == `Length_1;
                 tr.i_Exception_Handling[9]      == `Trap_Disabled_for_Input_Denormal;
-                tr.i_Exception_Handling[8]      == `Extended_BFloat16_Behaviors; // BF16 Specific
+                tr.i_Exception_Handling[8]      == `Standard_BFloat16_Behaviors; // BF16 Specific
                 tr.i_Exception_Handling[7]      == `Trap_Disabled_for_Inexact_Result;
                 tr.i_Exception_Handling[6]      == `Trap_Disabled_for_Underflow;
                 tr.i_Exception_Handling[5]      == `Trap_Disabled_for_Overflow;

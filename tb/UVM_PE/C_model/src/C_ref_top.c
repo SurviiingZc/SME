@@ -108,7 +108,7 @@ void PE_C_top(
                 i_ZmIsSigned,            // Zm符号控制
                 i_ZnIsSigned,            // Zn符号控制
                 i_Compute_Mode,      // 计算模式
-                i_Num_of_Vector_Group,   // 向量组内向量的数量
+                i_Vector_Group_Num,   // 向量组内向量的数量
                 i_Compute_Precision, // 计算精度
                 i_Add_or_Subtract,              // 运算符
                 o_Result          // 128位输出结果
@@ -196,7 +196,7 @@ void PE_C_top(
         }
         case FMLAL:{
             o_Result[0] = FPMulAddH_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling);
-            o_Result[1] = o_Result[0];
+            o_Result[1] = FPMulAddH_ZA(i_Operand_C[1], i_Operand_A, i_Operand_B, 32, i_Exception_Handling);
             o_Result[2] = o_Result[0];
             o_Result[3] = o_Result[0];
             break;

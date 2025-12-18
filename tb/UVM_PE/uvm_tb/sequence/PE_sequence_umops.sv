@@ -13,7 +13,7 @@ class PE_sequence_umops extends PE_sequence;
         int i;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
-        for(i = 0; i < 1024; i++)begin
+        for(i = 0; i < 10000; i++)begin
             `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 
@@ -40,18 +40,18 @@ class PE_sequence_umops extends PE_sequence;
                 //tr.i_Exception_Handling[16:15] == 2'b01;
 
                 i_Operand_A[31:0] dist {
-                    [32'h00800001:32'h7fffffff] :/ 50,
-                    [32'h80800001:32'hffffffff] :/ 50
+                    [32'h00000000:32'h7fffffff] :/ 50,
+                    [32'h80000000:32'hffffffff] :/ 50
                 };
 
                 i_Operand_B[31:0] dist {
-                    [32'h00800001:32'h3fffffff] :/ 50,
-                    [32'h80800001:32'hbfffffff] :/ 50
+                    [32'h00000000:32'h3fffffff] :/ 50,
+                    [32'h80000000:32'hbfffffff] :/ 50
                 };
 
                 i_Operand_C[31:0] dist {
-                    [32'h00800001:32'h3fffffff] :/ 50,
-                    [32'h80800001:32'hbfffffff] :/ 50
+                    [32'h00000000:32'h3fffffff] :/ 50,
+                    [32'h80000000:32'hbfffffff] :/ 50
                 };
                 
                 // i_Exception_Handling[16:15] dist {

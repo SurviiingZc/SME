@@ -6,9 +6,10 @@ module IntMult_TOP (
     input  [3:0]         i_Active_Element_A     ,
     input  [3:0]         i_Active_Element_B     ,
     input  [2:0]         i_Calculation_pricision,
+    output [31:0]        o_AddZA                ,
     output [63:0]        o_Product
 );
-
+    assign o_AddZA = i_Active_Element_A[0] ? 'd0 : i_operand1;
     wire [31:0] operand1_int8 = i_operand1 & {
         {8{i_Active_Element_A[3]}},
         {8{i_Active_Element_A[2]}},

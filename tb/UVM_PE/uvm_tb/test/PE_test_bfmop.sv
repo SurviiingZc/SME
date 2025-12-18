@@ -18,16 +18,19 @@ class PE_test_bfmop extends uvm_test;
     task run_phase(uvm_phase phase);
         PE_sequence_bfmopa  seq_bfmopa;
         PE_sequence_bfmops  seq_bfmops;
-
-        seq_bfmopa  = PE_sequence_bfmopa::type_id::create("seq_bfmopa");
-        // seq_bfmops  = PE_sequence_bfmops::type_id::create("seq_bfmops");
-
+        PE_sequence_bfmopa  seq_bfmopa_EBF;
+        PE_sequence_bfmops  seq_bfmops_EBF;
+        seq_bfmopa      = PE_sequence_bfmopa::type_id::create("seq_bfmopa");
+        seq_bfmops      = PE_sequence_bfmops::type_id::create("seq_bfmops");
+        seq_bfmopa_EBF  = PE_sequence_bfmopa::type_id::create("seq_bfmopa_EBF");
+        seq_bfmops_EBF  = PE_sequence_bfmops::type_id::create("seq_bfmops_EBF");
         phase.raise_objection(this);
         
         `uvm_info("TEST", "Running bfmop test", UVM_LOW)
         seq_bfmopa.start(env.agent.sequencer);
-        // seq_bfmops.start(env.agent.sequencer);
-          
+        seq_bfmops.start(env.agent.sequencer);
+        seq_bfmopa_EBF.start(env.agent.sequencer);
+        seq_bfmops_EBF.start(env.agent.sequencer);  
         phase.drop_objection(this);
         
     endtask

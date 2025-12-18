@@ -33,6 +33,10 @@ module Pipline_1 (
         i_Is_Exception         ,
         i_Internal_Acc         ,
         i_Keep_Expo_signed     ,
+        i_AddZA                ,
+        i_Widening_SBF         ,
+        o_Widening_SBF         ,
+        o_AddZA                ,
         o_Keep_Expo_signed     ,
         o_Internal_Acc         ,
         o_Is_Exception         ,
@@ -91,6 +95,10 @@ input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input                 i_Internal_Acc          ;
 input                 i_Keep_Expo_signed      ;
+input       [ 31:0]   i_AddZA                 ;
+input                 i_Widening_SBF          ;
+output reg            o_Widening_SBF          ;
+output reg  [ 31:0]   o_AddZA                 ;
 output reg            o_Keep_Expo_signed      ;
 output reg            o_Internal_Acc          ;
 output reg  [  3:0]   o_Is_Exception          ;
@@ -146,6 +154,8 @@ always @(posedge clk or negedge rst_n) begin
         o_Is_Exception        <= 'd0 ;
         o_Internal_Acc        <= 'd0 ;
         o_Keep_Expo_signed    <= 'd0 ;
+        o_AddZA               <= 'd0 ;
+        o_Widening_SBF        <= 'd0 ;
     end
     else begin
         o_Compute_Mode        <= i_Compute_Mode        ;
@@ -174,6 +184,8 @@ always @(posedge clk or negedge rst_n) begin
         o_Is_Exception        <= i_Is_Exception        ;
         o_Internal_Acc        <= i_Internal_Acc        ;
         o_Keep_Expo_signed    <= i_Keep_Expo_signed    ;
+        o_AddZA               <= i_AddZA               ;
+        o_Widening_SBF        <= i_Widening_SBF        ;
     end
 end
 
@@ -206,6 +218,10 @@ input       [ 95:0]   i_MantA                 ;
 input       [  3:0]   i_Is_Exception          ;
 input                 i_Internal_Acc          ;
 input                 i_Keep_Expo_signed      ;
+input       [ 31:0]   i_AddZA                 ;
+input                 i_Widening_SBF          ;
+output                o_Widening_SBF          ;
+output      [ 31:0]   o_AddZA                 ;
 output                o_Keep_Expo_signed      ;
 output                o_Internal_Acc          ;
 output      [  3:0]   o_Is_Exception          ;
@@ -260,6 +276,9 @@ assign o_MantA               = i_MantA               ;
 assign o_Is_Exception        = i_Is_Exception        ;
 assign o_Internal_Acc        = i_Internal_Acc        ;
 assign o_Keep_Expo_signed    = i_Keep_Expo_signed    ;
+assign o_AddZA               = i_AddZA               ;
+assign o_Widening_SBF        = i_Widening_SBF        ;
+
 `endif
     
 endmodule
