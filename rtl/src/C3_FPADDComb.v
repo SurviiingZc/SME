@@ -33,7 +33,8 @@ module C3_FPADDComb(
 	output        [  9:0]	 o_Sum_Expo		        ,
 	output      	         o_Sum_Sign		        ,
     output                   o_is_Exception         ,
-    output                   o_Sticky_Bit           
+    output                   o_Sticky_Bit           ,
+    output                   o_Widening_SBF         
 );
 
 wire [  2:0]    T_Type1                ;
@@ -50,6 +51,7 @@ C3_FPUnpackAll u_FPUnpackAll(
     .i_Compute_Precision   ( i_Compute_Precision   ),
     .i_Precision_Addend    ( i_Precision_Addend    ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
+    .i_Widening_SBF        ( o_Widening_SBF        ),
     .i_Value1              ( i_Value1              ),
     .i_Value2              ( i_Value2              ),
     .o_Type1               ( T_Type1               ),
@@ -71,13 +73,16 @@ C3_ExceptionHandling u_ExceptionHandling(
     .i_Sign1               ( T_Sign1               ),
     .i_Type2               ( T_Type2               ),
     .i_Sign2               ( T_Sign2               ),
+    .i_Value1              ( i_Value1              ),
+    .i_Value2              ( i_Value2              ),
     .i_Compute_Mode        ( i_Compute_Mode        ),
     .i_Is_Widening         ( i_Is_Widening         ),
     .i_Vector_Group_Num    ( i_Vector_Group_Num    ),
     .i_Compute_Precision   ( i_Compute_Precision   ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
     .o_Result              ( o_Fault_Result        ),
-    .o_is_Exception        ( o_is_Exception        )
+    .o_is_Exception        ( o_is_Exception        ),
+    .BFMOP_Widening_SBF    ( o_Widening_SBF        )
 );
 
 C3_FPAddition u_C3_FPAddition(
@@ -87,6 +92,7 @@ C3_FPAddition u_C3_FPAddition(
     .i_Sign2                ( T_Sign2               ),
     .i_Expo2                ( T_Expo2               ),
     .i_Mant2                ( T_Mant2               ),
+    .i_Widening_SBF         ( o_Widening_SBF        ),
     .i_Exception_Handling   ( i_Exception_Handling  ),
     .i_Compute_Precision    ( i_Compute_Precision   ),
     .i_Add_or_Subtract      ( i_Add_or_Subtract     ),

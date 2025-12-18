@@ -14,7 +14,7 @@ module C3_FPUnpackAll (
     input  [ 19:0]    i_Exception_Handling   ,
 	input  [ 31:0]    i_Value1               ,
 	input  [ 31:0]    i_Value2               ,
-
+    input             i_Widening_SBF         ,
 	output [  2:0]    o_Type1                ,
 	output            o_Sign1                ,
 	output [  7:0]    o_Expo1                ,
@@ -37,30 +37,32 @@ wire [ 5:0]   N             ;
 
 genvar i,j,k;
 
-wire [31:0]     Operand1       ;
-wire [31:0]     Operand2       ;
-wire [31:0]     Addend         ;
-wire [ 2:0]     T_Type1        ;
-wire            T_Sign1        ;
-wire [ 7:0]     T_Expo1        ;
-wire [23:0]     T_Mant1        ;
-wire [31:0]     T_Value1       ;
-wire [ 2:0]     T_Type2        ;
-wire            T_Sign2        ;
-wire [ 7:0]     T_Expo2        ;
-wire [23:0]     T_Mant2        ;
-wire [31:0]     T_Value2       ;
-wire [ 2:0]     T_BFType1      ;
-wire            T_BFSign1      ;
-wire [ 7:0]     T_BFExpo1      ;
-wire [23:0]     T_BFMant1      ;
-wire [31:0]     T_BFValue1     ;
-wire [ 2:0]     T_BFType2      ;
-wire            T_BFSign2      ;
-wire [ 7:0]     T_BFExpo2      ;
-wire [23:0]     T_BFMant2      ;
-wire [31:0]     T_BFValue2     ;
+wire [31:0]     Operand1            ;
+wire [31:0]     Operand2            ;
+wire [31:0]     Addend              ;
+wire [ 2:0]     T_Type1             ;
+wire            T_Sign1             ;
+wire [ 7:0]     T_Expo1             ;
+wire [23:0]     T_Mant1             ;
+wire [31:0]     T_Value1            ;
+wire [ 2:0]     T_Type2             ;
+wire            T_Sign2             ;
+wire [ 7:0]     T_Expo2             ;
+wire [23:0]     T_Mant2             ;
+wire [31:0]     T_Value2            ;
+wire [ 2:0]     T_BFType1           ;
+wire            T_BFSign1           ;
+wire [ 7:0]     T_BFExpo1           ;
+wire [23:0]     T_BFMant1           ;
+wire [31:0]     T_BFValue1          ;
+wire [ 2:0]     T_BFType2           ;
+wire            T_BFSign2           ;
+wire [ 7:0]     T_BFExpo2           ;
+wire [23:0]     T_BFMant2           ;
+wire [31:0]     T_BFValue2          ;
+wire            T_Compute_Precision ;
 
+assign T_Compute_Precision  = i_Widening_SBF | (i_Precision_Addend == `FP32)                                  ;           
 assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                 ;
 assign o_IsBfloat16         = (i_Compute_Precision == `BF16)                                                  ;
 assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
@@ -82,6 +84,7 @@ assign o_Value2             = T_Value2  ;
 C3_FPUnpackBase u_FPUnpackBase_Operand1(
     .FP_Number             ( Operand1                       ),
     .i_Compute_Precision   ( i_Compute_Precision            ),
+    .i_Widening_SBF        ( i_Widening_SBF                 ),
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_Type1                        ),
     .o_FP_Number_Sign      ( T_Sign1                        ),
@@ -93,6 +96,7 @@ C3_FPUnpackBase u_FPUnpackBase_Operand1(
 C3_FPUnpackBase u_FPUnpackBase_Operand2(
     .FP_Number             ( Operand2                       ),
     .i_Compute_Precision   ( i_Compute_Precision            ),
+    .i_Widening_SBF        ( i_Widening_SBF                 ),
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_Type2                        ),
     .o_FP_Number_Sign      ( T_Sign2                        ),
