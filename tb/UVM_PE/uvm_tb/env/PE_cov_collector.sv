@@ -11,8 +11,9 @@ class PE_cov_collector extends uvm_component;
     PE_seq_item prev_tr;
 
     // 辅助变量：用于存储解析后的浮点类型
-    typedef enum {FP_ZERO, FP_DENORM, FP_NORM, FP_INF, FP_NAN, FP_UNKNOWN} fp_type_e;
-    fp_type_e op_a_type, op_b_type, op_c_type;
+    typedef enum {FP_UNKNOWN, FPType_Zero, FPType_Denormal, FPType_Nonzero, 
+                    FPType_Infinity, FPType_QNaN, FPType_SNaN} fp_type_e;
+    fp_type_e op_a_type, op_b_type, op_c_type, op_c_bf_type;
 
     // ========================================================================
     // Group 1: ISA 配置覆盖率 (Instruction Set Architecture)
@@ -39,18 +40,25 @@ class PE_cov_collector extends uvm_component;
         }
 
         // Widening
-        cp_widen: coverpoint current_tr.i_Is_Widening;
-
+        cp_widen: coverpoint current_tr.i_Is_Widening {
+            bins No_Widening = {0};
+            bins Widening = {1};
+        }
         // 加减控制
-        cp_addsub: coverpoint current_tr.i_Add_or_Subtract;
+        cp_addsub: coverpoint current_tr.i_Add_or_Subtract{
+            bins addition = {1};
+            bins subtraction = {0};
+        }
 
         // 符号位控制
-        cp_zm_sign: coverpoint current_tr.i_ZmIsSigned;
-        cp_zn_sign: coverpoint current_tr.i_ZnIsSigned;
-
-        // 交叉覆盖：确保每种精度下都测试了Inner/Outer和Widening的组合
-        cross_prec_mode: cross cp_prec, cp_mode;
-        cross_prec_widen: cross cp_prec, cp_widen;
+        cp_zm_sign: coverpoint current_tr.i_ZmIsSigned{
+            bins Zm_signed = {1};
+            bins Zm_unsigned = {0};
+        }
+        cp_zn_sign: coverpoint current_tr.i_ZnIsSigned{
+            bins Zn_signed = {1};
+            bins Zn_unsigned = {0};
+        }
     endgroup
 
     // ========================================================================
@@ -84,7 +92,7 @@ class PE_cov_collector extends uvm_component;
     covergroup cg_arithmetic_corners;
         option.per_instance = 1;
 
-        // 【修复点】：在这里重新定义 cp_prec，以便进行本地交叉覆盖
+        // 精度模式
         cp_prec: coverpoint current_tr.i_Compute_Precision {
             bins fp32  = {3'b000};
             bins fp16  = {3'b001};
@@ -96,27 +104,122 @@ class PE_cov_collector extends uvm_component;
 
         // 操作数 A 的类型分布
         cp_opA_type: coverpoint op_a_type {
-            bins is_zero   = {FP_ZERO};
-            bins is_denorm = {FP_DENORM}; // 验证 Denormal 处理
-            bins is_norm   = {FP_NORM};
-            bins is_inf    = {FP_INF};    // 验证 Overflow/Inf 处理
-            bins is_nan    = {FP_NAN};    // 验证 NaN 传播
+            bins is_zero   = {FPType_Zero};
+            bins is_denorm = {FPType_Denormal}; 
+            bins is_norm   = {FPType_Nonzero};
+            bins is_inf    = {FPType_Infinity};    
+            bins is_qnan   = {FPType_QNaN};    
+            bins is_snan   = {FPType_SNaN}; 
         }
 
         // 操作数 B 的类型分布
         cp_opB_type: coverpoint op_b_type {
-            bins is_zero   = {FP_ZERO};
-            bins is_denorm = {FP_DENORM};
-            bins is_norm   = {FP_NORM};
-            bins is_inf    = {FP_INF};
-            bins is_nan    = {FP_NAN};
+            bins is_zero   = {FPType_Zero};
+            bins is_denorm = {FPType_Denormal};
+            bins is_norm   = {FPType_Nonzero};
+            bins is_inf    = {FPType_Infinity};
+            bins is_qnan   = {FPType_QNaN};    
+            bins is_snan   = {FPType_SNaN}; 
+        }
+
+        // 操作数 C 的类型分布
+        cp_opC_type: coverpoint op_c_type {
+            bins is_zero   = {FPType_Zero};
+            bins is_denorm = {FPType_Denormal};
+            bins is_norm   = {FPType_Nonzero};
+            bins is_inf    = {FPType_Infinity};
+            bins is_qnan   = {FPType_QNaN};    
+            bins is_snan   = {FPType_SNaN}; 
+        }
+
+        cp_opC_bf_type: coverpoint op_c_bf_type {
+            bins is_zero   = {FPType_Zero};
+            bins is_norm   = {FPType_Nonzero};
+            bins is_inf    = {FPType_Infinity};
+            bins is_qnan   = {FPType_QNaN};
+        }
+
+        // FP32 下溢覆盖点 - 使用条件表达式
+        cp_fp32_underflow: coverpoint (current_tr.i_Compute_Precision == 3'b000 && 
+                                      op_a_type == FPType_Nonzero && 
+                                      op_b_type == FPType_Nonzero &&
+                                      current_tr.i_Operand_A[30:23] <= 8'd10 &&
+                                      current_tr.i_Operand_B[30:23] <= 8'd10) {
+            bins underflow = {1};
+            bins no_underflow = {0};
+        }
+
+        // FP32 上溢覆盖点
+        cp_fp32_overflow: coverpoint (current_tr.i_Compute_Precision == 3'b000 && 
+                                     op_a_type == FPType_Nonzero && 
+                                     op_b_type == FPType_Nonzero &&
+                                     current_tr.i_Operand_A[30:23] >= 8'd224 &&
+                                     current_tr.i_Operand_B[30:23] >= 8'd224) {
+            bins overflow = {1};
+            bins no_overflow = {0};
+        }
+
+        // FP16 下溢覆盖点
+        cp_fp16_underflow: coverpoint (current_tr.i_Compute_Precision == 3'b001 && 
+                                      op_a_type == FPType_Nonzero && 
+                                      op_b_type == FPType_Nonzero &&
+                                      current_tr.i_Operand_A[14:10] <= 5'd5 &&
+                                      current_tr.i_Operand_B[14:10] <= 5'd5) {
+            bins underflow = {1};
+            bins no_underflow = {0};
+        }
+
+        // FP16 上溢覆盖点
+        cp_fp16_overflow: coverpoint (current_tr.i_Compute_Precision == 3'b001 && 
+                                     op_a_type == FPType_Nonzero && 
+                                     op_b_type == FPType_Nonzero &&
+                                     current_tr.i_Operand_A[14:10] >= 5'd25 &&
+                                     current_tr.i_Operand_B[14:10] >= 5'd25) {
+            bins overflow = {1};
+            bins no_overflow = {0};
+        }
+
+        // BF16 下溢覆盖点
+        cp_bf16_underflow: coverpoint (current_tr.i_Compute_Precision == 3'b011 && 
+                                      op_a_type == FPType_Nonzero && 
+                                      op_b_type == FPType_Nonzero &&
+                                      current_tr.i_Operand_A[14:7] <= 8'd10 &&
+                                      current_tr.i_Operand_B[14:7] <= 8'd10) {
+            bins underflow = {1};
+            bins no_underflow = {0};
+        }
+
+        // BF16 上溢覆盖点
+        cp_bf16_overflow: coverpoint (current_tr.i_Compute_Precision == 3'b011 && 
+                                     op_a_type == FPType_Nonzero && 
+                                     op_b_type == FPType_Nonzero &&
+                                     current_tr.i_Operand_A[14:7] >= 8'd224 &&
+                                     current_tr.i_Operand_B[14:7] >= 8'd224) {
+            bins overflow = {1};
+            bins no_overflow = {0};
         }
 
         // 交叉覆盖：验证特殊值的组合运算，例如 0 * Inf (Invalid) 或 Inf * Inf
-        cross_opA_opB: cross cp_opA_type, cp_opB_type;
+        cross_fp32_special: cross cp_prec, cp_opA_type, cp_opB_type, cp_opC_type {
+            // 使用ignore_bins排除非FP32的情况
+            ignore_bins not_fp32 = !binsof(cp_prec) intersect {3'b000};
+        }
+        cross_fp16_special: cross cp_prec, cp_opA_type, cp_opB_type, cp_opC_type {
+            ignore_bins not_fp16 = !binsof(cp_prec) intersect {3'b001};
+        }
         
-        // 【修复点】：现在交叉使用的是本地定义的 cp_prec
-        cross_prec_opA: cross cp_prec, cp_opA_type;
+        // BF16：只有4种类型任意组合
+        cross_bf16_special: cross cp_prec, cp_opA_type, cp_opB_type, cp_opC_bf_type {
+            // 排除非BF16的情况
+            ignore_bins not_bf16 = !binsof(cp_prec) intersect {3'b011};
+            
+            // 限制操作数A和B在BF16时也只有4种类型
+            ignore_bins ignore_a_denorm_snan = 
+                binsof(cp_opA_type.is_denorm) || binsof(cp_opA_type.is_snan);
+
+            ignore_bins ignore_b_denorm_snan = 
+                binsof(cp_opB_type.is_denorm) || binsof(cp_opB_type.is_snan);
+        }
     endgroup
 
     // ========================================================================
@@ -140,27 +243,52 @@ class PE_cov_collector extends uvm_component;
     endgroup
 
     // ========================================================================
-    // Group 5: 异常控制覆盖率 (Exception Control)
+    // Group 5: 控制寄存器覆盖率 (Exception Control)
     // 验证 FPCR 寄存器的不同配置
+    // AHP;DN;Stride;Len;IDE;IXE;UFE;OFE;DZE;IOE;NEP位默认或当前未使用
     // ========================================================================
     covergroup cg_exception_ctrl;
         option.per_instance = 1;
 
         // Rounding Mode
         cp_rmode: coverpoint current_tr.i_Exception_Handling[16:15] {
-            bins rn = {2'b00}; // Nearest
-            bins rp = {2'b01}; // Plus Inf
-            bins rm = {2'b10}; // Minus Inf
-            bins rz = {2'b11}; // Zero
+            bins FPRounding_TIEEVEN = {2'b00}; // Nearest
+            bins FPRounding_POSINF  = {2'b01}; // Plus Inf
+            bins FPRounding_NEGINF  = {2'b10}; // Minus Inf
+            bins FPRounding_ZERO    = {2'b11}; // Zero
         }
 
         // Flush-to-Zero
-        cp_ftz: coverpoint current_tr.i_Exception_Handling[17];
-        
-        // Default NaN Mode
-        cp_dn: coverpoint current_tr.i_Exception_Handling[18];
+        cp_fz: coverpoint current_tr.i_Exception_Handling[17]{
+            bins FZ_1 = {1};
+            bins FZ_0 = {0};
+        }
 
-        cross_rmode_ftz: cross cp_rmode, cp_ftz;
+        // Flush-to-Zero_16
+        cp_fz_16: coverpoint current_tr.i_Exception_Handling[12]{
+            bins FZ16_1 = {1};
+            bins FZ16_0 = {0};
+        }
+
+        // EBF
+        cp_ebf: coverpoint current_tr.i_Exception_Handling[8]{
+            bins EBF_1 = {1};
+            bins EBF_0 = {0};
+        }
+
+        // AH
+        cp_ah: coverpoint current_tr.i_Exception_Handling[1]{
+            bins AH_1 = {1};
+            bins AH_0 = {0};
+        }
+
+        // FIZ
+        cp_fiz: coverpoint current_tr.i_Exception_Handling[0]{
+            bins FIZ_1 = {1};
+            bins FIZ_0 = {0};
+        }
+    
+        cross_rmode_ftz: cross cp_rmode, cp_fz;
     endgroup
 
     // ========================================================================
@@ -215,19 +343,24 @@ class PE_cov_collector extends uvm_component;
         // 初始化
         op_a_type = FP_UNKNOWN;
         op_b_type = FP_UNKNOWN;
-
+        op_c_type = get_fp32_type(current_tr.i_Operand_C[31:0]);
+        op_c_bf_type = get_c_bf16_type(current_tr.i_Operand_C[31:0]);
         case (current_tr.i_Compute_Precision)
             3'b000: begin // FP32
                 op_a_type = get_fp32_type(current_tr.i_Operand_A);
                 op_b_type = get_fp32_type(current_tr.i_Operand_B);
             end
-            3'b001, 3'b011: begin // FP16 or BF16
+            3'b001: begin // FP16 
                 op_a_type = get_fp16_type(current_tr.i_Operand_A[15:0]);
                 op_b_type = get_fp16_type(current_tr.i_Operand_B[15:0]);
             end
+            3'b011: begin // BF16 
+                op_a_type = get_bf16_type(current_tr.i_Operand_A[15:0]);
+                op_b_type = get_bf16_type(current_tr.i_Operand_B[15:0]);
+            end
             default: begin // Integer
-                op_a_type = FP_NORM; 
-                op_b_type = FP_NORM;
+                op_a_type = FPType_Nonzero; 
+                op_b_type = FPType_Nonzero;
             end
         endcase
     endfunction
@@ -236,24 +369,107 @@ class PE_cov_collector extends uvm_component;
     function fp_type_e get_fp32_type(bit [31:0] val);
         bit [7:0] exp = val[30:23];
         bit [22:0] mant = val[22:0];
-        
-        if (exp == 0 && mant == 0) return FP_ZERO;
-        if (exp == 0 && mant != 0) return FP_DENORM;
-        if (exp == 8'hFF && mant == 0) return FP_INF;
-        if (exp == 8'hFF && mant != 0) return FP_NAN;
-        return FP_NORM;
+        bit mant_msb = mant[22];  // 尾数最高位，用于区分 QNaN/SNaN
+        // 1. 检查零值
+        if (exp == 8'h00 && mant == 23'h0) begin
+            return FPType_Zero;
+        end
+        // 2. 检查非规格化数
+        else if (exp == 8'h00 && mant != 23'h0) begin
+            return FPType_Denormal;
+        end
+        // 3. 检查无穷大
+        else if (exp == 8'hFF && mant == 23'h0) begin
+            return FPType_Infinity;
+        end
+        // 4. 检查 NaN (指数全1且尾数非0)
+        else if (exp == 8'hFF && mant != 23'h0) begin
+            // 根据尾数最高位区分 QNaN/SNaN
+            if (mant_msb == 1'b1) begin
+                return FPType_QNaN;  // QNaN: 尾数最高位=1
+            end else begin
+                return FPType_SNaN;  // SNaN: 尾数最高位=0
+            end
+        end
+        // 5. 规格化非零数 (指数非全0且非全1)
+        else begin
+            return FPType_Nonzero;
+        end
     endfunction
 
     // FP16 分类逻辑
     function fp_type_e get_fp16_type(bit [15:0] val);
         bit [4:0] exp = val[14:10];
         bit [9:0] mant = val[9:0];
-        
-        if (exp == 0 && mant == 0) return FP_ZERO;
-        if (exp == 0 && mant != 0) return FP_DENORM;
-        if (exp == 5'h1F && mant == 0) return FP_INF;
-        if (exp == 5'h1F && mant != 0) return FP_NAN;
-        return FP_NORM;
+        bit mant_msb = mant[9];  // 尾数最高位，用于区分 QNaN/SNaN
+
+        // 1. 检查零值
+        if (exp == 5'h00 && mant == 10'h0) begin
+            return FPType_Zero;
+        end
+        // 2. 检查非规格化数
+        else if (exp == 5'h00 && mant != 10'h0) begin
+            return FPType_Denormal;
+        end
+        // 3. 检查无穷大
+        else if (exp == 5'h1F && mant == 10'h0) begin
+            return FPType_Infinity;
+        end
+        // 4. 检查 NaN (指数全1且尾数非0)
+        else if (exp == 5'h1F && mant != 10'h0) begin
+            // 根据尾数最高位区分 QNaN/SNaN
+            if (mant_msb == 1'b1) begin
+                return FPType_QNaN;  // QNaN: 尾数最高位=1
+            end else begin
+                return FPType_SNaN;  // SNaN: 尾数最高位=0
+            end
+        end
+        // 5. 规格化非零数 (指数非全0且非全1)
+        else begin
+            return FPType_Nonzero;
+        end
+    endfunction
+
+    function fp_type_e get_bf16_type(bit [15:0] val);
+        bit [7:0] exp = val[14:7];   // BF16: 位[14:7]是指数
+        bit [6:0] mant = val[6:0];   // BF16: 位[6:0]是尾数（高7位）
+        // 1. 检查指数全0：固定视为零（Flush to Zero）
+        if (exp == 8'h00) begin
+            return FPType_Zero;  // 指数全0固定为Zero，不考虑尾数
+        end
+        // 2. 检查指数全1
+        else if (exp == 8'hFF) begin
+            if (mant == 7'h00) begin
+                return FPType_Infinity;  // 无穷大
+            end else begin
+                return FPType_QNaN;      // 所有NaN都当作QNaN，没有SNaN
+            end
+        end
+        // 3. 其他情况：规格化非零数
+        else begin
+            return FPType_Nonzero;
+        end
+    endfunction
+
+    function fp_type_e get_c_bf16_type(bit [31:0] val);
+        bit [7:0] exp = val[30:23];   
+        bit [22:0] mant = val[22:0];   
+        // 1. 检查指数全0：固定视为零（Flush to Zero）
+        if (exp == 8'h00) begin
+            return FPType_Zero;  // 指数全0固定为Zero，不考虑尾数
+        end
+        // 2. 检查指数全1
+        else if (exp == 8'hFF) begin
+            if (mant == 0) begin
+                return FPType_Infinity;  // 无穷大
+            end else begin
+                return FPType_QNaN;      // 所有NaN都当作QNaN，没有SNaN
+            end
+        end
+        // 3. 其他情况：规格化非零数
+        else begin
+            return FPType_Nonzero;
+        end
     endfunction
 
 endclass
