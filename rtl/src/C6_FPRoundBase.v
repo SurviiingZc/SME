@@ -25,19 +25,12 @@ module C6_FPRoundBase #(
     // Parameter
     localparam FP32_F = 23                                          ;
     localparam FP16_F = 10                                          ;
-    localparam BF16_F = 7                                           ;
     localparam FP16_F_HALF_0 = FP16_F-BF16_F                        ;
     localparam FP32_F_HALF_0 = FP32_F-BF16_F                        ;
-    localparam BF16_IDX_HI = IN_WIDTH - 1                           ;
-    localparam BF16_IDX_LO = IN_WIDTH - BF16_F-1                    ;
     localparam FP16_IDX_HI = IN_WIDTH - 1                           ;
     localparam FP16_IDX_LO = IN_WIDTH - FP16_F-1                    ;
     localparam FP32_IDX_HI = IN_WIDTH - 1                           ;
     localparam FP32_IDX_LO = IN_WIDTH - FP32_F-1                    ;
-    localparam HALF_BF16 = {1'b1 , {(IN_WIDTH - BF16_F-2){1'b0}}}   ;
-    localparam HALF_FP16 = {1'b1 , {(IN_WIDTH - FP16_F-2){1'b0}}}   ;
-    localparam HALF_FP32 = {1'b1 , {(IN_WIDTH - FP32_F-2){1'b0}}}   ;
-    localparam DENOR_BF16 = 8'h80                                   ;
     localparam DENOR_FP16 = 11'b1000_0000_000                       ;
     localparam DENOR_FP32 = 24'h800000                              ;
     // FPCR Control signals
@@ -49,20 +42,15 @@ module C6_FPRoundBase #(
     wire                        FPCR_APH        = i_Exception_Handling[19]      ;
     wire [1:0]                  RMODE           = i_Exception_Handling[16:15]   ;
     // carry signals
-    wire                        carry_bf16_uncon                    ;
     wire                        carry_fp16_uncon                    ;
     wire                        carry_fp32_uncon                    ;
-    wire                        carry_bf16                          ;
     wire                        carry_fp16                          ;
     wire                        carry_fp32                          ;
-    wire                        round_deor2nor_bf16                 ;
     wire                        round_deor2nor_fp16                 ;
     wire                        round_deor2nor_fp32                 ;
     // Rounded mantissa 
-    wire [BF16_F-1:0]           rounded_bf16_uncon                  ;
     wire [FP16_F-1:0]           rounded_fp16_uncon                  ;
     wire [FP32_F-1:0]           rounded_fp32_uncon                  ;
-    wire [BF16_F-1:0]           rounded_bf16                        ;
     wire [FP16_F-1:0]           rounded_fp16                        ;
     wire [FP32_F-1:0]           rounded_fp32                        ;
 
@@ -73,16 +61,16 @@ module C6_FPRoundBase #(
     wire [31:0]                 o_FPZero                            ;
     wire [31:0]                 o_FPZero_op0                        ;
     wire [31:0]                 o_FPNaN                             ;
-    wire                        FP32_G_bit,FP16_G_bit,BF16_G_bit                        ;
-    wire                        FP32_G_bit_uncon,FP16_G_bit_uncon,BF16_G_bit_uncon      ;
-    wire                        FP32_R_bit,FP16_R_bit,BF16_R_bit                        ;
-    wire                        FP32_R_bit_uncon,FP16_R_bit_uncon,BF16_R_bit_uncon      ;
-    wire                        FP32_S_bit,FP16_S_bit,BF16_S_bit                        ;
-    wire                        FP32_S_bit_uncon,FP16_S_bit_uncon,BF16_S_bit_uncon      ;
-    wire                        FP32_L_bit,FP16_L_bit,BF16_L_bit                        ;
-    wire                        FP32_L_bit_uncon,FP16_L_bit_uncon,BF16_L_bit_uncon      ;
-    wire                        G_bit,G_bit_uncon,R_bit,R_bit_uncon                     ;
-    wire                        S_bit,S_bit_uncon,L_bit,L_bit_uncon                     ;
+    wire                        FP32_G_bit,FP16_G_bit,                        ;
+    wire                        FP32_G_bit_uncon,FP16_G_bit_uncon             ;
+    wire                        FP32_R_bit,FP16_R_bit,                        ;
+    wire                        FP32_R_bit_uncon,FP16_R_bit_uncon             ;
+    wire                        FP32_S_bit,FP16_S_bit,                        ;
+    wire                        FP32_S_bit_uncon,FP16_S_bit_uncon             ;
+    wire                        FP32_L_bit,FP16_L_bit,                        ;
+    wire                        FP32_L_bit_uncon,FP16_L_bit_uncon             ;
+    wire                        G_bit,G_bit_uncon,R_bit,R_bit_uncon           ;
+    wire                        S_bit,S_bit_uncon,L_bit,L_bit_uncon           ;
     // Get int_mant error and half for all prisicion in advance 
 
     assign FP32_G_bit       = i_adjusted_mantissa[FP32_IDX_LO-1]    ;
@@ -259,12 +247,7 @@ module C6_FPRoundBase #(
     //     .o_FPZero      ( o_FPZero_op0       )
     // );
 
-    C6_CarryDetector #(.WIDTH(BF16_F),.DENOR(DENOR_BF16)) bf16_detector_uncon (
-        .mantissa(mant_bf16_uncon),
-        .carry(carry_bf16_uncon),
-        .round_deor2nor(),
-        .rounded_mantissa(rounded_bf16_uncon)
-    );
+
     C6_CarryDetector #(.WIDTH(FP16_F),.DENOR(DENOR_FP16)) fp16_detector_uncon (
         .mantissa(mant_fp16_uncon),
         .carry(carry_fp16_uncon),
@@ -278,12 +261,7 @@ module C6_FPRoundBase #(
         .rounded_mantissa(rounded_fp32_uncon)
     );
 
-    C6_CarryDetector #(.WIDTH(BF16_F),.DENOR(DENOR_BF16)) bf16_detector_main (
-        .mantissa(mant_bf16),
-        .carry(carry_bf16),
-        .round_deor2nor(round_deor2nor_bf16),
-        .rounded_mantissa(rounded_bf16)
-    );
+
     C6_CarryDetector #(.WIDTH(FP16_F),.DENOR(DENOR_FP16)) fp16_detector_main (
         .mantissa(mant_fp16),
         .round_deor2nor(round_deor2nor_fp16),

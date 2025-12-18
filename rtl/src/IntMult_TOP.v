@@ -11,7 +11,7 @@ module IntMult_TOP (
 );
  
 wire [63:0] o_Product_int8 , o_Product_int16;
-wire [31:0] o_AddZA = i_Active_Element_A[0] ? 'd0 : i_operand1;
+assign o_AddZA = i_Active_Element_A[0] ? 'd0 : i_operand1;
 wire [31:0] operand1_int8 = i_operand1 & {
     {8{i_Active_Element_A[3]}}, 
     {8{i_Active_Element_A[2]}}, 
