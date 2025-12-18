@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_R-2020.12-SP2
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 25 2560 928 506 122
+viewPort 0 25 2560 793 506 122
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,8 +16,8 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 304699756.447662 304715770.783129
-cursor 304705001.000000
+zoom 99973106.907030 100122114.403085
+cursor 100095001.000000
 marker 0.000000
 
 ; user define markers
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 123
+markerPos 163
 
 ; logical expression list
 ; addExprSig expr_name expression_string
@@ -103,6 +103,7 @@ addSignal -h 15 -holdScope i_mantissa_in[47:0]
 addSignal -h 15 -UNSIGNED -UDEC -holdScope biased_exp[9:0]
 addSignal -h 15 -2COMP -UDEC -holdScope i_exp_true[9:0]
 addSignal -h 15 -holdScope adjusted_mantissa[47:0]
+addSignal -h 15 /PE_tb/dut/Comb2[3]/u_C2_Round/o_sticky_flag
 addGroup "A*B+C [0]" -e FALSE
 addSignal -h 15 /PE_tb/dut/Add_ZA[0]/u_C5_FPADDComb/u_C5_FPAddition/i_Temp_Sign1
 addSignal -h 15 -holdScope i_Temp_Sign2
@@ -172,7 +173,7 @@ addSignal -h 15 -UNSIGNED -BIN -holdScope i_mantissa_in[47:0]
 addSignal -h 15 -UNSIGNED -UDEC -holdScope biased_exp[9:0]
 addSignal -h 15 -UNSIGNED -BIN -holdScope adjusted_mantissa[47:0]
 addSignal -h 15 -2COMP -UDEC -holdScope exponent[9:0]
-addGroup "A*B+C Round [3]"
+addGroup "A*B+C Round [3]" -e FALSE
 addSignal -h 15 /PE_tb/dut/Add_ZA_Round[3]/u_C6_Round/u_C6_NormalizeReal/i_sign
 addSignal -h 15 -2COMP -UDEC -holdScope i_exp[9:0]
 addSignal -h 15 -holdScope i_mantissa_in[47:0]
@@ -180,7 +181,43 @@ addSignal -h 15 -holdScope is_denormal
 addSignal -h 15 -2COMP -UDEC -holdScope biased_exp[9:0]
 addSignal -h 15 -2COMP -UDEC -holdScope exponent[9:0]
 addSignal -h 15 -holdScope adjusted_mantissa[47:0]
+addGroup "G15"
+addSignal -h 15 /PE_tb/dut/u_C3_FPADDComb/u_C3_FPAddition/Temp_Sign1
+addSignal -h 15 -holdScope Temp_Sign2
+addSignal -h 15 -2COMP -UDEC -holdScope TempExpo1[9:0]
+addSignal -h 15 -2COMP -UDEC -holdScope TempExpo2[9:0]
+addSignal -h 15 -holdScope Temp_Mant1[47:0]
+addSignal -h 15 -holdScope Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Sum_Mant[47:0]
+addSignal -h 15 -holdScope o_Sum_Expo[9:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+addSignal -h 15 -holdScope o_Sticky_Bit
 addGroup "G14"
+addSignal -h 15 /PE_tb/dut/u_C6_Round_FP32/u_C6_FPRoundBase/RMODE[1:0]
+addSignal -h 15 /PE_tb/dut/u_C4_Round_InnerProduct/i_sign
+addSignal -h 15 /PE_tb/dut/u_C4_Round_InnerProduct/u_C4_FPRoundBase/i_sticky_bit
+addSignal -h 15 -UNSIGNED -UDEC /PE_tb/dut/u_C4_Round_InnerProduct/i_exp[9:0]
+addSignal -h 15 -holdScope i_op[47:0]
+addSignal -h 15 -holdScope i_adjusted_mantissa[47:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope i_biased_exp[9:0]
+addSignal -h 15 /PE_tb/dut/u_C4_Round_InnerProduct/u_C4_FPRoundBase/int_mant_round_final[24:0]
+addSignal -h 15 -holdScope int_mant[23:0]
+addSignal -h 15 -holdScope o_Rounded_result[31:0]
+addGroup "G16"
+addSignal -h 15 /PE_tb/dut/Add_ZA[0]/u_C5_FPADDComb/u_C5_FPAddition/Temp_Sign1
+addSignal -h 15 -holdScope Temp_Sign2
+addSignal -h 15 -holdScope TempExpo1[9:0]
+addSignal -h 15 -holdScope TempExpo2[9:0]
+addSignal -h 15 -holdScope Temp_Mant1[47:0]
+addSignal -h 15 -holdScope Temp_Mant2[47:0]
+addSignal -h 15 -holdScope o_Sum_Mant[47:0]
+addSignal -h 15 -UNSIGNED -UDEC -holdScope o_Sum_Expo[9:0]
+addSignal -h 15 -holdScope o_Sum_Sign
+addSignal -h 15 -holdScope o_Sticky_Bit
+addGroup "G17"
+addSignal -h 15 /PE_tb/dut/u_C6_Round_FP32/u_C6_FPRoundBase/int_mant_round_final[24:0]
+addSignal -h 15 -holdScope int_mant[23:0]
+addGroup "G18"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
