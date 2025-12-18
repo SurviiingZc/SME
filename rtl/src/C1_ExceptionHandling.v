@@ -100,7 +100,7 @@ wire             is_Double_Vector                       ;
 wire             is_Not_Widening                        ;
 wire             is_Widening                            ;
 wire             FMOP_FP32_Non_Widening                 ;
-wire             FMOP_FP16_Non_Widening                 ;
+// wire             FMOP_FP16_Non_Widening                 ;
 wire             FMOP_Widening                          ;
 wire             BFMOP_Widening_SBF                     ;
 wire             BFMOP_Widening_EBF                     ;

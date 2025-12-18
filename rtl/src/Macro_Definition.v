@@ -128,6 +128,7 @@
 `define Inner_Product                   1'd0
 `define Outer_Product                   1'd1
 // Calculation precision
+`define FP16_4                          3'd7
 `define INT32                           3'd6
 `define FP32                            3'd0
 `define FP16                            3'd1

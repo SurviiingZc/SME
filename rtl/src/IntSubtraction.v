@@ -6,7 +6,7 @@ module IntSubtraction(
     output  signed [31:0]    o_Sub     
 );
 
-wire signed [32:0] sub_temp = $signed(product) - $signed(i_Addend);
+wire signed [32:0] sub_temp = product - i_Addend;
 assign o_Sub = sub_temp[31:0];
 // always @(*) begin
 //     if ($signed(sub_temp) > $signed(32'h7FFF_FFFF)) begin

@@ -59,6 +59,7 @@ wire [ 15:0]    T_Expo2                ;
 wire [ 47:0]    T_Mant2                ;
 wire [ 63:0]    T_Value2               ;
 wire [  2:0]    T_Precision_Operand2   ;
+wire            T_FMOP_FP16_Non_Widening;
 
 C1_FPUnpackAll u_FPUnpackAll(
     .i_Compute_Mode        ( i_Compute_Mode        ),
@@ -117,10 +118,11 @@ C1_ExceptionHandling u_ExceptionHandling(
 );
 
 C1_FPMutiArray u_FPMutiArray(
-    .i_Compute_Precision  ( i_Compute_Precision  ),
-    .i_Operand_A          ( i_Operand_A          ),
-    .i_Operand_B          ( i_Operand_B          ),
-    .o_Mant               ( o_Mant               )
+    .i_Compute_Precision    ( i_Compute_Precision   ),
+    .FMOP_FP16_Non_Widening ( T_FMOP_FP16_Non_Widening),
+    .i_Operand_A            ( i_Operand_A           ),
+    .i_Operand_B            ( i_Operand_B           ),
+    .o_Mant                 ( o_Mant                )
 );
 
 endmodule
