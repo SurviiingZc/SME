@@ -10,9 +10,9 @@ VERB=UVM_LOW #只打印错误信息
 #				Test case				  #
 #=========================================#
 # TESTNAME=PE_test_int
-# TESTNAME=PE_test_fmop 
+TESTNAME=PE_test_fmop 
 # TESTNAME=PE_test_fdot
-TESTNAME=PE_test_bfmop
+# TESTNAME=PE_test_bfmop
 # TESTNAME=PE_test_all
 
 Is_PipLine=+define+Is_PipLine
