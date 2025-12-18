@@ -32,6 +32,7 @@ module C1_ExceptionHandling (
     output [  3:0]    o_Is_Exception         ,
     output [127:0]    o_Result               ,
     output            o_Keep_Expo_signed     ,
+    output            FMOP_FP16_Non_Widening ,
     output            o_Internal_Acc        
 );
 
@@ -99,7 +100,7 @@ wire             is_Double_Vector                       ;
 wire             is_Not_Widening                        ;
 wire             is_Widening                            ;
 wire             FMOP_FP32_Non_Widening                 ;
-wire             FMOP_FP16_Non_Widening                 ;
+// wire             FMOP_FP16_Non_Widening                 ;
 wire             FMOP_Widening                          ;
 wire             BFMOP_Widening_SBF                     ;
 wire             BFMOP_Widening_EBF                     ;

@@ -31,6 +31,15 @@
 ../../../rtl/src/C1_FPUnpackAll.v
 ../../../rtl/src/C1_FPUnpackBase.v
 ../../../rtl/src/C1_FPZero.v
+../../../rtl/src/C1_Booth_4x4.v
+../../../rtl/src/C1_Booth_8x8.v
+../../../rtl/src/C1_Booth_12x12.v
+../../../rtl/src/C1_Booth_FP.v
+../../../rtl/src/C1_Booth_pp.v
+../../../rtl/src/C1_Compress_3to2.v
+../../../rtl/src/C1_Compress_4to2.v
+../../../rtl/src/C1_CSLA.v
+../../../rtl/src/C1_Ks48add.v
 ../../../rtl/src/C2_FPInfinity.v
 ../../../rtl/src/C2_FPZero.v
 ../../../rtl/src/C2_Gen_FuseAdd.v
@@ -101,6 +110,7 @@
 ../../../rtl/src/IntMult.v
 ../../../rtl/src/IntMultiplier.v
 ../../../rtl/src/IntSubtraction.v
+../../../rtl/src/Booth_INT.v
 ../../../rtl/src/PE.v
 ../../../rtl/src/Pipline_0.v
 ../../../rtl/src/Pipline_1.v
