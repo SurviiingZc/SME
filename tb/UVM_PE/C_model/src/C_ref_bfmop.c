@@ -254,9 +254,9 @@ uint32_t FPAdd_BF16(uint32_t op1, uint32_t op2, FPCR_Type fpcr, uint8_t N){
         if (inf1 && inf2 && (sign1 == !sign2)) 
             result = FPDefaultNaN(fpcr, N);
         else if((inf1 && sign1 == 0) || (inf2 && sign2 == 0))
-            result = FPInfinity('0', N);
+            result = FPInfinity(0, N);
         else if((inf1 && sign1 == 1) || (inf2 && sign2 == 1))
-            result = FPInfinity('1', N);
+            result = FPInfinity(1, N);
         else if(zero1 && zero2 && sign1 == sign2)
             result = FPZero(sign1, N);
         else 
@@ -325,7 +325,7 @@ uint32_t BFRound_1(float value1, float value2, uint8_t N){
     mpfr_clears(one, two, NULL);
  
     // 固定 Flush-to-zero.
-    if (exponent < minimum_exp) 
+    if (exponent < minimum_exp)
         return FPZero(sign, N);
  
     int biased_exp;

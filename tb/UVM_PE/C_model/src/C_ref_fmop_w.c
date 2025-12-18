@@ -421,7 +421,7 @@ uint32_t FPAdd(uint32_t op1, uint32_t op2, FPCR_Type fpcr, bool fpexc, uint8_t N
             // 将float值转换为MPFR高精度表示
             mpfr_set_flt(mpfr1, value1, MPFR_RNDN);
             mpfr_set_flt(mpfr2, value2, MPFR_RNDN);
-            
+
             mpfr_add(mpfr_sum, mpfr1, mpfr2, MPFR_RNDN);
             
             if (mpfr_zero_p(mpfr_sum)) {
