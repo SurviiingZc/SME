@@ -53,6 +53,7 @@ C5_FPUnpackAll u_FPUnpackAll(
     .i_Precision_Addend    ( i_Precision_Addend    ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
     .i_FuseAdd_SelfAdd     ( i_FuseAdd_SelfAdd     ),
+    .i_Widening_SBF        ( o_Widening_SBF        ),
     .i_Value1              ( i_Value1              ),
     .i_Value2              ( i_Value2              ),
     .o_Type1               ( T_Type1               ),
@@ -84,7 +85,8 @@ C5_ExceptionHandling u_ExceptionHandling(
     .i_Exception_Handling  ( i_Exception_Handling  ),
     .o_Result              ( o_Fault_Result        ),
     .o_is_Exception        ( o_is_Exception        ),
-    .o_Exception_Result    ( o_Exception_Result    )
+    .o_Exception_Result    ( o_Exception_Result    ),
+    .o_Widening_SBF        ( o_Widening_SBF        )
 );
 
 C5_FPAddition u_C5_FPAddition(
@@ -94,6 +96,7 @@ C5_FPAddition u_C5_FPAddition(
     .i_Sign2                ( T_Sign2               ),
     .i_Expo2                ( T_Expo2               ),
     .i_Mant2                ( T_Mant2               ),
+    .i_Widening_SBF         ( o_Widening_SBF        ),
     .i_Exception_Handling   ( i_Exception_Handling  ),
     .i_Add_or_Subtract      ( i_Add_or_Subtract     ),
     .i_FuseAdd_SelfAdd      ( i_FuseAdd_SelfAdd     ),

@@ -13,6 +13,7 @@
 module C3_FPUnpackBase (
     input  [31:0]      FP_Number            ,
     input  [ 2:0]      i_Compute_Precision  ,
+    input              i_Widening_SBF       ,
     input  [19:0]      i_Exception_Handling ,
     output [ 2:0]      o_FPType             ,
     output             o_FP_Number_Sign     ,
@@ -106,7 +107,7 @@ assign is_16_bits   = ((i_Compute_Precision == `BF16) | (i_Compute_Precision == 
 assign is_32_bits   = ((i_Compute_Precision == `FP32))                                                ;
 assign is_FP16      = ((is_16_bits == 1'd1) & ~IsBfloat16)                                           ;
 
-assign Sign                     = (is_32_bits == 1'd1) ? FP_Number[31] : FP_Number[15]          ;
+assign Sign                     = i_Widening_SBF | is_32_bits ? FP_Number[31] : FP_Number[15]          ;
 assign Exp16                    = FP_Number[14:10]                                              ;
 assign Frac16                   = FP_Number[9:0]                                                ;
 assign FP16ExpoAll0             = (|Exp16 == 1'd0)                                              ;
