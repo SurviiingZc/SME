@@ -138,7 +138,7 @@ assign Mant_Min_Or           = |Fuse_Mant_Min                                   
 assign Fuse_is_Expo1_Max     = (Temp_Expo1 > Temp_Expo2) ? 1'd1 : 1'd0 						                ;
 assign Fuse_is_Mant1_Max     = (Temp_Expo1 == Temp_Expo2 & Temp_Mant1 >= Temp_Mant2) ? 1'd1 : 1'd0      ;
 assign Fuse_is_Num1_Max      = (Fuse_is_Expo1_Max | Fuse_is_Mant1_Max) ? 1'd1 : 1'd0 				        ;
-assign T_Temp_Sign1          = i_Add_or_Subtract ? Temp_Sign1 : ~Temp_Sign1                             ;
+assign T_Temp_Sign1          = Temp_Sign1                             ;
 assign All_Equal             = (Temp_Expo1 == Temp_Expo2) & (Temp_Mant1 == Temp_Mant2) & (T_Temp_Sign1 ^ Temp_Sign2);
 assign Fuse_Sign_Max	     = Fuse_is_Num1_Max ? T_Temp_Sign1 : Temp_Sign2 							    ;
 assign Fuse_Expo_Max	     = Fuse_is_Num1_Max ? Temp_Expo1 : Temp_Expo2 							        ;

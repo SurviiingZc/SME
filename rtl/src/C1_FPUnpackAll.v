@@ -14,6 +14,7 @@ module C1_FPUnpackAll (
     input             i_Is_Widening          ,
     input  [  1:0]    i_Vector_Group_Num     ,
     input  [ 19:0]    i_Exception_Handling   ,
+    input             i_Add_or_Subtract      ,
     input  [ 31:0]    i_Operand_A            ,
     input  [ 31:0]    i_Operand_B            ,
     input  [127:0]    i_Operand_C            ,
@@ -66,6 +67,8 @@ wire        T_OutSign       [3:0] ;
 
 wire [ 2:0] T_Type1         [1:0] ;
 wire        T_Sign1         [1:0] ;
+wire [ 1:0] Temp_Sign1            ;
+wire [ 1:0] Final_Sign1           ;
 wire [ 7:0] T_Expo1         [1:0] ;
 wire [23:0] T_Mant1         [1:0] ;
 wire [31:0] T_Value1        [1:0] ;
@@ -73,6 +76,7 @@ wire [31:0] T_Value1        [1:0] ;
 wire [ 2:0] T_Type2         [1:0] ;
 wire        T_Sign2         [1:0] ;
 wire [ 7:0] T_Expo2         [1:0] ;
+wire [ 1:0] Temp_Sign2            ;
 wire [23:0] T_Mant2         [1:0] ;
 wire [31:0] T_Value2        [1:0] ;
 
@@ -122,7 +126,7 @@ generate
     for(i = 0 ; i < 2 ; i = i + 1) begin : I_OUT
         for(j = 0 ; j < 2 ; j = j + 1) begin : J_OUT
             assign T_OutExpo[i+j*2]         = ((o_Type1[3*j+:3] == `FPType_Zero) | (o_Type2[3*i+:3] == `FPType_Zero)) ? 'd0 : T_Expo2[i] + T_Expo1[j] ;
-            assign T_OutSign[i+j*2]         = T_Sign2[i] ^ T_Sign1[j] ;
+            assign T_OutSign[i+j*2]         = Temp_Sign2[i] ^ Final_Sign1[j] ;
             assign o_OutSign[(i+j*2)*1+:1]  = T_OutSign[i+j*2]        ;
             assign o_OutExpo[(i+j*2)*9+:9]  = T_OutExpo[i+j*2]        ;
         end
@@ -140,7 +144,9 @@ generate
     for(j = 0 ; j < 2 ; j = j + 1) begin:FPNum_Operand1
         assign Operand1[j]          = (is_16_bits == 1'd1) ? {16'd0,i_Operand_A[16*j+:16]} : i_Operand_A ;
         assign o_Type1[3*j+:3]      = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand1 == `BF16)) ? T_BFType1[j]  : T_Type1[j]       ;
-        assign o_Sign1[1*j+:1]      = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand1 == `BF16)) ? T_BFSign1[j]  : T_Sign1[j]       ;
+        assign o_Sign1[1*j+:1]      = Final_Sign1[1*j+:1]                                                                             ;
+        assign Temp_Sign1[1*j+:1]   = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand1 == `BF16)) ? T_BFSign1[j]  : T_Sign1[j]       ;
+        assign Final_Sign1[1*j+:1]  = i_Add_or_Subtract ? Temp_Sign1[1*j+:1] : ~Temp_Sign1[1*j+:1]                                    ;
         assign o_Expo1[8*j+:8]      = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand1 == `BF16)) ? T_BFExpo1[j]  : T_Expo1[j]       ;
         assign o_Mant1[24*j+:24]    = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand1 == `BF16)) ? T_BFMant1[j]  : T_Mant1[j]       ;
         assign o_Value1[32*j+:32]   = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand1 == `BF16)) ? T_BFValue1[j] : T_Value1[j]      ;
@@ -150,6 +156,7 @@ generate
         assign Operand2[k]          = (is_16_bits == 1'd1) ? {16'd0,i_Operand_B[16*k+:16]} : i_Operand_B ;
         assign o_Type2[3*k+:3]      = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand2 == `BF16)) ? T_BFType2[k]  : T_Type2[k]      ;
         assign o_Sign2[1*k+:1]      = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand2 == `BF16)) ? T_BFSign2[k]  : T_Sign2[k]      ;
+        assign Temp_Sign2[1*k+:1]   = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand2 == `BF16)) ? T_BFSign2[k]  : T_Sign2[k]      ;
         assign o_Expo2[8*k+:8]      = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand2 == `BF16)) ? T_BFExpo2[k]  : T_Expo2[k]      ;
         assign o_Mant2[24*k+:24]    = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand2 == `BF16)) ? T_BFMant2[k]  : T_Mant2[k]      ;
         assign o_Value2[32*k+:32]   = ((FPCR_EBF == 1'd0) & (Compute_Precision_Operand2 == `BF16)) ? T_BFValue2[k] : T_Value2[k]     ;

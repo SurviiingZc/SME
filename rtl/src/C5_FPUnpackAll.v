@@ -69,18 +69,18 @@ assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0   
 assign o_IsBfloat16         = (T_Precision == `BF16)                                                            ;
 assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                                 ;
 assign Operand1             = i_Value1                                                                                  ;
-assign o_Type1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFType1     : T_Type1          ;
-assign o_Sign1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFSign1     : T_Sign1          ;
-assign o_Expo1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFExpo1     : T_Expo1          ;
-assign o_Mant1              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFMant1     : T_Mant1          ;
-assign o_Value1             = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFValue1    : T_Value1         ;
+assign o_Type1              = (i_Widening_SBF) ? T_BFType1     : T_Type1          ;
+assign o_Sign1              = (i_Widening_SBF) ? T_BFSign1     : T_Sign1          ;
+assign o_Expo1              = (i_Widening_SBF) ? T_BFExpo1     : T_Expo1          ;
+assign o_Mant1              = (i_Widening_SBF) ? T_BFMant1     : T_Mant1          ;
+assign o_Value1             = (i_Widening_SBF) ? T_BFValue1    : T_Value1         ;
 
 assign Operand2             = i_Value2                                                                                 ;
-assign o_Type2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFType2     : T_Type2         ;
-assign o_Sign2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFSign2     : T_Sign2         ;
-assign o_Expo2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFExpo2     : T_Expo2         ;
-assign o_Mant2              = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFMant2     : T_Mant2         ;
-assign o_Value2             = ((FPCR_EBF == 1'd0) & (T_Precision == `BF16)) ? T_BFValue2    : T_Value2        ;
+assign o_Type2              = (i_Widening_SBF) ? T_BFType2     : T_Type2         ;
+assign o_Sign2              = (i_Widening_SBF) ? T_BFSign2     : T_Sign2         ;
+assign o_Expo2              = (i_Widening_SBF) ? T_BFExpo2     : T_Expo2         ;
+assign o_Mant2              = (i_Widening_SBF) ? T_BFMant2     : T_Mant2         ;
+assign o_Value2             = (i_Widening_SBF) ? T_BFValue2    : T_Value2        ;
 
 C5_FPUnpackBase u_FPUnpackBase_Operand1(
     .FP_Number             ( Operand1                       ),
@@ -106,7 +106,7 @@ C5_FPUnpackBase u_FPUnpackBase_Operand2(
 
 C5_BFUnpack u_BFUnpack_Operand1(
     .BF_Number          ( Operand1              ),
-    .i_BF_Data_Width    ( `BF_Data_Width_16     ),
+    .i_BF_Data_Width    ( `BF_Data_Width_32     ),
     .o_BFType           ( T_BFType1             ),
     .o_BF_Number_Sign   ( T_BFSign1             ),
     .o_BF_Mantissa      ( T_BFMant1             ),
@@ -116,7 +116,7 @@ C5_BFUnpack u_BFUnpack_Operand1(
 
 C5_BFUnpack u_BFUnpack_Operand2(
     .BF_Number          ( Operand2              ),
-    .i_BF_Data_Width    ( `BF_Data_Width_16     ),
+    .i_BF_Data_Width    ( `BF_Data_Width_32     ),
     .o_BFType           ( T_BFType2             ),
     .o_BF_Number_Sign   ( T_BFSign2             ),
     .o_BF_Mantissa      ( T_BFMant2             ),
