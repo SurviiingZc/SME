@@ -13,7 +13,7 @@ class PE_sequence_smlal extends PE_sequence;
         int i;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
-        for(i = 0; i < 10000; i++)begin
+        for(i = 0; i < 50000; i++)begin
             `uvm_info("SEQ", $sformatf("This is%d test", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 

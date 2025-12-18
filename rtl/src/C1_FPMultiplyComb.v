@@ -66,6 +66,7 @@ C1_FPUnpackAll u_FPUnpackAll(
     .i_Is_Widening         ( i_Is_Widening         ),
     .i_Vector_Group_Num    ( i_Vector_Group_Num    ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
+    .i_Add_or_Subtract     ( i_Add_or_Subtract     ),
     .i_Operand_A           ( i_Operand_A           ),
     .i_Operand_B           ( i_Operand_B           ),
     .i_Operand_C           ( i_Operand_C           ),
