@@ -70,6 +70,7 @@ C1_FPUnpackAll u_FPUnpackAll(
     .i_Operand_A           ( i_Operand_A           ),
     .i_Operand_B           ( i_Operand_B           ),
     .i_Operand_C           ( i_Operand_C           ),
+    .i_FMLAL               ( o_FMLAL               ),
     .o_TypeA               ( o_TypeA               ),
     .o_SignA               ( o_SignA               ),
     .o_ExpoA               ( o_ExpoA               ),
@@ -114,7 +115,8 @@ C1_ExceptionHandling u_ExceptionHandling(
     .o_Result              ( o_Result              ),
     .o_Keep_Expo_signed    ( o_Keep_Expo_signed    ),
     .o_Internal_Acc        ( o_Internal_Acc        ),
-    .o_Widening_SBF        ( o_Widening_SBF        )
+    .o_Widening_SBF        ( o_Widening_SBF        ),
+    .o_FMLAL               ( o_FMLAL               )
 );
 
 C1_FPMutiArray u_FPMutiArray(
