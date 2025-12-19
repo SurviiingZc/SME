@@ -15,6 +15,7 @@ module C1_FPUnpackAll (
     input  [  1:0]    i_Vector_Group_Num     ,
     input  [ 19:0]    i_Exception_Handling   ,
     input             i_Add_or_Subtract      ,
+    input             i_FMLAL                ,
     input  [ 31:0]    i_Operand_A            ,
     input  [ 31:0]    i_Operand_B            ,
     input  [127:0]    i_Operand_C            ,
@@ -128,7 +129,7 @@ generate
             assign T_OutExpo[i+j*2]         = ((o_Type1[3*j+:3] == `FPType_Zero) | (o_Type2[3*i+:3] == `FPType_Zero)) ? 'd0 : T_Expo2[i] + T_Expo1[j] ;
             assign T_OutSign[i+j*2]         = Temp_Sign2[i] ^ Final_Sign1[j] ;
             assign o_OutSign[(i+j*2)*1+:1]  = T_OutSign[i+j*2]        ;
-            assign o_OutExpo[(i+j*2)*9+:9]  = T_OutExpo[i+j*2]        ;
+            assign o_OutExpo[(i+j*2)*9+:9]  = i_FMLAL ? T_OutExpo[i+j*2] + 'd112 : T_OutExpo[i+j*2]        ;
         end
     end
 

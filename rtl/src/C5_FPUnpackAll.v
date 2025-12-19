@@ -14,6 +14,7 @@ module C5_FPUnpackAll (
     input  [ 19:0]    i_Exception_Handling   ,
     input             i_FuseAdd_SelfAdd      ,
     input             i_Widening_SBF         ,
+    input             i_FMLAL                ,
 	input  [ 31:0]    i_Value1               ,
 	input  [ 31:0]    i_Value2               ,
 

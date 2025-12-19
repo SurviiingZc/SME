@@ -12,6 +12,7 @@ module C5_FPAddition(
 	input           [  7:0]    i_Expo2                ,
 	input           [ 23:0]    i_Mant2                ,
     input                      i_Widening_SBF         ,
+    input                      i_FMLAL                ,
     input           [ 19:0]    i_Exception_Handling   ,
     input                      i_Add_or_Subtract      ,
     input                      i_FuseAdd_SelfAdd      ,
@@ -118,12 +119,12 @@ assign FPCR_RMode       = i_Exception_Handling[16:15]   ;
 //  | i_Widening_SBF
 //  | i_Widening_SBF
 
-assign Temp_Sign1          = ~(i_FuseAdd_SelfAdd) ? i_Temp_Sign1 : i_Sign1                                              ;
-assign Temp_Sign2          = ~(i_FuseAdd_SelfAdd) ? i_Temp_Sign2 : i_Sign2                                              ;
-assign TempExpo1           = ~(i_FuseAdd_SelfAdd) ? i_Temp_Expo1 : {2'd0,i_Expo1}                                       ;
-assign TempExpo2           = ~(i_FuseAdd_SelfAdd) ? i_Temp_Expo2 : {2'd0,i_Expo2}                                       ;
-assign Temp_Mant1          = ~(i_FuseAdd_SelfAdd) ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
-assign Temp_Mant2          = ~(i_FuseAdd_SelfAdd) ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
+assign Temp_Sign1          = ~(i_FuseAdd_SelfAdd) | i_FMLAL ? i_Temp_Sign1 : i_Sign1                                              ;
+assign Temp_Sign2          = ~(i_FuseAdd_SelfAdd) | i_FMLAL ? i_Temp_Sign2 : i_Sign2                                              ;
+assign TempExpo1           = ~(i_FuseAdd_SelfAdd) | i_FMLAL ? i_Temp_Expo1 : {2'd0,i_Expo1}                                       ;
+assign TempExpo2           = ~(i_FuseAdd_SelfAdd) | i_FMLAL ? i_Temp_Expo2 : {2'd0,i_Expo2}                                       ;
+assign Temp_Mant1          = ~(i_FuseAdd_SelfAdd) | i_FMLAL ? i_Temp_Mant1 : {i_Mant1,24'd0}                                      ;
+assign Temp_Mant2          = ~(i_FuseAdd_SelfAdd) | i_FMLAL ? i_Temp_Mant2 : {i_Mant2,24'd0}                                      ;
 
 
 

@@ -33,7 +33,8 @@ module C1_ExceptionHandling (
     output [127:0]    o_Result               ,
     output            o_Keep_Expo_signed     ,
     output            o_Internal_Acc         ,
-    output            o_Widening_SBF          
+    output            o_Widening_SBF         ,
+    output            o_FMLAL
 );
 
 
@@ -204,9 +205,10 @@ assign FMLA_FP16              = (is_Inner_Product & is_FP16 & is_Not_Widening & 
 assign FMLA_FP32              = (is_Inner_Product & is_FP32 & is_Not_Widening & is_Single_Vector) ? 1'd1 : 1'd0 ;
 assign FMLAL                  = (is_Inner_Product & is_FP16 & is_Widening & is_Double_Vector) ? 1'd1 : 1'd0 ;
 assign Exception_Result       = FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP16 | FMLA_FP32 ;
-assign o_Widening_SBF         = BFMOP_Widening_SBF                                                      ;
+assign o_Widening_SBF         = BFMOP_Widening_SBF | FMLAL                                                     ;
+assign o_FMLAL                = FMLAL                                                                          ;
 
-assign o_Internal_Acc         = FMOP_Widening | BFMOP_Widening_SBF | BFMOP_Widening_EBF | FDOT ;
+assign o_Internal_Acc         = FMOP_Widening | BFMOP_Widening_SBF | BFMOP_Widening_EBF | FDOT | FMLAL;
 
 assign Caculate_Mode          = {2{(FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP16 | FMLA_FP32 | FMLAL)}} & 2'd0 | 
                                     {2{(FMOP_Widening | BFMOP_Widening_EBF | FDOT)}} & 2'd1 |

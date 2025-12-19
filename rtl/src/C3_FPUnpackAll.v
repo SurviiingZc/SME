@@ -66,25 +66,28 @@ assign T_Compute_Precision  = i_Widening_SBF | (i_Precision_Addend == `FP32)    
 assign FPCR_EBF             = (i_Exception_Handling[8] == 1'd1) ? 1'd1 : 1'd0                                 ;
 assign o_IsBfloat16         = (i_Compute_Precision == `BF16)                                                  ;
 assign o_N                  = (i_Precision_Addend == `FP32) ? 'b1 : 'b0                                       ;
+
+ 
+ 
+ 
+ 
+
 assign Operand1             = i_Value1  ;
-assign o_Type1              = T_Type1   ;
-assign o_Sign1              = T_Sign1   ;
-assign o_Expo1              = T_Expo1   ;
-assign o_Mant1              = T_Mant1   ;
-assign o_Value1             = T_Value1  ;
-
+assign o_Type1              = i_Widening_SBF ? T_BFType1 : T_Type1   ;
+assign o_Sign1              = i_Widening_SBF ? T_BFSign1 : T_Sign1   ;
+assign o_Expo1              = i_Widening_SBF ? T_BFExpo1 : T_Expo1   ;
+assign o_Mant1              = i_Widening_SBF ? T_BFMant1 : T_Mant1   ;
+assign o_Value1             = i_Widening_SBF ? T_BFValue1 : T_Value1  ;
 assign Operand2             = i_Value2  ;
-assign o_Type2              = T_Type2   ;
-assign o_Sign2              = T_Sign2   ;
-assign o_Expo2              = T_Expo2   ;
-assign o_Mant2              = T_Mant2   ;
-assign o_Value2             = T_Value2  ;
+assign o_Type2              = i_Widening_SBF ? T_BFType2  : T_Type2   ;
+assign o_Sign2              = i_Widening_SBF ? T_BFSign2  : T_Sign2   ;
+assign o_Expo2              = i_Widening_SBF ? T_BFExpo2  : T_Expo2   ;
+assign o_Mant2              = i_Widening_SBF ? T_BFMant2  : T_Mant2   ;
+assign o_Value2             = i_Widening_SBF ? T_BFValue2 : T_Value2  ;
 
-
-C3_FPUnpackBase u_FPUnpackBase_Operand1(
+C1_FPUnpackBase u_FPUnpackBase_FPOperand1(
     .FP_Number             ( Operand1                       ),
-    .i_Compute_Precision   ( i_Compute_Precision            ),
-    .i_Widening_SBF        ( i_Widening_SBF                 ),
+    .i_Compute_Precision   ( `FP32                          ),
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_Type1                        ),
     .o_FP_Number_Sign      ( T_Sign1                        ),
@@ -93,10 +96,9 @@ C3_FPUnpackBase u_FPUnpackBase_Operand1(
     .o_FP_Number_Value     ( T_Value1                       )
 );
 
-C3_FPUnpackBase u_FPUnpackBase_Operand2(
+C1_FPUnpackBase u_FPUnpackBase_FPOperand2(
     .FP_Number             ( Operand2                       ),
-    .i_Compute_Precision   ( i_Compute_Precision            ),
-    .i_Widening_SBF        ( i_Widening_SBF                 ),
+    .i_Compute_Precision   ( `FP32                          ),
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_Type2                        ),
     .o_FP_Number_Sign      ( T_Sign2                        ),
@@ -105,25 +107,49 @@ C3_FPUnpackBase u_FPUnpackBase_Operand2(
     .o_FP_Number_Value     ( T_Value2                       )
 );
 
-C3_BFUnpack u_BFUnpack_Operand1(
-    .BF_Number          ( Operand1              ),
-    .i_BF_Data_Width    ( `BF_Data_Width_16     ),
-    .o_BFType           ( T_BFType1             ),
-    .o_BF_Number_Sign   ( T_BFSign1             ),
-    .o_BF_Mantissa      ( T_BFMant1             ),
-    .o_BF_Exponent      ( T_BFExpo1             ),
-    .o_BF_Number_Value  ( T_BFValue1            )
+C3_FPUnpackBase u_FPUnpackBase_Operand1(
+    .FP_Number             ( Operand1                       ),
+    .i_Compute_Precision   ( i_Compute_Precision            ),
+    .i_Widening_SBF        ( i_Widening_SBF                 ),
+    .i_Exception_Handling  ( i_Exception_Handling           ),
+    .o_FPType              ( T_BFType1                      ),
+    .o_FP_Number_Sign      ( T_BFSign1                      ),
+    .o_FP_Exponent         ( T_BFMant1                      ),
+    .o_FP_Mantissa         ( T_BFExpo1                      ),
+    .o_FP_Number_Value     ( T_BFValue1                     )
 );
 
-C3_BFUnpack u_BFUnpack_Operand2(
-    .BF_Number          ( Operand2              ),
-    .i_BF_Data_Width    ( `BF_Data_Width_16     ),
-    .o_BFType           ( T_BFType2             ),
-    .o_BF_Number_Sign   ( T_BFSign2             ),
-    .o_BF_Mantissa      ( T_BFMant2             ),
-    .o_BF_Exponent      ( T_BFExpo2             ),
-    .o_BF_Number_Value  ( T_BFValue2            )
+C3_FPUnpackBase u_FPUnpackBase_Operand2(
+    .FP_Number             ( Operand2                       ),
+    .i_Compute_Precision   ( i_Compute_Precision            ),
+    .i_Widening_SBF        ( i_Widening_SBF                 ),
+    .i_Exception_Handling  ( i_Exception_Handling           ),
+    .o_FPType              ( T_BFType2                      ),
+    .o_FP_Number_Sign      ( T_BFSign2                      ),
+    .o_FP_Exponent         ( T_BFMant2                      ),
+    .o_FP_Mantissa         ( T_BFExpo2                      ),
+    .o_FP_Number_Value     ( T_BFValue2                     )
 );
+
+// C3_BFUnpack u_BFUnpack_Operand1(
+//     .BF_Number          ( Operand1              ),
+//     .i_BF_Data_Width    ( `BF_Data_Width_16     ),
+//     .o_BFType           ( T_BFType1             ),
+//     .o_BF_Number_Sign   ( T_BFSign1             ),
+//     .o_BF_Mantissa      ( T_BFMant1             ),
+//     .o_BF_Exponent      ( T_BFExpo1             ),
+//     .o_BF_Number_Value  ( T_BFValue1            )
+// );
+
+// C3_BFUnpack u_BFUnpack_Operand2(
+//     .BF_Number          ( Operand2              ),
+//     .i_BF_Data_Width    ( `BF_Data_Width_16     ),
+//     .o_BFType           ( T_BFType2             ),
+//     .o_BF_Number_Sign   ( T_BFSign2             ),
+//     .o_BF_Mantissa      ( T_BFMant2             ),
+//     .o_BF_Exponent      ( T_BFExpo2             ),
+//     .o_BF_Number_Value  ( T_BFValue2            )
+// );
 
 
 endmodule
