@@ -12,6 +12,7 @@ uint32_t BFDotAdd(uint32_t addend, uint32_t op1_a, uint32_t op1_b, uint32_t op2_
     }
 
     FPCR_Type fpcr = assign_FPCR(fpcr_in);//运行一次，将uin32_t的fpcr转为FPCR_Type类型
+    // printf("FPCR bits: %08X\n", build_FPCR_value(fpcr));
     
     uint32_t prod;
     uint32_t result;
@@ -53,9 +54,9 @@ uint32_t BFMulH(uint32_t op1, uint32_t op2, FPCR_Type fpcr, uint8_t N){
         if ((inf1 && zero2) || (zero1 && inf2) )
             result = FPDefaultNaN(fpcr, 2*N);
         else if(inf1 || inf2)
-            result = FPInfinity((sign1||sign2), 2*N);
+            result = FPInfinity((sign1 ^ sign2), 2*N);
         else if(zero1 || zero2)
-            result = FPZero((sign1 || sign2), 2*N);
+            result = FPZero((sign1 ^ sign2), 2*N);
         else
             result = BFRound(value1, value2, 2*N);
     }

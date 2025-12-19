@@ -29,10 +29,10 @@ uint32_t FPDotAdd_ZA(uint32_t addend, uint32_t op1_a, uint32_t op1_b,
     
     // 设置DN位为1（生成默认NaN值）
     fpcr.DN = 1;
-    
+
     // 计算点积
     prod = FPDot(op1_a, op1_b, op2_a, op2_b, fpcr, isbfloat16, fpexc, N);
-    
+
     // 将点积结果与加数相加
     result = FPAdd(addend, prod, fpcr, fpexc, N);
     

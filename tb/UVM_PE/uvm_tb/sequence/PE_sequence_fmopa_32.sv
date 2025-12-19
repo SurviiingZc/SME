@@ -128,7 +128,7 @@ class PE_sequence_fmopa_32 extends PE_sequence;
             starting_phase.raise_objection(this);
 
 
-        for(i = 0; i < 5000; i++) begin // 增加一点循环次数以覆盖更多场景
+        for(i = 0; i < 50000; i++) begin // 增加一点循环次数以覆盖更多场景
             `uvm_info("SEQ", $sformatf("Generating test %0d", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
             start_item(tr);
@@ -166,8 +166,8 @@ class PE_sequence_fmopa_32 extends PE_sequence;
                 // tr.i_Compute_Precision          inside {`FP32,`FP16};
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
-                tr.i_Exception_Handling[17]     == `Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
-                // tr.i_Exception_Handling[16:15]  == `Round_to_Nearest_Mode; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero Round_to_Nearest_Mode         
+                tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
+                tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero; // Round_Towards_Plus_Infinity Round_Towards_Minus_Infinity Round_Towards_Zero Round_to_Nearest_Mode         
                 // tr.i_Exception_Handling[19]     inside{`IEEE_Half_Precision_Format,`Alternative_Half_Precision_Format};
                 // tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 // tr.i_Exception_Handling[17]     inside{`Flush_Denormalized_Results_to_Zero,`Do_Not_Flush_Denormalized_Results_to_Zero};

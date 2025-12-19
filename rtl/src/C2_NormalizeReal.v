@@ -38,7 +38,7 @@ wire signed [EXP_WIDTH:0] i_exp_temp = {{1'b0},i_exp};
 assign exponent                     = i_exp_temp + exponent_adj + minimum_exp - 1'd1     ;
 assign i_exp_true                   = i_exp_temp + minimum_exp - 1'd1                    ;
 assign biased_exp_unconstrained     = exponent - minimum_exp - 1'd1                      ;
-assign is_denormal                  = (i_exp_true <= 0)? 1'b1 : 1'b0                     ;
+assign is_denormal                  = (i_exp_true <  0)? 1'b1 : 1'b0                     ;
 assign o_sign                       = i_sign                                             ;
 
 

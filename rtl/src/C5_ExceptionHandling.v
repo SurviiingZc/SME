@@ -56,9 +56,12 @@ wire            Sign_NInfinity              ;
 wire            Sign_Zero                   ;
 wire            Exception_Result            ;
 wire            FPNumNaNDone                ;
+wire            Sign_Diff_Zero              ;
+wire [  1:0]    FPCR_RMode                  ;
 
+assign FPCR_RMode           = i_Exception_Handling[16:15]   ;
 assign FPCR_DN              = i_Exception_Handling[18] ;
-assign T_Sign1              = i_Add_or_Subtract ? i_Sign1 : ~i_Sign1                            ;
+assign T_Sign1              = i_Sign1                    ;
 assign FPCR_AH              = i_Exception_Handling[1]                                           ;
 assign FPCR_EBF             = i_Exception_Handling[8]                                           ;
 assign Inf1                 = (i_Type1 == `FPType_Infinity)                                     ;
@@ -73,11 +76,13 @@ assign Sign_Infinity        = Sign_PInfinity | Sign_NInfinity                   
 assign FPInfinity_Sign      = Sign_NInfinity                                                    ;
 assign FPZero_Sign          = T_Sign1                                                           ;
 assign Sign_Zero            = (Zero1 & Zero2 & ~(T_Sign1 ^ i_Sign2))                            ;
-assign o_is_Exception       = FPNumNaNDone | Sign_NaN | Sign_Infinity | Sign_Zero                              ;
+assign Sign_Diff_Zero       = (Zero1 & Zero2 & (i_Sign1 ^ i_Sign2))                       ;
+
+assign o_is_Exception       = FPNumNaNDone | Sign_NaN | Sign_Infinity | Sign_Zero | Sign_Diff_Zero                             ;
 assign o_Result             = {32{FPNumNaNDone}} & FPProcessNaN | 
                                 {32{Sign_NaN}} & FPDefaultNaN |       
                                 {32{~FPNumNaNDone & ~Sign_NaN & Sign_Infinity}} & FPInfinity |      
-                                {32{Sign_Zero}} & FPZero                                        ;
+                                {32{Sign_Zero | Sign_Diff_Zero}} & FPZero                                        ;
 
 assign is_Outer_Product       = (i_Compute_Mode == `Outer_Product) ? 1'd1 : 1'd0 ;
 assign is_Inner_Product       = (i_Compute_Mode == `Inner_Product) ? 1'd1 : 1'd0 ;
@@ -113,9 +118,12 @@ C5_FPDefaultNaN u_FPDefaultNaN(
 );
 
 C5_FPZero u_FPZero(
-    .i_Sign        ( FPZero_Sign        ),
-    .i_Data_Width  ( FPData_Width       ),
-    .o_FPZero      ( FPZero             )
+    .i_Sign             ( FPZero_Sign        ),
+    .i_Data_Width       ( FPData_Width       ),
+    .i_Widening_SBF     ( o_Widening_SBF     ),
+    .i_DiffSign_Zero    ( Sign_Diff_Zero     ),
+    .i_FPCR_RMode       ( FPCR_RMode         ),
+    .o_FPZero           ( FPZero             )
 );
 
 C5_FPProcessNaNs u_FPProcessNaNs(

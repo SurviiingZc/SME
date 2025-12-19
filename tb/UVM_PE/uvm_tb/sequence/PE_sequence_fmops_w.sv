@@ -36,7 +36,7 @@ class PE_sequence_fmops_w extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
 
-        for(i = 0; i < 5000; i++) begin
+        for(i = 0; i < 50000; i++) begin
             `uvm_info("SEQ", $sformatf("Generating test %0d", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
             start_item(tr);
@@ -74,8 +74,8 @@ class PE_sequence_fmops_w extends PE_sequence;
                 
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
-                tr.i_Exception_Handling[17]     == `Flush_Denormalized_Results_to_Zero;
-                // tr.i_Exception_Handling[16:15]  == `Round_to_Nearest_Mode;       
+                tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;
+                // tr.i_Exception_Handling[16:15]  == 2'b11;       
                 i_Exception_Handling[16:15] dist {
                     2'b00 := 25,
                     2'b01 := 25,

@@ -13,7 +13,7 @@ module C6_Round #(
     input       [19:0]          i_Exception_Handling        ,     // FPCR register  
     input                       i_N                         ,     // 1 > 32 0 > 16
     input                       i_isbfloat16                ,     // bfloat16 flag 
-    input       [ 3:0]          i_Compute_Precision         ,
+    input       [ 2:0]          i_Compute_Precision         ,
     input                       i_sticky_bit                ,    
     output     [31:0]           o_rounded_result                  // Rounded result
 );
