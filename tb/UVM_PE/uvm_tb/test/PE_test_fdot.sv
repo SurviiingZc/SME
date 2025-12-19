@@ -23,17 +23,17 @@ class PE_test_fdot extends uvm_test;
         PE_sequence_fmla_32     seq_fmla_32;
 
         seq_fmlal   = PE_sequence_fmlal::type_id::create("seq_fmlal");
-        // seq_fmla    = PE_sequence_fmla::type_id::create("seq_fmla");
-        // seq_fmla_32 = PE_sequence_fmla_32::type_id::create("fmla_32 ");
-        // seq_fdot    = PE_sequence_fdot::type_id::create("seq_fdot");
+        seq_fmla    = PE_sequence_fmla::type_id::create("seq_fmla");
+        seq_fmla_32 = PE_sequence_fmla_32::type_id::create("seq_fmla_32");
+        seq_fdot    = PE_sequence_fdot::type_id::create("seq_fdot");
 
         phase.raise_objection(this);
         
         `uvm_info("TEST", "Running float dot test", UVM_LOW)
         seq_fmlal.start(env.agent.sequencer); 
-        // seq_fmla.start(env.agent.sequencer);  
-        // seq_fmla_32.start(env_agent.sequencer);
-        // seq_fdot.start(env.agent.sequencer);
+        seq_fmla.start(env.agent.sequencer);  
+        seq_fmla_32.start(env.agent.sequencer);
+        seq_fdot.start(env.agent.sequencer);
           
         phase.drop_objection(this);
         

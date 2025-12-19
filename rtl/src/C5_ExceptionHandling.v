@@ -26,7 +26,8 @@ module C5_ExceptionHandling (
     output [ 31:0]    o_Result               ,
     output            o_is_Exception         ,
     output            o_Exception_Result     ,
-    output            o_Widening_SBF
+    output            o_Widening_SBF         ,
+    output            o_FMLAL                
 );
 
 wire            FPData_Width                ;
@@ -104,6 +105,7 @@ assign FMLA_FP32              = (is_Inner_Product & is_FP32 & is_Not_Widening & 
 assign FMLAL                  = (is_Inner_Product & is_FP16 & is_Widening & is_Double_Vector) ? 1'd1 : 1'd0 ;
 assign o_Exception_Result     = FMOP_FP32_Non_Widening | FMOP_FP16_Non_Widening | FMLA_FP16 | FMLA_FP32 ;
 assign o_Widening_SBF         = BFMOP_Widening_SBF                                                      ;
+assign o_FMLAL                = FMLAL                                                      ;
 
 C5_FPInfinity u_FPInfinity(
     .i_Sign        ( FPInfinity_Sign        ),
