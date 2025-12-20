@@ -26,6 +26,7 @@
         // 流水线相关字段
         bit                 is_request;     // 标识请求/响应
         int                 pipeline_stage; // 流水线阶段（0-5）
+        int                 pipeline_depth;
         time                input_time;     // 输入时间戳
 
         `uvm_object_utils_begin(PE_seq_item)
