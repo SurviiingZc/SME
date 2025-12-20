@@ -72,6 +72,17 @@ make test-fdot VERB=UVM_HIGH  # PE_test_fdot, high verbosity
 make test-bfmop        # PE_test_bfmop
 make test-all          # PE_test_all
 ```
+### Single Seuquence Run
+
+```bash
+#change the file uvm_tb/test/PE_test_all.sv
+#Comment out all start codes except the one corresponding to this instruction's sequence
+#example: only run smopa sequence
+seq_smopa.start     (env.agent.sequencer); #keep corresponding code  
+// seq_smops.start     (env.agent.sequencer); #comment others 
+// seq_sumopa.start    (env.agent.sequencer); 
+.......
+```
 
 ### Batch Testing with Coverage Merging
 
