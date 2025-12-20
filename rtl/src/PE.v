@@ -148,6 +148,7 @@ wire  [  3:0]    P2_Sticky_Flag           ;
 wire             P2_Sticky_Bit            ;
 wire             P2_Internal_Acc          ;
 wire             P2_Widening_SBF          ;
+wire             P2_FMLAL                 ;
 
 wire             P3_Sticky_Bit            ;
 wire  [ 31:0]    P3_Inner_Result          ;
@@ -189,6 +190,7 @@ wire  [  3:0]    P3_Sticky_Flag           ;
 wire  [  3:0]    P3_Temp_Sticky_Flag      ;
 wire  [  3:0]    P3_Is_Exception          ;
 wire             P3_Internal_Acc          ;
+wire             P3_FMLAL                 ;
 
 wire             P4_Compute_Mode            ;
 wire  [ 2:0]     P4_Compute_Precision       ;
@@ -583,7 +585,8 @@ C3_FPADDComb u_C3_FPADDComb(
     .o_Sum_Sign            ( P2_Sum_Sign                ),
     .o_is_Exception        ( P2_is_Exception            ),
     .o_Sticky_Bit          ( P2_Sticky_Bit              ),
-    .o_Widening_SBF        ( P2_Widening_SBF            )
+    .o_Widening_SBF        ( P2_Widening_SBF            ),
+    .o_FMLAL               ( P2_FMLAL                   )
 );
 
 // assign P2_Refresh_Fault_Result = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Result[127:32],P2_Fault_Result} : P2_Result ;
@@ -633,6 +636,8 @@ Pipline_3 u_Pipline_3(
     .i_Sticky_Flag          ( P2_Sticky_Flag            ),
     .i_Sticky_Bit           ( P2_Sticky_Bit             ),
     .i_Internal_Acc         ( P2_Internal_Acc           ),
+    .i_FMLAL                ( P2_FMLAL                  ),
+    .o_FMLAL                ( P3_FMLAL                  ),
     .o_Internal_Acc         ( P3_Internal_Acc           ),
     .o_Sticky_Bit           ( P3_Sticky_Bit             ),
     .o_Sticky_Flag          ( P3_Sticky_Flag            ),
@@ -712,7 +717,7 @@ C4_Gen_OuterSign u_C4_Gen_OuterSign(
 //     end
 // endgenerate
 
-assign P3_Final_Result = P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
+assign P3_Final_Result = P3_FMLAL | P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
 assign P3_Temp_Sticky_Flag  = P3_Internal_Acc ? 4'd0 : P3_Sticky_Flag ;
 
 Pipline_4 u_Pipline_4(

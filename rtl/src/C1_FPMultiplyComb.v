@@ -59,6 +59,41 @@ wire [ 15:0]    T_Expo2                ;
 wire [ 47:0]    T_Mant2                ;
 wire [ 63:0]    T_Value2               ;
 wire [  2:0]    T_Precision_Operand2   ;
+wire [ 31:0]    T_Operand_A            ;
+wire [ 31:0]    T_Operand_B            ;
+wire [ 31:0]    T_Operand_A_8          ;
+wire [ 31:0]    T_Operand_B_8          ;
+wire [ 31:0]    T_Operand_A_16         ;
+wire [ 31:0]    T_Operand_B_16         ;
+wire [ 31:0]    T_Operand_A_32         ;
+wire [ 31:0]    T_Operand_B_32         ;
+wire            is_8_bits              ;
+wire            is_16_bits             ;
+wire            is_32_bits             ;
+
+genvar i;
+
+assign is_8_bits                    = (i_Compute_Precision == `INT8)                                    ;
+assign is_16_bits                   = ((i_Compute_Precision == `BF16) | (i_Compute_Precision == `FP16) | (i_Compute_Precision == `INT16)) ;
+assign is_32_bits                   = ((i_Compute_Precision == `FP32))                                  ;
+
+generate
+    for(i = 0 ; i < 4 ; i = i + 1) begin
+        assign T_Operand_A_8[8*i+:8] = {8{i_Active_Element_A[i]}} & i_Operand_A[8*i+:8];
+        assign T_Operand_B_8[8*i+:8] = {8{i_Active_Element_B[i]}} & i_Operand_B[8*i+:8];
+    end
+
+    for(i = 0 ; i < 2 ; i = i + 1) begin
+        assign T_Operand_A_16[16*i+:16] = {16{i_Active_Element_A[2*i]}} & i_Operand_A[16*i+:16];
+        assign T_Operand_B_16[16*i+:16] = {16{i_Active_Element_B[2*i]}} & i_Operand_B[16*i+:16];
+    end
+
+endgenerate
+
+assign T_Operand_A_32 = {32{i_Active_Element_A[0]}} & i_Operand_A ;
+assign T_Operand_B_32 = {32{i_Active_Element_B[0]}} & i_Operand_B ;
+assign T_Operand_A    = {32{is_8_bits}} & T_Operand_A_8 | {32{is_16_bits}} & T_Operand_A_16 | {32{is_32_bits}} & T_Operand_A_32 ;
+assign T_Operand_B    = {32{is_8_bits}} & T_Operand_B_8 | {32{is_16_bits}} & T_Operand_B_16 | {32{is_32_bits}} & T_Operand_B_32 ;
 
 C1_FPUnpackAll u_FPUnpackAll(
     .i_Compute_Mode        ( i_Compute_Mode        ),
@@ -67,8 +102,8 @@ C1_FPUnpackAll u_FPUnpackAll(
     .i_Vector_Group_Num    ( i_Vector_Group_Num    ),
     .i_Exception_Handling  ( i_Exception_Handling  ),
     .i_Add_or_Subtract     ( i_Add_or_Subtract     ),
-    .i_Operand_A           ( i_Operand_A           ),
-    .i_Operand_B           ( i_Operand_B           ),
+    .i_Operand_A           ( T_Operand_A           ),
+    .i_Operand_B           ( T_Operand_B           ),
     .i_Operand_C           ( i_Operand_C           ),
     .i_FMLAL               ( o_FMLAL               ),
     .o_TypeA               ( o_TypeA               ),
@@ -96,8 +131,8 @@ C1_FPUnpackAll u_FPUnpackAll(
 );
 
 C1_ExceptionHandling u_ExceptionHandling(
-    .i_Operand_A           ( i_Operand_A           ),
-    .i_Operand_B           ( i_Operand_B           ),
+    .i_Operand_A           ( T_Operand_A           ),
+    .i_Operand_B           ( T_Operand_B           ),
     .i_Operand_C           ( i_Operand_C           ),
     .i_TypeA               ( o_TypeA               ),
     .i_SignA               ( o_SignA               ),
@@ -121,8 +156,8 @@ C1_ExceptionHandling u_ExceptionHandling(
 
 C1_FPMutiArray u_FPMutiArray(
     .i_Compute_Precision  ( i_Compute_Precision  ),
-    .i_Operand_A          ( i_Operand_A          ),
-    .i_Operand_B          ( i_Operand_B          ),
+    .i_Operand_A          ( T_Operand_A          ),
+    .i_Operand_B          ( T_Operand_B          ),
     .o_Mant               ( o_Mant               )
 );
 
