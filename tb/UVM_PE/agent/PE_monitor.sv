@@ -67,7 +67,12 @@
                     tr.is_request = 1;
                     tr.input_time = $time;
                     tr.pipeline_stage = 0;
-                    
+                    if(tr.i_Compute_Precision == `INT16 || tr.i_Compute_Precision == `INT8) begin
+                        tr.pipeline_depth = 3; // 整数模式3周期延迟
+                    end else begin
+                        tr.pipeline_depth = 7; // 浮点模式7周期延迟
+                    end
+
                     // 放入队列
                     input_queue.push_back(tr);
                     pipeline_stages.push_back(0);
@@ -84,13 +89,8 @@
         task monitor_outputs();
             forever begin
                 @(vif.mon_cb);
-                if(vif.i_Compute_Precision == `INT16 || vif.i_Compute_Precision == `INT8) begin
-                    pipeline_depth = 3; // 整数模式3周期延迟
-                end else begin
-                    pipeline_depth = 7; // 浮点模式7周期延迟
-                end
                 // 检查队列中是否有事务已完成流水线
-                if(pipeline_stages.size() > 0 && pipeline_stages[0] >= pipeline_depth) begin
+                if(pipeline_stages.size() > 0 && pipeline_stages[0] >= input_queue[0].pipeline_depth) begin
                     // 获取最早的事务
                     PE_seq_item tr = input_queue[0];
                     PE_seq_item rsp_tr;
