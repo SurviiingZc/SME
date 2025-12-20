@@ -196,7 +196,7 @@ void PE_C_top(
         }
         case FMLAL:{
             o_Result[0] = FPMulAddH_ZA(i_Operand_C[0], i_Operand_A, i_Operand_B, 32, i_Exception_Handling);
-            o_Result[1] = FPMulAddH_ZA(i_Operand_C[1], i_Operand_A, i_Operand_B, 32, i_Exception_Handling);
+            o_Result[1] = FPMulAddH_ZA(i_Operand_C[1], ((i_Operand_A>>16) & 0xFFFF), ((i_Operand_B>>16) & 0xFFFF), 32, i_Exception_Handling);
             o_Result[2] = o_Result[0];
             o_Result[3] = o_Result[0];
             break;
