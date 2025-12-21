@@ -178,7 +178,7 @@ class PE_sequence_fmla extends PE_sequence;
                 tr.i_Exception_Handling[19]     == `IEEE_Half_Precision_Format;// Alternative_Half_Precision_Format IEEE_Half_Precision_Format
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;// Flush_Denormalized_Results_to_Zero Do_Not_Flush_Denormalized_Results_to_Zero
-                i_Exception_Handling[16:15] dist {
+                tr.i_Exception_Handling[16:15] dist {
                     2'b00 := 25,
                     2'b01 := 25,
                     2'b10 := 25,

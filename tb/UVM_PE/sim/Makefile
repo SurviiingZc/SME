@@ -38,8 +38,8 @@ RTL_DIR = ../rtl
 
 CM = -cm line+cond+fsm+branch+tgl
 CM_NAME = -cm_name simv
-# 使用时间戳或唯一ID作为覆盖率目录，避免覆盖
-COV_DIR = cov_$(TESTNAME)_$(shell date +%Y%m%d_%H%M%S)
+# 使用testname作为覆盖率目录名
+COV_DIR = cov_$(TESTNAME)
 CM_DIR = -cm_dir ./$(COV_DIR)
 CM_MERGE_DIR = -cm_dir ./merged_cov
 

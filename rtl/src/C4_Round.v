@@ -20,7 +20,7 @@ module C4_Round #(
     output      [31:0]          o_rounded_result                  // Rounded result
 );
 
-
+    wire                                 o_sticky_flag               ;
     wire  signed   [EXP_WIDTH-1:0]       i_biased_exp                ;
     wire  signed   [EXP_WIDTH-1:0]       i_biased_exp_unconstrained  ;
     wire  signed   [EXP_WIDTH-1:0]       i_exp_true                  ;
@@ -37,7 +37,7 @@ module C4_Round #(
     wire        is_fp32         = (i_N == 1)                                                        ;    
     wire [1:0]  i_Data_Width    = (is_bf16) ? 2'd2 : (is_fp16) ? 2'd0 : (is_fp32) ? 2'd1 : 2'b0     ;
     wire        EBF             = i_Exception_Handling[8]                                           ;
-
+    wire        sticky_bit      = i_sticky_bit | o_sticky_flag                                      ;
     reg [31:0] result;
     always @(*) begin
         if (is_bf16) begin
@@ -59,7 +59,7 @@ module C4_Round #(
         .biased_exp         ( i_biased_exp         ),
         .exponent           ( i_exponent           ),
         .adjusted_mantissa  ( i_adjusted_mantissa  ),
-        .i_sticky_bit       ( i_sticky_bit         ),
+        .i_sticky_bit       ( sticky_bit           ),
         .o_round_result     ( BFRound_result       )
     );
 
@@ -75,7 +75,7 @@ module C4_Round #(
     .i_adjusted_mantissa         ( i_adjusted_mantissa         ),
     .i_minimum_exp               ( i_minimum_exp               ),
     .i_mantissa                  ( i_mantissa                  ),
-    .i_sticky_bit                ( i_sticky_bit                ),
+    .i_sticky_bit                ( sticky_bit                  ),
     .i_is_bf16                   ( is_bf16                     ),
     .i_is_fp16                   ( is_fp16                     ),
     .i_is_fp32                   ( is_fp32                     ),
@@ -98,6 +98,7 @@ module C4_Round #(
     .biased_exp                ( i_biased_exp              ),
     .biased_exp_unconstrained  ( i_biased_exp_unconstrained),
     .i_exp_true                ( i_exp_true                ),
+    .sticky_flag               ( o_sticky_flag             ),
     .exponent                  ( i_exponent                ),
     .adjusted_mantissa         ( i_adjusted_mantissa       ),
     .minimum_exp               ( i_minimum_exp             ),
