@@ -1,0 +1,19 @@
+Module Name,Module Type,Port Name,Direction,Width,Index,Comment Source,Comment 
+PE,Top_Level,clk,INPUT,1,-,-,-
+PE,Top_Level,rst_n,INPUT,1,-,-,-
+PE,Top_Level,i_Compute_Mode,INPUT,1,-,-,-
+PE,Top_Level,i_Compute_Precision,INPUT,3,[2:0],-,-
+PE,Top_Level,i_Is_Widening,INPUT,1,-,-,-
+PE,Top_Level,i_Add_or_Subtract,INPUT,1,-,-,-
+PE,Top_Level,i_ZmIsSigned,INPUT,1,-,-,-
+PE,Top_Level,i_ZnIsSigned,INPUT,1,-,-,-
+PE,Top_Level,i_Num_of_Vector_Group,INPUT,1,-,-,-
+PE,Top_Level,i_Vector_Group_Num,INPUT,2,[1:0],-,-
+PE,Top_Level,i_Exception_Handling,INPUT,20,[19:0],-,-
+PE,Top_Level,i_ZA_Base_Address,INPUT,32,[31:0],-,-
+PE,Top_Level,i_Active_Element_A,INPUT,4,[3:0],-,-
+PE,Top_Level,i_Active_Element_B,INPUT,4,[3:0],-,-
+PE,Top_Level,i_Operand_A,INPUT,32,[31:0],-,-
+PE,Top_Level,i_Operand_B,INPUT,32,[31:0],-,-
+PE,Top_Level,i_Operand_C,INPUT,128,[127:0],-,-
+PE,Top_Level,o_Result,OUTPUT,128,[127:0],-,-

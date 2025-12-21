@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<goal_summary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:noNamespaceSchemaLocation="file://Dashboard/goal_xml.xsd">
+<!-- This file schema is internal to Atrenta DashBoard and subject to change in future without notice --> 
+<goal name="lint/lint_turbo_rtl"/>
+<top name="PE"/>
+<dir name="/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/consolidated_reports/PE_lint_lint_turbo_rtl/"/>
+<log name="/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass.log" link="data_files/PE_lint-lint_turbo_rtl_spyglass.log"/>
+  <std_reports> 
+<report name="moresimple" link="data_files/PE_lint-lint_turbo_rtl_moresimple.rpt" tooltip="moresimple.rpt" />
+<report name="no_msg_reporting_rules" link="data_files/PE_lint-lint_turbo_rtl_no_msg_reporting_rules.rpt" tooltip="no_msg_reporting_rules.rpt" />
+  </std_reports> 
+<tech_reports> 
+   <technology name="(Not Available)"> 
+<report name="auto_verify" link="data_files/PE_lint-lint_turbo_rtl_auto_verify.rpt.html" tooltip="auto_verify.rpt" />
+<report name="ADV-LINT" link="data_files/PE_lint-lint_turbo_rtl_ADV-LINT.rpt.html" tooltip="ADV-LINT.rpt" />
+<report name="moresimple_turbo" link="data_files/PE_lint-lint_turbo_rtl_moresimple_turbo.rpt.html" tooltip="moresimple_turbo.rpt" />
+   </technology> 
+</tech_reports> 
+<statistics fatal="0" error="0" warning="151" info="6" waived_error="0" waived_warning="0" waived_info="0" /> 
+<tech_summary> 
+   <technology name="Advanced_Lint"> 
+<item name="Partially-proven properties=0" link="data_files/PE_lint-lint_turbo_rtl_auto_verify.rpt.html" /> 
+<item name="Failed properties=0" link="data_files/PE_lint-lint_turbo_rtl_auto_verify.rpt.html" /> 
+   </technology> 
+</tech_summary> 
+</goal_summary> 

@@ -60,6 +60,7 @@ wire            P0_Internal_Acc          ;
 wire            P0_Keep_Expo_signed      ;
 wire  [31: 0]   P0_AddZA                 ;
 wire            P0_Widening_SBF          ;
+wire            P0_FMOP_FP16_Non_Widening;
 wire  [31: 0]   P1_AddZA                 ;
 wire            P1_Keep_Expo_signed      ;
 wire            P2_Keep_Expo_signed      ;
@@ -321,8 +322,8 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .i_Operand_A            ( P0_Operand_A           ),
     .i_Operand_B            ( P0_Operand_B           ),
     .i_Operand_C            ( P0_Operand_C           ),
+    // .o_Mant                 ( P0_Mant                ),
     .o_Precision_Addend     ( P0_Precision_Addend    ),
-    .o_Mant                 ( P0_Mant                ),
     .o_Result               ( P0_Result              ),
     .o_OutSign              ( P0_OutSign             ),
     .o_OutExpo              ( P0_OutExpo             ),
@@ -335,20 +336,35 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .o_MantA                ( P0_MantA               ),
     .o_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
     .o_Internal_Acc         ( P0_Internal_Acc        ),
+    .o_FMOP_FP16_Non_Widening( P0_FMOP_FP16_Non_Widening ),
     .o_Widening_SBF         ( P0_Widening_SBF        )
 );
 
-IntMult_TOP u_IntMult_TOP(
+C1_Mult_ALL u_C1_Mult_ALL(
     .i_operand1              ( P0_Operand_A              ),
     .i_operand2              ( P0_Operand_B              ),
     .i_ZmIsSigned            ( P0_ZmIsSigned             ),
     .i_ZnIsSigned            ( P0_ZnIsSigned             ),
     .i_Active_Element_A      ( P0_Active_Element_A       ),
     .i_Active_Element_B      ( P0_Active_Element_B       ),
-    .i_Calculation_pricision ( P0_Compute_Precision      ),
+    .FMOP_FP16_Non_Widening  ( P0_FMOP_FP16_Non_Widening ),
+    .i_Mode                  ( P0_Compute_Precision      ),
     .o_AddZA                 ( P0_AddZA                  ),
-    .o_Product               ( P0_Int_Product            )
+    .o_Product               ( P0_Int_Product            ),
+    .o_Mant                  ( P0_Mant                   )
 );
+
+// IntMult_TOP u_IntMult_TOP(
+//     .i_operand1              ( P0_Operand_A              ),
+//     .i_operand2              ( P0_Operand_B              ),
+//     .i_ZmIsSigned            ( P0_ZmIsSigned             ),
+//     .i_ZnIsSigned            ( P0_ZnIsSigned             ),
+//     .i_Active_Element_A      ( P0_Active_Element_A       ),
+//     .i_Active_Element_B      ( P0_Active_Element_B       ),
+//     .i_Calculation_pricision ( P0_Compute_Precision      ),
+//     .o_AddZA                 ( P0_AddZA                  ),
+//     .o_Product               ( P0_Int_Product            )
+// );
 
 //=====================================================================
 // Description : Pipline Level 1
@@ -884,6 +900,7 @@ generate
             .i_exp                 ( P5_Sum_Expo[i*10+:10]      ),
             .i_sign                ( P5_Sum_Sign[i*1+:1]        ),
             .i_Exception_Handling  ( P5_Exception_Handling      ),
+            .i_Compute_Precision   ( P5_Compute_Precision       ),
             .i_N                   ( P5_N[i*1+:1]               ),
             .i_isbfloat16          ( P5_IsBfloat16[i*1+:1]      ),
             .i_sticky_bit          ( P5_Sticky_Bit[i]           ),

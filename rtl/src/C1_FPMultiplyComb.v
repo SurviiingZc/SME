@@ -26,7 +26,7 @@ module C1_FPMultiplyComb (
     input      [ 31:0]   i_Operand_B            ,
     input      [127:0]   i_Operand_C            ,
     output     [  2:0]   o_Precision_Addend     ,
-    output     [191:0]   o_Mant                 ,
+    // output     [191:0]   o_Mant                 ,
     output     [127:0]   o_Result               ,
     output     [  3:0]   o_OutSign              ,
     output     [ 35:0]   o_OutExpo              ,
@@ -39,6 +39,7 @@ module C1_FPMultiplyComb (
     output     [ 95:0]   o_MantA                ,
     output               o_Keep_Expo_signed     ,
     output               o_Internal_Acc         ,
+    output               o_FMOP_FP16_Non_Widening ,
     output               o_Widening_SBF         
 );
 
@@ -151,14 +152,15 @@ C1_ExceptionHandling u_ExceptionHandling(
     .o_Keep_Expo_signed    ( o_Keep_Expo_signed    ),
     .o_Internal_Acc        ( o_Internal_Acc        ),
     .o_Widening_SBF        ( o_Widening_SBF        ),
+    .FMOP_FP16_Non_Widening ( o_FMOP_FP16_Non_Widening),
     .o_FMLAL               ( o_FMLAL               )
 );
 
-C1_FPMutiArray u_FPMutiArray(
-    .i_Compute_Precision  ( i_Compute_Precision  ),
-    .i_Operand_A          ( T_Operand_A          ),
-    .i_Operand_B          ( T_Operand_B          ),
-    .o_Mant               ( o_Mant               )
-);
+// C1_FPMutiArray u_FPMutiArray(
+//     .i_Compute_Precision  ( i_Compute_Precision  ),
+//     .i_Operand_A          ( T_Operand_A          ),
+//     .i_Operand_B          ( T_Operand_B          ),
+//     .o_Mant               ( o_Mant               )
+// );
 
 endmodule

@@ -10,8 +10,8 @@ module C5_FPProcessNaNs (
     input       [  5:0]   i_Type          ,
     input       [  1:0]   i_Data_Width    ,
     input       [ 63:0]   i_FPNumber      ,
-    output reg  [ 31:0]   o_FP_Result     ,
-    output reg            o_Done
+    output      [ 31:0]   o_FP_Result     ,
+    output                o_Done
 );
 
 wire          ALTFP             ;

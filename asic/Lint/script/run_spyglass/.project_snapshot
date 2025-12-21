@@ -1,0 +1,185 @@
+##Data Import Section
+
+read_file -type sgdc /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/clock.sgdc
+read_file -type verilog ../../../rtl/src/Macro_Definition.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Booth_ALL.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_BFUnpack.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Booth_4x4.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Booth_8x8.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Booth_12x12.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Booth_pp.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Compress_3to2.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Compress_4to2.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_CSLA.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_ExceptionHandling.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPConvertNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPDefaultNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPInfinity.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPMultiplyComb.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPProcessNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPProcessNaNs.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPUnpackAll.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPUnpackBase.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_FPZero.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Ks48add.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C1_Mult_ALL.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C2_FPInfinity.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C2_FPZero.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C2_Gen_FuseAdd.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C2_LZC.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C2_NormalizeReal.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C2_Round.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_BFUnpack.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_ExceptionHandling.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPADDComb.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPAddition.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPDefaultNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPInfinity.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPProcessNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPProcessNaNs.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPUnpackAll.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPUnpackBase.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C3_FPZero.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_BFRound.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_CarryDetector.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_FPInfinity.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_FPMaxNormal.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_FPNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_FPRoundBase.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_FPZero.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_Gen_OuterSign.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_LZC.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_Normal_Result.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_NormalizeReal.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C4_Round.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_BFUnpack.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_ExceptionHandling.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPADDComb.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPAddition.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPDefaultNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPInfinity.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPProcessNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPProcessNaNs.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPUnpackAll.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPUnpackBase.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C5_FPZero.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_BFRound.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_CarryDetector.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_FPInfinity.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_FPMaxNormal.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_FPNaN.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_FPRoundBase.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_FPZero.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_LZC.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_Normal_Result.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_NormalizeReal.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/C6_Round.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Int16Addition.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/IntAddAarry.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/IntAddition.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/IntSubtraction.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/PE.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_0.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_1.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_2.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_3.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_4.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_5.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+read_file -type verilog ../../../rtl/src/Pipline_6.v
+#BackRefFile:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj #LineNumber:40
+
+##Common Options Section
+
+set_option top PE
+set_option language_mode verilog
+set_option enableV05 yes
+set_option incdir { /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src }
+set_option projectwdir /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script
+
+
+##Goal Setup Section
+
