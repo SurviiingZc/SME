@@ -173,7 +173,7 @@ class PE_sequence_bfmopa_EBF extends PE_sequence;
         if (starting_phase != null)
             starting_phase.raise_objection(this);
             
-        for(i = 0; i < 5000; i++)begin
+        for(i = 0; i < 50000; i++)begin
             `uvm_info("SEQ", $sformatf("Processing test %0d", i), UVM_MEDIUM)
             tr = PE_seq_item::type_id::create("tr");
 
@@ -199,13 +199,13 @@ class PE_sequence_bfmopa_EBF extends PE_sequence;
                 tr.i_Exception_Handling[18]     == `Operation_Involving_NaNs_Returns_Default_NaN;
                 tr.i_Exception_Handling[17]     == `Do_Not_Flush_Denormalized_Results_to_Zero;
                 tr.i_Exception_Handling[16:15]  == `Round_Towards_Zero;
-                // i_Exception_Handling[16:15] dist {
-                //     2'b00 := 25,
-                //     2'b01 := 25,
-                //     2'b10 := 25,
-                //     2'b11 :/ 25 
-                // };
-                tr.i_Exception_Handling[14:13]  == `Stride_1;
+                i_Exception_Handling[16:15] dist {
+                    2'b00 := 25,
+                    2'b01 := 25,
+                    2'b10 := 25,
+                    2'b11 :/ 25 
+                };
+                // tr.i_Exception_Handling[14:13]  == `Stride_1;
                 tr.i_Exception_Handling[12]     == `Do_Not_Flush_Denormalized_Results_to_Zero_Half;
                 tr.i_Exception_Handling[11:10]  == `Length_1;
                 tr.i_Exception_Handling[9]      == `Trap_Disabled_for_Input_Denormal;

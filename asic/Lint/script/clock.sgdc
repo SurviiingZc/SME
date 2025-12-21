@@ -1,0 +1,3 @@
+current_design PE
+
+clock -name PE.clk -domain CLK -edge {"0" "0.41"} -period 0.83

@@ -1,0 +1,13 @@
+ERROR [SPG#2002]: found error in project file `../script/run_spyglass.prj' at line 9
+                  (invalid value 'sdc' for option '-type' (allowed values are 'verilog vhdl def hdl gateslib gateslibdb sglib lef plib sgdc waiver adc awl sourcelist sourcelist_relative obw'))
+                  
+                  Detailed Error Trace
+                  --------------------
+                    invalid value 'sdc' for option '-type' (allowed values are 'verilog vhdl def hdl gateslib gateslibdb sglib lef plib sgdc waiver adc awl sourcelist sourcelist_relative obw')
+                        invoked from within
+                    "read_file -type sdc [file join $prj_dir constraint_sdc.tcl]"
+                        (file "../script/run_spyglass.prj" line 9)
+                        invoked from within
+                    "open_project ../script/run_spyglass.prj"
+                  
+                  

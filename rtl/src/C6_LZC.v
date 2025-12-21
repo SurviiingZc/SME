@@ -5,7 +5,7 @@ module C6_LZC_round #(
     parameter WIDTH = 49
 )(   
     input       [WIDTH-1:0] in,       
-    output reg  [5:0]       o_count   
+    output      [5:0]       o_count   
 );
 
     function [1:0] lzc2;

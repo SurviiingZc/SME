@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<severity_lines xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///Dashboard/GoalQualityGraph.xsd">
+<!-- This file schema is internal to SpyGlass DashBoard and subject to change in future without notice --> 
+	  <severity name="Fatal" color="11350115" line_type="solid">
+		<data_point date_time="12/21/2025 (17:22)" value="10" />
+		<data_point date_time="12/21/2025 (17:24)" value="0" />
+		<data_point date_time="12/21/2025 (17:26)" value="0" />
+		<data_point date_time="12/21/2025 (17:28)" value="0" />
+	  </severity> 
+	  <severity name="Error" color="16711680" line_type="solid">
+		<data_point date_time="12/21/2025 (17:22)" value="0" />
+		<data_point date_time="12/21/2025 (17:24)" value="321" />
+		<data_point date_time="12/21/2025 (17:26)" value="1" />
+		<data_point date_time="12/21/2025 (17:28)" value="0" />
+	  </severity> 
+	  <severity name="Warning" color="15696483" line_type="solid">
+		<data_point date_time="12/21/2025 (17:22)" value="2" />
+		<data_point date_time="12/21/2025 (17:24)" value="166" />
+		<data_point date_time="12/21/2025 (17:26)" value="151" />
+		<data_point date_time="12/21/2025 (17:28)" value="151" />
+	  </severity> 
+	  <severity name="Waived-Error" color="0" line_type="dotted">
+		<data_point date_time="12/21/2025 (17:22)" value="0" />
+		<data_point date_time="12/21/2025 (17:24)" value="0" />
+		<data_point date_time="12/21/2025 (17:26)" value="0" />
+		<data_point date_time="12/21/2025 (17:28)" value="0" />
+	  </severity> 
+	  <severity name="Waived-Warning" color="0" line_type="dotted">
+		<data_point date_time="12/21/2025 (17:22)" value="0" />
+		<data_point date_time="12/21/2025 (17:24)" value="0" />
+		<data_point date_time="12/21/2025 (17:26)" value="0" />
+		<data_point date_time="12/21/2025 (17:28)" value="0" />
+	  </severity> 
+	<title>Module:PE     Goal: lint/lint_turbo_rtl </title>
+	<xaxis_label>Date</xaxis_label>
+	<yaxis_label>Violation Count</yaxis_label>
+	</severity_lines>

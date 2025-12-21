@@ -41,6 +41,8 @@ module Pipline_3 (
         i_Sticky_Flag          ,
         i_Sticky_Bit           ,
         i_Internal_Acc         ,
+        i_FMLAL                ,
+        o_FMLAL                ,
         o_Internal_Acc         ,
         o_Sticky_Bit           ,
         o_Sticky_Flag          ,
@@ -115,6 +117,8 @@ input       [127:0]   i_Result                ;
 input       [  3:0]   i_Sticky_Flag           ;
 input            	  i_Sticky_Bit            ;
 input                 i_Internal_Acc          ;
+input                 i_FMLAL                 ;
+output reg            o_FMLAL                 ;
 output reg            o_Internal_Acc          ;
 output reg            o_Sticky_Bit            ;
 output reg  [  3:0]   o_Sticky_Flag           ;
@@ -186,6 +190,7 @@ always @(posedge clk or negedge rst_n) begin
         o_Sticky_Flag         <= 'd0 ;
         o_Sticky_Bit          <= 'd0 ;
         o_Internal_Acc        <= 'd0 ;
+        o_FMLAL               <= 'd0 ;
     end 
     else begin
         o_Compute_Mode        <= i_Compute_Mode        ;
@@ -222,6 +227,7 @@ always @(posedge clk or negedge rst_n) begin
         o_Sticky_Flag         <= i_Sticky_Flag         ;
         o_Sticky_Bit          <= i_Sticky_Bit          ;
         o_Internal_Acc        <= i_Internal_Acc        ;
+        o_FMLAL               <= i_FMLAL               ;
     end
 end
 
@@ -263,6 +269,8 @@ input       [127:0]   i_Result                ;
 input       [  3:0]   i_Sticky_Flag           ;
 input            	  i_Sticky_Bit            ;
 input                 i_Internal_Acc          ;
+input                 i_FMLAL                 ;
+output                o_FMLAL                 ;
 output                o_Internal_Acc          ;
 output                o_Sticky_Bit            ;
 output      [  3:0]   o_Sticky_Flag           ;
@@ -339,6 +347,7 @@ assign o_Result              = i_Result              ;
 assign o_Sticky_Flag         = i_Sticky_Flag         ;
 assign o_Sticky_Bit          = i_Sticky_Bit          ;
 assign o_Internal_Acc        = i_Internal_Acc        ;
+assign o_FMLAL               = i_FMLAL               ;
 
 `endif
     

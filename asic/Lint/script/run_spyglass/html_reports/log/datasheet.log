@@ -1,0 +1,34 @@
+SpyGlass Predictive Analyzer(R) - SpyGlass_vR-2020.12-SP2
+All Rights Reserved. Use, disclosure or duplication 
+without prior written permission of Synopsys Inc. is prohibited.
+Technical support: email spyglass_support@synopsys.com 
+
+Creating 'datasheet' reports using project '../script/run_spyglass.prj'
+##cwd         : /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/work
+##system      : Linux server01 3.10.0-1160.71.1.el7.x86_64 #1 SMP Tue Jun 28 15:37:28 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+##Date & Time : Sun Dec 21 17:28:28 2025
+Checkout 'datasheet' license at Sun Dec 21 17:28:28 2025 
+Checkout 'datasheet' license completed at Sun Dec 21 17:28:28 2025 
+Starting Generating DataSheet report at Sun Dec 21 17:28:28 2025 
+Checking project file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj at Sun Dec 21 17:28:28 2025 
+Processing Project File:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj 
+     Work Directory:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass 
+     Top Name: PE 
+     Group Mode: 0 
+     Methodology:/apps/synopsys/spyglass_vR-2020.12-SP2/SPYGLASS_HOME/GuideWare/2020.12/block/rtl_handoff 
+    Goals executed: lint/lint_turbo_rtl:: 
+        Found data file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE//lint/lint_turbo_rtl/spyglass_spysch/morelint/PragmaComments 
+ Data file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE//lint/lint_turbo_rtl/spyglass_spysch/morelint/PragmaComments seems to be empty 
+        Found data file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE//lint/lint_turbo_rtl/spyglass_spysch/morelint/RegInputOutput 
+ Data file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE//lint/lint_turbo_rtl/spyglass_spysch/morelint/RegInputOutput seems to be empty 
+        Found data file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE//lint/lint_turbo_rtl/spyglass_spysch/morelint/ReportPorts 
+Taking file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE//lint/lint_turbo_rtl/spyglass_spysch/morelint/ReportPorts for ReportPorts data 
+DataSheet report processing completed at Sun Dec 21 17:28:28 2025 
+Checking in 'datasheet' license at Sun Dec 21 17:28:28 2025 
+Checking in 'datasheet' license completed at Sun Dec 21 17:28:28 2025 
+----------------------------------------------------------------
+Report 'datasheet' created.
+  File: /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/html_reports/datasheet.html 
+----------------------------------------------------------------
+
+SpyGlass Exit Code 0

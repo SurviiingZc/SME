@@ -34,7 +34,8 @@ module C3_FPADDComb(
 	output      	         o_Sum_Sign		        ,
     output                   o_is_Exception         ,
     output                   o_Sticky_Bit           ,
-    output                   o_Widening_SBF         
+    output                   o_Widening_SBF         ,
+    output                   o_FMLAL                
 );
 
 wire [  2:0]    T_Type1                ;
@@ -82,7 +83,8 @@ C3_ExceptionHandling u_ExceptionHandling(
     .i_Exception_Handling  ( i_Exception_Handling  ),
     .o_Result              ( o_Fault_Result        ),
     .o_is_Exception        ( o_is_Exception        ),
-    .BFMOP_Widening_SBF    ( o_Widening_SBF        )
+    .BFMOP_Widening_SBF    ( o_Widening_SBF        ),
+    .o_FMLAL               ( o_FMLAL               )
 );
 
 C3_FPAddition u_C3_FPAddition(
