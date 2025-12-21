@@ -7111,3 +7111,6 @@ source -echo -verbose /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/as
 #@ 
 #@ # reg → reg (setup)
 #@ report_timing -path full -net -cap -input -tran -delay max   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
+#@ 
+#@ # reg → reg (hold)
+#@ report_timing -path full -net -cap -input -tran -delay min   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt

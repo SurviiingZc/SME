@@ -1155,3 +1155,5 @@ report_timing -path full -net -cap -input -tran -delay min   -from [all_inputs] 
 # report_timing -path full -net -cap -input -tran -delay min #   -from [all_registers -clock_pins] -to [all_outputs] #   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.min.rpt
 # reg → reg (setup)
 report_timing -path full -net -cap -input -tran -delay max   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
+# reg → reg (hold)
+report_timing -path full -net -cap -input -tran -delay min   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt
