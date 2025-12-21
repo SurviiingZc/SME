@@ -147,8 +147,7 @@ assign T_Temp_Mant           = {1'b0, Fuse_Max_Mant} + {1'b0, Fuse_Neg_Min_Mant}
 assign o_Temp_Mant           = Fuse_is_Comp ? {1'b0,T_Temp_Mant[71:0]} : T_Temp_Mant                        ;
 assign o_Temp_Expo	         = ~All_Equal ? Fuse_Expo_Max : All_Equal_Expo				             	    ;
 assign o_Temp_Sign	         = ~All_Equal ? Fuse_Sign_Max :	
-                                (FPCR_RMode == `Round_Towards_Minus_Infinity) ? 1'd1 : 1'd0	                ;
-
+                                ((i_Widening_SBF == 1) ?  1'd0 : (FPCR_RMode == `Round_Towards_Minus_Infinity) ? 1'd1 : 1'd0)	                ;
 assign o_Sum_Mant            = o_Temp_Mant[72:25]                                                           ; 
 assign o_Sum_Expo            = o_Temp_Expo                                                                  ;
 assign o_Sum_Sign            = o_Temp_Sign                                                                  ;
