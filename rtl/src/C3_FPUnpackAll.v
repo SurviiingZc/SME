@@ -114,8 +114,8 @@ C3_FPUnpackBase u_FPUnpackBase_Operand1(
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_BFType1                      ),
     .o_FP_Number_Sign      ( T_BFSign1                      ),
-    .o_FP_Exponent         ( T_BFMant1                      ),
-    .o_FP_Mantissa         ( T_BFExpo1                      ),
+    .o_FP_Exponent         ( T_BFExpo1                      ),
+    .o_FP_Mantissa         ( T_BFMant1                      ),
     .o_FP_Number_Value     ( T_BFValue1                     )
 );
 
@@ -126,8 +126,8 @@ C3_FPUnpackBase u_FPUnpackBase_Operand2(
     .i_Exception_Handling  ( i_Exception_Handling           ),
     .o_FPType              ( T_BFType2                      ),
     .o_FP_Number_Sign      ( T_BFSign2                      ),
-    .o_FP_Exponent         ( T_BFMant2                      ),
-    .o_FP_Mantissa         ( T_BFExpo2                      ),
+    .o_FP_Exponent         ( T_BFExpo2                      ),
+    .o_FP_Mantissa         ( T_BFMant2                      ),
     .o_FP_Number_Value     ( T_BFValue2                     )
 );
 
