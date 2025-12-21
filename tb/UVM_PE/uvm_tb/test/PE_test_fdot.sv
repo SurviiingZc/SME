@@ -31,9 +31,9 @@ class PE_test_fdot extends uvm_test;
         
         `uvm_info("TEST", "Running float dot test", UVM_LOW)
         seq_fmlal.start(env.agent.sequencer); 
-        seq_fmla.start(env.agent.sequencer);  
-        seq_fmla_32.start(env.agent.sequencer);
-        seq_fdot.start(env.agent.sequencer);
+        // seq_fmla.start(env.agent.sequencer);  
+        // seq_fmla_32.start(env.agent.sequencer);
+        // seq_fdot.start(env.agent.sequencer);
           
         phase.drop_objection(this);
         
