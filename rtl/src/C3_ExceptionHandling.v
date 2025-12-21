@@ -25,7 +25,8 @@ module C3_ExceptionHandling (
     input  [ 19:0]    i_Exception_Handling   ,
     output [ 31:0]    o_Result               ,
     output            o_is_Exception         ,
-    output            BFMOP_Widening_SBF    
+    output            BFMOP_Widening_SBF     ,
+    output            o_FMLAL                
 );
 
 wire            FPData_Width                ;
@@ -83,7 +84,7 @@ assign o_Result             = {32{FPNumNaNDone}} & FPProcessNaN |
                                 {32{Sign_NaN}} & FPDefaultNaN |       
                                 {32{~FPNumNaNDone & ~Sign_NaN & Sign_Infinity}} & FPInfinity |      
                                 {32{Sign_Zero | Sign_Diff_Zero}} & FPZero                                        ;
-
+assign o_FMLAL              = ~i_Compute_Mode & (i_Compute_Precision == `FP16) & (i_Vector_Group_Num == `Double_Vector_Group) & i_Is_Widening ; 
 
 C3_FPInfinity u_FPInfinity(
     .i_Sign        ( FPInfinity_Sign        ),

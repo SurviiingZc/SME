@@ -1,0 +1,56 @@
+ 
+****************************************
+Report : area
+Design : PE
+Version: R-2020.09-SP5
+Date   : Sun Dec 21 18:20:00 2025
+****************************************
+
+Library(s) Used:
+
+    tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (File: /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db)
+
+Number of ports:                         3026
+Number of nets:                         57235
+Number of cells:                        55044
+Number of combinational cells:          50317
+Number of sequential cells:              4673
+Number of macros/black boxes:               0
+Number of buf/inv:                      12189
+Number of references:                     282
+
+Combinational area:              25668.258019
+Buf/Inv area:                     3108.265957
+Noncombinational area:            8893.108015
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                 34561.366034
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area            Local cell area
+                                  -------------------  ----------------------------- 
+Hierarchical cell                 Absolute    Percent  Combi-      Noncombi-  Black-
+                                  Total       Total    national    national   boxes   Design
+--------------------------------  ----------  -------  ----------  ---------  ------  ----------------------------------------------------
+PE                                34561.3660    100.0  12540.9620  7079.3240  0.0000  PE
+Comb2_0__u_C2_Round_u_NormalizeReal
+                                   1327.8020      3.8   1098.6780   229.1240  0.0000  C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_3
+Comb2_1__u_C2_Round_u_NormalizeReal
+                                   1156.6940      3.3    973.9240   182.7700  0.0000  C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_2
+Comb2_2__u_C2_Round_u_NormalizeReal
+                                   1154.0480      3.3    972.8460   181.2020  0.0000  C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_1
+Comb2_3__u_C2_Round_u_NormalizeReal
+                                   1324.0780      3.8   1102.9900   221.0880  0.0000  C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_0
+u_C1_FPMultiplyComb_u_ExceptionHandling
+                                    661.3040      1.9    449.4280   211.8760  0.0000  C1_ExceptionHandling_0
+u_C1_FPMultiplyComb_u_FPUnpackAll   540.6660      1.6    453.2500    87.4160  0.0000  C1_FPUnpackAll_0
+u_C1_Mult_ALL                      8776.4881     25.4    452.1720    95.1580  0.0000  C1_Mult_ALL_0
+u_C1_Mult_ALL/u_mul_core           8229.1581     23.8   7624.0080   605.1500  0.0000  C1_Booth_ALL_0
+--------------------------------  ----------  -------  ----------  ---------  ------  ----------------------------------------------------
+Total                                                  25668.2580  8893.1080  0.0000
+
+1

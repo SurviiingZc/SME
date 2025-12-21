@@ -1,0 +1,19 @@
+Date Created     : 21-12-2025 17:26:18
+SpyGlass Version : SpyGlass_vR-2020.12-SP2
+Project Name     : run_spyglass
+Goal Name        : lint/lint_turbo_rtl
+Scenario Name    : default_scenario
+Top              : PE
+
+Message Summary
+Severity   Non-Waived  Waived
+FATAL           0         0
+ERROR           1         0
+WARNING       151         0
+INFO            6         0
+
+-dashboard_data advanced_lint_partial_proven_properties 0
+-dashboard_data advanced_lint_failed_properties 0
+-dashboard_data advanced_lint_total_properties 0
+-dashboard_data advanced_lint_average_depth 
+-dashboard_data advanced_lint_minimum_depth 

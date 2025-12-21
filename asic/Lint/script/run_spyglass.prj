@@ -1,0 +1,45 @@
+set_option top PE
+set_option language_mode verilog
+set_option enableV05 yes
+
+# --- locate prj dir ---
+set prj_dir [file dirname [info script]]
+set flist   [file join $prj_dir filelist.lst]
+set prj_dir [file dirname [info script]]
+read_file -type sgdc [file join $prj_dir clock.sgdc]
+
+set_option incdir {/simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src}
+
+
+# --- read filelist.lst line by line ---
+set fp [open $flist r]
+while {[gets $fp line] >= 0} {
+  set line [string trim $line]
+  if {$line eq ""} { continue }
+  if {[string match "#*" $line]} { continue }
+
+  # 支持 filelist 里常见的 +incdir+xxx / +define+XXX
+  if {[string match {+incdir+*} $line]} {
+    # +incdir+path1+path2...
+    set incs [split [string range $line 8 end] "+"]
+    foreach inc $incs {
+      if {$inc ne ""} { set_option incdir $inc }
+    }
+    continue
+  }
+  if {[string match {+define+*} $line]} {
+    # +define+MACRO or +define+MACRO=VAL
+    set defs [split [string range $line 8 end] "+"]
+    foreach d $defs {
+      if {$d ne ""} { set_option define $d }
+    }
+    continue
+  }
+
+  # 普通 RTL 文件
+  read_file -type verilog $line
+}
+close $fp
+
+# goal 这里写不写都行，batch 还是要 -goals
+# set_goal lint/lint_rtl

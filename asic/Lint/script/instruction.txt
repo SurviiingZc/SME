@@ -1,0 +1,5 @@
+spyglass -project ../script/run_spyglass.prj -batch
+spyglass -project ../script/run_spyglass.prj -showgoals
+bash -lc 'spyglass -project ../script/run_spyglass.prj -batch -goals "lint/lint_turbo_rtl" 2>&1 | tee spyglass.log'
+grep -Rni "CombLoop\|combinational loop\|circular\|feedback\|loop" run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports | head -n 120
+grep -Rni " Error \|Severity.*Error\|Errors:" run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/moresimple*.rpt | head -n 200

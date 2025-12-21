@@ -60,6 +60,7 @@ wire            P0_Internal_Acc          ;
 wire            P0_Keep_Expo_signed      ;
 wire  [31: 0]   P0_AddZA                 ;
 wire            P0_Widening_SBF          ;
+wire            P0_FMOP_FP16_Non_Widening;
 wire  [31: 0]   P1_AddZA                 ;
 wire            P1_Keep_Expo_signed      ;
 wire            P2_Keep_Expo_signed      ;
@@ -148,6 +149,7 @@ wire  [  3:0]    P2_Sticky_Flag           ;
 wire             P2_Sticky_Bit            ;
 wire             P2_Internal_Acc          ;
 wire             P2_Widening_SBF          ;
+wire             P2_FMLAL                 ;
 
 wire             P3_Sticky_Bit            ;
 wire  [ 31:0]    P3_Inner_Result          ;
@@ -189,6 +191,7 @@ wire  [  3:0]    P3_Sticky_Flag           ;
 wire  [  3:0]    P3_Temp_Sticky_Flag      ;
 wire  [  3:0]    P3_Is_Exception          ;
 wire             P3_Internal_Acc          ;
+wire             P3_FMLAL                 ;
 
 wire             P4_Compute_Mode            ;
 wire  [ 2:0]     P4_Compute_Precision       ;
@@ -319,8 +322,8 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .i_Operand_A            ( P0_Operand_A           ),
     .i_Operand_B            ( P0_Operand_B           ),
     .i_Operand_C            ( P0_Operand_C           ),
+    // .o_Mant                 ( P0_Mant                ),
     .o_Precision_Addend     ( P0_Precision_Addend    ),
-    .o_Mant                 ( P0_Mant                ),
     .o_Result               ( P0_Result              ),
     .o_OutSign              ( P0_OutSign             ),
     .o_OutExpo              ( P0_OutExpo             ),
@@ -333,20 +336,35 @@ C1_FPMultiplyComb u_C1_FPMultiplyComb(
     .o_MantA                ( P0_MantA               ),
     .o_Keep_Expo_signed     ( P0_Keep_Expo_signed    ),
     .o_Internal_Acc         ( P0_Internal_Acc        ),
+    .o_FMOP_FP16_Non_Widening( P0_FMOP_FP16_Non_Widening ),
     .o_Widening_SBF         ( P0_Widening_SBF        )
 );
 
-IntMult_TOP u_IntMult_TOP(
+C1_Mult_ALL u_C1_Mult_ALL(
     .i_operand1              ( P0_Operand_A              ),
     .i_operand2              ( P0_Operand_B              ),
     .i_ZmIsSigned            ( P0_ZmIsSigned             ),
     .i_ZnIsSigned            ( P0_ZnIsSigned             ),
     .i_Active_Element_A      ( P0_Active_Element_A       ),
     .i_Active_Element_B      ( P0_Active_Element_B       ),
-    .i_Calculation_pricision ( P0_Compute_Precision      ),
+    .FMOP_FP16_Non_Widening  ( P0_FMOP_FP16_Non_Widening ),
+    .i_Mode                  ( P0_Compute_Precision      ),
     .o_AddZA                 ( P0_AddZA                  ),
-    .o_Product               ( P0_Int_Product            )
+    .o_Product               ( P0_Int_Product            ),
+    .o_Mant                  ( P0_Mant                   )
 );
+
+// IntMult_TOP u_IntMult_TOP(
+//     .i_operand1              ( P0_Operand_A              ),
+//     .i_operand2              ( P0_Operand_B              ),
+//     .i_ZmIsSigned            ( P0_ZmIsSigned             ),
+//     .i_ZnIsSigned            ( P0_ZnIsSigned             ),
+//     .i_Active_Element_A      ( P0_Active_Element_A       ),
+//     .i_Active_Element_B      ( P0_Active_Element_B       ),
+//     .i_Calculation_pricision ( P0_Compute_Precision      ),
+//     .o_AddZA                 ( P0_AddZA                  ),
+//     .o_Product               ( P0_Int_Product            )
+// );
 
 //=====================================================================
 // Description : Pipline Level 1
@@ -583,7 +601,8 @@ C3_FPADDComb u_C3_FPADDComb(
     .o_Sum_Sign            ( P2_Sum_Sign                ),
     .o_is_Exception        ( P2_is_Exception            ),
     .o_Sticky_Bit          ( P2_Sticky_Bit              ),
-    .o_Widening_SBF        ( P2_Widening_SBF            )
+    .o_Widening_SBF        ( P2_Widening_SBF            ),
+    .o_FMLAL               ( P2_FMLAL                   )
 );
 
 // assign P2_Refresh_Fault_Result = ({P2_Is_Exception[0],P2_is_Exception} == 2'b01) ? {P2_Result[127:32],P2_Fault_Result} : P2_Result ;
@@ -633,6 +652,8 @@ Pipline_3 u_Pipline_3(
     .i_Sticky_Flag          ( P2_Sticky_Flag            ),
     .i_Sticky_Bit           ( P2_Sticky_Bit             ),
     .i_Internal_Acc         ( P2_Internal_Acc           ),
+    .i_FMLAL                ( P2_FMLAL                  ),
+    .o_FMLAL                ( P3_FMLAL                  ),
     .o_Internal_Acc         ( P3_Internal_Acc           ),
     .o_Sticky_Bit           ( P3_Sticky_Bit             ),
     .o_Sticky_Flag          ( P3_Sticky_Flag            ),
@@ -712,7 +733,7 @@ C4_Gen_OuterSign u_C4_Gen_OuterSign(
 //     end
 // endgenerate
 
-assign P3_Final_Result = P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
+assign P3_Final_Result = P3_FMLAL | P3_Is_Exception[0] ? {96'd0,P3_Result[31:0]} : {96'd0,P3_Inner_Result};
 assign P3_Temp_Sticky_Flag  = P3_Internal_Acc ? 4'd0 : P3_Sticky_Flag ;
 
 Pipline_4 u_Pipline_4(
@@ -879,6 +900,7 @@ generate
             .i_exp                 ( P5_Sum_Expo[i*10+:10]      ),
             .i_sign                ( P5_Sum_Sign[i*1+:1]        ),
             .i_Exception_Handling  ( P5_Exception_Handling      ),
+            .i_Compute_Precision   ( P5_Compute_Precision       ),
             .i_N                   ( P5_N[i*1+:1]               ),
             .i_isbfloat16          ( P5_IsBfloat16[i*1+:1]      ),
             .i_sticky_bit          ( P5_Sticky_Bit[i]           ),

@@ -1,0 +1,1159 @@
+
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+
+               Version R-2020.09-SP5 for linux64 - Apr 23, 2021 
+
+                    Copyright (c) 1988 - 2021 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+Initializing...
+set SCRIPT_FILE     script
+script
+source ./$SCRIPT_FILE/set_env.tcl
+source -echo ./$SCRIPT_FILE/file_create.tcl
+if {[file exist $RPT_DIR]} {
+    echo "File $RPT_DIR already exist"
+} else {
+    exec mkdir $RPT_DIR
+    echo "Creating $RPT_DIR !!!"
+}
+Creating RPT !!!
+if {[file exist $RPT_DIR/$file_version]} {
+    echo "File $file_version already exist"
+    exec rm $RPT_DIR/$file_version -r
+    exec mkdir $RPT_DIR/$file_version
+    echo "Re-create $file_version files"
+} else {
+    exec mkdir $RPT_DIR/$file_version
+    echo "Creating $file_version in $RPT_DIR !!!"
+}
+Creating PE_1221_v1 in RPT !!!
+if {[file exist $OUT_DIR]} {
+    echo "File $OUT_DIR already exist"
+} else {
+    exec mkdir $OUT_DIR
+    echo "Creating $OUT_DIR !!!"
+}
+Creating OUT !!!
+if {[file exist $OUT_DIR/$file_version]} {
+    echo "File $file_version already exist"
+    exec rm $OUT_DIR/$file_version -r
+    exec mkdir $OUT_DIR/$file_version
+    echo "Re-create $file_version files"
+} else {
+    exec mkdir $OUT_DIR/$file_version
+    echo "Creating $file_version in $OUT_DIR !!!"
+}
+Creating PE_1221_v1 in OUT !!!
+# create work
+if {[file exist WORK]} {
+    echo "File WORK already exist"
+} else {
+    exec mkdir WORK
+    echo "Creating WORK!!!"
+}
+Creating WORK!!!
+if {[file exist WORK/$file_version]} {
+    echo "File WORK/$file_version already exist"
+} else {
+    exec mkdir WORK/$file_version
+    echo "Creating WORK/$file_version in WORK !!!"
+}
+Creating WORK/PE_1221_v1 in WORK !!!
+set cache_write  WORK/$file_version
+Information: The use of Synopsys disk cache is disabled by default. Synopsys disk cache will be made obsolete in future. (SYNOPT-32)
+WORK/PE_1221_v1
+set cache_read   WORK/$file_version
+Information: The use of Synopsys disk cache is disabled by default. Synopsys disk cache will be made obsolete in future. (SYNOPT-32)
+WORK/PE_1221_v1
+set_host_options -max_cores 16
+1
+set search_path [list                 /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/                /simulation/PDK/T28_logic_hpc_plus/IO/tphn28hpcpgv18_170d/nldm/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tphn28hpcpgv18_170a/]
+/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/ /simulation/PDK/T28_logic_hpc_plus/IO/tphn28hpcpgv18_170d/nldm/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tphn28hpcpgv18_170a/
+set target_library   [list ${lib_slow}.db ]
+tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+#set link_library     [list "*" ${lib_slow}.db tphn28hpcpgv18ssg0p81v1p62v125c.db]
+set link_library     [list "*" ${lib_slow}.db]
+* tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+#set link_library     [list "*" ${lib_slow}.db SP018R_V1p1_min.db]
+set synthetic_library [list ${lib_slow}.db]
+tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+#set symbol_library [list ${lib_symbol}.sdb]
+define_design_lib WORK -path ./WORK/$file_version
+1
+##################################################################
+## Read in Verilog Files    ##
+##################################################################
+# current_design $working_design
+# link
+set script_dir [file dirname [info script]]
+/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/DC/script
+set lst_file_path [file join $script_dir filelist.lst]
+/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/DC/script/filelist.lst
+set source_file [sh cat $lst_file_path]
+../../rtl/src/Macro_Definition.v
+../../rtl/src/C1_Booth_ALL.v
+../../rtl/src/C1_BFUnpack.v
+../../rtl/src/C1_Booth_4x4.v
+../../rtl/src/C1_Booth_8x8.v
+../../rtl/src/C1_Booth_12x12.v
+../../rtl/src/C1_Booth_pp.v
+../../rtl/src/C1_Compress_3to2.v
+../../rtl/src/C1_Compress_4to2.v
+../../rtl/src/C1_CSLA.v
+../../rtl/src/C1_ExceptionHandling.v
+../../rtl/src/C1_FPConvertNaN.v
+../../rtl/src/C1_FPDefaultNaN.v
+../../rtl/src/C1_FPInfinity.v
+../../rtl/src/C1_FPMultiplyComb.v
+../../rtl/src/C1_FPProcessNaN.v
+../../rtl/src/C1_FPProcessNaNs.v
+../../rtl/src/C1_FPUnpackAll.v
+../../rtl/src/C1_FPUnpackBase.v
+../../rtl/src/C1_FPZero.v
+../../rtl/src/C1_Ks48add.v
+../../rtl/src/C1_Mult_ALL.v
+../../rtl/src/C2_FPInfinity.v
+../../rtl/src/C2_FPZero.v
+../../rtl/src/C2_Gen_FuseAdd.v
+../../rtl/src/C2_LZC.v
+../../rtl/src/C2_NormalizeReal.v
+../../rtl/src/C2_Round.v
+../../rtl/src/C3_BFUnpack.v
+../../rtl/src/C3_ExceptionHandling.v
+../../rtl/src/C3_FPADDComb.v
+../../rtl/src/C3_FPAddition.v
+../../rtl/src/C3_FPDefaultNaN.v
+../../rtl/src/C3_FPInfinity.v
+../../rtl/src/C3_FPProcessNaN.v
+../../rtl/src/C3_FPProcessNaNs.v
+../../rtl/src/C3_FPUnpackAll.v
+../../rtl/src/C3_FPUnpackBase.v
+../../rtl/src/C3_FPZero.v
+../../rtl/src/C4_BFRound.v
+../../rtl/src/C4_CarryDetector.v
+../../rtl/src/C4_FPInfinity.v
+../../rtl/src/C4_FPMaxNormal.v
+../../rtl/src/C4_FPNaN.v
+../../rtl/src/C4_FPRoundBase.v
+../../rtl/src/C4_FPZero.v
+../../rtl/src/C4_Gen_OuterSign.v
+../../rtl/src/C4_LZC.v
+../../rtl/src/C4_Normal_Result.v
+../../rtl/src/C4_NormalizeReal.v
+../../rtl/src/C4_Round.v
+../../rtl/src/C5_BFUnpack.v
+../../rtl/src/C5_ExceptionHandling.v
+../../rtl/src/C5_FPADDComb.v
+../../rtl/src/C5_FPAddition.v
+../../rtl/src/C5_FPDefaultNaN.v
+../../rtl/src/C5_FPInfinity.v
+../../rtl/src/C5_FPProcessNaN.v
+../../rtl/src/C5_FPProcessNaNs.v
+../../rtl/src/C5_FPUnpackAll.v
+../../rtl/src/C5_FPUnpackBase.v
+../../rtl/src/C5_FPZero.v
+../../rtl/src/C6_BFRound.v
+../../rtl/src/C6_CarryDetector.v
+../../rtl/src/C6_FPInfinity.v
+../../rtl/src/C6_FPMaxNormal.v
+../../rtl/src/C6_FPNaN.v
+../../rtl/src/C6_FPRoundBase.v
+../../rtl/src/C6_FPZero.v
+../../rtl/src/C6_LZC.v
+../../rtl/src/C6_Normal_Result.v
+../../rtl/src/C6_NormalizeReal.v
+../../rtl/src/C6_Round.v
+../../rtl/src/Int16Addition.v
+../../rtl/src/IntAddAarry.v
+../../rtl/src/IntAddition.v
+../../rtl/src/IntSubtraction.v
+../../rtl/src/PE.v
+../../rtl/src/Pipline_0.v
+../../rtl/src/Pipline_1.v
+../../rtl/src/Pipline_2.v
+../../rtl/src/Pipline_3.v
+../../rtl/src/Pipline_4.v
+../../rtl/src/Pipline_5.v
+../../rtl/src/Pipline_6.v
+suppress_message VER-318
+suppress_message ELAB-311
+suppress_message UCN-1
+analyze -format sverilog -lib work ${source_file}
+Running PRESTO HDLC
+Compiling source file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_Booth_ALL.v
+Compiling source file ../../rtl/src/C1_BFUnpack.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_Booth_4x4.v
+Compiling source file ../../rtl/src/C1_Booth_8x8.v
+Compiling source file ../../rtl/src/C1_Booth_12x12.v
+Compiling source file ../../rtl/src/C1_Booth_pp.v
+Compiling source file ../../rtl/src/C1_Compress_3to2.v
+Compiling source file ../../rtl/src/C1_Compress_4to2.v
+Compiling source file ../../rtl/src/C1_CSLA.v
+Compiling source file ../../rtl/src/C1_ExceptionHandling.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Warning:  ../../rtl/src/C1_ExceptionHandling.v:234: the undeclared symbol 'is_Addend_FP16' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file ../../rtl/src/C1_FPConvertNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPDefaultNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPInfinity.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPMultiplyComb.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Warning:  ../../rtl/src/C1_FPMultiplyComb.v:109: the undeclared symbol 'o_FMLAL' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file ../../rtl/src/C1_FPProcessNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPProcessNaNs.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPUnpackAll.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPUnpackBase.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_FPZero.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C1_Ks48add.v
+Compiling source file ../../rtl/src/C1_Mult_ALL.v
+Compiling source file ../../rtl/src/C2_FPInfinity.v
+Compiling source file ../../rtl/src/C2_FPZero.v
+Compiling source file ../../rtl/src/C2_Gen_FuseAdd.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C2_LZC.v
+Compiling source file ../../rtl/src/C2_NormalizeReal.v
+Compiling source file ../../rtl/src/C2_Round.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_BFUnpack.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_ExceptionHandling.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPADDComb.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPAddition.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPDefaultNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPInfinity.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPProcessNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPProcessNaNs.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPUnpackAll.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPUnpackBase.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C3_FPZero.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C4_BFRound.v
+Compiling source file ../../rtl/src/C4_CarryDetector.v
+Compiling source file ../../rtl/src/C4_FPInfinity.v
+Compiling source file ../../rtl/src/C4_FPMaxNormal.v
+Compiling source file ../../rtl/src/C4_FPNaN.v
+Compiling source file ../../rtl/src/C4_FPRoundBase.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C4_FPZero.v
+Compiling source file ../../rtl/src/C4_Gen_OuterSign.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C4_LZC.v
+Compiling source file ../../rtl/src/C4_Normal_Result.v
+Compiling source file ../../rtl/src/C4_NormalizeReal.v
+Compiling source file ../../rtl/src/C4_Round.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_BFUnpack.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_ExceptionHandling.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:88: the undeclared symbol 'is_Outer_Product' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:89: the undeclared symbol 'is_Inner_Product' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:90: the undeclared symbol 'is_FP32' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:91: the undeclared symbol 'is_FP16' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:92: the undeclared symbol 'is_BF16' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:93: the undeclared symbol 'is_Single_Vector' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:94: the undeclared symbol 'is_Double_Vector' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:95: the undeclared symbol 'is_Not_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:96: the undeclared symbol 'is_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:97: the undeclared symbol 'FMOP_FP32_Non_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:98: the undeclared symbol 'FMOP_FP16_Non_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:99: the undeclared symbol 'FMOP_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:100: the undeclared symbol 'BFMOP_Widening_SBF' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:101: the undeclared symbol 'BFMOP_Widening_EBF' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:102: the undeclared symbol 'FDOT' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:103: the undeclared symbol 'FMLA_FP16' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:104: the undeclared symbol 'FMLA_FP32' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_ExceptionHandling.v:105: the undeclared symbol 'FMLAL' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file ../../rtl/src/C5_FPADDComb.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Warning:  ../../rtl/src/C5_FPADDComb.v:56: the undeclared symbol 'o_Widening_SBF' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  ../../rtl/src/C5_FPADDComb.v:57: the undeclared symbol 'o_FMLAL' assumed to have the default net type, which is 'wire'. (VER-936)
+Compiling source file ../../rtl/src/C5_FPAddition.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPDefaultNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPInfinity.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPProcessNaN.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPProcessNaNs.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPUnpackAll.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPUnpackBase.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C5_FPZero.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C6_BFRound.v
+Compiling source file ../../rtl/src/C6_CarryDetector.v
+Compiling source file ../../rtl/src/C6_FPInfinity.v
+Compiling source file ../../rtl/src/C6_FPMaxNormal.v
+Compiling source file ../../rtl/src/C6_FPNaN.v
+Compiling source file ../../rtl/src/C6_FPRoundBase.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/C6_FPZero.v
+Compiling source file ../../rtl/src/C6_LZC.v
+Compiling source file ../../rtl/src/C6_Normal_Result.v
+Compiling source file ../../rtl/src/C6_NormalizeReal.v
+Compiling source file ../../rtl/src/C6_Round.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Int16Addition.v
+Compiling source file ../../rtl/src/IntAddAarry.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/IntAddition.v
+Compiling source file ../../rtl/src/IntSubtraction.v
+Compiling source file ../../rtl/src/PE.v
+Compiling source file ../../rtl/src/Pipline_0.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Pipline_1.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Pipline_2.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Pipline_3.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Pipline_4.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Pipline_5.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Compiling source file ../../rtl/src/Pipline_6.v
+Opening include file ../../rtl/src/Macro_Definition.v
+Presto compilation completed successfully.
+Loading db file '/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db'
+Information: Using CCS timing libraries. (TIM-024)
+1
+elaborate $working_design
+Loading db file '/apps/synopsys/syn_vR-2020.09-SP5/libraries/syn/gtech.db'
+Loading db file '/apps/synopsys/syn_vR-2020.09-SP5/libraries/syn/standard.sldb'
+  Loading link library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+
+Inferred memory devices in process
+	in routine PE line 441 in file
+		'../../rtl/src/PE.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  reset_counter_reg  | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (PE)
+Elaborated 1 design.
+Current design is now 'PE'.
+Information: Building the design 'Pipline_0'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_0 line 78 in file
+		'../../rtl/src/Pipline_0.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|      o_Operand_C_reg      | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Compute_Mode_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Compute_Precision_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Widening_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Add_or_Subtract_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZmIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZnIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| o_Num_of_Vector_Group_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Vector_Group_Num_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+| o_Exception_Handling_reg  | Flip-flop |  20   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_ZA_Base_Address_reg   | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  o_Active_Element_A_reg   | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  o_Active_Element_B_reg   | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Operand_A_reg      | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Operand_B_reg      | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (Pipline_0)
+Information: Building the design 'C1_FPMultiplyComb'. (HDL-193)
+Presto compilation completed successfully. (C1_FPMultiplyComb)
+Information: Building the design 'C1_Mult_ALL'. (HDL-193)
+Presto compilation completed successfully. (C1_Mult_ALL)
+Information: Building the design 'Pipline_1'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_1 line 129 in file
+		'../../rtl/src/Pipline_1.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|    o_Widening_SBF_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    o_Compute_Mode_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Compute_Precision_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Widening_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Add_or_Subtract_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZmIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZnIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| o_Num_of_Vector_Group_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Vector_Group_Num_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+| o_Exception_Handling_reg  | Flip-flop |  20   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_ZA_Base_Address_reg   | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Operand_C_reg      | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_Mant_reg         | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+|       o_Result_reg        | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|       o_OutSign_reg       | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       o_OutExpo_reg       | Flip-flop |  36   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_IsBfloat16_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|          o_N_reg          | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Precision_Addend_reg   | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Int_Product_reg     | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_TypeA_reg        | Flip-flop |  12   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_SignA_reg        | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_ExpoA_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_MantA_reg        | Flip-flop |  96   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Is_Exception_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Internal_Acc_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Keep_Expo_signed_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|        o_AddZA_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (Pipline_1)
+Information: Building the design 'IntAdditionAarry'. (HDL-193)
+Presto compilation completed successfully. (IntAdditionAarry)
+Information: Building the design 'C2_Round' instantiated from design 'PE' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=9". (HDL-193)
+Presto compilation completed successfully. (C2_Round_IN_WIDTH48_EXP_WIDTH9)
+Information: Building the design 'C2_Gen_FuseAdd'. (HDL-193)
+Presto compilation completed successfully. (C2_Gen_FuseAdd)
+Information: Building the design 'Pipline_2'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_2 line 147 in file
+		'../../rtl/src/Pipline_2.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|  o_Keep_Expo_signed_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    o_Compute_Mode_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Compute_Precision_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Widening_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Add_or_Subtract_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZmIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZnIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| o_Num_of_Vector_Group_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Vector_Group_Num_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+| o_Exception_Handling_reg  | Flip-flop |  20   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_ZA_Base_Address_reg   | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Operand_C_reg      | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_Rounded_result_reg    | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|  o_Precision_Addend_reg   | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_FuseAdd_SelfAdd_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_Temp_Sign1_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_Temp_Sign2_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_Temp_Expo1_reg      | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Temp_Expo2_reg      | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Temp_Mant1_reg      | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Temp_Mant2_reg      | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Normal_Sign_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Normal_Exp_reg      | Flip-flop |  40   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_Normal_Mantissa_reg   | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_TypeA_reg        | Flip-flop |  12   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_SignA_reg        | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_ExpoA_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_MantA_reg        | Flip-flop |  96   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Is_Exception_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       o_Result_reg        | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Sticky_Flag_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Internal_Acc_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (Pipline_2)
+Information: Building the design 'C3_FPADDComb'. (HDL-193)
+Presto compilation completed successfully. (C3_FPADDComb)
+Information: Building the design 'Pipline_3'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_3 line 157 in file
+		'../../rtl/src/Pipline_3.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|        o_FMLAL_reg        | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    o_Compute_Mode_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Compute_Precision_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Widening_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Add_or_Subtract_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZmIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZnIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| o_Num_of_Vector_Group_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Vector_Group_Num_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+| o_Exception_Handling_reg  | Flip-flop |  20   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_ZA_Base_Address_reg   | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Operand_C_reg      | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_Rounded_result_reg    | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|  o_Precision_Addend_reg   | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Temp_Sign_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      o_Temp_Expo_reg      | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Temp_Mant_reg      | Flip-flop |  73   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_Mant_reg         | Flip-flop |  48   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Fault_Result_reg     | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_IsBfloat16_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|          o_N_reg          | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      o_Sum_Expo_reg       | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Sum_Sign_reg       | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_Normal_Sign_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Normal_Exp_reg      | Flip-flop |  40   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_Normal_Mantissa_reg   | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_TypeA_reg        | Flip-flop |  12   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_SignA_reg        | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_ExpoA_reg        | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_MantA_reg        | Flip-flop |  96   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Is_Exception_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       o_Result_reg        | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Sticky_Flag_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Sticky_Bit_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|    o_Internal_Acc_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (Pipline_3)
+Information: Building the design 'C4_Round' instantiated from design 'PE' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C4_Round_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C4_Gen_OuterSign'. (HDL-193)
+Presto compilation completed successfully. (C4_Gen_OuterSign)
+Information: Building the design 'Pipline_4'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_4 line 114 in file
+		'../../rtl/src/Pipline_4.v'.
+======================================================================================
+|       Register Name        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+======================================================================================
+|     o_Internal_Acc_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_Compute_Mode_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Compute_Precision_reg   | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Widening_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Add_or_Subtract_reg    | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      o_ZmIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      o_ZnIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| o_Num_of_Vector_Group_reg  | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Vector_Group_Num_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  o_Exception_Handling_reg  | Flip-flop |  20   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_ZA_Base_Address_reg    | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Operand_C_reg       | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_Precision_Addend_reg   | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+| o_Fuse_MultiAdd_Result_reg | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Normal_Sign_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Normal_Exp_reg      | Flip-flop |  40   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_Normal_Mantissa_reg    | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_TypeA_reg         | Flip-flop |  12   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_SignA_reg         | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_ExpoA_reg         | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_MantA_reg         | Flip-flop |  96   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Exception_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_Result_reg        | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Sticky_Flag_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+======================================================================================
+Presto compilation completed successfully. (Pipline_4)
+Information: Building the design 'C5_FPADDComb'. (HDL-193)
+Presto compilation completed successfully. (C5_FPADDComb)
+Information: Building the design 'Pipline_5'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_5 line 105 in file
+		'../../rtl/src/Pipline_5.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+|     o_Sticky_Bit_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Compute_Mode_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Compute_Precision_reg  | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_Is_Widening_reg     | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|   o_Add_or_Subtract_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZmIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|     o_ZnIsSigned_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+| o_Num_of_Vector_Group_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  o_Vector_Group_Num_reg   | Flip-flop |   2   |  Y  | N  | Y  | N  | N  | N  | N  |
+| o_Exception_Handling_reg  | Flip-flop |  20   |  Y  | N  | Y  | N  | N  | N  | N  |
+|   o_ZA_Base_Address_reg   | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|  o_Precision_Addend_reg   | Flip-flop |   3   |  Y  | N  | Y  | N  | N  | N  | N  |
+|        o_Mant_reg         | Flip-flop |  192  |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Fault_Result_reg     | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+|     o_IsBfloat16_reg      | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|          o_N_reg          | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Sum_Expo_reg       | Flip-flop |  40   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Sum_Sign_reg       | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Temp_Sign_reg      | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|      o_Temp_Expo_reg      | Flip-flop |  10   |  Y  | N  | Y  | N  | N  | N  | N  |
+|      o_Temp_Mant_reg      | Flip-flop |  73   |  Y  | N  | Y  | N  | N  | N  | N  |
+|    o_Is_Exception_reg     | Flip-flop |   4   |  Y  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+Presto compilation completed successfully. (Pipline_5)
+Information: Building the design 'C6_Round' instantiated from design 'PE' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C6_Round_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'Pipline_6'. (HDL-193)
+
+Inferred memory devices in process
+	in routine Pipline_6 line 23 in file
+		'../../rtl/src/Pipline_6.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    o_Result_reg     | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (Pipline_6)
+Information: Building the design 'C1_FPUnpackAll'. (HDL-193)
+Presto compilation completed successfully. (C1_FPUnpackAll)
+Information: Building the design 'C1_ExceptionHandling'. (HDL-193)
+Presto compilation completed successfully. (C1_ExceptionHandling)
+Information: Building the design 'C1_Booth_ALL'. (HDL-193)
+
+Statistics for case statements in always block at line 40 in file
+	'../../rtl/src/C1_Booth_ALL.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            54            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 416 in file
+	'../../rtl/src/C1_Booth_ALL.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           418            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 425 in file
+	'../../rtl/src/C1_Booth_ALL.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           427            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (C1_Booth_ALL)
+Information: Building the design 'IntAddition'. (HDL-193)
+Presto compilation completed successfully. (IntAddition)
+Information: Building the design 'Int16Addition'. (HDL-193)
+Presto compilation completed successfully. (Int16Addition)
+Information: Building the design 'IntSubtraction'. (HDL-193)
+Presto compilation completed successfully. (IntSubtraction)
+Information: Building the design 'C2_NormalizeReal' instantiated from design 'C2_Round_IN_WIDTH48_EXP_WIDTH9' with
+	the parameters "IN_WIDTH=48,OUT_WIDTH=48,EXP_WIDTH=9". (HDL-193)
+
+Statistics for case statements in always block at line 45 in file
+	'../../rtl/src/C2_NormalizeReal.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            46            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 95 in file
+	'../../rtl/src/C2_NormalizeReal.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           115            |    auto/auto     |
+|           150            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9)
+Information: Building the design 'C2_FPInfinity'. (HDL-193)
+Presto compilation completed successfully. (C2_FPInfinity)
+Information: Building the design 'C2_FPZero'. (HDL-193)
+Presto compilation completed successfully. (C2_FPZero)
+Information: Building the design 'C3_FPUnpackAll'. (HDL-193)
+Presto compilation completed successfully. (C3_FPUnpackAll)
+Information: Building the design 'C3_ExceptionHandling'. (HDL-193)
+Presto compilation completed successfully. (C3_ExceptionHandling)
+Information: Building the design 'C3_FPAddition'. (HDL-193)
+Presto compilation completed successfully. (C3_FPAddition)
+Information: Building the design 'C4_BFRound' instantiated from design 'C4_Round_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C4_BFRound_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C4_FPRoundBase' instantiated from design 'C4_Round_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C4_FPRoundBase_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C4_NormalizeReal' instantiated from design 'C4_Round_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,OUT_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+
+Statistics for case statements in always block at line 44 in file
+	'../../rtl/src/C4_NormalizeReal.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            45            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (C4_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C5_FPUnpackAll'. (HDL-193)
+Presto compilation completed successfully. (C5_FPUnpackAll)
+Information: Building the design 'C5_ExceptionHandling'. (HDL-193)
+Presto compilation completed successfully. (C5_ExceptionHandling)
+Information: Building the design 'C5_FPAddition'. (HDL-193)
+Presto compilation completed successfully. (C5_FPAddition)
+Information: Building the design 'C6_BFRound' instantiated from design 'C6_Round_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C6_BFRound_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C6_FPRoundBase' instantiated from design 'C6_Round_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C6_NormalizeReal' instantiated from design 'C6_Round_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,OUT_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+
+Statistics for case statements in always block at line 44 in file
+	'../../rtl/src/C6_NormalizeReal.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            45            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (C6_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C1_FPUnpackBase'. (HDL-193)
+Presto compilation completed successfully. (C1_FPUnpackBase)
+Information: Building the design 'C1_BFUnpack'. (HDL-193)
+Presto compilation completed successfully. (C1_BFUnpack)
+Information: Building the design 'C1_FPInfinity'. (HDL-193)
+Presto compilation completed successfully. (C1_FPInfinity)
+Information: Building the design 'C1_FPDefaultNaN'. (HDL-193)
+Presto compilation completed successfully. (C1_FPDefaultNaN)
+Information: Building the design 'C1_FPZero'. (HDL-193)
+Presto compilation completed successfully. (C1_FPZero)
+Information: Building the design 'C1_FPProcessNaNs'. (HDL-193)
+
+Statistics for case statements in always block at line 137 in file
+	'../../rtl/src/C1_FPProcessNaNs.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           138            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 147 in file
+	'../../rtl/src/C1_FPProcessNaNs.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           148            |    auto/auto     |
+===============================================
+Presto compilation completed successfully. (C1_FPProcessNaNs)
+Information: Building the design 'Booth_12x12'. (HDL-193)
+Presto compilation completed successfully. (Booth_12x12)
+Information: Building the design 'Compress_3to2' instantiated from design 'C1_Booth_ALL' with
+	the parameters "24". (HDL-193)
+Presto compilation completed successfully. (Compress_3to2_WIDTH24)
+Information: Building the design 'Booth_8x8'. (HDL-193)
+Presto compilation completed successfully. (Booth_8x8)
+Information: Building the design 'Compress_3to2' instantiated from design 'C1_Booth_ALL' with
+	the parameters "16". (HDL-193)
+Presto compilation completed successfully. (Compress_3to2_WIDTH16)
+Information: Building the design 'Booth_4x4'. (HDL-193)
+Presto compilation completed successfully. (Booth_4x4)
+Information: Building the design 'Compress_3to2' instantiated from design 'C1_Booth_ALL' with
+	the parameters "48". (HDL-193)
+Presto compilation completed successfully. (Compress_3to2_WIDTH48)
+Information: Building the design 'CSLA' instantiated from design 'C1_Booth_ALL' with
+	the parameters "W=16,BLK=4". (HDL-193)
+Presto compilation completed successfully. (CSLA_W16_BLK4)
+Information: Building the design 'CSLA' instantiated from design 'C1_Booth_ALL' with
+	the parameters "W=24,BLK=4". (HDL-193)
+Presto compilation completed successfully. (CSLA_W24_BLK4)
+Information: Building the design 'Ks48add'. (HDL-193)
+Presto compilation completed successfully. (Ks48add)
+Information: Building the design 'Compress_3to2' instantiated from design 'C1_Booth_ALL' with
+	the parameters "32". (HDL-193)
+Presto compilation completed successfully. (Compress_3to2_WIDTH32)
+Information: Building the design 'CSLA' instantiated from design 'C1_Booth_ALL' with
+	the parameters "W=32,BLK=4". (HDL-193)
+Presto compilation completed successfully. (CSLA_W32_BLK4)
+Information: Building the design 'C2_LZC_round' instantiated from design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9' with
+	the parameters "WIDTH=48". (HDL-193)
+Presto compilation completed successfully. (C2_LZC_round_WIDTH48)
+Information: Building the design 'C3_FPUnpackBase'. (HDL-193)
+Presto compilation completed successfully. (C3_FPUnpackBase)
+Information: Building the design 'C3_FPInfinity'. (HDL-193)
+Presto compilation completed successfully. (C3_FPInfinity)
+Information: Building the design 'C3_FPDefaultNaN'. (HDL-193)
+Presto compilation completed successfully. (C3_FPDefaultNaN)
+Information: Building the design 'C3_FPZero'. (HDL-193)
+Presto compilation completed successfully. (C3_FPZero)
+Information: Building the design 'C3_FPProcessNaNs'. (HDL-193)
+Presto compilation completed successfully. (C3_FPProcessNaNs)
+Information: Building the design 'C4_CarryDetector' instantiated from design 'C4_FPRoundBase_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "WIDTH=23,DENOR=24'h800000". (HDL-193)
+Presto compilation completed successfully. (C4_CarryDetector_23_800000)
+Information: Building the design 'C4_LZC_round' instantiated from design 'C4_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10' with
+	the parameters "WIDTH=48". (HDL-193)
+Presto compilation completed successfully. (C4_LZC_round_WIDTH48)
+Information: Building the design 'C5_FPUnpackBase'. (HDL-193)
+Presto compilation completed successfully. (C5_FPUnpackBase)
+Information: Building the design 'C5_BFUnpack'. (HDL-193)
+Presto compilation completed successfully. (C5_BFUnpack)
+Information: Building the design 'C5_FPInfinity'. (HDL-193)
+Presto compilation completed successfully. (C5_FPInfinity)
+Information: Building the design 'C5_FPDefaultNaN'. (HDL-193)
+Presto compilation completed successfully. (C5_FPDefaultNaN)
+Information: Building the design 'C5_FPZero'. (HDL-193)
+Presto compilation completed successfully. (C5_FPZero)
+Information: Building the design 'C5_FPProcessNaNs'. (HDL-193)
+Presto compilation completed successfully. (C5_FPProcessNaNs)
+Information: Building the design 'C6_FPInfinity'. (HDL-193)
+Presto compilation completed successfully. (C6_FPInfinity)
+Information: Building the design 'C6_FPMaxNormal'. (HDL-193)
+Presto compilation completed successfully. (C6_FPMaxNormal)
+Information: Building the design 'C6_Normal_Result' instantiated from design 'C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "IN_WIDTH=48,EXP_WIDTH=10". (HDL-193)
+Presto compilation completed successfully. (C6_Normal_Result_IN_WIDTH48_EXP_WIDTH10)
+Information: Building the design 'C6_FPNaN'. (HDL-193)
+Presto compilation completed successfully. (C6_FPNaN)
+Information: Building the design 'C6_FPZero'. (HDL-193)
+Presto compilation completed successfully. (C6_FPZero)
+Information: Building the design 'C6_CarryDetector' instantiated from design 'C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "WIDTH=10,DENOR=11'h400". (HDL-193)
+Presto compilation completed successfully. (C6_CarryDetector_10_400)
+Information: Building the design 'C6_CarryDetector' instantiated from design 'C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10' with
+	the parameters "WIDTH=23,DENOR=24'h800000". (HDL-193)
+Presto compilation completed successfully. (C6_CarryDetector_23_800000)
+Information: Building the design 'C6_LZC_round' instantiated from design 'C6_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10' with
+	the parameters "WIDTH=48". (HDL-193)
+Presto compilation completed successfully. (C6_LZC_round_WIDTH48)
+Information: Building the design 'C1_FPProcessNaN'. (HDL-193)
+Presto compilation completed successfully. (C1_FPProcessNaN)
+Information: Building the design 'C1_FPConvertNaN'. (HDL-193)
+Presto compilation completed successfully. (C1_FPConvertNaN)
+Information: Building the design 'booth_pp_generator' instantiated from design 'Booth_12x12' with
+	the parameters "WIDTH=12". (HDL-193)
+Presto compilation completed successfully. (booth_pp_generator_WIDTH12)
+Information: Building the design 'booth_pp_generator' instantiated from design 'Booth_8x8' with
+	the parameters "WIDTH=8". (HDL-193)
+Presto compilation completed successfully. (booth_pp_generator_WIDTH8)
+Information: Building the design 'booth_pp_generator' instantiated from design 'Booth_4x4' with
+	the parameters "WIDTH=4". (HDL-193)
+Presto compilation completed successfully. (booth_pp_generator_WIDTH4)
+Information: Building the design 'C3_FPProcessNaN'. (HDL-193)
+Presto compilation completed successfully. (C3_FPProcessNaN)
+Information: Building the design 'C5_FPProcessNaN'. (HDL-193)
+Presto compilation completed successfully. (C5_FPProcessNaN)
+1
+report_attributes -design
+ 
+****************************************
+Report : Attribute
+Design : PE
+Version: R-2020.09-SP5
+Date   : Sun Dec 21 17:36:06 2025
+****************************************
+
+Design          Object             Type      Attribute Name            Value
+--------------------------------------------------------------------------------
+PE              PE                 design    temperature_from_min_lib  125.000000
+PE              PE                 design    temperature_from_max_lib  125.000000
+PE              PE                 design    design_voltage_unit       1000.000000
+PE              PE                 design    design_current_unit       1.000000
+PE              PE                 design    design_resistance_unit    1.000000
+PE              PE                 design    design_cap_unit           1.000000
+PE              PE                 design    design_time_unit          1.000000
+PE              PE                 design    scan_state_route_serial   false
+PE              PE                 design    scan_state_route_clocks   false
+PE              PE                 design    scan_state_route_enables  false
+PE              PE                 design    scan_state_type           1
+PE              PE                 design    min_wire_load_selection_type
+                                                                       0
+PE              PE                 design    wire_load_selection_type  2
+PE              PE                 design    hdl_library               WORK
+PE              PE                 design    dollar_unit_text          module PE_svsim (
+    input            clk                    ,
+    input            rst_n                  ,
+    input            i_Compute_Mode         ,
+    input  [ 2:0]    i_Compute_Precision    ,
+    input            i_Is_Widening          ,
+    input            i_Add_or_Subtract      ,
+    input            i_ZmIsSigned           ,
+    input            i_ZnIsSigned           ,
+    input            i_Num_of_Vector_Group  ,
+    input  [ 1:0]    i_Vector_Group_Num     ,
+    input  [19:0]    i_Exception_Handling   ,
+    input  [31:0]    i_ZA_Base_Address      ,
+    input  [ 3:0]    i_Active_Element_A     ,
+    input  [ 3:0]    i_Active_Element_B     ,
+    input  [31:0]    i_Operand_A            ,
+    input  [31:0]    i_Operand_B            ,
+    input  [127:0]   i_Operand_C            ,
+    output [127:0]   o_Result               
+);
+
+
+
+PE              PE                 design    hdl_template              PE
+PE              PE                 design    hdl_canonical_default_params
+PE              PE                 design    hdl_default_parameters    
+PE              PE                 design    hdl_canonical_params      
+PE              PE                 design    hdl_parameters            
+PE              PE                 design    link_design_libraries     WORK, DEFAULT
+PE              PE                 design    presto_gtech_count        2800
+
+1
+current_design $working_design
+Current design is 'PE'.
+{PE}
+link
+
+  Linking design 'PE'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (85 designs)              /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/DC/PE.db, etc
+  tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs (library)
+                              /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db
+
+1
+source -echo ./$SCRIPT_FILE/set_parameter.tcl
+##################################################################
+## Compile variable##
+##################################################################
+set write_name_nets_same_as_ports true
+set compile_assume_fully_decoded_three_state_buses true
+set verilogout_no_tri true
+set compile_no_new_cells_at_top_level false
+set compile_preserve_sync_resets true
+## Remove assign statements when generating gate level netlist 
+set compile_fix_multiple_port_nets true
+# for async reset timing check
+set enable_recovery_removal_arcs true
+set_fix_multiple_port_nets -all -buffer_constants
+#set_fix_multiple_port_nets -all
+#/******************************************************************
+#****                         HDL RULES                          ***
+#*******************************************************************/
+set hdlin_check_no_latch                        true
+set hdlin_suppress_warnings                     false
+set hdlin_ff_always_sync_set_reset              true
+set hdlin_infer_mux                             default
+set hdlin_keep_signal_name                      all_driving
+set hdlin_on_sequential_mapping                 false
+set compile_delete_unloaded_sequential_cells    true
+set hdlin_preserve_sequential                   none
+#/******************************************************************
+#****         VERILOG RULES: VERILOG OUT                        **** 
+#*******************************************************************/
+set verilogout_show_unconnected_pins            true
+set verilogout_no_tri                           true
+set verilogout_single_bit                       false
+set verilogout_equation                         false
+#/******
+#/******************************************************************
+#****                    Scan Options                           ***
+#*******************************************************************/
+set insert_test_design_naming_style             "%s_%d"
+#set test_scan_in_port_naming_style              "SI%s%s"
+#set test_scan_enable_port_naming_style          "SCN%s"
+#set test_scan_out_port_naming_style             "SO%s%s"
+source -echo ./$SCRIPT_FILE/constraint_sdc.tcl  ;
+set compile_enable_constant_propagation_with_no_boundary_opt false
+set timing_enable_multiple_clocks_per_reg true
+set enable_recovery_removal_arcs true
+set sdc_version 2.1
+Information: Setting sdc_version outside of an SDC file has no effect (SDC-1)
+create_clock -name clk -period 0.83 -waveform {0 0.41} [get_ports clk]
+set CLK_PORT  [get_ports clk]
+set IN_PORTS  [remove_from_collection [all_inputs] $CLK_PORT]
+set_clock_uncertainty -setup 0.05 [get_clocks clk]
+set_clock_uncertainty -hold  0.02 [get_clocks clk]
+set_clock_transition 0.05 [get_clocks clk]
+set_input_delay  0.1 -max -clock [get_clocks clk] $IN_PORTS
+set_input_delay  0.0.05 -min -clock [get_clocks clk] $IN_PORTS
+Error: value '0.0.05' for option 'delay_value' not of type 'float' (CMD-009)
+set_output_delay 0.1 -max -clock [get_clocks clk] [all_outputs]
+set_output_delay 0.05 -min -clock [get_clocks clk] [all_outputs]
+set_max_fanout 8 [current_design]
+Current design is 'PE'.
+set_max_transition	0.18 $IN_PORTS
+set_max_transition 0.18 [current_design]
+Current design is 'PE'.
+set_load 0.02 [all_outputs]
+1
+source -echo ./$SCRIPT_FILE/dont_touch.tcl
+#change naming rule
+report_clock > $RPT_OUT/clock.syn.rpt
+report_clock -skew >> $RPT_OUT/clock.syn.rpt
+current_design $working_design
+Current design is 'PE'.
+{PE}
+uniquify -force
+Information: Uniquified 1 instances of design 'Pipline_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C1_FPMultiplyComb'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C1_Mult_ALL'. (OPT-1056)
+Information: Uniquified 1 instances of design 'Pipline_1'. (OPT-1056)
+Information: Uniquified 1 instances of design 'IntAdditionAarry'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C2_Round_IN_WIDTH48_EXP_WIDTH9'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C2_Gen_FuseAdd'. (OPT-1056)
+Information: Uniquified 1 instances of design 'Pipline_2'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_FPADDComb'. (OPT-1056)
+Information: Uniquified 1 instances of design 'Pipline_3'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C4_Round_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C4_Gen_OuterSign'. (OPT-1056)
+Information: Uniquified 1 instances of design 'Pipline_4'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_FPADDComb'. (OPT-1056)
+Information: Uniquified 1 instances of design 'Pipline_5'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_Round_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 1 instances of design 'Pipline_6'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C1_FPUnpackAll'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C1_ExceptionHandling'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C1_Booth_ALL'. (OPT-1056)
+Information: Uniquified 5 instances of design 'IntAddition'. (OPT-1056)
+Information: Uniquified 3 instances of design 'Int16Addition'. (OPT-1056)
+Information: Uniquified 1 instances of design 'IntSubtraction'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C2_FPInfinity'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C2_FPZero'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_FPUnpackAll'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_ExceptionHandling'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_FPAddition'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C4_BFRound_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C4_FPRoundBase_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C4_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_FPUnpackAll'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_ExceptionHandling'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_FPAddition'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_BFRound_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_FPRoundBase_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 10 instances of design 'C1_FPUnpackBase'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C1_BFUnpack'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C1_FPInfinity'. (OPT-1056)
+Information: Uniquified 44 instances of design 'C1_FPDefaultNaN'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C1_FPZero'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C1_FPProcessNaNs'. (OPT-1056)
+Information: Uniquified 2 instances of design 'Booth_12x12'. (OPT-1056)
+Information: Uniquified 2 instances of design 'Compress_3to2_WIDTH24'. (OPT-1056)
+Information: Uniquified 2 instances of design 'Booth_8x8'. (OPT-1056)
+Information: Uniquified 2 instances of design 'Compress_3to2_WIDTH16'. (OPT-1056)
+Information: Uniquified 10 instances of design 'Booth_4x4'. (OPT-1056)
+Information: Uniquified 13 instances of design 'Compress_3to2_WIDTH48'. (OPT-1056)
+Information: Uniquified 2 instances of design 'CSLA_W16_BLK4'. (OPT-1056)
+Information: Uniquified 2 instances of design 'CSLA_W24_BLK4'. (OPT-1056)
+Information: Uniquified 2 instances of design 'Ks48add'. (OPT-1056)
+Information: Uniquified 4 instances of design 'Compress_3to2_WIDTH32'. (OPT-1056)
+Information: Uniquified 2 instances of design 'CSLA_W32_BLK4'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C2_LZC_round_WIDTH48'. (OPT-1056)
+Information: Uniquified 2 instances of design 'C3_FPUnpackBase'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_FPInfinity'. (OPT-1056)
+Information: Uniquified 3 instances of design 'C3_FPDefaultNaN'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_FPZero'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C3_FPProcessNaNs'. (OPT-1056)
+Information: Uniquified 2 instances of design 'C4_CarryDetector_23_800000'. (OPT-1056)
+Information: Uniquified 1 instances of design 'C4_LZC_round_WIDTH48'. (OPT-1056)
+Information: Uniquified 8 instances of design 'C5_FPUnpackBase'. (OPT-1056)
+Information: Uniquified 8 instances of design 'C5_BFUnpack'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_FPInfinity'. (OPT-1056)
+Information: Uniquified 12 instances of design 'C5_FPDefaultNaN'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_FPZero'. (OPT-1056)
+Information: Uniquified 4 instances of design 'C5_FPProcessNaNs'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_FPInfinity'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_FPMaxNormal'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_Normal_Result_IN_WIDTH48_EXP_WIDTH10'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_FPNaN'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_FPZero'. (OPT-1056)
+Information: Uniquified 10 instances of design 'C6_CarryDetector_10_400'. (OPT-1056)
+Information: Uniquified 10 instances of design 'C6_CarryDetector_23_800000'. (OPT-1056)
+Information: Uniquified 5 instances of design 'C6_LZC_round_WIDTH48'. (OPT-1056)
+Information: Uniquified 40 instances of design 'C1_FPProcessNaN'. (OPT-1056)
+Information: Uniquified 30 instances of design 'C1_FPConvertNaN'. (OPT-1056)
+Information: Uniquified 12 instances of design 'booth_pp_generator_WIDTH12'. (OPT-1056)
+Information: Uniquified 8 instances of design 'booth_pp_generator_WIDTH8'. (OPT-1056)
+Information: Uniquified 20 instances of design 'booth_pp_generator_WIDTH4'. (OPT-1056)
+Information: Uniquified 2 instances of design 'C3_FPProcessNaN'. (OPT-1056)
+Information: Uniquified 8 instances of design 'C5_FPProcessNaN'. (OPT-1056)
+1
+##################################################################
+## Optimization
+##################################################################
+# set_optimize_registers true
+set_optimize_registers true
+1
+# 可选：让边界跨层级优化更激进
+set_boundary_optimization [current_design] true
+Current design is 'PE'.
+1
+change_names -rules verilog -hierarchy
+Warning: The specified replacement character (_) is conflicting with the specified allowed or restricted character.   (UCN-4)
+1
+set_fix_multiple_port_nets -all -buffer_constants
+1
+set_svf $DATA_OUT/$working_design.svf
+1
+# compile_ultra -no_autoungroup -timing_high_effort_script > $RPT_OUT/compile.rpt
+# compile_ultra -inc > $RPT_OUT/compile_inc.rpt
+compile_ultra -timing_high_effort_script > $RPT_OUT/compile.rpt
+5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% 70% 75% 80% 85% 90% 95% 100% 10% 20% 30% 40% 50% 60% 70% 80% 90% ... 100% compile_ultra -inc -timing_high_effort_script > $RPT_OUT/compile_inc.rpt
+# compile_ultra -no_autoungroup -timing_high_effort_script > $RPT_OUT/compile.rpt
+# compile_ultra -no_autoungroup -inc > $RPT_OUT/compile_inc.rpt
+# compile_ultra -no_autoungroup -inc > $RPT_OUT/compile_inc1.rpt
+# compile_ultra -timing_high_effort_script > $RPT_OUT/compile.rpt
+# compile_ultra -inc > $RPT_OUT/compile_inc.rpt
+# compile_ultra -inc > $RPT_OUT/compile_inc1.rpt
+#
+change_names -rules verilog -hierarchy
+1
+current_design $working_design
+Current design is 'PE'.
+{PE}
+##########################################
+check_design  > $RPT_OUT/check_design.rpt
+check_timing  > $RPT_OUT/check_timing.rpt
+report_qor > $RPT_OUT/qor.rpt
+report_area > $RPT_OUT/area.rpt
+report_area -hierarchy > $RPT_OUT/area_hier.rpt
+report_timing   -loops > $RPT_OUT/timing_loop.rpt
+report_timing -path full -net -cap -input -tran -delay min -max_paths 200 -nworst 200 > $RPT_OUT/timing.min.rpt
+report_timing -path full -net -cap -input -tran -delay max -max_paths 200 -nworst 200 > $RPT_OUT/timing.max.rpt
+# ========= Path buckets: in→reg / reg→reg / reg→out / in→out =========
+set REG_Q [get_pins -of_objects [all_registers] -filter "direction==out"]
+{clk_r_REG1753_S6/Q clk_r_REG681_S4/Q clk_r_REG732_S4/Q clk_r_REG2797_S1/Q clk_r_REG2821_S1/Q clk_r_REG2935_S1/Q clk_r_REG1448_S5/Q clk_r_REG1455_S5/Q clk_r_REG1458_S5/Q clk_r_REG1461_S5/Q clk_r_REG3449_S3/Q clk_r_REG3475_S3/Q clk_r_REG134_S3/Q clk_r_REG3299_S3/Q clk_r_REG3551_S3/Q clk_r_REG3506_S3/Q clk_r_REG3741_S3/Q clk_r_REG298_S7/Q clk_r_REG1610_S5/Q clk_r_REG3528_S3/Q clk_r_REG1796_S5/Q clk_r_REG563_S5/Q clk_r_REG1645_S5/Q clk_r_REG1644_S5/Q clk_r_REG1791_S5/Q clk_r_REG1641_S5/Q clk_r_REG1650_S5/Q clk_r_REG1617_S5/Q clk_r_REG1622_S5/Q clk_r_REG1646_S5/Q clk_r_REG1611_S5/Q clk_r_REG4451_S2/Q clk_r_REG4447_S2/Q clk_r_REG4464_S2/Q clk_r_REG4445_S2/Q clk_r_REG3860_S3/Q clk_r_REG3811_S3/Q clk_r_REG3801_S3/Q clk_r_REG3485_S3/Q clk_r_REG3992_S3/Q clk_r_REG4435_S2/Q clk_r_REG632_S4/Q clk_r_REG246_S7/Q clk_r_REG705_S4/Q clk_r_REG200_S7/Q clk_r_REG534_S5/Q clk_r_REG694_S4/Q clk_r_REG281_S7/Q clk_r_REG181_S7/Q clk_r_REG690_S4/Q clk_r_REG614_S5/Q clk_r_REG161_S7/Q clk_r_REG629_S5/Q clk_r_REG407_S6/Q clk_r_REG357_S6/Q clk_r_REG749_S3/Q clk_r_REG306_S7/Q clk_r_REG287_S7/Q clk_r_REG1634_S5/Q clk_r_REG3694_S3/Q clk_r_REG354_S6/Q clk_r_REG1806_S5/Q clk_r_REG1801_S5/Q clk_r_REG3635_S3/Q clk_r_REG151_S7/Q clk_r_REG153_S7/Q clk_r_REG152_S7/Q clk_r_REG1787_S5/Q clk_r_REG1648_S5/Q clk_r_REG1631_S5/Q clk_r_REG1637_S5/Q clk_r_REG1613_S5/Q clk_r_REG1819_S5/Q clk_r_REG1460_S5/Q clk_r_REG1459_S5/Q clk_r_REG249_S7/Q clk_r_REG272_S7/Q clk_r_REG3284_S3/Q clk_r_REG1786_S5/Q clk_r_REG1949_S4/Q clk_r_REG3330_S3/Q clk_r_REG3600_S3/Q clk_r_REG4608_S2/Q clk_r_REG1453_S5/Q clk_r_REG1798_S5/Q clk_r_REG2522_S3/Q clk_r_REG651_S4/Q clk_r_REG643_S4/Q clk_r_REG189_S7/Q clk_r_REG649_S4/Q clk_r_REG3464_S3/Q clk_r_REG303_S7/Q clk_r_REG738_S3/Q clk_r_REG589_S5/Q clk_r_REG613_S5/Q clk_r_REG311_S7/Q clk_r_REG691_S4/Q clk_r_REG1788_S5/Q clk_r_REG1812_S5/Q clk_r_REG1815_S5/Q ...}
+set REG_D [all_registers -data_pins]
+{clk_r_REG1753_S6/D clk_r_REG681_S4/D clk_r_REG732_S4/D clk_r_REG2797_S1/D clk_r_REG2821_S1/D clk_r_REG2935_S1/D clk_r_REG1448_S5/D clk_r_REG1455_S5/D clk_r_REG1458_S5/D clk_r_REG1461_S5/D clk_r_REG3449_S3/D clk_r_REG3475_S3/D clk_r_REG134_S3/D clk_r_REG3299_S3/D clk_r_REG3551_S3/D clk_r_REG3506_S3/D clk_r_REG3741_S3/D clk_r_REG298_S7/D clk_r_REG1610_S5/D clk_r_REG3528_S3/D clk_r_REG1796_S5/D clk_r_REG563_S5/D clk_r_REG1645_S5/D clk_r_REG1644_S5/D clk_r_REG1791_S5/D clk_r_REG1641_S5/D clk_r_REG1650_S5/D clk_r_REG1617_S5/D clk_r_REG1622_S5/D clk_r_REG1646_S5/D clk_r_REG1611_S5/D clk_r_REG4451_S2/D clk_r_REG4447_S2/D clk_r_REG4464_S2/D clk_r_REG4445_S2/D clk_r_REG3860_S3/D clk_r_REG3811_S3/D clk_r_REG3801_S3/D clk_r_REG3485_S3/D clk_r_REG3992_S3/D clk_r_REG4435_S2/D clk_r_REG632_S4/D clk_r_REG246_S7/D clk_r_REG705_S4/D clk_r_REG200_S7/D clk_r_REG534_S5/D clk_r_REG694_S4/D clk_r_REG281_S7/D clk_r_REG181_S7/D clk_r_REG690_S4/D clk_r_REG614_S5/D clk_r_REG161_S7/D clk_r_REG629_S5/D clk_r_REG407_S6/D clk_r_REG357_S6/D clk_r_REG749_S3/D clk_r_REG306_S7/D clk_r_REG287_S7/D clk_r_REG1634_S5/D clk_r_REG3694_S3/D clk_r_REG354_S6/D clk_r_REG1806_S5/D clk_r_REG1801_S5/D clk_r_REG3635_S3/D clk_r_REG151_S7/D clk_r_REG153_S7/D clk_r_REG152_S7/D clk_r_REG1787_S5/D clk_r_REG1648_S5/D clk_r_REG1631_S5/D clk_r_REG1637_S5/D clk_r_REG1613_S5/D clk_r_REG1819_S5/D clk_r_REG1460_S5/D clk_r_REG1459_S5/D clk_r_REG249_S7/D clk_r_REG272_S7/D clk_r_REG3284_S3/D clk_r_REG1786_S5/D clk_r_REG1949_S4/D clk_r_REG3330_S3/D clk_r_REG3600_S3/D clk_r_REG4608_S2/D clk_r_REG1453_S5/D clk_r_REG1798_S5/D clk_r_REG2522_S3/D clk_r_REG651_S4/D clk_r_REG643_S4/D clk_r_REG189_S7/D clk_r_REG649_S4/D clk_r_REG3464_S3/D clk_r_REG303_S7/D clk_r_REG738_S3/D clk_r_REG589_S5/D clk_r_REG613_S5/D clk_r_REG311_S7/D clk_r_REG691_S4/D clk_r_REG1788_S5/D clk_r_REG1812_S5/D clk_r_REG1815_S5/D ...}
+if {[sizeof_collection $REG_Q] == 0} {
+  echo "WARNING: REG_Q is empty. Check all_registers / get_pins filter."
+}
+if {[sizeof_collection $REG_D] == 0} {
+  echo "WARNING: REG_D is empty. Check all_registers -data_pins."
+}
+# in → reg
+report_timing -path full -net -cap -input -tran -delay max   -from [all_inputs] -to [all_registers -data_pins]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2reg.max.rpt
+report_timing -path full -net -cap -input -tran -delay min   -from [all_inputs] -to [all_registers -data_pins]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2reg.min.rpt
+# # reg → reg
+# report_timing -path full -net -cap -input -tran -delay max #   -from [all_registers -clock_pins] -to [all_registers -data_pins] #   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
+# report_timing -path full -net -cap -input -tran -delay min #   -from [all_registers -clock_pins] -to [all_registers -data_pins] #   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt
+# # reg → out
+# report_timing -path full -net -cap -input -tran -delay max #   -from [all_registers -clock_pins] -to [all_outputs] #   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.max.rpt
+# report_timing -path full -net -cap -input -tran -delay min #   -from [all_registers -clock_pins] -to [all_outputs] #   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.min.rpt
+# reg → reg (setup)
+report_timing -path full -net -cap -input -tran -delay max   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
+# reg → reg (hold)
+report_timing -path full -net -cap -input -tran -delay min   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt

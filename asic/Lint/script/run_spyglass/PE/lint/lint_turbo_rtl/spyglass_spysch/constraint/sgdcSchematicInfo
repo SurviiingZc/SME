@@ -1,0 +1,13 @@
+##Header_Start
+##Spyglass_Version:SpyGlass_vR-2020.12-SP2
+##Header_End
+
+##File_ID::1
+
+##File_Name::../script/clock.sgdc@@Design_Unit::PE
+##Line_no::3@@port@@PE.clk
+
+##File_ID::2
+
+##File_Name::/apps/synopsys/spyglass_vR-2020.12-SP2/SPYGLASS_HOME/auxi/policy_data/auto-verify/verif.sgdc@@Design_Unit::!#nodesignunit#!
+

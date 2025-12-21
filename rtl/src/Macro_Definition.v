@@ -6,9 +6,9 @@
 //=====================================================================
 // Description : Simulation method
 //=====================================================================
-`define VCS_FSDB
+// `define VCS_FSDB
 // `define FPGA
-// `define Is_PipLine
+`define Is_PipLine
 `define FPMultiplication_Verification
 `define First_Level_FPAdd_Verification
 `define Second_Level_FPAdd_Verification
@@ -135,6 +135,7 @@
 `define BF16                            3'd3
 `define INT8                            3'd4
 `define FP8                             3'd5
+`define FP16_4                          3'd7
 // Widening signal
 `define Operands_Is_Not_Widening        1'd0
 `define Operands_Is_Widening            1'd1

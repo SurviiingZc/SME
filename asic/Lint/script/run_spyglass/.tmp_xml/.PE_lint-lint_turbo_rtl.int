@@ -1,0 +1,8 @@
+INPUT@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/html_reports/data_files/@@PE@@lint-lint_turbo_rtl@@
+COPY@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/moresimple.rpt@@data_files/PE_lint-lint_turbo_rtl_moresimple.rpt@@
+COPY@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/no_msg_reporting_rules.rpt@@data_files/PE_lint-lint_turbo_rtl_no_msg_reporting_rules.rpt@@
+REGEN@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/auto-verify/auto_verify.rpt@@data_files/PE_lint-lint_turbo_rtl_auto_verify.rpt.html@@
+REGEN@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/ADV-LINT.rpt@@data_files/PE_lint-lint_turbo_rtl_ADV-LINT.rpt.html@@
+REGEN@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/moresimple_turbo.rpt@@data_files/PE_lint-lint_turbo_rtl_moresimple_turbo.rpt.html@@
+PROCESS@@auto-verify@@morelint@@lint@@openmore@@SpyGlass
+COPY@@/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass.log@@data_files/PE_lint-lint_turbo_rtl_spyglass.log@@
