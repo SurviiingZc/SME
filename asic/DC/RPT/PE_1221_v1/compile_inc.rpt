@@ -6,7 +6,7 @@ Alib files are up-to-date.
 Information: Running optimization using a maximum of 16 cores. (OPT-1500)
 Warning: Ignoring compile_fix_multiple_port_nets = TRUE. (UIO-60)
 
-Information: There are 869 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+Information: There are 870 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 Information: State dependent leakage is now switched from on to off.
@@ -15,7 +15,8 @@ Information: State dependent leakage is now switched from on to off.
   ------------------------
 
   Updating timing information
-Information: The register 'clk_r_REG160_S7' will be removed. (OPT-1207)
+Information: The register 'clk_r_REG711_S4' will be removed. (OPT-1207)
+Information: The register 'clk_r_REG676_S4' will be removed. (OPT-1207)
 Information: Updating design information... (UID-85)
 Information: The library cell 'TIELBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
 Information: The library cell 'TIEHBWP7T35P140' in the library 'tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs' is not characterized for internal power. (PWR-536)
@@ -25,27 +26,21 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:08   34388.5      0.02       4.6     513.2                           959407.1250
-    0:00:09   34388.5      0.02       4.6     513.2                           959407.1250
-Information: Complementing port 'o_Keep_Expo_signed' in design 'C1_ExceptionHandling_0'.
-	 The new name of the port is 'o_Keep_Expo_signed_BAR'. (OPT-319)
-Information: Complementing port 'exponent[5]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_1'.
-	 The new name of the port is 'exponent[5]'. (OPT-319)
-Information: Complementing port 'exponent[7]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_1'.
-	 The new name of the port is 'exponent[7]'. (OPT-319)
+    0:00:13   30408.5      0.00       0.0     462.0                           781611.7500
+    0:00:13   30408.5      0.00       0.0     462.0                           781611.7500
 Information: Complementing port 'exponent[2]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_2'.
 	 The new name of the port is 'exponent[2]'. (OPT-319)
-Information: Complementing port 'exponent[5]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_2'.
-	 The new name of the port is 'exponent[5]'. (OPT-319)
-Information: Complementing port 'exponent[6]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_2'.
-	 The new name of the port is 'exponent[6]'. (OPT-319)
+Information: Complementing port 'exponent[3]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_2'.
+	 The new name of the port is 'exponent[3]'. (OPT-319)
+Information: Complementing port 'exponent[7]_BAR' in design 'C2_NormalizeReal_IN_WIDTH48_OUT_WIDTH48_EXP_WIDTH9_2'.
+	 The new name of the port is 'exponent[7]'. (OPT-319)
 
   Beginning Mapping Optimizations  (Ultra High effort)  (Incremental)
   -------------------------------
 
   Beginning Incremental Implementation Selection
   ----------------------------------------------
-    0:00:15   34384.6      0.02       4.6     546.2                           959278.7500
+    0:00:19   30408.7      0.00       0.0     462.0                           781609.5625
 
   Beginning Delay Optimization Phase
   ----------------------------------
@@ -54,116 +49,78 @@ Information: Complementing port 'exponent[6]_BAR' in design 'C2_NormalizeReal_IN
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:15   34384.6      0.02       4.6     546.2                           959278.7500
-    0:00:17   34393.6      0.02       4.6     546.2                           959279.0625
-    0:00:40   34247.5      0.02       5.0     542.2                           948111.5625
-    0:00:40   34247.5      0.02       5.0     542.2                           948111.5625
-    0:00:42   34321.5      0.02       5.0     542.2                           951238.8750
-    0:00:42   34321.5      0.02       5.0     542.2                           951238.8750
-    0:00:45   34550.5      0.02       4.9     566.2                           962400.8750
+    0:00:19   30408.7      0.00       0.0     462.0                           781609.5625
+    0:00:21   30419.4      0.00       0.0     462.0                           781686.1250
+    0:00:31   30372.6      0.00       0.0     462.0                           775170.5625
+    0:00:31   30372.6      0.00       0.0     462.0                           775170.5625
+    0:00:32   30372.8      0.00       0.0     462.0                           775193.6250
+    0:00:32   30372.8      0.00       0.0     462.0                           775193.6250
+    0:00:34   30372.4      0.00       0.0     462.0                           775175.1250
 
   Beginning Delay Optimization
   ----------------------------
-    0:00:46   34550.5      0.02       4.9     566.2                           962400.8750
-    0:00:48   34714.8      0.02       4.8     563.2                           970483.9375
-    0:00:49   34714.8      0.02       4.8     563.2                           970483.9375
-    0:00:51   34941.8      0.02       5.0     569.2                           981673.1875
-    0:00:51   34941.8      0.02       5.0     569.2                           981673.1875
-    0:00:53   34942.9      0.02       5.1     569.2                           981483.9375
+    0:00:34   30372.4      0.00       0.0     462.0                           775175.1250
+    0:00:34   30372.4      0.00       0.0     462.0                           775175.1250
+    0:00:34   30372.4      0.00       0.0     462.0                           775175.1250
+    0:00:34   30372.4      0.00       0.0     462.0                           775175.1250
+    0:00:34   30372.4      0.00       0.0     462.0                           775175.1250
+    0:00:44   30372.4      0.00       0.0     462.0                           775175.1250
 
 
-  Beginning Design Rule Fixing  (max_transition)  (max_fanout)
+  Beginning Design Rule Fixing  (max_fanout)
   ----------------------------
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:00:53   34942.9      0.02       5.1     569.2                           981483.9375
-    0:00:56   35003.9      0.02       5.1     329.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 983420.6875
-    0:01:26   35057.1      0.01       4.2     329.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3571_S1/D 985724.1250
-    0:01:30   35113.6      0.01       3.6     329.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3462_S1/D 988398.8125
-    0:01:33   35142.4      0.01       3.3     332.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 989423.3125
-    0:01:36   35189.1      0.01       2.9     335.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3571_S1/D 991241.0000
-    0:01:40   35214.3      0.01       2.6     335.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3633_S1/D 991943.2500
-    0:02:05   35235.1      0.01       2.3     336.0 u_C1_Mult_ALL/i_Mode[0]   992995.4375
-    0:02:08   35256.5      0.01       2.2     288.0 clk_r_REG649_S4/D         994173.3125
-    0:02:11   35282.9      0.03       5.0     268.0 u_C1_Mult_ALL/u_mul_core/n8934 995838.0000
-    0:02:14   35269.3      0.02       3.9     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 995332.6250
-    0:02:16   35272.2      0.02       3.8     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 995657.9375
-    0:02:19   35288.8      0.02       3.5     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3737_S1/D 996429.9375
-    0:02:43   35295.7      0.02       3.3     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3737_S1/D 996871.8125
-    0:02:46   35313.6      0.02       3.1     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 997498.2500
-    0:02:48   35322.6      0.02       3.0     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3227_S1/D 997609.1250
-    0:02:50   35330.4      0.02       2.9     197.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 997937.2500
-    0:02:51   35333.9      0.01       2.8     171.0 n12692                    998008.5625
-    0:02:52   35342.3      0.01       3.5     144.0                           998300.7500
-    0:02:59   35089.1      0.01       3.7     144.0                           986893.6250
-    0:03:00   35089.1      0.01       3.7     144.0                           986893.6250
-    0:03:01   35138.7      0.02       3.9     144.0                           989393.3125
-    0:03:01   35138.7      0.02       3.9     144.0                           989393.3125
-    0:03:27   35333.0      0.01       2.8     202.0                           997988.5000
-    0:03:27   35333.1      0.01       2.8     202.0                           997995.3750
-    0:03:31   35545.2      0.01       2.5     217.0                           1007912.1250
-    0:03:31   35545.2      0.01       2.5     217.0                           1007912.1250
-    0:03:34   35708.7      0.02       2.7     228.0                           1015836.9375
-    0:03:38   35702.3      0.01       2.0     228.0                           1015613.9375
-    0:04:07   35747.2      0.01       1.6     228.0                           1017179.0000
-    0:04:10   35782.3      0.01       1.2     228.0                           1018796.4375
-    0:04:13   35813.6      0.01       0.9     228.0                           1019972.5000
-    0:04:13   35813.4      0.01       0.9     228.0                           1019991.7500
-    0:04:21   35409.4      0.01       1.1     228.0                           1001635.0000
-    0:04:21   35409.4      0.01       1.1     228.0                           1001635.0000
-    0:04:36   35450.3      0.01       1.1     228.0                           1003326.5625
-    0:04:36   35450.3      0.01       1.1     228.0                           1003326.5625
-    0:04:49   35632.4      0.01       1.0     261.0                           1011743.8125
-    0:04:49   35632.4      0.01       1.0     261.0                           1011743.8125
-    0:04:52   35815.6      0.01       1.2     274.0                           1020226.3750
-    0:04:52   35815.7      0.01       1.2     274.0                           1020233.2500
-    0:04:55   35968.2      0.01       1.3     274.0                           1027309.9375
-    0:04:56   35959.3      0.01       1.3     274.0                           1027309.6250
+    0:00:44   30372.4      0.00       0.0     462.0                           775175.1250
+    0:01:16   30399.6      0.00       0.0     351.0 Comb2_1__u_C2_Round/u_NormalizeReal/n267 775856.1875
+    0:01:18   30423.1      0.01       0.2     214.0 n35789                    776598.8125
+    0:01:21   30450.2      0.00       0.0     152.0 n21877                    777288.7500
+    0:01:22   30450.8      0.00       0.0     134.0                           777274.8750
+    0:01:44   30385.6      0.00       0.1     134.0                           773991.6250
+    0:01:45   30385.6      0.00       0.1     134.0                           773991.6250
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:14   30456.9      0.00       0.0     134.0                           777401.3125
+    0:02:21   30372.6      0.00       0.0     134.0                           773573.9375
+    0:02:21   30372.6      0.00       0.0     134.0                           773573.9375
+    0:02:21   30372.6      0.00       0.0     134.0                           773570.6250
+    0:02:21   30372.6      0.00       0.0     134.0                           773570.6250
+    0:02:21   30372.0      0.00       0.0     134.0                           773552.4375
+    0:02:21   30372.0      0.00       0.0     134.0                           773552.4375
+    0:02:21   30372.0      0.00       0.0     134.0                           773552.4375
+    0:02:22   30372.0      0.00       0.0     134.0                           773552.4375
+    0:02:22   30372.0      0.00       0.0     134.0                           773552.4375
+    0:02:23   30363.1      0.00       0.0     134.0                           773552.1250
 
                                   TOTAL                                                
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER  
   --------- --------- --------- --------- --------- ------------------------- ---------
-    0:04:56   35959.3      0.01       1.3     274.0                           1027309.6250
-    0:05:02   35604.6      0.01       1.6     274.0                           1010977.1250
-    0:05:18   35562.7      0.01       1.6     273.0                           1009146.2500
-    0:05:32   35538.7      0.01       1.6     271.0                           1008133.8125
-    0:05:33   35508.9      0.01       1.6     271.0                           1006961.8125
-    0:05:35   35491.1      0.01       1.7     269.0                           1005965.5625
-    0:05:39   35472.7      0.01       1.8     269.0                           1004745.5625
-    0:05:42   35477.1      0.01       1.7     190.0 u_C1_Mult_ALL/u_mul_core/n7021 1004857.0000
-    0:06:09   35522.0      0.01       1.4     171.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3669_S1/D 1006327.2500
-    0:06:12   35549.9      0.01       1.2     171.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 1007200.2500
-    0:06:15   35575.2      0.01       0.9     169.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 1008046.1875
-    0:06:18   35598.1      0.03       4.7      99.0 n21225                    1009352.6875
-    0:06:21   35628.7      0.03       4.3      79.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3833_S1/D 1010534.8125
-    0:06:46   35624.5      0.03       3.9      79.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 1010570.1250
-    0:06:52   35654.5      0.02       2.5      79.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3633_S1/D 1012187.3750
-    0:06:55   35668.1      0.01       2.1      79.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3574_S1/D 1012690.0000
-    0:06:56   35681.2      0.01       2.0      47.0 n35460                    1013185.6250
-    0:06:57   35686.2      0.01       2.0      29.0                           1013290.7500
-    0:07:16   35065.7      0.02       4.6      29.0                           989849.8750
-    0:07:31   35105.8      0.01       3.9      29.0 u_C1_Mult_ALL/u_mul_core/clk_r_REG3832_S1/D 992399.0625
-    0:07:34   35124.0      0.01       3.6      29.0                           993624.2500
-    0:07:35   35119.5      0.01       3.6      29.0                           993515.8750
-    0:07:35   35114.2      0.01       3.6      29.0                           993309.5000
-    0:07:35   35114.2      0.01       3.6      29.0                           993309.5000
-    0:07:39   35327.7      0.01       1.3     142.0                           1002728.5000
-    0:07:39   35327.7      0.01       1.3     142.0                           1002728.5000
-    0:07:39   35329.6      0.01       1.3     143.0                           1002798.2500
-    0:07:39   35329.6      0.01       1.3     143.0                           1002798.2500
-    0:07:39   35331.9      0.01       1.3     143.0                           1002916.8750
-    0:07:39   35331.9      0.01       1.3     143.0                           1002916.8750
-    0:08:07   35284.9      0.01       0.9     143.0                           1000965.8125
-    0:08:09   35247.7      0.01       0.6     143.0                           999425.6250
-    0:08:11   35228.8      0.01       0.5     143.0                           998679.7500
-    0:08:13   35215.1      0.01       0.4     143.0                           998042.6875
-    0:08:13   35215.1      0.01       0.4     143.0                           998042.6875
-    0:08:14   35258.1      0.01       0.6     143.0                           999510.5000
-    0:08:51   34561.6      0.01       0.6     143.0                           965605.8125
+    0:02:23   30363.1      0.00       0.0     134.0                           773552.1250
+    0:03:08   30348.6      0.00       0.0     134.0                           772685.6875
+    0:03:11   30326.2      0.00       0.0     134.0                           771981.9375
+    0:03:17   30309.4      0.00       0.0     134.0                           771510.1875
+    0:03:18   30293.5      0.00       0.0     134.0                           771036.4375
+    0:03:25   30290.1      0.00       0.0     134.0                           770457.5000
+    0:04:09   30283.0      0.00       0.0     134.0                           769634.0625
+    0:04:12   30309.5      0.01       0.0      88.0 u_C1_Mult_ALL/u_mul_core/n5241 770478.7500
+    0:04:15   30335.2      0.00       0.0       6.0 n35816                    771419.1250
+    0:04:15   30336.3      0.01       0.1       0.0                           771493.0625
+    0:04:27   30181.6      0.01       0.5       0.0                           764902.6875
+    0:05:07   30270.6      0.00       0.0       0.0                           769771.4375
+    0:05:07   30270.6      0.00       0.0       0.0                           769771.4375
+    0:05:07   30270.6      0.00       0.0       0.0                           769771.4375
+    0:05:07   30270.6      0.00       0.0       0.0                           769771.4375
+    0:05:07   30270.6      0.00       0.0       0.0                           769771.4375
+    0:05:14   30089.8      0.00       0.0       0.0                           761010.1250
 Loading db file '/simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs.db'
 
 
@@ -173,7 +130,7 @@ Note: Symbol # after min delay cost means estimated hold TNS across all active s
   Optimization Complete
   ---------------------
 Warning: Design 'PE' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
-     Net 'u_C1_Mult_ALL/u_mul_core/clk': 4673 load(s), 1 driver(s)
+     Net 'u_C1_Mult_ALL/u_mul_core/clk': 4669 load(s), 1 driver(s)
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 1

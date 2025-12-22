@@ -1,0 +1,23 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -nworst 200
+        -input_pins
+        -nets
+        -max_paths 200
+        -transition_time
+        -capacitance
+Design : PE
+Version: R-2020.09-SP5
+Date   : Mon Dec 22 16:17:31 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: ssg0p81v125c   Library: tcbn28hpcplusbwp7t35p140ssg0p81v125c_ccs
+Wire Load Model Mode: segmented
+No paths.
+
+1

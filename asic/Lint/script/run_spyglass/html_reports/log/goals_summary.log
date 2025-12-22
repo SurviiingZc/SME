@@ -6,11 +6,11 @@ Technical support: email spyglass_support@synopsys.com
 Creating 'goals_summary' reports using project '../script/run_spyglass.prj'
 ##cwd         : /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/work
 ##system      : Linux server01 3.10.0-1160.71.1.el7.x86_64 #1 SMP Tue Jun 28 15:37:28 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
-##Date & Time : Sun Dec 21 17:28:28 2025
-Checkout 'dashboard' license at Sun Dec 21 17:28:28 2025 
-Checkout 'dashboard' license completed at Sun Dec 21 17:28:28 2025 
-Generating HTML report started at Sun Dec 21 17:28:28 2025 
-Checking project file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj at Sun Dec 21 17:28:28 2025 
+##Date & Time : Mon Dec 22 15:01:50 2025
+Checkout 'dashboard' license at Mon Dec 22 15:01:50 2025 
+Checkout 'dashboard' license completed at Mon Dec 22 15:01:50 2025 
+Generating HTML report started at Mon Dec 22 15:01:50 2025 
+Checking project file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj at Mon Dec 22 15:01:50 2025 
 Processing Project File:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass.prj 
      Work Directory:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass 
      Top Name: PE 
@@ -19,8 +19,8 @@ Processing Project File:/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/
     Goals executed: lint/lint_turbo_rtl:: 
  
 Ignoring /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass.log and correspondig reports as pre-existing file /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/html_reports/data_files/PE_lint-lint_turbo_rtl_spyglass.log seems up-to-date 
-HTML Report creation completed at Sun Dec 21 17:28:28 2025 
-Checkin 'dashboard' license at Sun Dec 21 17:28:28 2025 
+HTML Report creation completed at Mon Dec 22 15:01:50 2025 
+Checkin 'dashboard' license at Mon Dec 22 15:01:50 2025 
 ----------------------------------------------------------------
 Report 'goals_summary' created.
   File: /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/script/run_spyglass/html_reports/goals_summary.html 

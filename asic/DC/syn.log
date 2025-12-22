@@ -39,7 +39,7 @@ if {[file exist $RPT_DIR]} {
     exec mkdir $RPT_DIR
     echo "Creating $RPT_DIR !!!"
 }
-Creating RPT !!!
+File RPT already exist
 if {[file exist $RPT_DIR/$file_version]} {
     echo "File $file_version already exist"
     exec rm $RPT_DIR/$file_version -r
@@ -49,14 +49,15 @@ if {[file exist $RPT_DIR/$file_version]} {
     exec mkdir $RPT_DIR/$file_version
     echo "Creating $file_version in $RPT_DIR !!!"
 }
-Creating PE_1221_v1 in RPT !!!
+File PE_1221_v1 already exist
+Re-create PE_1221_v1 files
 if {[file exist $OUT_DIR]} {
     echo "File $OUT_DIR already exist"
 } else {
     exec mkdir $OUT_DIR
     echo "Creating $OUT_DIR !!!"
 }
-Creating OUT !!!
+File OUT already exist
 if {[file exist $OUT_DIR/$file_version]} {
     echo "File $file_version already exist"
     exec rm $OUT_DIR/$file_version -r
@@ -66,7 +67,8 @@ if {[file exist $OUT_DIR/$file_version]} {
     exec mkdir $OUT_DIR/$file_version
     echo "Creating $file_version in $OUT_DIR !!!"
 }
-Creating PE_1221_v1 in OUT !!!
+File PE_1221_v1 already exist
+Re-create PE_1221_v1 files
 # create work
 if {[file exist WORK]} {
     echo "File WORK already exist"
@@ -74,14 +76,14 @@ if {[file exist WORK]} {
     exec mkdir WORK
     echo "Creating WORK!!!"
 }
-Creating WORK!!!
+File WORK already exist
 if {[file exist WORK/$file_version]} {
     echo "File WORK/$file_version already exist"
 } else {
     exec mkdir WORK/$file_version
     echo "Creating WORK/$file_version in WORK !!!"
 }
-Creating WORK/PE_1221_v1 in WORK !!!
+File WORK/PE_1221_v1 already exist
 set cache_write  WORK/$file_version
 Information: The use of Synopsys disk cache is disabled by default. Synopsys disk cache will be made obsolete in future. (SYNOPT-32)
 WORK/PE_1221_v1
@@ -216,7 +218,6 @@ Compiling source file ../../rtl/src/C1_Compress_4to2.v
 Compiling source file ../../rtl/src/C1_CSLA.v
 Compiling source file ../../rtl/src/C1_ExceptionHandling.v
 Opening include file ../../rtl/src/Macro_Definition.v
-Warning:  ../../rtl/src/C1_ExceptionHandling.v:234: the undeclared symbol 'is_Addend_FP16' assumed to have the default net type, which is 'wire'. (VER-936)
 Compiling source file ../../rtl/src/C1_FPConvertNaN.v
 Opening include file ../../rtl/src/Macro_Definition.v
 Compiling source file ../../rtl/src/C1_FPDefaultNaN.v
@@ -225,7 +226,6 @@ Compiling source file ../../rtl/src/C1_FPInfinity.v
 Opening include file ../../rtl/src/Macro_Definition.v
 Compiling source file ../../rtl/src/C1_FPMultiplyComb.v
 Opening include file ../../rtl/src/Macro_Definition.v
-Warning:  ../../rtl/src/C1_FPMultiplyComb.v:109: the undeclared symbol 'o_FMLAL' assumed to have the default net type, which is 'wire'. (VER-936)
 Compiling source file ../../rtl/src/C1_FPProcessNaN.v
 Opening include file ../../rtl/src/Macro_Definition.v
 Compiling source file ../../rtl/src/C1_FPProcessNaNs.v
@@ -287,28 +287,8 @@ Compiling source file ../../rtl/src/C5_BFUnpack.v
 Opening include file ../../rtl/src/Macro_Definition.v
 Compiling source file ../../rtl/src/C5_ExceptionHandling.v
 Opening include file ../../rtl/src/Macro_Definition.v
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:88: the undeclared symbol 'is_Outer_Product' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:89: the undeclared symbol 'is_Inner_Product' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:90: the undeclared symbol 'is_FP32' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:91: the undeclared symbol 'is_FP16' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:92: the undeclared symbol 'is_BF16' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:93: the undeclared symbol 'is_Single_Vector' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:94: the undeclared symbol 'is_Double_Vector' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:95: the undeclared symbol 'is_Not_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:96: the undeclared symbol 'is_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:97: the undeclared symbol 'FMOP_FP32_Non_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:98: the undeclared symbol 'FMOP_FP16_Non_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:99: the undeclared symbol 'FMOP_Widening' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:100: the undeclared symbol 'BFMOP_Widening_SBF' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:101: the undeclared symbol 'BFMOP_Widening_EBF' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:102: the undeclared symbol 'FDOT' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:103: the undeclared symbol 'FMLA_FP16' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:104: the undeclared symbol 'FMLA_FP32' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_ExceptionHandling.v:105: the undeclared symbol 'FMLAL' assumed to have the default net type, which is 'wire'. (VER-936)
 Compiling source file ../../rtl/src/C5_FPADDComb.v
 Opening include file ../../rtl/src/Macro_Definition.v
-Warning:  ../../rtl/src/C5_FPADDComb.v:56: the undeclared symbol 'o_Widening_SBF' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  ../../rtl/src/C5_FPADDComb.v:57: the undeclared symbol 'o_FMLAL' assumed to have the default net type, which is 'wire'. (VER-936)
 Compiling source file ../../rtl/src/C5_FPAddition.v
 Opening include file ../../rtl/src/Macro_Definition.v
 Compiling source file ../../rtl/src/C5_FPDefaultNaN.v
@@ -868,7 +848,7 @@ report_attributes -design
 Report : Attribute
 Design : PE
 Version: R-2020.09-SP5
-Date   : Sun Dec 21 17:36:06 2025
+Date   : Mon Dec 22 15:17:23 2025
 ****************************************
 
 Design          Object             Type      Attribute Name            Value
@@ -983,20 +963,16 @@ Information: Setting sdc_version outside of an SDC file has no effect (SDC-1)
 create_clock -name clk -period 0.83 -waveform {0 0.41} [get_ports clk]
 set CLK_PORT  [get_ports clk]
 set IN_PORTS  [remove_from_collection [all_inputs] $CLK_PORT]
-set_clock_uncertainty -setup 0.05 [get_clocks clk]
-set_clock_uncertainty -hold  0.02 [get_clocks clk]
 set_clock_transition 0.05 [get_clocks clk]
-set_input_delay  0.1 -max -clock [get_clocks clk] $IN_PORTS
-set_input_delay  0.0.05 -min -clock [get_clocks clk] $IN_PORTS
-Error: value '0.0.05' for option 'delay_value' not of type 'float' (CMD-009)
-set_output_delay 0.1 -max -clock [get_clocks clk] [all_outputs]
-set_output_delay 0.05 -min -clock [get_clocks clk] [all_outputs]
+set_input_delay  0.12 -max -clock [get_clocks clk] $IN_PORTS
+set_input_delay  0.1 -min -clock [get_clocks clk] $IN_PORTS
+set_output_delay 0.12 -max -clock [get_clocks clk] [all_outputs]
+set_output_delay 0.1 -min -clock [get_clocks clk] [all_outputs]
 set_max_fanout 8 [current_design]
 Current design is 'PE'.
 set_max_transition	0.18 $IN_PORTS
 set_max_transition 0.18 [current_design]
 Current design is 'PE'.
-set_load 0.02 [all_outputs]
 1
 source -echo ./$SCRIPT_FILE/dont_touch.tcl
 #change naming rule
@@ -1135,9 +1111,9 @@ report_timing -path full -net -cap -input -tran -delay min -max_paths 200 -nwors
 report_timing -path full -net -cap -input -tran -delay max -max_paths 200 -nworst 200 > $RPT_OUT/timing.max.rpt
 # ========= Path buckets: in→reg / reg→reg / reg→out / in→out =========
 set REG_Q [get_pins -of_objects [all_registers] -filter "direction==out"]
-{clk_r_REG1753_S6/Q clk_r_REG681_S4/Q clk_r_REG732_S4/Q clk_r_REG2797_S1/Q clk_r_REG2821_S1/Q clk_r_REG2935_S1/Q clk_r_REG1448_S5/Q clk_r_REG1455_S5/Q clk_r_REG1458_S5/Q clk_r_REG1461_S5/Q clk_r_REG3449_S3/Q clk_r_REG3475_S3/Q clk_r_REG134_S3/Q clk_r_REG3299_S3/Q clk_r_REG3551_S3/Q clk_r_REG3506_S3/Q clk_r_REG3741_S3/Q clk_r_REG298_S7/Q clk_r_REG1610_S5/Q clk_r_REG3528_S3/Q clk_r_REG1796_S5/Q clk_r_REG563_S5/Q clk_r_REG1645_S5/Q clk_r_REG1644_S5/Q clk_r_REG1791_S5/Q clk_r_REG1641_S5/Q clk_r_REG1650_S5/Q clk_r_REG1617_S5/Q clk_r_REG1622_S5/Q clk_r_REG1646_S5/Q clk_r_REG1611_S5/Q clk_r_REG4451_S2/Q clk_r_REG4447_S2/Q clk_r_REG4464_S2/Q clk_r_REG4445_S2/Q clk_r_REG3860_S3/Q clk_r_REG3811_S3/Q clk_r_REG3801_S3/Q clk_r_REG3485_S3/Q clk_r_REG3992_S3/Q clk_r_REG4435_S2/Q clk_r_REG632_S4/Q clk_r_REG246_S7/Q clk_r_REG705_S4/Q clk_r_REG200_S7/Q clk_r_REG534_S5/Q clk_r_REG694_S4/Q clk_r_REG281_S7/Q clk_r_REG181_S7/Q clk_r_REG690_S4/Q clk_r_REG614_S5/Q clk_r_REG161_S7/Q clk_r_REG629_S5/Q clk_r_REG407_S6/Q clk_r_REG357_S6/Q clk_r_REG749_S3/Q clk_r_REG306_S7/Q clk_r_REG287_S7/Q clk_r_REG1634_S5/Q clk_r_REG3694_S3/Q clk_r_REG354_S6/Q clk_r_REG1806_S5/Q clk_r_REG1801_S5/Q clk_r_REG3635_S3/Q clk_r_REG151_S7/Q clk_r_REG153_S7/Q clk_r_REG152_S7/Q clk_r_REG1787_S5/Q clk_r_REG1648_S5/Q clk_r_REG1631_S5/Q clk_r_REG1637_S5/Q clk_r_REG1613_S5/Q clk_r_REG1819_S5/Q clk_r_REG1460_S5/Q clk_r_REG1459_S5/Q clk_r_REG249_S7/Q clk_r_REG272_S7/Q clk_r_REG3284_S3/Q clk_r_REG1786_S5/Q clk_r_REG1949_S4/Q clk_r_REG3330_S3/Q clk_r_REG3600_S3/Q clk_r_REG4608_S2/Q clk_r_REG1453_S5/Q clk_r_REG1798_S5/Q clk_r_REG2522_S3/Q clk_r_REG651_S4/Q clk_r_REG643_S4/Q clk_r_REG189_S7/Q clk_r_REG649_S4/Q clk_r_REG3464_S3/Q clk_r_REG303_S7/Q clk_r_REG738_S3/Q clk_r_REG589_S5/Q clk_r_REG613_S5/Q clk_r_REG311_S7/Q clk_r_REG691_S4/Q clk_r_REG1788_S5/Q clk_r_REG1812_S5/Q clk_r_REG1815_S5/Q ...}
+{clk_r_REG3690_S3/Q clk_r_REG1442_S5/Q clk_r_REG3378_S3/Q clk_r_REG3529_S3/Q clk_r_REG3595_S3/Q clk_r_REG3677_S3/Q clk_r_REG3579_S3/Q clk_r_REG3610_S3/Q clk_r_REG3674_S3/Q clk_r_REG3616_S3/Q clk_r_REG251_S7/Q clk_r_REG667_S4/Q clk_r_REG428_S7/Q clk_r_REG646_S4/Q clk_r_REG137_S5/Q clk_r_REG612_S5/Q clk_r_REG3070_S5/Q clk_r_REG1445_S5/Q clk_r_REG1440_S5/Q R_36_clk_r_REG165_S7/Q R_25_clk_r_REG568_S5/Q clk_r_REG162_S7/Q clk_r_REG710_S4/Q clk_r_REG389_S6/Q clk_r_REG4426_S2/Q clk_r_REG1653_S5/Q clk_r_REG655_S4/Q clk_r_REG658_S4/Q clk_r_REG1804_S5/Q clk_r_REG186_S7/Q clk_r_REG636_S4/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4131_S1/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4136_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4132_S1/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4133_S1/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4134_S1/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2784_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4611_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4612_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2789_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2790_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4667_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4312_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4318_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4319_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4124_S1/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4137_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2834_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2835_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2836_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2837_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4576_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4646_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4647_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4328_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4636_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4632_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4628_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4624_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4620_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4616_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4698_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4694_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4690_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4687_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4684_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4681_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4678_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4675_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4672_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4669_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4663_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4659_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4655_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4651_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4645_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4668_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4641_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4610_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4605_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4601_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4597_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4592_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4588_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4584_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4580_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4575_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4327_S2/Q u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4311_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2424_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2736_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2781_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2773_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2771_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2223_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2690_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2691_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2688_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG3196_S2/Q u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2222_S2/Q ...}
 set REG_D [all_registers -data_pins]
-{clk_r_REG1753_S6/D clk_r_REG681_S4/D clk_r_REG732_S4/D clk_r_REG2797_S1/D clk_r_REG2821_S1/D clk_r_REG2935_S1/D clk_r_REG1448_S5/D clk_r_REG1455_S5/D clk_r_REG1458_S5/D clk_r_REG1461_S5/D clk_r_REG3449_S3/D clk_r_REG3475_S3/D clk_r_REG134_S3/D clk_r_REG3299_S3/D clk_r_REG3551_S3/D clk_r_REG3506_S3/D clk_r_REG3741_S3/D clk_r_REG298_S7/D clk_r_REG1610_S5/D clk_r_REG3528_S3/D clk_r_REG1796_S5/D clk_r_REG563_S5/D clk_r_REG1645_S5/D clk_r_REG1644_S5/D clk_r_REG1791_S5/D clk_r_REG1641_S5/D clk_r_REG1650_S5/D clk_r_REG1617_S5/D clk_r_REG1622_S5/D clk_r_REG1646_S5/D clk_r_REG1611_S5/D clk_r_REG4451_S2/D clk_r_REG4447_S2/D clk_r_REG4464_S2/D clk_r_REG4445_S2/D clk_r_REG3860_S3/D clk_r_REG3811_S3/D clk_r_REG3801_S3/D clk_r_REG3485_S3/D clk_r_REG3992_S3/D clk_r_REG4435_S2/D clk_r_REG632_S4/D clk_r_REG246_S7/D clk_r_REG705_S4/D clk_r_REG200_S7/D clk_r_REG534_S5/D clk_r_REG694_S4/D clk_r_REG281_S7/D clk_r_REG181_S7/D clk_r_REG690_S4/D clk_r_REG614_S5/D clk_r_REG161_S7/D clk_r_REG629_S5/D clk_r_REG407_S6/D clk_r_REG357_S6/D clk_r_REG749_S3/D clk_r_REG306_S7/D clk_r_REG287_S7/D clk_r_REG1634_S5/D clk_r_REG3694_S3/D clk_r_REG354_S6/D clk_r_REG1806_S5/D clk_r_REG1801_S5/D clk_r_REG3635_S3/D clk_r_REG151_S7/D clk_r_REG153_S7/D clk_r_REG152_S7/D clk_r_REG1787_S5/D clk_r_REG1648_S5/D clk_r_REG1631_S5/D clk_r_REG1637_S5/D clk_r_REG1613_S5/D clk_r_REG1819_S5/D clk_r_REG1460_S5/D clk_r_REG1459_S5/D clk_r_REG249_S7/D clk_r_REG272_S7/D clk_r_REG3284_S3/D clk_r_REG1786_S5/D clk_r_REG1949_S4/D clk_r_REG3330_S3/D clk_r_REG3600_S3/D clk_r_REG4608_S2/D clk_r_REG1453_S5/D clk_r_REG1798_S5/D clk_r_REG2522_S3/D clk_r_REG651_S4/D clk_r_REG643_S4/D clk_r_REG189_S7/D clk_r_REG649_S4/D clk_r_REG3464_S3/D clk_r_REG303_S7/D clk_r_REG738_S3/D clk_r_REG589_S5/D clk_r_REG613_S5/D clk_r_REG311_S7/D clk_r_REG691_S4/D clk_r_REG1788_S5/D clk_r_REG1812_S5/D clk_r_REG1815_S5/D ...}
+{clk_r_REG3690_S3/D clk_r_REG1442_S5/D clk_r_REG3378_S3/D clk_r_REG3529_S3/D clk_r_REG3595_S3/D clk_r_REG3677_S3/D clk_r_REG3579_S3/D clk_r_REG3610_S3/D clk_r_REG3674_S3/D clk_r_REG3616_S3/D clk_r_REG251_S7/D clk_r_REG667_S4/D clk_r_REG428_S7/D clk_r_REG646_S4/D clk_r_REG137_S5/D clk_r_REG612_S5/D clk_r_REG3070_S5/D clk_r_REG1445_S5/D clk_r_REG1440_S5/D R_36_clk_r_REG165_S7/D R_25_clk_r_REG568_S5/D clk_r_REG162_S7/D clk_r_REG710_S4/D clk_r_REG389_S6/D clk_r_REG4426_S2/D clk_r_REG1653_S5/D clk_r_REG655_S4/D clk_r_REG658_S4/D clk_r_REG1804_S5/D clk_r_REG186_S7/D clk_r_REG636_S4/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4131_S1/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4136_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4132_S1/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4133_S1/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4134_S1/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2784_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4611_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4612_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2789_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2790_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4667_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4312_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4318_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4319_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4124_S1/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4137_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2834_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2835_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2836_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG2837_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4576_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4646_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4647_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4328_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4636_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4632_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4628_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4624_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4620_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4616_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4698_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4694_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4690_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4687_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4684_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4681_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4678_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4675_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4672_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4669_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4663_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4659_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4655_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4651_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4645_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4668_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4641_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4610_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4605_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4601_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4597_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4592_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4588_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4584_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4580_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4575_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4327_S2/D u_C1_FPMultiplyComb_u_FPUnpackAll/clk_r_REG4311_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2424_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2736_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2781_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2773_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2771_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2223_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2690_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2691_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2688_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG3196_S2/D u_C1_FPMultiplyComb_u_ExceptionHandling/clk_r_REG2222_S2/D ...}
 if {[sizeof_collection $REG_Q] == 0} {
   echo "WARNING: REG_Q is empty. Check all_registers / get_pins filter."
 }
@@ -1157,3 +1133,33 @@ report_timing -path full -net -cap -input -tran -delay min   -from [all_inputs] 
 report_timing -path full -net -cap -input -tran -delay max   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
 # reg → reg (hold)
 report_timing -path full -net -cap -input -tran -delay min   -from $REG_Q -to $REG_D   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt
+# reg → out (setup)
+report_timing -path full -net -cap -input -tran -delay max   -from $REG_Q -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.max.rpt
+# reg → out (hold)
+report_timing -path full -net -cap -input -tran -delay min   -from $REG_Q -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.min.rpt
+# in → out
+report_timing -path full -net -cap -input -tran -delay max   -from [all_inputs] -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2out.max.rpt
+report_timing -path full -net -cap -input -tran -delay min   -from [all_inputs] -to [all_outputs]   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2out.min.rpt
+# report_constraints -all_violators -verbose > $RPT_OUT/constraints.rpt
+report_power > $RPT_OUT/power.rpt
+###################################################################
+## Saving Hierarchy
+###################################################################
+set bus_naming_style {%s[%d]} 
+%s[%d]
+write_file -f verilog -hierarchy -output $DATA_OUT/$working_design.v
+Writing verilog file '/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/DC/OUT/PE_1221_v1/PE.v'.
+1
+write_sdf -version 2.1 $DATA_OUT/$working_design.sdf
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/DC/OUT/PE_1221_v1/PE.sdf'. (WT-3)
+1
+write_file -f ddc -hierarchy -output $DATA_OUT/$working_design.ddc
+Writing ddc file 'OUT/PE_1221_v1/PE.ddc'.
+1
+write_sdc $DATA_OUT/$working_design.sdc
+1
+file delete ./command.log
+#file delete ./default.svf
+file delete ./filenames.log
+#exitdc_shell> 
