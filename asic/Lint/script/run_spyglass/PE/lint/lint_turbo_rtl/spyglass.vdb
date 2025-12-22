@@ -1,5 +1,5 @@
 ##spyglass_version: SpyGlass_vR-2020.12-SP2
-##date: Sun Dec 21 17:28:18 2025
+##date: Mon Dec 22 15:01:40 2025
 ##user: wangjialong
 ##cwd: /simulation/wangjialong/SME_TPU_PE/Public_SME/Final/SME/asic/Lint/work
 ##lang: verilog
@@ -1404,11 +1404,11 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 ##sde_property: file ../../../rtl/src/C1_Compress_3to2.v -id 11
 ##sde_property: file ../../../rtl/src/C1_Compress_4to2.v -id 12
 ##sde_property: file ../../../rtl/src/C1_CSLA.v -id 13
-##sde_property: file ../../../rtl/src/C1_ExceptionHandling.v -id 14 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList mlc 5 3 10 0 slc 73 73 1 slc 79 79 1 slc 105 105 1 slc 146 147 1 slc 151 151 1 slc 182 182 1 slc 249 249 1 slc 254 254 1 slc 256 256 1 slc 260 260 1 slc 283 283 1
+##sde_property: file ../../../rtl/src/C1_ExceptionHandling.v -id 14 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList mlc 5 3 10 0 slc 73 73 1 slc 79 79 1 slc 105 105 1 slc 147 148 1 slc 152 152 1 slc 183 183 1 slc 250 250 1 slc 255 255 1 slc 257 257 1 slc 261 261 1 slc 284 284 1
 ##sde_property: file ../../../rtl/src/C1_FPConvertNaN.v -id 15 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList slc 8 9 1
 ##sde_property: file ../../../rtl/src/C1_FPDefaultNaN.v -id 16 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList slc 8 9 1
 ##sde_property: file ../../../rtl/src/C1_FPInfinity.v -id 17 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList mlc 6 3 11 0 slc 15 15 1
-##sde_property: file ../../../rtl/src/C1_FPMultiplyComb.v -id 18 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList mlc 7 3 10 0 slc 29 29 1 slc 48 49 1 slc 159 164 1
+##sde_property: file ../../../rtl/src/C1_FPMultiplyComb.v -id 18 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList mlc 7 3 10 0 slc 29 29 1 slc 48 49 1 slc 160 165 1
 ##sde_property: file ../../../rtl/src/C1_FPProcessNaN.v -id 19 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList slc 10 10 1
 ##sde_property: file ../../../rtl/src/C1_FPProcessNaNs.v -id 20 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList slc 10 10 1 slc 25 25 1 slc 28 28 1 slc 31 31 1 slc 34 34 1
 ##sde_property: file ../../../rtl/src/C1_FPUnpackAll.v -id 21 -include /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v -inactiveList mlc 6 3 9 0
@@ -1483,7 +1483,7 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 #rtl_idmap PE 1 -lang 1
 #span Pipline_0 ../../../rtl/src/Pipline_0.v 7 168 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap Pipline_0 2 -lang 1
-#span C1_FPMultiplyComb ../../../rtl/src/C1_FPMultiplyComb.v 12 166 ../../../rtl/src/C1_FPMultiplyComb.v 7 166 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C1_FPMultiplyComb ../../../rtl/src/C1_FPMultiplyComb.v 12 167 ../../../rtl/src/C1_FPMultiplyComb.v 7 167 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C1_FPMultiplyComb 3 -lang 1
 #span C1_FPUnpackAll ../../../rtl/src/C1_FPUnpackAll.v 11 234 ../../../rtl/src/C1_FPUnpackAll.v 6 234 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C1_FPUnpackAll 4 -lang 1
@@ -1491,7 +1491,7 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 #rtl_idmap C1_FPUnpackBase 5 -lang 1
 #span C1_BFUnpack ../../../rtl/src/C1_BFUnpack.v 21 70 ../../../rtl/src/C1_BFUnpack.v 6 70 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C1_BFUnpack 6 -lang 1
-#span C1_ExceptionHandling ../../../rtl/src/C1_ExceptionHandling.v 12 345 ../../../rtl/src/C1_ExceptionHandling.v 5 345 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C1_ExceptionHandling ../../../rtl/src/C1_ExceptionHandling.v 12 346 ../../../rtl/src/C1_ExceptionHandling.v 5 346 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C1_ExceptionHandling 7 -lang 1
 #span C1_FPProcessNaNs ../../../rtl/src/C1_FPProcessNaNs.v 7 272 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C1_FPProcessNaNs 8 -lang 1
@@ -1555,11 +1555,11 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 #rtl_idmap C3_FPProcessNaNs 37 -lang 1
 #span C3_FPProcessNaN ../../../rtl/src/C3_FPProcessNaN.v 7 39 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C3_FPProcessNaN 38 -lang 1
-#span C3_FPAddition ../../../rtl/src/C3_FPAddition.v 7 157 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C3_FPAddition ../../../rtl/src/C3_FPAddition.v 7 156 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C3_FPAddition 39 -lang 1
 #span Pipline_3 ../../../rtl/src/Pipline_3.v 7 354 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap Pipline_3 40 -lang 1
-#span C4_Round ../../../rtl/src/C4_Round.v 6 107 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C4_Round ../../../rtl/src/C4_Round.v 6 108 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C4_Round 41 -lang 1
 #span C4_BFRound ../../../rtl/src/C4_BFRound.v 6 51 ../../../rtl/src/C4_BFRound.v 1 51
 #rtl_idmap C4_BFRound 42 -lang 1
@@ -1611,7 +1611,7 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 #rtl_idmap C2_FPInfinity 65 -lang 1
 #span C2_FPZero ../../../rtl/src/C2_FPZero.v 10 18 ../../../rtl/src/C2_FPZero.v 3 18
 #rtl_idmap C2_FPZero 66 -lang 1
-#span C5_FPADDComb ../../../rtl/src/C5_FPADDComb.v 7 123 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C5_FPADDComb ../../../rtl/src/C5_FPADDComb.v 7 125 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_FPADDComb 67 -lang 1
 #span C5_FPUnpackAll ../../../rtl/src/C5_FPUnpackAll.v 11 129 ../../../rtl/src/C5_FPUnpackAll.v 6 129 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_FPUnpackAll 68 -lang 1
@@ -1619,7 +1619,7 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 #rtl_idmap C5_FPUnpackBase 69 -lang 1
 #span C5_BFUnpack ../../../rtl/src/C5_BFUnpack.v 21 67 ../../../rtl/src/C5_BFUnpack.v 6 67 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_BFUnpack 70 -lang 1
-#span C5_ExceptionHandling ../../../rtl/src/C5_ExceptionHandling.v 13 141 ../../../rtl/src/C5_ExceptionHandling.v 6 141 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C5_ExceptionHandling ../../../rtl/src/C5_ExceptionHandling.v 13 159 ../../../rtl/src/C5_ExceptionHandling.v 6 159 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_ExceptionHandling 71 -lang 1
 #span C5_FPInfinity ../../../rtl/src/C5_FPInfinity.v 13 21 ../../../rtl/src/C5_FPInfinity.v 6 21 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_FPInfinity 72 -lang 1
@@ -1631,7 +1631,7 @@ ElabSummary@@ElabSummary@@Info@@../script/run_spyglass/PE/lint/lint_turbo_rtl/sp
 #rtl_idmap C5_FPProcessNaNs 75 -lang 1
 #span C5_FPProcessNaN ../../../rtl/src/C5_FPProcessNaN.v 7 39 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_FPProcessNaN 76 -lang 1
-#span C5_FPAddition ../../../rtl/src/C5_FPAddition.v 7 169 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
+#span C5_FPAddition ../../../rtl/src/C5_FPAddition.v 7 168 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 1 193
 #rtl_idmap C5_FPAddition 77 -lang 1
 #greybox PE 15
 #greybox Pipline_0 15
@@ -1750,7 +1750,7 @@ W287b@@@@Data@@../../../rtl/src/C3_FPADDComb.v@@67@@1@@5@@Instance output port '
 ##sde_property: violation -ruleLang 1 -duId 30 
 ##sde_property: msg_label W287b_SS_DATA
 ##sde_property: msg_id W287b_SS_DATA
-W287b@@@@Data@@../../../rtl/src/C5_FPADDComb.v@@69@@1@@5@@Instance output port 'o_Value2' is not connected
+W287b@@@@Data@@../../../rtl/src/C5_FPADDComb.v@@71@@1@@5@@Instance output port 'o_Value2' is not connected
 ##sde_property: violation -ruleLang 1 -duId 67 
 ##sde_property: msg_label W287b_SS_DATA
 ##sde_property: msg_id W287b_SS_DATA
@@ -1794,10 +1794,6 @@ W287b@@@@Warning@@../../../rtl/src/C4_FPRoundBase.v@@146@@1@@5@@Instance output 
 ##sde_property: violation -ruleLang 1 -duId 43 
 ##sde_property: msg_label W287b_msg
 ##sde_property: msg_id W287b_msg
-W287b@@@@Warning@@../../../rtl/src/C4_Round.v@@88@@1@@5@@Instance output port 'sticky_flag' is not connected
-##sde_property: violation -ruleLang 1 -duId 41 
-##sde_property: msg_label W287b_msg
-##sde_property: msg_id W287b_msg
 W287b@@@@Data@@../../../rtl/src/PE.v@@705@@1@@5@@Instance output port 'o_sign' is not connected
 ##sde_property: violation -ruleLang 1 -duId 1 
 ##sde_property: msg_label W287b_SS_DATA
@@ -1806,11 +1802,11 @@ W287b@@@@Warning@@../../../rtl/src/PE.v@@705@@1@@5@@Instance output port 'o_sign
 ##sde_property: violation -ruleLang 1 -duId 1 
 ##sde_property: msg_label W287b-PARENT-SS-VIOL
 ##sde_property: msg_id W287b-PARENT-SS-VIOL
-W287b@@@@Data@@../../../rtl/src/C5_FPADDComb.v@@64@@1@@5@@Instance output port 'o_Value1' is not connected
+W287b@@@@Data@@../../../rtl/src/C5_FPADDComb.v@@66@@1@@5@@Instance output port 'o_Value1' is not connected
 ##sde_property: violation -ruleLang 1 -duId 67 
 ##sde_property: msg_label W287b_SS_DATA
 ##sde_property: msg_id W287b_SS_DATA
-W287b@@@@Warning@@../../../rtl/src/C5_FPADDComb.v@@64@@1@@5@@Instance output port 'o_Value1' is not connected. For similar '2' violations of module 'C5_FPUnpackAll', please refer to the spreadsheet for details
+W287b@@@@Warning@@../../../rtl/src/C5_FPADDComb.v@@66@@1@@5@@Instance output port 'o_Value1' is not connected. For similar '2' violations of module 'C5_FPUnpackAll', please refer to the spreadsheet for details
 ##sde_property: violation -ruleLang 1 -duId 67 
 ##sde_property: msg_label W287b-PARENT-SS-VIOL
 ##sde_property: msg_id W287b-PARENT-SS-VIOL
@@ -1916,47 +1912,47 @@ W240@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@18@@1@@10@@Input 'i_ZnIsS
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@114@@1@@10@@Variable 'T_ValueA[127:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@115@@1@@10@@Variable 'T_ValueA[127:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_ValueA -mergeRange1 127:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@126@@1@@10@@Variable 'T_Value2[63:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@127@@1@@10@@Variable 'T_Value2[63:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Value2 -mergeRange1 63:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@120@@1@@10@@Variable 'T_Value1[63:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@121@@1@@10@@Variable 'T_Value1[63:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Value1 -mergeRange1 63:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@127@@1@@10@@Variable 'T_Precision_Operand2[2:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@128@@1@@10@@Variable 'T_Precision_Operand2[2:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Precision_Operand2 -mergeRange1 2:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@121@@1@@10@@Variable 'T_Precision_Operand1[2:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@122@@1@@10@@Variable 'T_Precision_Operand1[2:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Precision_Operand1 -mergeRange1 2:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@125@@1@@10@@Variable 'T_Mant2[47:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@126@@1@@10@@Variable 'T_Mant2[47:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Mant2 -mergeRange1 47:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@119@@1@@10@@Variable 'T_Mant1[47:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@120@@1@@10@@Variable 'T_Mant1[47:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Mant1 -mergeRange1 47:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@124@@1@@10@@Variable 'T_Expo2[15:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@125@@1@@10@@Variable 'T_Expo2[15:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Expo2 -mergeRange1 15:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@118@@1@@10@@Variable 'T_Expo1[15:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
+W528@@@@Warning@@../../../rtl/src/C1_FPMultiplyComb.v@@119@@1@@10@@Variable 'T_Expo1[15:0]' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb']
 ##continue:
 ##sde_property: violation -ruleLang 1 -duId 3 -elabDuId 3 -type 1WBusMerge -mergeStr1 T_Expo1 -mergeRange1 15:0 -completeRange1 -1:0  
 ##sde_property: msg_label veCheckUsage_Viol_Msg
@@ -1993,19 +1989,19 @@ W528@@@@Warning@@../../../rtl/src/C1_FPUnpackBase.v@@76@@1@@10@@Variable 'is_FP1
 ##sde_property: violation -ruleLang 1 -duId 5 -elabDuId 5 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@208@@1@@10@@Variable 'Exception_Result' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@209@@1@@10@@Variable 'Exception_Result' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 7 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@234@@1@@10@@Variable 'is_Addend_FP16' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@235@@1@@10@@Variable 'is_Addend_FP16' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 7 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@238@@1@@10@@Variable 'is_None_ZA' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@239@@1@@10@@Variable 'is_None_ZA' set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 7 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@280@@1@@10@@Variable 'T_Verify'(128 bits) set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@281@@1@@10@@Variable 'T_Verify'(128 bits) set but not read.[Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 7 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
@@ -2258,15 +2254,15 @@ W240@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@20@@1@@10@@Input 'i_Ad
 ##sde_property: violation -ruleLang 1 -duId 71 -elabDuId 79 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@101@@1@@10@@Variable 'BFMOP_Widening_EBF' set but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_ExceptionHandling@C5_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@119@@1@@10@@Variable 'BFMOP_Widening_EBF' set but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_ExceptionHandling@C5_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 71 -elabDuId 79 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@102@@1@@10@@Variable 'FDOT' set but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_ExceptionHandling@C5_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@120@@1@@10@@Variable 'FDOT' set but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_ExceptionHandling@C5_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 71 -elabDuId 79 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W528@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@99@@1@@10@@Variable 'FMOP_Widening' set but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_ExceptionHandling@C5_ExceptionHandling']
+W528@@@@Warning@@../../../rtl/src/C5_ExceptionHandling.v@@117@@1@@10@@Variable 'FMOP_Widening' set but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_ExceptionHandling@C5_ExceptionHandling']
 ##sde_property: violation -ruleLang 1 -duId 71 -elabDuId 79 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
@@ -2282,39 +2278,23 @@ W528@@@@Warning@@../../../rtl/src/C5_FPProcessNaN.v@@29@@1@@10@@Variable 'is_SNa
 ##sde_property: violation -ruleLang 1 -duId 76 -elabDuId 84 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@275@@1@@10@@For operator (&), left expression: "is_SBFDotAdd_ZA" width 1 should match right expression: "SBFDotAdd_Zero" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
+W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@277@@1@@10@@For operator (&), left expression: "is_FPMulAdd_ZA" width 1 should match right expression: "FPMulAdd_Zero" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
 ##sde_property: msg_label LINT_W116_WRN
 ##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@275@@1@@10@@For operator (|), left expression: "(((is_FPMulAdd_ZA & (FPMulAdd_Zero[((i * 2) + j)] | FPMulAdd_Diff_Sign_Zero[((i * 2) + j)])) & is_Addend_FP32) | ((is_FPDotAdd_ZA & FPDotAdd_Zero[((i * 2) + j)]) & is_Addend_FP32))" width 1 should match right expression: "(is_SBFDotAdd_ZA & SBFDotAdd_Zero)" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
+W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@277@@1@@10@@For operator (&), left expression: "is_FPMulAdd_ZA" width 1 should match right expression: "FPDotAdd_Zero" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
 ##sde_property: msg_label LINT_W116_WRN
 ##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (&), left expression: "is_FPMulAdd_ZA" width 1 should match right expression: "FPMulAdd_Zero" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
+W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@277@@1@@10@@For operator (&), left expression: "(is_FPMulAdd_ZA & FPMulAdd_Zero)" width 4 should match right expression: "Temp_SignA[((i * 2) + j)]" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
 ##sde_property: msg_label LINT_W116_WRN
 ##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (&), left expression: "is_FPMulAdd_ZA" width 1 should match right expression: "FPDotAdd_Zero" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
+W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@277@@1@@10@@For operator (&), left expression: "(is_FPMulAdd_ZA & FPDotAdd_Zero)" width 4 should match right expression: "SignPa[((i * 2) + j)]" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
 ##sde_property: msg_label LINT_W116_WRN
 ##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (&), left expression: "is_SBFDotAdd_ZA" width 1 should match right expression: "SBFDotAdd_Zero" width 4. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
-##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
-##sde_property: msg_label LINT_W116_WRN
-##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (&), left expression: "(is_FPMulAdd_ZA & FPMulAdd_Zero)" width 4 should match right expression: "Temp_SignA[((i * 2) + j)]" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
-##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
-##sde_property: msg_label LINT_W116_WRN
-##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (&), left expression: "(is_FPMulAdd_ZA & FPDotAdd_Zero)" width 4 should match right expression: "SignPa[((i * 2) + j)]" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
-##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
-##sde_property: msg_label LINT_W116_WRN
-##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (|), left expression: "(is_SBFDotAdd_ZA & SBFDotAdd_Zero)" width 4 should match right expression: "FMLAL" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
-##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
-##sde_property: msg_label LINT_W116_WRN
-##sde_property: msg_id LINT_W116_WRN
-W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@276@@1@@10@@For operator (&), left expression: "((is_SBFDotAdd_ZA & SBFDotAdd_Zero) | FMLAL)" width 4 should match right expression: "(i_Sign1[j] ^ i_Sign2[i])" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
+W116@@@@Warning@@../../../rtl/src/C1_ExceptionHandling.v@@277@@1@@10@@For operator (|), left expression: "(((is_FPMulAdd_ZA & FPMulAdd_Zero) & Temp_SignA[((i * 2) + j)]) | ((is_FPMulAdd_ZA & FPDotAdd_Zero) & SignPa[((i * 2) + j)]))" width 4 should match right expression: "(((is_SBFDotAdd_ZA & SBFDotAdd_Zero[((i * 2) + j)]) | FMLAL) & (i_Sign1[j] ^ i_Sign2[i]))" width 1. [Hierarchy: ':PE:u_C1_FPMultiplyComb@C1_FPMultiplyComb:u_ExceptionHandling@C1_ExceptionHandling:\OP2[0].OP1[0] ']
 ##sde_property: violation -ruleLang 1 -duId 7 -elabDuId 85 
 ##sde_property: msg_label LINT_W116_WRN
 ##sde_property: msg_id LINT_W116_WRN
@@ -2367,10 +2347,6 @@ W362@@@@Warning@@../../../rtl/src/C4_FPRoundBase.v@@129@@1@@10@@For operator (>=
 ##sde_property: msg_label W362_ve
 ##sde_property: msg_id W362_ve
 W240@@@@Warning@@../../../rtl/src/C5_FPAddition.v@@17@@1@@10@@Input 'i_Add_or_Subtract' declared but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_C5_FPAddition@C5_FPAddition']
-##sde_property: violation -ruleLang 1 -duId 77 -elabDuId 85 
-##sde_property: msg_label veCheckUsage_Viol_Msg
-##sde_property: msg_id veCheckUsage_Viol_Msg
-W240@@@@Warning@@../../../rtl/src/C5_FPAddition.v@@14@@1@@10@@Input 'i_Widening_SBF' declared but not read.[Hierarchy: ':PE:\Add_ZA[0].u_C5_FPADDComb @C5_FPADDComb:u_C5_FPAddition@C5_FPAddition']
 ##sde_property: violation -ruleLang 1 -duId 77 -elabDuId 85 
 ##sde_property: msg_label veCheckUsage_Viol_Msg
 ##sde_property: msg_id veCheckUsage_Viol_Msg
@@ -3538,13 +3514,13 @@ Av_initstate01@@ResetState@@Info@@../../../rtl/src/PE.v@@9@@1@@10@@0 percent of 
 ##file_label: PERISCOPE_REPORT_FILE -file ../script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_reports/auto-verify/auto_verify.rpt -policy auto-verify -external
 ##warning_total_suppressed_count:         0
 ##error_total_suppressed_count:         0
-##warning_total_reported_count:       157
+##warning_total_reported_count:       151
 ##error_total_reported_count:         0
 ##total_warning_waived_viol_count:         0
 ##total_error_waived_viol_count:         0
-##totalGeneratedCount:       157
+##totalGeneratedCount:       151
 ##totalWaivedViolationCount:         0
-##totalReportCount:       157
+##totalReportCount:       151
 ##totalDataSeverityCount:       198
 ##totalSuppressedCount:         0
 ##Active_Rules  BlockHeader BufClock CheckDelayTimescale-ML CombLoop LatchFeedback NoAssignX-ML NoXInCase-ML ParamWidthMismatch-ML STARC05-1.2.1.2 STARC05-2.1.3.1 STARC05-2.1.4.5 STARC05-2.1.5.3 STARC05-2.1.6.5 STARC05-2.10.1.4a STARC05-2.10.1.4b STARC05-2.10.2.3 STARC05-2.10.3.2a STARC05-2.11.3.1 STARC05-2.2.3.3 STARC05-2.3.1.2c STARC05-2.3.1.5b STARC05-2.3.1.6 STARC05-2.3.3.1 STARC05-2.3.4.1v STARC05-2.4.1.5 STARC05-2.5.1.2 STARC05-2.5.1.7 STARC05-2.5.1.9 UndrivenInTerm-ML W110 W110a W116 W122 W123 W156 W19 W215 W216 W218 W224 W240 W263 W287a W287b W289 W292 W293 W317 W336 W337 W339a W352 W362 W392 W398 W414 W415 W415a W416 W421 W422 W424 W426 W442a W442b W442c W442f W450L W467 W480 W481a W481b W486 W496a W496b W499 W502 W505 W528 W66 W71 badimplicitSM1 badimplicitSM2 badimplicitSM4 bothedges mixedsenselist sim_race02

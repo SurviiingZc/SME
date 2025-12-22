@@ -120,6 +120,7 @@ wire             is_FPMulAdd_ZA                         ;
 wire             is_FPDotAdd_ZA                         ;
 wire             is_SBFDotAdd_ZA                        ;
 wire             is_None_ZA                             ;
+wire             is_Addend_FP16                         ;
 wire             Exception_Result                       ;
 wire [  3:0]     FPMulAdd_P_FPInfinity                  ;
 wire [  3:0]     FPMulAdd_N_FPInfinity                  ;

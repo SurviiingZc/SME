@@ -6,11 +6,13 @@
 		<data_point date_time="12/21/2025 (17:24)" value="0%" />
 		<data_point date_time="12/21/2025 (17:26)" value="0%" />
 		<data_point date_time="12/21/2025 (17:28)" value="0%" />
+		<data_point date_time="12/22/2025 (15:01)" value="0%" />
   </target_line>
   <actual_line goal="lint-lint_turbo_rtl" color="0x3366FF" line_type="solid"> 
 		<data_point date_time="12/21/2025 (17:24)" value="0" />
 		<data_point date_time="12/21/2025 (17:26)" value="0" />
 		<data_point date_time="12/21/2025 (17:28)" value="0" />
+		<data_point date_time="12/22/2025 (15:01)" value="0" />
   </actual_line>
 	<title>PE:       Failed properties </title>
 	<xaxis_label>Date</xaxis_label>

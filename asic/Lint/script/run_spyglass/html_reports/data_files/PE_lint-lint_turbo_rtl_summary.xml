@@ -17,7 +17,7 @@
 <report name="moresimple_turbo" link="data_files/PE_lint-lint_turbo_rtl_moresimple_turbo.rpt.html" tooltip="moresimple_turbo.rpt" />
    </technology> 
 </tech_reports> 
-<statistics fatal="0" error="0" warning="151" info="6" waived_error="0" waived_warning="0" waived_info="0" /> 
+<statistics fatal="0" error="0" warning="145" info="6" waived_error="0" waived_warning="0" waived_info="0" /> 
 <tech_summary> 
    <technology name="Advanced_Lint"> 
 <item name="Partially-proven properties=0" link="data_files/PE_lint-lint_turbo_rtl_auto_verify.rpt.html" /> 
