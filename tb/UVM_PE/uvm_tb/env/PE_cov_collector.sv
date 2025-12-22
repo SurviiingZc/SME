@@ -96,10 +96,8 @@ class PE_cov_collector extends uvm_component;
         cp_prec: coverpoint current_tr.i_Compute_Precision {
             bins fp32  = {3'b000};
             bins fp16  = {3'b001};
-            bins int16 = {3'b010};
             bins bf16  = {3'b011};
-            bins int8  = {3'b100};
-            ignore_bins invalid = {3'b101, 3'b110, 3'b111};
+            ignore_bins invalid = {3'b010, 3'b100, 3'b101, 3'b110, 3'b111};
         }
 
         // 操作数 A 的类型分布
@@ -249,7 +247,20 @@ class PE_cov_collector extends uvm_component;
     // ========================================================================
     covergroup cg_exception_ctrl;
         option.per_instance = 1;
+        cp_prec_fp: coverpoint current_tr.i_Compute_Precision {
+            bins fp32  = {3'b000};
+            bins fp16  = {3'b001};
+            ignore_bins invalid = {3'b010, 3'b011, 3'b100, 3'b101, 3'b110, 3'b111};
+        }
+        cp_prec_bf: coverpoint current_tr.i_Compute_Precision {
+            bins bf16  = {3'b011};
+            ignore_bins invalid = {3'b000, 3'b001, 3'b010, 3'b100, 3'b101, 3'b110, 3'b111};
+        }
 
+        cp_mode: coverpoint current_tr.i_Compute_Mode {
+            bins inner = {0};
+            bins outer = {1};
+        }
         // Rounding Mode
         cp_rmode: coverpoint current_tr.i_Exception_Handling[16:15] {
             bins FPRounding_TIEEVEN = {2'b00}; // Nearest
@@ -288,7 +299,8 @@ class PE_cov_collector extends uvm_component;
             bins FIZ_0 = {0};
         }
     
-        cross_rmode_ftz: cross cp_rmode, cp_fz;
+        cross_precfp_mode_fpcr: cross cp_prec_fp, cp_mode, cp_rmode, cp_fz, cp_fz_16, cp_ebf, cp_ah, cp_fiz;
+        cross_precbf_fpcr: cross cp_prec_bf, cp_rmode, cp_fz, cp_fz_16, cp_ebf, cp_ah, cp_fiz;
     endgroup
 
     // ========================================================================
