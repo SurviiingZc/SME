@@ -20,6 +20,6 @@ if(!defined $::spyInIspy || !$::spyInIspy)
 )
 );
 }
-spyMessageTagTestBenchmark(355,"../script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass.vdb");
+spyMessageTagTestBenchmark(349,"../script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass.vdb");
 
 1;

@@ -71,6 +71,7 @@ wire [ 31:0]    T_Operand_B_32         ;
 wire            is_8_bits              ;
 wire            is_16_bits             ;
 wire            is_32_bits             ;
+wire            o_FMLAL                ;
 
 genvar i;
 

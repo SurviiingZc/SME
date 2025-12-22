@@ -77,46 +77,46 @@
 76 WORK 0 C5_FPProcessNaN
 77 WORK 0 C5_FPAddition
 89
-../script/clock.sgdc 1 -1 3 1 2065 5374741026 0 0 0 0 0 0 0 0 N.A.
+../script/clock.sgdc 1 -1 3 1 2065 5374740992 0 0 0 0 0 0 0 0 N.A.
 /apps/synopsys/spyglass_vR-2020.12-SP2/SPYGLASS_HOME/auxi/policy_data/auto-verify/verif.sgdc 2 -1 3 1 64768 279267382 0 0 0 0 0 0 1 0 N.A.
-../../../rtl/src/Macro_Definition.v 3 196 2 1 2065 23629292047 0 0 0 0 1 0 0 0 N.A.
-../../../rtl/src/C1_Booth_ALL.v 4 447 1 1 2065 23630278700 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/Macro_Definition.v 3 196 2 1 2065 23628470802 0 0 0 0 1 0 0 0 N.A.
+../../../rtl/src/C1_Booth_ALL.v 4 447 1 1 2065 23628088484 0 0 0 0 1 0 0 1 N.A.
 ../../../rtl/src/C1_BFUnpack.v 5 70 1 1 2065 23628088470 0 0 0 0 1 0 1 1 N.A.
 /simulation/wangjialong/SME_TPU_PE/Public_SME/SME//rtl/src/Macro_Definition.v 6 196 8 1 2065 20404397591 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C1_Booth_4x4.v 7 43 1 1 2065 23630278704 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_Booth_8x8.v 8 42 1 1 2065 23630284867 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_Booth_12x12.v 9 53 1 1 2065 23630284868 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_Booth_pp.v 10 26 1 1 2065 23630284869 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_Compress_3to2.v 11 10 1 1 2065 23630284870 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_Compress_4to2.v 12 21 2 1 2065 23630284871 0 0 0 0 0 0 0 0 N.A.
-../../../rtl/src/C1_CSLA.v 13 40 1 1 2065 23630284885 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_ExceptionHandling.v 14 344 1 1 2065 23628088471 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C1_Booth_4x4.v 7 43 1 1 2065 23622469642 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_Booth_8x8.v 8 42 1 1 2065 23622469643 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_Booth_12x12.v 9 53 1 1 2065 23622469641 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_Booth_pp.v 10 26 1 1 2065 23622469645 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_Compress_3to2.v 11 10 1 1 2065 23622469647 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_Compress_4to2.v 12 21 2 1 2065 23622469648 0 0 0 0 0 0 0 0 N.A.
+../../../rtl/src/C1_CSLA.v 13 40 1 1 2065 23622469646 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_ExceptionHandling.v 14 345 1 1 2065 23628088462 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C1_FPConvertNaN.v 15 24 1 1 2065 23628088472 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C1_FPDefaultNaN.v 16 16 1 1 2065 23628088476 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C1_FPInfinity.v 17 20 1 1 2065 23628088477 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C1_FPMultiplyComb.v 18 166 1 1 2065 23628088490 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C1_FPMultiplyComb.v 18 167 1 1 2065 23628088465 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C1_FPProcessNaN.v 19 38 1 1 2065 23628088529 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C1_FPProcessNaNs.v 20 271 1 1 2065 23628088530 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C1_FPUnpackAll.v 21 234 1 1 2065 23628088540 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C1_FPUnpackAll.v 21 234 1 1 2065 23628088543 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C1_FPUnpackBase.v 22 126 1 1 2065 23628088542 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C1_FPZero.v 23 31 1 1 2065 23628088543 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C1_Ks48add.v 24 96 1 1 2065 23630284872 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C1_Mult_ALL.v 25 213 1 1 2065 23630278701 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C1_FPZero.v 23 31 1 1 2065 23628088560 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C1_Ks48add.v 24 96 1 1 2065 23622469651 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C1_Mult_ALL.v 25 213 1 1 2065 23622469141 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C2_FPInfinity.v 26 17 1 1 2065 23628088547 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C2_FPZero.v 27 17 1 1 2065 23628088548 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C2_Gen_FuseAdd.v 28 23 1 1 2065 23628088557 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C2_LZC.v 29 140 1 1 2065 23628088559 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C2_NormalizeReal.v 30 200 1 1 2065 23628088560 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C2_LZC.v 29 140 1 1 2065 23628088490 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C2_NormalizeReal.v 30 200 1 1 2065 23622469649 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C2_Round.v 31 112 1 1 2065 23628091940 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C3_BFUnpack.v 32 66 2 1 2065 23628091941 0 0 0 0 0 0 1 0 N.A.
-../../../rtl/src/C3_ExceptionHandling.v 33 118 1 1 2065 23628211713 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C3_FPADDComb.v 34 119 1 1 2065 23628211717 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C3_FPAddition.v 35 158 1 1 2065 23628211720 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C3_ExceptionHandling.v 33 118 1 1 2065 23622469650 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C3_FPADDComb.v 34 119 1 1 2065 23622469652 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C3_FPAddition.v 35 157 1 1 2065 23622469653 0 0 0 0 1 0 0 1 N.A.
 ../../../rtl/src/C3_FPDefaultNaN.v 36 17 1 1 2065 23628211721 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C3_FPInfinity.v 37 20 1 1 2065 23628211724 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C3_FPProcessNaN.v 38 38 1 1 2065 23628469811 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C3_FPProcessNaNs.v 39 68 1 1 2065 23628469812 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C3_FPUnpackAll.v 40 155 1 1 2065 23628469813 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C3_FPProcessNaNs.v 39 68 1 1 2065 23626322960 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C3_FPUnpackAll.v 40 155 1 1 2065 23628211713 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C3_FPUnpackBase.v 41 156 1 1 2065 23628469814 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C3_FPZero.v 42 30 1 1 2065 23628469815 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C4_BFRound.v 43 50 1 1 2065 23628469816 0 0 0 0 1 0 1 1 N.A.
@@ -124,48 +124,48 @@
 ../../../rtl/src/C4_FPInfinity.v 45 17 2 1 2065 23628469818 0 0 0 0 0 0 1 0 N.A.
 ../../../rtl/src/C4_FPMaxNormal.v 46 17 2 1 2065 23628469819 0 0 0 0 0 0 1 0 N.A.
 ../../../rtl/src/C4_FPNaN.v 47 17 2 1 2065 23628470787 0 0 0 0 0 0 1 0 N.A.
-../../../rtl/src/C4_FPRoundBase.v 48 155 1 1 2065 23628470790 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C4_FPRoundBase.v 48 155 1 1 2065 23628211717 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C4_FPZero.v 49 17 2 1 2065 23628470791 0 0 0 0 0 0 1 0 N.A.
 ../../../rtl/src/C4_Gen_OuterSign.v 50 23 1 1 2065 23628470792 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C4_LZC.v 51 140 1 1 2065 23628470793 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C4_LZC.v 51 140 1 1 2065 23628211720 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C4_Normal_Result.v 52 33 2 1 2065 23628470795 0 0 0 0 0 0 1 0 N.A.
-../../../rtl/src/C4_NormalizeReal.v 53 126 1 1 2065 23628470794 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C4_Round.v 54 106 1 1 2065 23628470796 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C4_NormalizeReal.v 53 126 1 1 2065 23626322961 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C4_Round.v 54 107 1 1 2065 23628470796 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C5_BFUnpack.v 55 66 1 1 2065 23628470797 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C5_ExceptionHandling.v 56 140 1 1 2065 23628470802 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C5_FPADDComb.v 57 122 1 1 2065 23628470807 0 0 0 0 1 0 0 1 N.A.
-../../../rtl/src/C5_FPAddition.v 58 170 1 1 2065 23628470808 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C5_ExceptionHandling.v 56 158 1 1 2065 23626322962 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C5_FPADDComb.v 57 124 1 1 2065 23626322964 0 0 0 0 1 0 0 1 N.A.
+../../../rtl/src/C5_FPAddition.v 58 169 1 1 2065 23626353691 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C5_FPDefaultNaN.v 59 17 1 1 2065 23628470811 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C5_FPInfinity.v 60 20 1 1 2065 23628470812 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C5_FPProcessNaN.v 61 38 1 1 2065 23628470813 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C5_FPProcessNaNs.v 62 68 1 1 2065 23628470814 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C5_FPUnpackAll.v 63 129 1 1 2065 23628470815 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C5_FPProcessNaNs.v 62 68 1 1 2065 23622469688 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C5_FPUnpackAll.v 63 129 1 1 2065 23626353692 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C5_FPUnpackBase.v 64 157 1 1 2065 23628473933 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C5_FPZero.v 65 34 1 1 2065 23628473947 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C5_FPZero.v 65 34 1 1 2065 23626353709 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_BFRound.v 66 52 1 1 2065 23629116422 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_CarryDetector.v 67 15 1 1 2065 23629116432 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_FPInfinity.v 68 17 1 1 2065 23629116433 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_FPMaxNormal.v 69 17 1 1 2065 23629116438 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_FPNaN.v 70 17 1 1 2065 23629116439 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C6_FPRoundBase.v 71 259 1 1 2065 23629116441 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C6_FPRoundBase.v 71 259 1 1 2065 23622469668 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_FPZero.v 72 17 1 1 2065 23629116447 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/C6_LZC.v 73 140 1 1 2065 23629116449 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/C6_LZC.v 73 140 1 1 2065 23622469689 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_Normal_Result.v 74 33 1 1 2065 23629116455 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_NormalizeReal.v 75 143 1 1 2065 23629116450 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/C6_Round.v 76 103 1 1 2065 23629116456 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/Int16Addition.v 77 22 1 1 2065 23629116461 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/Int16Addition.v 77 22 1 1 2065 23622469669 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/IntAddAarry.v 78 107 1 1 2065 23629116464 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/IntAddition.v 79 22 1 1 2065 23629116468 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/IntSubtraction.v 80 22 1 1 2065 23629116477 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/PE.v 81 938 1 1 2065 23629308985 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/IntAddition.v 79 22 1 1 2065 23628469812 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/IntSubtraction.v 80 22 1 1 2065 23628470794 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/PE.v 81 938 1 1 2065 23628470807 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/Pipline_0.v 82 167 1 1 2065 23629308987 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/Pipline_1.v 83 283 1 1 2065 23629308989 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/Pipline_2.v 84 345 1 1 2065 23629336578 0 0 0 0 1 0 1 1 N.A.
-../../../rtl/src/Pipline_3.v 85 353 1 1 2065 23629336580 0 0 0 0 1 0 1 1 N.A.
+../../../rtl/src/Pipline_3.v 85 353 1 1 2065 23628470808 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/Pipline_4.v 86 248 1 1 2065 23629530627 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/Pipline_5.v 87 230 1 1 2065 23629530628 0 0 0 0 1 0 1 1 N.A.
 ../../../rtl/src/Pipline_6.v 88 42 1 1 2065 23629530629 0 0 0 0 1 0 1 1 N.A.
-../script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_spysch/constraint/spg_autogenerated_waivers.sgdc 89 -1 7 1 2065 16112037401 0 0 0 0 0 0 1 0 N.A.
+../script/run_spyglass/PE/lint/lint_turbo_rtl/spyglass_spysch/constraint/spg_autogenerated_waivers.sgdc 89 -1 7 1 2065 31144197272 0 0 0 0 0 0 1 0 N.A.
 4 1 447 15
 5 6 70 6
 6 1 193 2
@@ -221,11 +221,11 @@
 10 1 26 17
 11 1 11 18
 13 1 40 20
-14 5 345 7
+14 5 346 7
 15 7 25 11
 16 6 17 10
 17 6 21 12
-18 7 166 3
+18 7 167 3
 19 7 39 9
 20 7 272 8
 21 6 234 4
@@ -241,7 +241,7 @@
 31 1 113 62
 33 6 119 33
 34 7 120 30
-35 7 157 39
+35 7 156 39
 36 7 18 35
 37 6 21 34
 38 7 39 38
@@ -255,11 +255,11 @@
 50 6 21 47
 51 1 140 46
 53 1 126 45
-54 6 107 41
+54 6 108 41
 55 6 67 70
-56 6 141 71
-57 7 123 67
-58 7 169 77
+56 6 159 71
+57 7 125 67
+58 7 168 77
 59 7 18 73
 60 6 21 72
 61 7 39 76

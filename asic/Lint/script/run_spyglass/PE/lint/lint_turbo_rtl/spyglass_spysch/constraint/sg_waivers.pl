@@ -10,11 +10,11 @@ use SpyGlass;
 spyClearWaiverHashInPerl(0);
 
 spyComputeWaivedViolCount("totalWaivedViolationCount"=>'0',
-                          "totalGeneratedCount"=>'157',
-                          "totalReportCount"=>'157'
+                          "totalGeneratedCount"=>'151',
+                          "totalReportCount"=>'151'
                          );
 
-spyComputeViolCountForTurbo("totalGeneratedCount"=>'157',
+spyComputeViolCountForTurbo("totalGeneratedCount"=>'151',
                           "totalGeneratedSecCount"=>'19',
                           "totalWaivedPrimaryMsgCount"=>'0',
                           "totalWaivedSecMsgCount"=>'0',

@@ -5,7 +5,7 @@
 <severity name="Fatal" color="11350115" />
 <severity name="Error" color="16711680" />
 <severity name="Warning" color="15696483" />
- <goal name="lint_turbo_rtl" Fatal="0" Error="0" Warning="151" />
+ <goal name="lint_turbo_rtl" Fatal="0" Error="0" Warning="145" />
 	<title>Block : PE (Unresolved Violations) </title>
 	<xaxis_label>Goals</xaxis_label>
 	<yaxis_label>Violation Count</yaxis_label>

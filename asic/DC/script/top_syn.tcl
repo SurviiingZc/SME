@@ -14,11 +14,8 @@ set search_path [list \
                 /simulation/PDK/T28_logic_hpc_plus/STD/tcbn28hpcplusbwp7t35p140_190a/ccs/TSMCHOME/digital/Front_End/timing_power_noise/CCS/tcbn28hpcplusbwp7t35p140_180a/\
                 /simulation/PDK/T28_logic_hpc_plus/IO/tphn28hpcpgv18_170d/nldm/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tphn28hpcpgv18_170a/]
 set target_library   [list ${lib_slow}.db ]
-#set link_library     [list "*" ${lib_slow}.db tphn28hpcpgv18ssg0p81v1p62v125c.db]
 set link_library     [list "*" ${lib_slow}.db]
-#set link_library     [list "*" ${lib_slow}.db SP018R_V1p1_min.db]
 set synthetic_library [list ${lib_slow}.db]
-#set symbol_library [list ${lib_symbol}.sdb]
 
 
 define_design_lib WORK -path ./WORK/$file_version
@@ -27,11 +24,6 @@ define_design_lib WORK -path ./WORK/$file_version
 
 
 
-##################################################################
-## Read in Verilog Files    ##
-##################################################################
-# current_design $working_design
-# link
 
 
 set script_dir [file dirname [info script]]
@@ -63,12 +55,7 @@ current_design $working_design
 
 uniquify -force
 
-##################################################################
-## Optimization
-##################################################################
-# set_optimize_registers true
 set_optimize_registers true
-# 可选：让边界跨层级优化更激进
 set_boundary_optimization [current_design] true
 
 change_names -rules verilog -hierarchy
@@ -76,26 +63,13 @@ change_names -rules verilog -hierarchy
 set_fix_multiple_port_nets -all -buffer_constants
 set_svf $DATA_OUT/$working_design.svf
 
-# compile_ultra -no_autoungroup -timing_high_effort_script > $RPT_OUT/compile.rpt
-# compile_ultra -inc > $RPT_OUT/compile_inc.rpt
 
 compile_ultra -timing_high_effort_script > $RPT_OUT/compile.rpt
 compile_ultra -inc -timing_high_effort_script > $RPT_OUT/compile_inc.rpt
 
-
-# compile_ultra -no_autoungroup -timing_high_effort_script > $RPT_OUT/compile.rpt
-# compile_ultra -no_autoungroup -inc > $RPT_OUT/compile_inc.rpt
-# compile_ultra -no_autoungroup -inc > $RPT_OUT/compile_inc1.rpt
-
-# compile_ultra -timing_high_effort_script > $RPT_OUT/compile.rpt
-# compile_ultra -inc > $RPT_OUT/compile_inc.rpt
-# compile_ultra -inc > $RPT_OUT/compile_inc1.rpt
-
-#
 change_names -rules verilog -hierarchy
 current_design $working_design
 
-##########################################
 
 check_design  > $RPT_OUT/check_design.rpt
 check_timing  > $RPT_OUT/check_timing.rpt
@@ -126,22 +100,6 @@ report_timing -path full -net -cap -input -tran -delay min \
   -from [all_inputs] -to [all_registers -data_pins] \
   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2reg.min.rpt
 
-# # reg → reg
-# report_timing -path full -net -cap -input -tran -delay max \
-#   -from [all_registers -clock_pins] -to [all_registers -data_pins] \
-#   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.max.rpt
-# report_timing -path full -net -cap -input -tran -delay min \
-#   -from [all_registers -clock_pins] -to [all_registers -data_pins] \
-#   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2reg.min.rpt
-
-# # reg → out
-# report_timing -path full -net -cap -input -tran -delay max \
-#   -from [all_registers -clock_pins] -to [all_outputs] \
-#   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.max.rpt
-# report_timing -path full -net -cap -input -tran -delay min \
-#   -from [all_registers -clock_pins] -to [all_outputs] \
-#   -max_paths 200 -nworst 200 > $RPT_OUT/timing.reg2out.min.rpt
-
 # reg → reg (setup)
 report_timing -path full -net -cap -input -tran -delay max \
   -from $REG_Q -to $REG_D \
@@ -170,12 +128,8 @@ report_timing -path full -net -cap -input -tran -delay max \
 report_timing -path full -net -cap -input -tran -delay min \
   -from [all_inputs] -to [all_outputs] \
   -max_paths 200 -nworst 200 > $RPT_OUT/timing.in2out.min.rpt
-
-# report_constraints -all_violators -verbose > $RPT_OUT/constraints.rpt
 report_power > $RPT_OUT/power.rpt
-###################################################################
-## Saving Hierarchy
-###################################################################
+
 set bus_naming_style {%s[%d]} 
 write_file -f verilog -hierarchy -output $DATA_OUT/$working_design.v
 write_sdf -version 2.1 $DATA_OUT/$working_design.sdf
@@ -183,7 +137,6 @@ write_file -f ddc -hierarchy -output $DATA_OUT/$working_design.ddc
 write_sdc $DATA_OUT/$working_design.sdc
 
 file delete ./command.log
-#file delete ./default.svf
 file delete ./filenames.log
 
-#exit
+exit

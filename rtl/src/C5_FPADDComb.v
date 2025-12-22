@@ -46,6 +46,8 @@ wire [  2:0]    T_Type2                ;
 wire            T_Sign2                ;
 wire [  7:0]    T_Expo2                ;
 wire [ 23:0]    T_Mant2                ;
+wire            o_Widening_SBF         ;
+wire            o_FMLAL                ;
 
 
 C5_FPUnpackAll u_FPUnpackAll(
